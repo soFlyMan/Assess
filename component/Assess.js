@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import { DatePicker } from 'antd';
+import { Link } from 'react-router';
 
 import LoginModal from './LoginModal.js';
 
@@ -23,7 +24,7 @@ class Assess extends Component{
 			<div>
 				<nav className={this.state.nav}>
 					<ul>
-						<li style={{fontSize:40,float:'left'}}>Assess</li>
+						<li style={{fontSize:40,float:'left'}}><Link to="/" style={{color:"#777"}}>Assess</Link></li>
 						<li style={{float:'right',padding:15}}><LoginModal /></li>
 					</ul>
 				</nav>
