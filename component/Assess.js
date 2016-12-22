@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { DatePicker } from 'antd';
+import { Button } from 'antd';
 import { Link } from 'react-router';
 
 import LoginModal from './LoginModal.js';
@@ -29,6 +29,9 @@ class Assess extends Component{
 					</ul>
 				</nav>
 				<div id="navImg">
+				</div>
+				<div style={{width:"20%",height:100,padding:40,margin:"0 auto"}}>
+					<Button type="primary"><Link to="/test">开始考试</Link></Button>
 				</div>
 				<div>
 					{this.props.children}

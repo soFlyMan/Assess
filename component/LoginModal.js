@@ -31,7 +31,7 @@ const LoginModal = React.createClass({
         <Modal title="请登陆!" okText="登陆" visible={this.state.visible}
           onOk={this.handleOk} onCancel={this.handleCancel}
         >
-          <StuLogin />
+          <StuLogin handleOk={this.handleOk}/>
         </Modal>
       
       </div>

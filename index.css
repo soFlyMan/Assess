@@ -26,7 +26,7 @@ html, body, #root {
 #navImg{
   height: 500px;
   width: 100%;
-  background: #ccc url("./assets/images/nav.jpg") no-repeat left;
+  background: #ccc url("/nav.jpg") no-repeat left;
   z-index: -2;
 }
 
@@ -35,7 +35,7 @@ html, body, #root {
   width: 100%;
   height: 100%;
   padding-top:100px; 
-  background:  #80edb6 url("./assets/images/nav.jpg") no-repeat fixed left;
+  background:  #80edb6 url("/nav.jpg") no-repeat fixed left;
 
 }
 #adminlogin{
@@ -98,5 +98,4 @@ html, body, #root {
 	position: absolute;
 	top: 0;
 	height: 200px;
-	border: 1px solid #e9e9e9;
 }
