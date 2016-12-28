@@ -1,0 +1,21 @@
+//定义state的数据结构
+
+{
+	"userInfo":[
+		{
+			"username": "soFly1",
+			"password": "123",
+			"userid": 20130610040206
+		},
+		{
+			"username": "soFly2",
+			"password": "1234",
+			"userid": 20130610040207
+		},
+		{
+			"username": "soFly3",
+			"password": "1235",
+			"userid": 20130610040208
+		},
+	]
+}

@@ -18,6 +18,32 @@ class Assess extends Component{
 
 	}
 	}
+	componentWillMount(){
+		var user = {
+          username: 'soFly'+Math.random(),
+          password: '123',
+          userid: 100
+        }
+        var req = new Request('/signup',{
+          method: 'POST',
+          headers: {
+          	"Content-Type": "application/json"
+          },
+          body: JSON.stringify(user)
+        })
+        console.log(req.context)
+        fetch(req).then(function(res){
+        	console.log(req)
+          if(res.ok){
+          	console.log(req.context)
+            res.json().then(function(data){
+            	console.log(JSON.stringify(data))
+            })
+          }
+        }).catch(function(err){
+          console.log("err"+err.message)
+        })
+	}
 	render(){
 		return (
 			<div style={{height:1000}} onWheel={this.handleScorll.bind(this)}>

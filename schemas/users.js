@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
-var bcrypt = require('bcrypt')
+var bcrypt = require('bcrypt')//加盐
+var SALT_WORK_FACTOR = 10 //计算强度,计算密码所需要的资源和时间
 
 var UserSchema = new mongoose.Schema({
 	username: {
@@ -7,6 +8,7 @@ var UserSchema = new mongoose.Schema({
 		type: String
 	},
 	password: String,
+	userid: Number,
 	meta: {
 		createAt: {
 			type: Date,
@@ -21,15 +23,36 @@ var UserSchema = new mongoose.Schema({
 
 //每次在存储一个数据之前都会调用该方法
 UserSchema.pre('save',function(next){
+	var user = this
 //判断数据是否是新加的
 	if(this.isNew){
 		this.meta.createAt = this.meta.updateAt =Date.now()
 	}else{
 		this.meta.updateAt = Date.now()
 	}
+    //加盐
+	bcrypt.genSalt(SALT_WORK_FACTOR,function(err,salt){
+ 	if(err) return next(err)
+ 		bcrypt.hash(user.password,salt,function(err,hash){
+ 			if(err) return next(err)
 
-	next()
+			user.password = hash
+ 			next()
+ 		})
+ })
+
 })
+
+//实例方法
+UserSchema.methods = {
+	comparePassword: function(_password,cb){
+		bcrypt.compare(_password,this.password,function(err,isMatch){
+			if(err) return cb(err)
+
+			cb(null,isMatch)
+		})
+	}
+}
 
 //静态方法，模型实例化之后才会具有该方法
 UserSchema.statics = {

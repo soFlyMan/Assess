@@ -38,7 +38,7 @@ const Admin = React.createClass({
         >
           <SubMenu key="sub1" title={<span><Icon type="team" /><span>用户管理</span></span>}>
             <Menu.Item key="1"><Link to="/admin/userinfo">用户信息</Link></Menu.Item>
-            <Menu.Item key="2">班级成绩</Menu.Item>
+            <Menu.Item key="2"><Link to="/admin/userlist">用户列表</Link></Menu.Item>
             <Menu.Item key="3"><Link to="/">首页</Link></Menu.Item>
             <Menu.Item key="4">管理员信息</Menu.Item>
           </SubMenu>
