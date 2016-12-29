@@ -84,14 +84,14 @@ const AddForm = Form.create()(React.createClass({
       <Form horizontal onSubmit={this.handleSubmit}>
         <FormItem
           {...formItemLayout}
-          label="E-mail"
+          label="姓名"
           hasFeedback
         >
           {getFieldDecorator('email', {
             rules: [{
               type: 'email', message: 'The input is not valid E-mail!',
             }, {
-              required: true, message: 'Please input your E-mail!',
+              required: true, message: '请输入姓名!',
             }],
           })(
             <Input />
@@ -99,7 +99,7 @@ const AddForm = Form.create()(React.createClass({
         </FormItem>
         <FormItem
           {...formItemLayout}
-          label="Password"
+          label="密码"
           hasFeedback
         >
           {getFieldDecorator('password', {
@@ -114,7 +114,7 @@ const AddForm = Form.create()(React.createClass({
         </FormItem>
         <FormItem
           {...formItemLayout}
-          label="Confirm Password"
+          label="确认密码"
           hasFeedback
         >
           {getFieldDecorator('confirm', {

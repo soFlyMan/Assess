@@ -26,6 +26,6 @@ var db = mongoose.connection
 // })
 
 
-mongoose.connect('mongodb://localhost/test')
+mongoose.connect('mongodb://localhost/Assess')
 
 module.exports = db

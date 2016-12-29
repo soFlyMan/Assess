@@ -9,11 +9,17 @@
 3.根据公式得出学生的总评成绩。
 
 ## 概述
+
+[跳转](#build)
 >技术栈 react+nodejs+redux+webpack+ES6
 
 **网站构建流程**
 ```
-React，使用antd组件，Router进行前端路由匹配，Redux进行统一的状体管理,Redux配合Router,代码使用ES6语法，babel进行转码,fetch代替传统的ajax请求，webpack打包.前端代码部署到node中express搭建的服务器上,服务器进行路由匹配，mongoose写mongoDB数据库代码.
+React，使用antd组件，Router进行前端路由匹配，Redux进行统一的状体管理,Redux配合Router,代码
+
+使用ES6语法，babel进行转码,fetch代替传统的ajax请求，webpack打包.前端代码部署到node中expre
+
+ss搭建的服务器上,服务器进行路由匹配，mongoose写mongoDB数据库代码.
 ```
 
 ###技术栈
@@ -64,6 +70,8 @@ React，使用antd组件，Router进行前端路由匹配，Redux进行统一的
 后台管理通过react构建单页面应用的方式
 
 react+react-router
+
+<h3 id="build"></h3>
 
 #### 后端 nodejs+express
 **中间件**

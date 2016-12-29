@@ -1,8 +1,9 @@
 var express = require('express')
 var router = express.Router()
 var User = require('../models/users')
+var Admin = require('../models/admin')
 
-
+//页面
 router.get('/',function(req,res){
 	console.log("session!!!!!!!!!!!")
 	console.log(req.session.user)
@@ -33,7 +34,8 @@ router.get('/test',function(req,res){
 router.get('/nav.jpg',function(req,res){
 	res.sendfile('./dist/fd501e6aa355a35843a6ae8b3585eec1.jpg')
 })
-//sign up
+
+//user sign up
 router.post('/signup',function(req,res){
 	var _user = req.body
 	console.log(_user)
@@ -52,7 +54,7 @@ router.post('/signup',function(req,res){
 	})
 	
 })
-
+//user sign in
 router.post('/signin',function(req,res){
 	var _user = req.body.user
 	var username = _user.username
@@ -82,23 +84,57 @@ router.post('/signin',function(req,res){
 	})
 
 })
-// router.post('/signup',function(req,res){
-// 	// var _users = req.body.users
-// 	var _users = req.body
-// 	console.log("123")
-// 	console.log(_users)
-// 	var user = new User(_users)
+//admin sign in
+router.post('/adminsignin',function(req,res){
+	var _admin = req.body
+	console.log(_admin)
+	var adminname = _admin.adminname
+	var adminpassword = _admin.adminpassword
+	Admin.findOne({adminname: adminname},function(err,admin){
+		if(err){
+			console.log(err)
+		}if(!admin){
+			console.log("非管理员")
+		}else{
+			admin.compareAdminPassword(adminpassword,function(err,isMatch){
+				if(err){
+					console.log(err)
+				}if(isMatch){
+					console.log('matched')
+					res.send({b:2})
+				}else{
+					console.log("密码错误")
+				}
+			})
+		}
+	})
 
-// 	user.save(function(err,user){
-// 		if(err) console.log(err)
-// 			console.log(user)
-// 		res.send({a:1})
-// 	})
+})
+
 // 	//优先级
 // 	// var _users = req.params.users
 // 	// var _users = req.body.users
 // 	// var _users = req.query.users
 
 // })
+
+//show user list
+router.get('/userlist',function(req,res){
+	User.fetch(function(err,users){
+		if(err){
+			console.log(err)
+		}else{
+			console.log(users)
+			res.send(users)
+		}
+	})
+})
+
+
+
+
+
+
+
 
 module.exports = router

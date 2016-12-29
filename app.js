@@ -14,9 +14,9 @@ app.set('view engine','jade')
 //对请求内容进行解析
 //解析application/json
 
-app.use(bodyParser.json())
 //解析application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(session({
 	secret: 'sessionsecret',

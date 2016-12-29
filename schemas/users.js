@@ -9,6 +9,7 @@ var UserSchema = new mongoose.Schema({
 	},
 	password: String,
 	userid: Number,
+	class: String,
 	meta: {
 		createAt: {
 			type: Date,

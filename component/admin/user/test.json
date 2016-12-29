@@ -1,0 +1,22 @@
+{
+	"userlist": [
+		{
+			"username": "soFly1",
+			"password": "asda",
+			"userid": "2131",
+			"class": "2"
+			},
+		{
+			"username": "soFly2",
+			"password": "asda",
+			"userid": "2131",
+			"class": "2"
+			},
+		{
+			"username": "soFly3",
+			"password": "asda",
+			"userid": "2131",
+			"class": "2"
+			}
+	]
+}

@@ -24,6 +24,7 @@ class Assess extends Component{
           password: '123',
           userid: 100
         }
+        console.log(user)
         var req = new Request('/signup',{
           method: 'POST',
           headers: {
