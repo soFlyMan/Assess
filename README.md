@@ -100,8 +100,32 @@ application/json 提交json格式的数据
 text/xml 提交xml格式的数据
 
 
+```
+<Tooltip title="What do you want other to call you?">
+                <Icon type="question-circle-o" />
+              </Tooltip>
+```
 
+2016-12-30
 
+state变化，会触发由该state渲染的DOM re render.
+
+子组件向父组件递值，先由父组件定义function，作为props传递给子组件，子组件触发该props回调函数。
+```
+//Parent Component
+handleTrans(val){
+    this.setState({
+        a: val
+        })
+}
+<Child handleTrans={this.handleTrans}>
+
+//Child Component
+componentWillMount(){
+    var val = 'soFly'
+    this.props.handleTrans(val)
+}
+```
 
 
 

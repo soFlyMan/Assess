@@ -33,7 +33,9 @@ const UserList = React.createClass({
     return {
       selectedRowKeys: [],  // Check here to configure the default column
       loading: false,
-      userlist:[]
+      userlist:[],
+      reRender: false,
+      username:''
     };
   },
   start() {
@@ -68,6 +70,23 @@ const UserList = React.createClass({
     })
 
   },
+  handleRender(val){
+    var rereq = new Request('/userlist',{
+      method: 'GET',
+    });
+    var _self = this;
+    fetch(rereq).then(function(res){
+      if(res.ok){
+        res.json().then(function(data){
+          _self.setState({
+            userlist: data
+          })
+        })
+      }
+    }).catch(function(err){
+      console.log(err.message);
+    })
+  },
   render() {
     const { loading, selectedRowKeys,userlist } = this.state;
     const rowSelection = {
@@ -76,7 +95,7 @@ const UserList = React.createClass({
     };
     const hasSelected = selectedRowKeys.length > 0;
     return (
-      <Card title="用户列表" extra={<AddUser />}>
+      <Card title="用户列表" extra={<AddUser handleRender={this.handleRender}/>}>
         <div style={{ marginBottom: 16 }}>
           <Button type="primary" onClick={this.start}
             disabled={!hasSelected} loading={loading}
