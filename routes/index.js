@@ -38,7 +38,6 @@ router.get('/nav.jpg',function(req,res){
 //user sign up
 router.post('/signup',function(req,res){
 	var _user = req.body
-	console.log(_user)
 	User.findOne({username: _user.username},function(err,user){
 		if(err){
 			console.log(err)
@@ -75,7 +74,7 @@ router.post('/signin',function(req,res){
 				}
 				if(isMatch){
 					// req.session.user = user
-					console.log('password is matched!')
+					console.log('Is matched!')
 					res.send({status: 1})
 				}else{
 					console.log('password is not matched')
@@ -89,7 +88,6 @@ router.post('/signin',function(req,res){
 //admin sign in
 router.post('/adminsignin',function(req,res){
 	var _admin = req.body
-	console.log(_admin)
 	var adminname = _admin.adminname
 	var adminpassword = _admin.adminpassword
 	Admin.findOne({adminname: adminname},function(err,admin){
@@ -128,7 +126,6 @@ router.get('/userlist',function(req,res){
 		if(err){
 			console.log(err)
 		}else{
-			console.log(users)
 			res.send(users)
 		}
 	})
