@@ -56,7 +56,7 @@ router.post('/signup',function(req,res){
 })
 //user sign in
 router.post('/signin',function(req,res){
-	var _user = req.body.user
+	var _user = req.body
 	var username = _user.username
 	var password = _user.password
 
@@ -65,7 +65,8 @@ router.post('/signin',function(req,res){
 				console.log(err)
 			}
 			if(!user){
-				return res.redirect('./')
+				console.log('user name is not exist !')
+				res.send({status: 0})
 			}
 			else{
 			user.comparePassword(password,function(err,isMatch){
@@ -73,11 +74,12 @@ router.post('/signin',function(req,res){
 					console.log(err)
 				}
 				if(isMatch){
-					req.session.user = user
+					// req.session.user = user
 					console.log('password is matched!')
-					return res.redirect('./')
+					res.send({status: 1})
 				}else{
 					console.log('password is not matched')
+					res.send({status: 2})
 				}
 			})
 		}
@@ -94,16 +96,18 @@ router.post('/adminsignin',function(req,res){
 		if(err){
 			console.log(err)
 		}if(!admin){
-			console.log("非管理员")
+			console.log("Not The Administrator!")
+			res.send({status:0})
 		}else{
 			admin.compareAdminPassword(adminpassword,function(err,isMatch){
 				if(err){
 					console.log(err)
 				}if(isMatch){
 					console.log('matched')
-					res.send({b:2})
+					res.send({status:1})
 				}else{
-					console.log("密码错误")
+					console.log("Password is error")
+					res.send({status:2})
 				}
 			})
 		}

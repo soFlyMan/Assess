@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { message, Form, Icon, Input, Button, Checkbox } from 'antd';
 import Mock from 'mockjs';
 
 import Admin from './Admin.js';
@@ -51,11 +51,18 @@ const AdminLogin = Form.create()(React.createClass({
             console.log(req.context)
             res.json().then(function(data){
               console.log(JSON.stringify(data))
-              _self.setState({
+              if(data.status==1){
+                _self.setState({
                 success: true
               })
+              }else if(data.status==2){
+                message.info('Password is error !')
+              }else{
+                message.info('Not The Administrator!')
+              }
+              
             })
-          }
+            }
         }).catch(function(err){
           console.log("err"+err.message)
         })
@@ -87,11 +94,11 @@ const AdminLogin = Form.create()(React.createClass({
           })(
             <Checkbox>Remember me</Checkbox>
           )}
-          <a className="login-form-forgot">Forgot password</a>
+          <a className="login-form-forgot"></a>
           <Button type="primary" htmlType="submit" className="login-form-button" style={{width:"100%"}}>
             Log in
           </Button>
-          Or <a>register now!</a>
+          Or <a><Link to='/'>Back</Link></a>
         </FormItem>
       </Form>
     </div>

@@ -11,7 +11,7 @@
 ## 概述
 
 [跳转](#build)
->技术栈 react+nodejs+redux+webpack+ES6
+>技术栈 react+nodejs+express+redux+webpack+ES6
 
 **网站构建流程**
 ```

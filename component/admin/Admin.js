@@ -62,7 +62,7 @@ const Admin = React.createClass({
           <div id="rightWrap-nav">
             <Menu mode="horizontal">
                 <SubMenu title={<span><Icon type="user" />{ this.state.username }</span>}>
-                  <Menu.Item key="setting:1"><Link to="adminlogin"><Icon type="logout" />退出</Link></Menu.Item>                
+                  <Menu.Item key="setting:1"><Link to="/"><Icon type="logout" />退出</Link></Menu.Item>                
                 </SubMenu>
             </Menu>
           </div>
