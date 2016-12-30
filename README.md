@@ -108,6 +108,8 @@ text/xml 提交xml格式的数据
 
 2016-12-30
 
+React 子组件与父组件间通信
+
 state变化，会触发由该state渲染的DOM re render.
 
 子组件向父组件递值，先由父组件定义function，作为props传递给子组件，子组件触发该props回调函数。

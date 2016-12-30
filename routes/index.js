@@ -42,14 +42,14 @@ router.post('/signup',function(req,res){
 		if(err){
 			console.log(err)
 		}else if(user){
-			return res.redirect('/')
-		}
+			return res.send({status:0})
+		}else{
 		var user = new User(_user)
 		user.save(function(err,user){
 			if(err) console.log(err)
-				res.send({a:1})
-
-	})
+				res.send({status:1})
+			})
+		}
 	})
 	
 })

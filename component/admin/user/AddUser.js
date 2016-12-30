@@ -64,6 +64,7 @@ const AddUser = Form.create()(React.createClass({
         fetch(req).then(function(res){
           if(res.ok){
             res.json().then(function(data){
+              if(data.status==1){
               _self.setState({
                 visible: false,
                 confirmLoading: false,
@@ -71,9 +72,19 @@ const AddUser = Form.create()(React.createClass({
                 var val = _self.state.username
                 _self.props.handleRender(val);
                 message.info("添加成功！")
+              }else if(data.status==0){
+                _self.setState({
+                  confirmLoading: false
+                })
+                message.info("用户已存在！")
+              }else{
+                _self.setState({
+                  confirmLoading: false
+                })
+              message.info("添加失败！")
+            }
             })
           }
-            message.info("添加失败！")
         }).catch(function(err){
           console.log("err"+err.message)
         })
