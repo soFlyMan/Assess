@@ -1,5 +1,6 @@
 var express = require('express')
 var router = express.Router()
+
 var User = require('../models/users')
 var Admin = require('../models/admin')
 

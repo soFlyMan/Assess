@@ -10,7 +10,7 @@ import Test from './component/student/Test.js';
 
 
 import Admin from './component/admin/Admin.js';
-import UserInfo from './component/admin/user/UserInfo.js';
+import ClassAdmin from './component/admin/user/ClassAdmin.js';
 import UserList from './component/admin/user/UserList.js'
 import AdminLogin from './component/admin/AdminLogin.js';
 
@@ -25,7 +25,7 @@ ReactDOM.render((
 		</Route>
 		<Route path="test" component={Test} />
 		<Route path="admin" component={Admin}>
-			<Route path="userinfo" component={UserInfo} />
+			<Route path="classadmin" component={ClassAdmin} />
 			<Route path="userlist" component={UserList}>
 			</Route>
 		</Route>

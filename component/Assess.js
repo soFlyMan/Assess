@@ -11,7 +11,7 @@ class Assess extends Component{
 		this.state={nav:'assessNav'};
 	}
 	handleScorll(e){
-		if(e.deltaY>0){
+		if(document.body.scrollTop>0){
 		this.setState({nav:'assessNavChange'});
 	}else{
 		this.setState({nav:'assessNav'});
@@ -20,7 +20,7 @@ class Assess extends Component{
 	}
 	render(){
 		return (
-			<div style={{height:1000}} onWheel={this.handleScorll.bind(this)}>
+			<div style={{marginBottom:180}} onWheel={this.handleScorll.bind(this)}>
 			<div>
 				<nav className={this.state.nav}>
 					<ul>

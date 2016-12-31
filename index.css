@@ -29,7 +29,12 @@ html, body, #root {
   background: #ccc url("/nav.jpg") no-repeat left;
   z-index: -2;
 }
-
+/*Assess Card
+*/
+.card{
+  height: 200px;
+  margin:10px;
+}
 /*adminlogin*/
 #admincontainer{
   width: 100%;

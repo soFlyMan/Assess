@@ -17,16 +17,6 @@ const columns = [{
   dataIndex: 'class',
 }];
 
-const data = [];
-for (let i = 0; i < 12; i++) {
-  data.push({
-    key: i,
-    username: `Edward King ${i}`,
-    password: 32,
-    userid: `201306100402${i}`,
-    class: `London, Park Lane no. ${i}`,
-  });
-}
 
 const UserList = React.createClass({
   getInitialState() {
@@ -95,7 +85,7 @@ const UserList = React.createClass({
     };
     const hasSelected = selectedRowKeys.length > 0;
     return (
-      <Card title="用户列表" extra={<AddUser handleRender={this.handleRender}/>}>
+      <Card title="学生列表" extra={<AddUser handleRender={this.handleRender}/>}>
         <div style={{ marginBottom: 16 }}>
           <Button type="primary" onClick={this.start}
             disabled={!hasSelected} loading={loading}

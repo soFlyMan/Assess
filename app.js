@@ -7,6 +7,7 @@ var port = process.env.PORT || 3000
 var app = express()
 var db = require('./server/db')
 var index = require('./routes/index')
+var admin = require('./routes/admin')
 
 //设置模版引擎
 app.set('views', './views')
@@ -25,6 +26,7 @@ app.use(session({
 }))
 
 app.use('/',index)
+app.use('/admin',admin)
 //引用静态文件
 app.use('/static', express.static(__dirname + '/public'))
 

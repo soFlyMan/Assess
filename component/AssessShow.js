@@ -1,31 +1,127 @@
 import React,{ Component } from 'react';
-import { Card } from 'antd';
+import { Card, Row, Col, Table, Input, Button } from 'antd';
 import { Link } from 'react-router'; 
+
+const data = [{
+  key: '1',
+  coursename: 'ReactJS',
+  date: 32,
+  result: 98,
+}, {
+  key: '2',
+  coursename: 'NodeJS',
+  date: 42,
+  result: 98,
+}, {
+  key: '3',
+  coursename: 'java程序设计',
+  date: 32,
+  result: 98,
+}, {
+  key: '4',
+  coursename: 'ReactJS',
+  date: 32,
+  result: 98,
+}]
 
 export default class AssessShow extends Component{
 	constructor(props){
 		super(props)
+		this.state = {
+		 	filterDropdownVisible: false,
+	        data,
+	        searchText: ''
+		}
+	}
+	onInputChange(e) {
+    this.setState({ searchText: e.target.value })
+    } 
+    onSearch() {
+	    const { searchText } = this.state
+	    const reg = new RegExp(searchText, 'gi')
+	    this.setState({
+	      filterDropdownVisible: false,
+	      data: data.map((record) => {
+	        const match = record.name.match(reg);
+	        if (!match) {
+	          return null;
+	        }
+	        return {
+	          ...record,
+	          name: (
+	            <span>
+	              {record.name.split(reg).map((text, i) => (
+	                i > 0 ? [<span className="highlight">{match[0]}</span>, text] : text
+	              ))}
+	            </span>
+	          ),
+	        };
+	      }).filter(record => !!record),
+	    })
 	}
 	render(){
+		const columns = [{
+      title: '课程名称',
+      dataIndex: 'coursename',
+      key: 'course',
+      filterDropdown: (
+        <div className="custom-filter-dropdown">
+          <Input
+            placeholder="Search name"
+            value={this.state.searchText}
+            onChange={this.onInputChange}
+            onPressEnter={this.onSearch}
+          />
+          <Button type="primary" onClick={this.onSearch}>Search</Button>
+        </div>
+      ),
+      filterDropdownVisible: this.state.filterDropdownVisible,
+      onFilterDropdownVisibleChange: visible => this.setState({ filterDropdownVisible: visible }),
+		    }, {
+		      title: '日期',
+		      dataIndex: 'date',
+		      key: 'date',
+		    }, {
+		      title: '成绩',
+		      dataIndex: 'result',
+		      key: 'result',
+		    }]
 		return (
 		<div>
+			<div style={{ background: '#ECECEC', padding: '30px 80px' }}>
+			    <Card title="网络课程列表" bordered={false} style={{ width: "100%",height:"400px" }}>
+			      <div style={{padding:30}}>
+				    <Row>
+				    	<Col span='8'>
+				    		<Card title="java程序设计" bordered={false} className="card">
+				    		<p>You can learn java at there !</p>
+				    		</Card>
+				    	</Col>
+				    	<Col span='8'>
+				    		<Card title="ReactJS" bordered={false} className="card">
+				    		<p>React is a great front-end framework maintained by Facebook !</p>
+				    		</Card>
+				    	</Col>
+				    	<Col span='8'>
+				    		<Card title="NodeJS" bordered={false} className="card">
+				    		<p>Nodejs is an open-source,cross-platform,
+				    		javascriot runtime environment .
+				    		It is built on the top of the Googles Chrom V8 VM engine .</p>
+				    		</Card>
+				    	</Col>
+				    </Row>
+			      </div>
+			    </Card>
+  			</div>
 			<div style={{margin:"30px 80px"}}>
-				<Card title="你可以在这里查询你的成绩！" style={{width:"100%",height:"300px"}}>
-					<p><Link to="assess/showscore">查询</Link></p>
+				<Card title="成绩查询" style={{width:"100%"}} extra={<span><Link to="assess/showscore">考试安排</Link></span>}>
+					<p>&nbsp;你的成绩单</p>
+					<Table columns={columns} dataSource={this.state.data} />
 					<div>
 						{this.props.children}
 					</div>
 				</Card>
 			</div>
-			<div style={{ background: '#ECECEC', padding: '30px 80px' }}>
-			    <Card title="Card title" bordered={false} style={{ width: "100%",height:"300px" }}>
-			      <p>Card content</p>
-			      <p>Card content</p>
-			      <p>Card content</p>
-			    </Card>
-  			</div>
-  			<div style={{height:500}}>
-  			</div>
 		</div>
 			)
 	}

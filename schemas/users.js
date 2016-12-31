@@ -22,6 +22,7 @@ var UserSchema = new mongoose.Schema({
 	}
 })
 
+
 //每次在存储一个数据之前都会调用该方法
 UserSchema.pre('save',function(next){
 	var user = this
@@ -71,6 +72,8 @@ UserSchema.statics = {
 			.exec(cb)
 	}
 }
+
+
 
 module.exports = UserSchema
 
