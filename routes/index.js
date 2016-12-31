@@ -35,7 +35,12 @@ router.get('/test',function(req,res){
 router.get('/nav.jpg',function(req,res){
 	res.sendfile('./dist/fd501e6aa355a35843a6ae8b3585eec1.jpg')
 })
-
+router.get('/logo',function(req,res){
+	res.sendfile('./dist/f3919c9c277024f91197317ae56e87d2.png')
+})
+router.get('./favicon.png',function(req,res){
+	res.sendfile('./favicon.png')
+})
 //user sign up
 router.post('/signup',function(req,res){
 	var _user = req.body

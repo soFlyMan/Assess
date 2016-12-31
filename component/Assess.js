@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 
 import LoginModal from './LoginModal.js';
 
+var logo = require('../assets/images/Assesslogo.png')
+
 
 class Assess extends Component{
 	constructor(props){
@@ -24,7 +26,7 @@ class Assess extends Component{
 			<div>
 				<nav className={this.state.nav}>
 					<ul>
-						<li style={{fontSize:40,float:'left'}}><Link to="/" style={{color:"#777"}}>Assess</Link></li>
+						<li style={{fontSize:40,float:'left',marginLeft:8}}><Link to="/" style={{color:"#777"}}><img height="60" width="80" src="./logo"/></Link></li>
 						<li style={{float:'right',padding:15}}><LoginModal /></li>
 					</ul>
 				</nav>
