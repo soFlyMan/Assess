@@ -6,7 +6,6 @@ const FormItem = Form.Item;
 const AddUser = Form.create()(React.createClass({
   getInitialState() {
     return {
-      ModalText: 'Content of the modal dialog',
       visible: false,
       passwordDirty: false,
       username: '',
@@ -43,7 +42,6 @@ const AddUser = Form.create()(React.createClass({
   handleOk() {
     console.log(this.state.username)
     this.setState({
-      ModalText: 'The modal dialog will be closed after two seconds',
       confirmLoading: true,
     });
     var _self = this
