@@ -10,8 +10,8 @@ var KlassSchema = new mongoose.Schema({
 		default: 'admin'
 	},
 	isHistory:{
-		type: Boolean,
-		default: false
+		type: String,
+		default: '否'
 	},
 	meta: {
 		createAt: {
@@ -21,9 +21,9 @@ var KlassSchema = new mongoose.Schema({
 	}
 })
 
-KlassSchema.methods = {
+// KlassSchema.methods = {
 	
-}
+// }
 
 KlassSchema.statics = {
 	fetch:function(cb){

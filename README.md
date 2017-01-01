@@ -130,12 +130,8 @@ componentWillMount(){
 ```
 
 
+2016-1-01
 
-
-
-
-
-test
-
+[dropindex](http://stackoverflow.com/questions/24430220/e11000-duplicate-key-error-index-in-mongodb-mongoose)
 
 

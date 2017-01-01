@@ -43,29 +43,15 @@ const UserList = React.createClass({
     this.setState({ selectedRowKeys });
   },
   componentWillMount(){
+    this.handleRender();
+
+  },
+  handleRender(val){
     var req = new Request('/userlist',{
       method: 'GET',
     });
     var _self = this;
     fetch(req).then(function(res){
-      if(res.ok){
-        res.json().then(function(data){
-          _self.setState({
-            userlist: data
-          })
-        })
-      }
-    }).catch(function(err){
-      console.log(err.message);
-    })
-
-  },
-  handleRender(val){
-    var rereq = new Request('/userlist',{
-      method: 'GET',
-    });
-    var _self = this;
-    fetch(rereq).then(function(res){
       if(res.ok){
         res.json().then(function(data){
           _self.setState({
@@ -85,7 +71,7 @@ const UserList = React.createClass({
     };
     const hasSelected = selectedRowKeys.length > 0;
     return (
-      <Card title="学生列表" extra={<AddUser handleRender={this.handleRender}/>}>
+      <Card title="学生列表" style={{minHeight:500}} extra={<AddUser handleRender={this.handleRender}/>}>
         <div style={{ marginBottom: 16 }}>
           <Button type="primary" onClick={this.start}
             disabled={!hasSelected} loading={loading}

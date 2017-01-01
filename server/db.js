@@ -25,7 +25,7 @@ var db = mongoose.connection
 //   console.log(kittens);
 // })
 
-
+mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/Assess')
 
 module.exports = db
