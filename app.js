@@ -13,11 +13,15 @@ var index = require('./routes/index')
 var admin = require('./routes/admin')
 
 //设置模版引擎
+
 app.set('views', './views')
 app.set('view engine','jade')
+
+
+app.use(favicon(__dirname+'/favicon.ico'))
+
 //对请求内容进行解析
 //解析application/json
-app.use(favicon(__dirname+'/favicon.png'))
 //解析application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -31,7 +35,7 @@ app.use(session({
 app.use('/',index)
 app.use('/admin',admin)
 //引用静态文件
-app.use('/static', express.static(__dirname + '/public'))
+app.use(express.static(path.join(__dirname, 'dist')));
 
 
 

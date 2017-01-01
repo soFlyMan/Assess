@@ -10,15 +10,15 @@ router.get('/',function(req,res){
 	console.log(req.session.user)
 	res.sendfile('./index.html')
 })
-router.get('/index.css',function(req,res){
-	res.sendfile('./dist/index.css')
-})
-router.get('/index.js',function(req,res){
-	res.sendfile('./dist/index.js')
-})
-router.get('/common.js',function(req,res){
-	res.sendfile('./dist/common.js')
-})
+// router.get('/index.css',function(req,res){
+// 	res.sendfile('./dist/index.css')
+// })
+// router.get('/index.js',function(req,res){
+// 	res.sendfile('./dist/index.js')
+// })
+// router.get('/common.js',function(req,res){
+// 	res.sendfile('./dist/common.js')
+// })
 
 router.get('/test',function(req,res){
 	User.fetch(function(err,users){
@@ -38,9 +38,9 @@ router.get('/nav.jpg',function(req,res){
 router.get('/logo',function(req,res){
 	res.sendfile('./dist/f3919c9c277024f91197317ae56e87d2.png')
 })
-router.get('./favicon.png',function(req,res){
-	res.sendfile('./favicon.png')
-})
+// router.get('/favicon1',function(req,res){
+// 	res.sendfile('./favicon.png')
+// })
 //user sign up
 router.post('/signup',function(req,res){
 	var _user = req.body
