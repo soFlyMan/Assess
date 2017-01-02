@@ -56,7 +56,7 @@ const Admin = React.createClass({
             <Menu.Item key="11">预组卷管理</Menu.Item>
             <Menu.Item key="12">在线用户监控</Menu.Item>
           </SubMenu>
-          <SubMenu key="sub5" title={<span><Icon type="file" /><span>考试分析</span></span>}>
+          <SubMenu key="sub5" title={<span><Icon type="area-chart" /><span>考试分析</span></span>}>
             <Menu.Item key="13">全班成绩分析</Menu.Item>
             <Menu.Item key="14">解答统计分析</Menu.Item>
             <Menu.Item key="15">查阅答卷</Menu.Item>

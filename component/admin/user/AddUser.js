@@ -1,7 +1,8 @@
 import React from 'react'
-import { Modal,Button, Input, Form, message } from 'antd';
+import { Modal,Button, Input, Form, message, Select } from 'antd';
 
 const FormItem = Form.Item;
+const Option = Select.Option
 
 const AddUser = Form.create()(React.createClass({
   getInitialState() {
@@ -12,6 +13,7 @@ const AddUser = Form.create()(React.createClass({
       password: '',
       userid:'',
       class:'',
+      klass:['13计算机一班','13计算机二班'],
     };
   },
   showModal() {
@@ -34,9 +36,9 @@ const AddUser = Form.create()(React.createClass({
       userid: e.target.value
     })
   },
-  handleClass(e){
+  handleClass(value){
     this.setState({
-      class: e.target.value
+      class: value.key
     })
   },
   handleOk() {
@@ -51,6 +53,37 @@ const AddUser = Form.create()(React.createClass({
       userid: this.state.userid,
       class: this.state.class
     }
+    if(user.username==''){
+      message.info('请输入姓名！')
+      this.setState({
+         confirmLoading: false
+      })
+      return false
+    }else if(user.username==''){
+      message.info('请输入姓名！')
+      this.setState({
+         confirmLoading: false
+      })
+      return false
+    }else if(user.password==''){
+      message.info('请输入密码！')
+      this.setState({
+         confirmLoading: false
+      })
+      return false
+    }else if(user.userid==''){
+      message.info('请输入学号！')
+      this.setState({
+         confirmLoading: false
+      })
+      return false
+    }else if(user.class==''){
+      message.info('请输入班级！')
+      this.setState({
+         confirmLoading: false
+      })
+      return false
+    }
     console.log(user)
     var req = new Request('/signup',{
           method: 'POST',
@@ -61,24 +94,20 @@ const AddUser = Form.create()(React.createClass({
         })
         fetch(req).then(function(res){
           if(res.ok){
+                _self.setState({
+                  confirmLoading: false
+                })
             res.json().then(function(data){
               if(data.status==1){
               _self.setState({
                 visible: false,
-                confirmLoading: false,
               })
                 var val = _self.state.username
                 _self.props.handleRender(val);
                 message.info("添加成功！")
               }else if(data.status==0){
-                _self.setState({
-                  confirmLoading: false
-                })
                 message.info("用户已存在！")
               }else{
-                _self.setState({
-                  confirmLoading: false
-                })
               message.info("添加失败！")
             }
             })
@@ -136,7 +165,7 @@ const AddUser = Form.create()(React.createClass({
           confirmLoading={this.state.confirmLoading}
           onCancel={this.handleCancel}
         >
-          <Form horizontal onSubmit={this.handleSubmit}>
+          <Form horizontal onChange={this.handleSubmit}>
             <FormItem
               {...formItemLayout}
               label="姓名"
@@ -197,20 +226,13 @@ const AddUser = Form.create()(React.createClass({
             </FormItem>
             <FormItem
               {...formItemLayout}
-              label={(
-                <span>
-                  班级
-                </span>
-              )}
+              label="班级"
               hasFeedback
             >
-              {getFieldDecorator('class', {
-                rules: [{ required: true, message: 'Please input class!' }],
-              })(
-                <Input onChange={this.handleClass}/>
-              )}
+              <Select labelInValue placeholder="Please select a class" onChange={this.handleClass}>
+                {this.state.klass.map((a,index)=><Option value={a} key={index}>{a}</Option>)}
+              </Select>
             </FormItem>
-            
           </Form>
 
         </Modal>

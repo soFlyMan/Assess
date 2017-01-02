@@ -1,21 +1,6 @@
 import React from 'react';
-import { Table, Button,Card } from 'antd';
+import { Table, Button, Card, message } from 'antd';
 import AddUser from './AddUser'
-
-const columns = [{
-  title: '姓名',
-  dataIndex: 'username',
-}, {
-  title: '密码',
-  dataIndex: 'password',
-},{
-  title:'学号',
-  dataIndex:'userid'
-}, 
-{
-  title: '班级',
-  dataIndex: 'class',
-}];
 
 
 const UserList = React.createClass({
@@ -63,7 +48,57 @@ const UserList = React.createClass({
       console.log(err.message);
     })
   },
+  handleDel(record){
+    const _self = this
+    const user = {
+      userid: record.userid
+    }
+    const req = new Request('/admin/userDel',{
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user)
+    })
+    fetch(req).then(function(res){
+      if(res.ok){
+        res.json().then(function(data){
+          if(data.status==1){
+            message.info('删除成功！')
+            _self.handleRender()
+          }else{
+            message.info('删除失败')
+          }
+        })
+      }
+    }).catch(function(err){
+      console.log(err.message)
+    })
+  },
   render() {
+    const columns = [{
+          title: '姓名',
+          dataIndex: 'username',
+        },{
+          title:'学号',
+          dataIndex:'userid'
+        }, 
+        {
+          title: '班级',
+          dataIndex: 'class',
+        },{
+          title: '操作',
+          dataIndex: 'handle',
+          render: (text,record)=>{
+            return (
+            <span>
+              <a>修改</a>
+              <span className="ant-divider" />
+              <a onClick={()=>this.handleDel(record)}>删除</a>
+            </span>
+            )
+          }
+}];
     const { loading, selectedRowKeys,userlist } = this.state;
     const rowSelection = {
       selectedRowKeys,

@@ -3,6 +3,7 @@ var router = express.Router()
 
 
 var Klass = require('../models/klass')
+var User = require('../models/users')
 
 router.get('/klass',function(req,res){
 	console.log('get!!')
@@ -34,6 +35,28 @@ router.post('/addklass',function(req,res){
 		}
 	})
 	
+})
+
+router.delete('/klassDel',function(req,res){
+	var klassname = req.body.klassname
+	Klass.remove({klassname: klassname},function(err){
+		if(err){
+			console.log(err)
+		}else{
+			res.send({status: 1})
+		}
+	})
+})
+
+router.delete('/userDel',function(req,res){
+	var userid = req.body.userid
+	User.remove({userid: userid},function(err){
+		if(err){
+			console.log(err)
+		}else{
+			res.send({status: 1})
+		}
+	})
 })
 // router.post('/addklass',function(req,res){
 // 	var _klass = req.body
