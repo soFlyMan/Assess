@@ -13,8 +13,29 @@ const AddUser = Form.create()(React.createClass({
       password: '',
       userid:'',
       class:'',
-      klass:['13计算机一班','13计算机二班'],
+      klass:[],
     };
+  },
+  componentWillMount(){
+    const _self = this
+    const req = new Request('/admin/klass',{
+      method: 'GET'
+    })
+    fetch(req).then(function(res){
+      if(res.ok){
+        res.json().then(function(data){
+            var klassDate=data.map(function(a){
+              return a.klassname
+            })
+            console.log(klassDate)
+            _self.setState({
+              klass: klassDate
+            })
+        })
+      }
+    }).catch(function(err){
+      console,log(err.message)
+    })
   },
   showModal() {
     this.setState({
