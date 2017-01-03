@@ -2,35 +2,36 @@ import React,{ Component } from 'react';
 import { Card, Row, Col, Table, Input, Button } from 'antd';
 import { Link } from 'react-router'; 
 
-const data = [{
-  key: '1',
-  coursename: 'ReactJS',
-  date: 32,
-  result: 98,
-}, {
-  key: '2',
-  coursename: 'NodeJS',
-  date: 42,
-  result: 98,
-}, {
-  key: '3',
-  coursename: 'java程序设计',
-  date: 32,
-  result: 98,
-}, {
-  key: '4',
-  coursename: 'ReactJS',
-  date: 32,
-  result: 98,
-}]
+// const data = [{
+//   key: '1',
+//   coursename: 'ReactJS',
+//   date: 32,
+//   result: 98,
+// }, {
+//   key: '2',
+//   coursename: 'NodeJS',
+//   date: 42,
+//   result: 98,
+// }, {
+//   key: '3',
+//   coursename: 'java程序设计',
+//   date: 32,
+//   result: 98,
+// }, {
+//   key: '4',
+//   coursename: 'ReactJS',
+//   date: 32,
+//   result: 98,
+// }]
 
 export default class AssessShow extends Component{
 	constructor(props){
 		super(props)
 		this.state = {
 		 	filterDropdownVisible: false,
-	        data,
-	        searchText: ''
+	        data:[],
+	        searchText: '',
+	        userid: ''
 		}
 	}
 	onInputChange(e) {
@@ -58,6 +59,33 @@ export default class AssessShow extends Component{
 	        };
 	      }).filter(record => !!record),
 	    })
+	}
+	shouldComponentUpdate=()=>{
+		return this.state.userid != this.props.userid
+	}
+	componentWillUpdate=()=>{
+		var user = {
+			userid : this.props.userid
+		}
+		console.log(user)
+		var _self = this
+		var req = new Request('/test/result',{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(user)
+		})
+		fetch(req).then(function(res){
+			if(res.ok){
+				res.json().then(function(data){
+					_self.setState({
+						data: data,
+						userid: _self.props.userid
+					})
+				})
+			}
+		})
 	}
 	render(){
 		const columns = [{

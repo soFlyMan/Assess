@@ -18,7 +18,6 @@ import AdminLogin from './component/admin/AdminLogin.js';
 ReactDOM.render((
 	<Router history={hashHistory}>
 		<Route path="/" component={Assess}>
-			<IndexRoute component={AssessShow} />
 			<Route path="assess" component={AssessShow}>
 				<Route path="showscore" component={AssessScore} />
 			</Route>

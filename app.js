@@ -11,6 +11,7 @@ var app = express()
 var db = require('./server/db')
 var index = require('./routes/index')
 var admin = require('./routes/admin')
+var test = require('./routes/test')
 
 //设置模版引擎
 
@@ -34,6 +35,7 @@ app.use(session({
 
 app.use('/',index)
 app.use('/admin',admin)
+app.use('/test',test)
 //引用静态文件
 app.use(express.static(path.join(__dirname, 'dist')));
 

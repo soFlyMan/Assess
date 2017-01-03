@@ -74,13 +74,7 @@ const AddUser = Form.create()(React.createClass({
       userid: this.state.userid,
       class: this.state.class
     }
-    if(user.username==''){
-      message.info('请输入姓名！')
-      this.setState({
-         confirmLoading: false
-      })
-      return false
-    }else if(user.username==''){
+   if(user.username==''){
       message.info('请输入姓名！')
       this.setState({
          confirmLoading: false

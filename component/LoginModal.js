@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { message, Form, Icon, Input, Checkbox, Modal, Button } from 'antd';
+import { message, Form, Icon, Input, Checkbox, Modal, Button, Menu } from 'antd';
 import { Link } from 'react-router';
 
 const FormItem = Form.Item;
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
 const LoginModal = Form.create()(React.createClass({
   getInitialState() {
@@ -11,7 +13,8 @@ const LoginModal = Form.create()(React.createClass({
       username:'',
       password:'' ,
       visible: false,
-      loginstatus: false };
+      loginstatus: false,
+       };
   },
   handleUsername(e){
     this.setState({
@@ -49,8 +52,11 @@ const LoginModal = Form.create()(React.createClass({
               if(data.status==1){
                 _self.setState({
                 visible: false,
-                loginstatus: true
+                loginstatus: true,
               })
+                var val = data.userid
+                _self.props.handleUserid(val)
+
               }else if(data.status==2){
                 message.info('Password is error !')
               }else{
@@ -87,8 +93,15 @@ const LoginModal = Form.create()(React.createClass({
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <div>{ this.state.loginstatus?<div><Button type="default" disabled>已登陆</Button><Button type="default" onClick={this.logOut}>退出</Button></div>:
-        <Button type="default" onClick={this.showModal}>登陆</Button>}
+      <div>
+      { this.state.loginstatus?
+        <div>
+        <Button type="default" disabled>{this.state.username}</Button>
+        <Button type="default" onClick={this.logOut}>退出</Button>
+        
+        </div>
+        :
+        <Button type="default" onClick={this.showModal}><Icon type="user" />登陆</Button>}
         <Modal title="请登陆!" okText="登陆" visible={this.state.visible}
           onOk={this.handleOk} onCancel={this.handleCancel}
         >

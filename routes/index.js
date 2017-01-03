@@ -20,14 +20,13 @@ router.get('/',function(req,res){
 // 	res.sendfile('./dist/common.js')
 // })
 
-router.get('/test',function(req,res){
+router.get('/testing',function(req,res){
 	User.fetch(function(err,users){
 		if(err){
 			console.log(err)
 		}
 		console.log("test session")
-		console.log(req.session.user)
-		console.log(users)
+		console.log(req.session.userid)
 		res.send(users[0])
 	})
 })
@@ -79,9 +78,12 @@ router.post('/signin',function(req,res){
 					console.log(err)
 				}
 				if(isMatch){
-					// req.session.user = user
+					console.log(user)
+					req.session.userid = user.userid
+					console.log('sesesese')
+					console.log(req.session.userid)
 					console.log('Is matched!')
-					res.send({status: 1})
+					res.send({status: 1,userid: req.session.userid})
 				}else{
 					console.log('password is not matched')
 					res.send({status: 2})
