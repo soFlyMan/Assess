@@ -4,7 +4,6 @@ var mongoose = require('mongoose')
 var ResultSchema  = new mongoose.Schema({
 	userid: {
 		type: Number,
-		unique: true
 	},
 	coursename: {
 		type: String

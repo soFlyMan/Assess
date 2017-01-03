@@ -20,7 +20,7 @@ router.get('/',function(req,res){
 // 	res.sendfile('./dist/common.js')
 // })
 
-router.get('/testing',function(req,res){
+router.get('/exam',function(req,res){
 	User.fetch(function(err,users){
 		if(err){
 			console.log(err)

@@ -142,12 +142,10 @@ export default class AssessShow extends Component{
 			    </Card>
   			</div>
 			<div style={{margin:"30px 80px"}}>
-				<Card title="成绩查询" style={{width:"100%"}} extra={<span><Link to="assess/showscore">考试安排</Link></span>}>
+				<Card title="成绩查询" style={{width:"100%"}} 
+				extra={<span><Link to="showscore">考试安排</Link></span>}>
 					<p>&nbsp;你的成绩单</p>
 					<Table columns={columns} dataSource={this.state.data} />
-					<div>
-						{this.props.children}
-					</div>
 				</Card>
 			</div>
 		</div>

@@ -11,7 +11,7 @@ export default class Test extends Component{
 	}
 	componentWillMount(){
 		var self=this
-		fetch('/testing').then(function(res){
+		fetch('/exam').then(function(res){
 			if(res.ok){
 				res.json().then(function(data){
 					self.setState({

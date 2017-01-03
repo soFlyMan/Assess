@@ -44,8 +44,8 @@ class Assess extends Component{
 				<div style={{width:"20%",height:100,padding:40,margin:"0 auto"}}>
 					<Button type="primary"><Link to="/test" >开始考试</Link></Button>
 				</div>
-				<div>
 					<AssessShow userid={this.state.userid}/>
+				<div>
 					{this.props.children}
 				</div>
 			</div>
