@@ -3,11 +3,18 @@ var path = require('path')
 var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser')
 var session = require('express-session')
+var mongoStore = require('connect-mongo')(session)
+// var RedisStore = require('connect-redis')(session)
 var favicon = require('serve-favicon')
 
 var port = process.env.PORT || 3000
 var app = express()
 
+// var options = {
+//      "host": "127.0.0.1",
+//      "port": "3000",
+//      "ttl": 60 * 60 * 24 * 30,   //Session的有效期为30天
+// };
 var db = require('./server/db')
 var index = require('./routes/index')
 var admin = require('./routes/admin')
@@ -28,9 +35,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(session({
+	// store: new RedisStore(options),
+	store: new mongoStore({
+		url: 'mongodb://localhost/Assess',
+		collection: 'sessions'
+	}),
 	secret: 'sessionsecret',
-	resave: false,
-	saveUninitialized: true
+	resave: true,
+	saveUninitialized: true,
+	cookie:{ path: '/', httpOnly: false, secure: false, maxAge: null }
 }))
 
 app.use('/',index)
@@ -39,6 +52,15 @@ app.use('/test',test)
 //引用静态文件
 app.use(express.static(path.join(__dirname, 'dist')));
 
+
+// app.get('/logStatus',function(req,res){
+// 			console.log(req.session.userid)
+// 			console.log(req.session.username)
+// 			if(req.session){
+// 				res.send({userid: req.session.userid,username: req.session.username})
+// 			}else{
+// 			res.send({status: 0})
+// 	}});
 
 
 //监听端口

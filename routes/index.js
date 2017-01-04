@@ -6,8 +6,6 @@ var Admin = require('../models/admin')
 
 //页面
 router.get('/',function(req,res){
-	console.log("session!!!!!!!!!!!")
-	console.log(req.session.user)
 	res.sendfile('./index.html')
 })
 // router.get('/index.css',function(req,res){
@@ -78,10 +76,18 @@ router.post('/signin',function(req,res){
 					console.log(err)
 				}
 				if(isMatch){
+					// req.session.regenerate(function(err){
+					// 	if(err){
+					// 		console.log(err)
+					// 	}
+					// })
 					console.log(user)
 					req.session.userid = user.userid
-					console.log('sesesese')
-					console.log(req.session.userid)
+					req.session.username = user.username
+					// req.session.save()
+					// console.log('sesesese')
+					// console.log(req.session)
+					// console.log(req.session.userid)
 					console.log('Is matched!')
 					res.send({status: 1,userid: req.session.userid})
 				}else{
@@ -121,6 +127,14 @@ router.post('/adminsignin',function(req,res){
 
 })
 
+router.get('/logStatus',function(req,res){
+	console.log(req.session)
+	if(req.session){
+		res.send({userid: req.session.userid,username: req.session.username})
+	}else{
+		res.send({status: 0})
+	}
+})
 // 	//优先级
 // 	// var _users = req.params.users
 // 	// var _users = req.body.users

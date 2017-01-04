@@ -10,10 +10,10 @@ const MenuItemGroup = Menu.ItemGroup;
 const LoginModal = Form.create()(React.createClass({
   getInitialState() {
     return {
-      username:'',
+      username: this.props.username,
       password:'' ,
       visible: false,
-      loginstatus: false,
+      loginstatus: this.props.loginstatus,
        };
   },
   handleUsername(e){
@@ -94,14 +94,15 @@ const LoginModal = Form.create()(React.createClass({
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-      { this.state.loginstatus?
+      { 
+        this.state.loginstatus?
         <div>
-        <Button type="default" disabled>{this.state.username}</Button>
-        <Button type="default" onClick={this.logOut}>退出</Button>
-        
+          <Button type="default" disabled>{this.state.username}</Button>
+          <Button type="default" onClick={this.logOut}>退出</Button>
         </div>
         :
-        <Button type="default" onClick={this.showModal}><Icon type="user" />登陆</Button>}
+        <Button type="default" onClick={this.showModal}><Icon type="user" />登陆</Button>
+      }
         <Modal title="请登陆!" okText="登陆" visible={this.state.visible}
           onOk={this.handleOk} onCancel={this.handleCancel}
         >
