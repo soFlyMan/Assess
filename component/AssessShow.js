@@ -121,21 +121,27 @@ export default class AssessShow extends Component{
 			      <div style={{padding:30}}>
 				    <Row>
 				    	<Col span='8'>
-				    		<Card title="java程序设计" bordered={false} className="card">
-				    		<p>You can learn java at there !</p>
-				    		</Card>
+					    	<Link to="/admin">
+					    		<Card title="java程序设计" bordered={false} className="card">
+					    		<p>You can learn java at here !</p>
+					    		</Card>
+				    		</Link>
 				    	</Col>
 				    	<Col span='8'>
-				    		<Card title="ReactJS" bordered={false} className="card">
-				    		<p>React is a great front-end framework maintained by Facebook !</p>
-				    		</Card>
+					    	<Link to="/">
+					    		<Card title="ReactJS" bordered={false} className="card">
+					    		<p>React is a great front-end framework maintained by Facebook !</p>
+					    		</Card>
+				    		</Link>
 				    	</Col>
 				    	<Col span='8'>
-				    		<Card title="NodeJS" bordered={false} className="card">
-				    		<p>Nodejs is an open-source,cross-platform,
-				    		javascriot runtime environment .
-				    		It is built on the top of the Googles Chrom V8 VM engine .</p>
-				    		</Card>
+					    	<Link to="/">
+					    		<Card title="NodeJS" bordered={false} className="card">
+					    		<p>Nodejs is an open-source,cross-platform,
+					    		javascriot runtime environment .
+					    		It is built on the top of the Googles Chrom V8 VM engine .</p>
+					    		</Card>
+				    		</Link>
 				    	</Col>
 				    </Row>
 			      </div>

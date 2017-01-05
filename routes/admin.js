@@ -6,7 +6,6 @@ var Klass = require('../models/klass')
 var User = require('../models/users')
 
 router.get('/klass',function(req,res){
-	console.log('get!!')
 	Klass.fetch(function(err,Klass){
 		if(err){
 			console.log(err)

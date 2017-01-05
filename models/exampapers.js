@@ -36,7 +36,7 @@ var exampap = new Exampap({
 	}],
 })
 
-exampap.save(function(err){
-	console.log(err)
-})
+// exampap.save(function(err){
+// 	console.log(err)
+// })
 module.exports = Exampap

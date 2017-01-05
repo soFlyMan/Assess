@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Spin,Alert } from 'antd';
+import { Spin, Alert, Card } from 'antd';
 
 export default class AssessScore extends Component{
 	constructor(props){
@@ -12,8 +12,10 @@ export default class AssessScore extends Component{
         type="info"/>
 			)
 		return (
-			<div>
-				<Spin spinning={this.state.loading} tip="加载中…">{coontainer}</Spin>
+			<div  style={{padding: '30px 80px'}}>
+				<Card title="考试安排">
+					<Spin spinning={this.state.loading} tip="加载中…">{coontainer}</Spin>
+				</Card>
 			</div>
 			)
 	}
