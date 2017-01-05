@@ -19,12 +19,14 @@ ReactDOM.render((
 		<Route path="/" component={Assess}>
 				<Route path="showscore" component={AssessScore} />
 		</Route>
+
 		<Route path="test" component={Test} />
+
 		<Route path="admin" component={Admin}>
 			<Route path="classadmin" component={ClassAdmin} />
-			<Route path="userlist" component={UserList}>
-			</Route>
+			<Route path="userlist" component={UserList} />
 		</Route>
+
 		<Route path="adminlogin" component={AdminLogin}/>
 		
 	</Router>

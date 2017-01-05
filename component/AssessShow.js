@@ -69,7 +69,7 @@ export default class AssessShow extends Component{
 		}
 		console.log(user)
 		var _self = this
-		var req = new Request('/test/result',{
+		var req = new Request('/exam/result',{
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

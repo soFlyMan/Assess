@@ -76,17 +76,13 @@ router.post('/signin',function(req,res){
 					console.log(err)
 				}
 				if(isMatch){
-					// req.session.regenerate(function(err){
-					// 	if(err){
-					// 		console.log(err)
-					// 	}
-					// })
 					console.log(user)
+					req.session.user = user
 					req.session.userid = user.userid
 					req.session.username = user.username
-					// req.session.save()
+					req.session.save()
 					// console.log('sesesese')
-					// console.log(req.session)
+					console.log(req.session)
 					// console.log(req.session.userid)
 					console.log('Is matched!')
 					res.send({status: 1,userid: req.session.userid})
