@@ -2,7 +2,9 @@
 html, body, #root {
   height: 100%;
 }
-
+.paramul li{
+  float: left;
+}
 /*assessnav*/
 .assessNav{
       position: fixed;

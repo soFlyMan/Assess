@@ -57,18 +57,18 @@ const Admin = React.createClass({
               <Menu.Item key="10">管理员信息</Menu.Item>
           </SubMenu>
           <SubMenu key="sub6" title={<span><Icon type="switcher" /><span>试题库管理</span></span>}>
-              <Menu.Item key="11">单选题管理</Menu.Item>
-              <Menu.Item key="12">多选题管理</Menu.Item>
-              <Menu.Item key="13">是非题管理</Menu.Item>
-              <Menu.Item key="14">单填空题管理</Menu.Item>
-              <Menu.Item key="15">编程题管理</Menu.Item>
-              <Menu.Item key="16">改错题管理</Menu.Item>
+              <Menu.Item key="11"><Link to="/admin/item">单选题管理</Link></Menu.Item>
+              <Menu.Item key="12"><Link to="/admin/item">多选题管理</Link></Menu.Item>
+              <Menu.Item key="13"><Link to="/admin/item">是非题管理</Link></Menu.Item>
+              <Menu.Item key="14"><Link to="/admin/item">单填空题管理</Link></Menu.Item>
+              <Menu.Item key="15"><Link to="/admin/item">编程题管理</Link></Menu.Item>
+              <Menu.Item key="16"><Link to="/admin/item">改错题管理</Link></Menu.Item>
           </SubMenu>
           <SubMenu key="sub7" title={<span><Icon type="file" /><span>考试管理</span></span>}>
-              <Menu.Item key="17">考试参数设置</Menu.Item>
-              <Menu.Item key="18">组卷参数设置</Menu.Item>
-              <Menu.Item key="19">预组卷管理</Menu.Item>
-            <Menu.Item key="12">在线用户监控</Menu.Item>
+              <Menu.Item key="17"><Link to="/admin/examparam">考试参数设置</Link></Menu.Item>
+              <Menu.Item key="18"><Link to="/admin/examparam">组卷参数设置</Link></Menu.Item>
+              <Menu.Item key="19"><Link to="/admin/examparam">预组卷管理</Link></Menu.Item>
+            <Menu.Item key="12"><Link to="/admin/examparam">在线用户监控</Link></Menu.Item>
           </SubMenu>
           <SubMenu key="sub8" title={<span><Icon type="area-chart" /><span>考试分析</span></span>}>
               <Menu.Item key="20">全班成绩分析</Menu.Item>

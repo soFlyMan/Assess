@@ -17,6 +17,10 @@ import UserList from './component/admin/user/UserList.js'
 import Section from './component/admin/course/Section.js'
 import Download from './component/admin/course/Download.js'
 
+import Item from './component/admin/itemPool/Item.js'
+
+import ExamParam from './component/admin/examAdmin/ExamParam.js'
+
 
 ReactDOM.render((
 	<Router history={hashHistory}>
@@ -31,6 +35,8 @@ ReactDOM.render((
 			<Route path="download" component={Download} />
 			<Route path="classadmin" component={ClassAdmin} />
 			<Route path="userlist" component={UserList} />
+			<Route path="item" component={Item} />
+			<Route path="examparam" component={ExamParam} /> 
 		</Route>
 
 		<Route path="adminlogin" component={AdminLogin}/>
