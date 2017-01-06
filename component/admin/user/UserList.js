@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button, Card, message } from 'antd';
+import { Table, Button, Card, message, Popconfirm } from 'antd';
 import AddUser from './AddUser'
 
 
@@ -94,7 +94,9 @@ const UserList = React.createClass({
             <span>
               <a>修改</a>
               <span className="ant-divider" />
-              <a onClick={()=>this.handleDel(record)}>删除</a>
+              <Popconfirm title="确定要删除?"  onConfirm={()=>this.handleDel(record)} okText="确定" cancelText="取消">
+                <a>删除</a>
+              </Popconfirm>
             </span>
             )
           }

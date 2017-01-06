@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Card, Button, Table, Modal, Input, message } from 'antd';
+import { Card, Button, Table, Modal, Input, message, Popconfirm } from 'antd';
 
 export default class ClassAdmin extends Component{
 	constructor(props){
@@ -141,7 +141,10 @@ export default class ClassAdmin extends Component{
 				<span>
 				<a>修改</a>
 				<span className="ant-divider" />
-				<a onClick={()=>this.handleDelete(record)}>删除</a>
+				<Popconfirm title="确定要删除？" onConfirm={()=>this.handleDelete(record)}
+				okText="确定" cancelText="取消">
+				<a>删除</a>
+				</Popconfirm>
 				</span>
 				)}
 			}]
