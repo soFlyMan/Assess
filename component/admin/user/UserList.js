@@ -2,7 +2,6 @@ import React from 'react';
 import { Table, Button, Card, message, Popconfirm } from 'antd';
 import AddUser from './AddUser'
 
-
 const UserList = React.createClass({
   getInitialState() {
     return {

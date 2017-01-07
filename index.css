@@ -2,6 +2,10 @@
 html, body, #root {
   height: 100%;
 }
+.paramul{
+  display: inline-block;
+  margin-bottom: 20px;
+}
 .paramul li{
   float: left;
 }
