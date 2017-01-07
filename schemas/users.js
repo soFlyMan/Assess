@@ -4,11 +4,13 @@ var SALT_WORK_FACTOR = 10 //计算强度,计算密码所需要的资源和时间
 
 var UserSchema = new mongoose.Schema({
 	username: {
-		unique: true,
 		type: String
 	},
 	password: String,
-	userid: Number,
+	userid: {
+		unique: true,
+		type: Number
+	},
 	class: String,
 	meta: {
 		createAt: {

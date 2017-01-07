@@ -5,7 +5,7 @@ import { Router,Route,hashHistory,IndexRoute } from 'react-router'
 
 import Assess from './component/Assess.js'
 import AssessScore from './component/student/AssessScore.js'
-import Test from './component/student/Test.js'
+import Exam from './component/student/Exam.js'
 
 
 import Admin from './component/admin/Admin.js'
@@ -28,7 +28,7 @@ ReactDOM.render((
 				<Route path="showscore" component={AssessScore} />
 		</Route>
 
-		<Route path="test" component={Test} />
+		<Route path="exam" component={Exam} />
 
 		<Route path="admin" component={Admin}>
 			<Route path="section" component={Section} />

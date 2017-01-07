@@ -33,27 +33,32 @@ class Assess extends Component{
 	}
 	componentWillMount=()=>{
 		console.log('123')
-		var _self = this
-		var req = new Request('/logStatus',{
-			method: 'GET'
-		})
-		fetch(req).then(function(res){
-			if(res.ok){
-				res.json().then(function(data){
-					if(data.userid){
-						console.log('已是登录状态')
-						console.log(data)
-						_self.setState({
-							userid: data.userid,
-							username: data.username,
-							loginstatus: true
-						})
-					}else{
-						console.log('用户未登录')
-					}
-				})
-			}
-		})
+		if(this.state.userid){
+			this.setState({
+				loginstatue: true
+			})
+		}
+		// var _self = this
+		// var req = new Request('/logStatus',{
+		// 	method: 'GET'
+		// })
+		// fetch(req).then(function(res){
+		// 	if(res.ok){
+		// 		res.json().then(function(data){
+		// 			if(data.userid){
+		// 				console.log('已是登录状态')
+		// 				console.log(data)
+		// 				_self.setState({
+		// 					userid: data.userid,
+		// 					username: data.username,
+		// 					loginstatus: true
+		// 				})
+		// 			}else{
+		// 				console.log('用户未登录')
+		// 			}
+		// 		})
+		// 	}
+		// })
 	}
 	render(){
 		return (
@@ -69,14 +74,15 @@ class Assess extends Component{
 						<li style={{float:'right',padding:15}}>
 							<LoginModal handleUserid={this.handleUserid} 
 										loginstatus={this.state.loginstatus}
-										username={this.state.username}/>
+										username={this.state.username}
+										userid={this.state.userid}/>
 						</li>
 					</ul>
 				</nav>
 				<div id="navImg">
 			</div>
 				<div style={{width:"20%",height:100,padding:40,margin:"0 auto"}}>
-					<Button type="primary"><Link to="/test" >开始考试</Link></Button>
+					<Button type="primary"><Link to="/exam" >开始考试</Link></Button>
 				</div>
 					<AssessShow userid={this.state.userid}/>
 				<div>

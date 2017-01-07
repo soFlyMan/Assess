@@ -41,7 +41,7 @@ router.get('/logo',function(req,res){
 //user sign up
 router.post('/signup',function(req,res){
 	var _user = req.body
-	User.findOne({username: _user.username},function(err,user){
+	User.findOne({userid: _user.userid},function(err,user){
 		if(err){
 			console.log(err)
 		}else if(user){
@@ -59,15 +59,15 @@ router.post('/signup',function(req,res){
 //user sign in
 router.post('/signin',function(req,res){
 	var _user = req.body
-	var username = _user.username
+	var userid = _user.userid
 	var password = _user.password
 
-	User.findOne({username: username},function(err,user){
+	User.findOne({userid: userid},function(err,user){
 			if(err){
 				console.log(err)
 			}
 			if(!user){
-				console.log('user name is not exist !')
+				console.log('user is not exist !')
 				res.send({status: 0})
 			}
 			else{
@@ -85,7 +85,7 @@ router.post('/signin',function(req,res){
 					console.log(req.session)
 					// console.log(req.session.userid)
 					console.log('Is matched!')
-					res.send({status: 1,userid: req.session.userid})
+					res.send({status: 1,userid: req.session.userid,username: req.session.username})
 				}else{
 					console.log('password is not matched')
 					res.send({status: 2})

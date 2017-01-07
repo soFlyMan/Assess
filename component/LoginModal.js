@@ -10,7 +10,8 @@ const MenuItemGroup = Menu.ItemGroup;
 const LoginModal = Form.create()(React.createClass({
   getInitialState() {
     return {
-      username: this.props.username,
+      username: '',
+      userid: this.props.userid,
       password:'' ,
       visible: false,
       loginstatus: this.props.loginstatus,
@@ -18,7 +19,7 @@ const LoginModal = Form.create()(React.createClass({
   },
   handleUsername(e){
     this.setState({
-      username: e.target.value
+      userid: e.target.value
     })
   },
   handlePassword(e){
@@ -41,7 +42,7 @@ const LoginModal = Form.create()(React.createClass({
                     'Content-Type': 'application/json'
                     },
           body: JSON.stringify({
-            username: this.state.username,
+            userid: this.state.userid,
             password: this.state.password
           })
         })
@@ -50,9 +51,11 @@ const LoginModal = Form.create()(React.createClass({
             res.json().then(function(data){
               console.log(JSON.stringify(data))
               if(data.status==1){
+                console.log(data.username)
                 _self.setState({
-                visible: false,
-                loginstatus: true,
+                  username: data.username,
+                  visible: false,
+                  loginstatus: true,
               })
                 var val = data.userid
                 _self.props.handleUserid(val)
@@ -60,7 +63,7 @@ const LoginModal = Form.create()(React.createClass({
               }else if(data.status==2){
                 message.info('Password is error !')
               }else{
-                message.info('User Name is error!')
+                message.info('Userid is error!')
               }
               
             })

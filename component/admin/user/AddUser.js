@@ -74,20 +74,20 @@ const AddUser = Form.create()(React.createClass({
       userid: this.state.userid,
       class: this.state.class
     }
-   if(user.username==''){
-      message.info('请输入姓名！')
+    if(user.userid==''){
+      message.info('请输入学号！')
       this.setState({
          confirmLoading: false
       })
+      return false
+    }else if(user.username==''){
+              message.info('请输入姓名！')
+              this.setState({
+                 confirmLoading: false
+              })
       return false
     }else if(user.password==''){
       message.info('请输入密码！')
-      this.setState({
-         confirmLoading: false
-      })
-      return false
-    }else if(user.userid==''){
-      message.info('请输入学号！')
       this.setState({
          confirmLoading: false
       })
@@ -183,6 +183,21 @@ const AddUser = Form.create()(React.createClass({
           <Form horizontal onChange={this.handleSubmit}>
             <FormItem
               {...formItemLayout}
+              label={(
+                <span>
+                  学号
+                </span>
+              )}
+              hasFeedback
+            >
+              {getFieldDecorator('userid', {
+                rules: [{ required: true, message: 'Please input userid!' }],
+              })(
+                <Input onChange={this.handleUserid}/>
+              )}
+            </FormItem>
+            <FormItem
+              {...formItemLayout}
               label="姓名"
               hasFeedback
             >
@@ -222,21 +237,6 @@ const AddUser = Form.create()(React.createClass({
                 }],
               })(
                 <Input type="password" />
-              )}
-            </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label={(
-                <span>
-                  学号
-                </span>
-              )}
-              hasFeedback
-            >
-              {getFieldDecorator('userid', {
-                rules: [{ required: true, message: 'Please input userid!' }],
-              })(
-                <Input onChange={this.handleUserid}/>
               )}
             </FormItem>
             <FormItem
