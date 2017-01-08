@@ -121,7 +121,7 @@ export default class AssessShow extends Component{
 			      <div style={{padding:30}}>
 				    <Row>
 				    	<Col span='8'>
-					    	<Link to="/admin">
+					    	<Link to="/course">
 					    		<Card title="java程序设计" bordered={false} className="card">
 					    		<p>You can learn java at here !</p>
 					    		</Card>

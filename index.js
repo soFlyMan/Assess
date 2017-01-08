@@ -6,6 +6,7 @@ import { Router,Route,hashHistory,IndexRoute } from 'react-router'
 import Assess from './component/Assess.js'
 import AssessScore from './component/student/AssessScore.js'
 import Exam from './component/student/Exam.js'
+import Course from './component/student/Course.js'
 
 
 import Admin from './component/admin/Admin.js'
@@ -40,6 +41,7 @@ ReactDOM.render((
 		</Route>
 
 		<Route path="adminlogin" component={AdminLogin}/>
+		<Route path="course" component={Course}/>
 		
 	</Router>
 	), document.getElementById('root'))
