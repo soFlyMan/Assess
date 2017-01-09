@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Card, Row, Col, Table, Input, Button } from 'antd';
+import { Card, Row, Col, Table, Input, Button, message } from 'antd';
 import { Link } from 'react-router'; 
 
 // const data = [{
@@ -87,6 +87,9 @@ export default class AssessShow extends Component{
 			}
 		})
 	}
+	handleMessage(){
+		message.info("尚未开启！")
+	}
 	render(){
 		const columns = [{
       title: '课程名称',
@@ -128,20 +131,20 @@ export default class AssessShow extends Component{
 				    		</Link>
 				    	</Col>
 				    	<Col span='8'>
-					    	<Link to="/">
-					    		<Card title="ReactJS" bordered={false} className="card">
+				    		<a>
+					    		<Card title="ReactJS" bordered={false} className="card" onClick={this.handleMessage}>
 					    		<p>React is a great front-end framework maintained by Facebook !</p>
 					    		</Card>
-				    		</Link>
+				    		</a>
 				    	</Col>
 				    	<Col span='8'>
-					    	<Link to="/">
-					    		<Card title="NodeJS" bordered={false} className="card">
+				    		<a>
+					    		<Card title="NodeJS" bordered={false} className="card" onClick={this.handleMessage}>
 					    		<p>Nodejs is an open-source,cross-platform,
 					    		javascriot runtime environment .
 					    		It is built on the top of the Googles Chrom V8 VM engine .</p>
 					    		</Card>
-				    		</Link>
+				    		</a>
 				    	</Col>
 				    </Row>
 			      </div>
