@@ -1,5 +1,9 @@
 import React,{ Component } from 'react'
-import { Card, Radio, Input, Button } from 'antd'
+import { Card, Radio, Input, Button, DatePicker, TimePicker } from 'antd'
+import moment from 'moment'
+
+import 'moment/locale/zh-cn'
+moment.locale('zh-cn')
 
 const RadioGroup = Radio.Group
 
@@ -30,6 +34,19 @@ export default class ExamParam extends Component{
 	render(){
 		return (
 			<Card title="考试参数设置" style={{minHeight: 500}}>
+			<div>
+					<ul className="paramul">
+						<li style={{width: 200}}>
+						考试日期设置：
+						</li>
+						<li>
+							<DatePicker	defaultValue={moment('2015-01-01 00:00:00', 'YYYY-MM-DD HH:mm:ss')} />				
+						</li>
+						<li>
+							<TimePicker defaultValue={moment('08:30:00', 'HH:mm:ss')}/>
+						</li>
+					</ul>
+				</div>
 			    <ul className="paramul">
 					<li style={{width: 200}}>
 					考试时间设置:
