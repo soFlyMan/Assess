@@ -6,6 +6,7 @@ import 'moment/locale/zh-cn'
 moment.locale('zh-cn')
 
 const RadioGroup = Radio.Group
+const format = 'HH:mm'
 
 export default class ExamParam extends Component{
 	constructor(props){
@@ -43,7 +44,7 @@ export default class ExamParam extends Component{
 							<DatePicker	defaultValue={moment('2015-01-01 00:00:00', 'YYYY-MM-DD HH:mm:ss')} />				
 						</li>
 						<li>
-							<TimePicker defaultValue={moment('08:30:00', 'HH:mm:ss')}/>
+							<TimePicker defaultValue={moment('08:30', format)} format={format} />
 						</li>
 					</ul>
 				</div>
