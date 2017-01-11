@@ -1,25 +1,36 @@
-import { SHOW_USERS } from '../actions/actions.js'
+import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux'
+import { FETCH_ITEMS, RECEIVE_ITEMS } from '../actions/actions.js'
 
 const initialState = {
-	userInfo: []
+	text: 'hello'
 }
-function users(state=initialState,action){
+function fetchItems(state=initialState,action){
 	switch (action.type){
-		case SHOW_USERS:
-			return Object.assign({},state,{
-				...state.userInfo
-			})
-		case ADD_USER:
-			return Object.assign({},state,{
-				...state.userInfo,{
-					username: action.user.username,
-					password: action.user.password,
-					userid: action.user.userid
-				}
-			})
+		case FETCH_ITEMS:
+			return {
+				test: 'hello world'
+			}
+		default:
+			return state
+
+	}
+}
+
+function items(state=[],action){
+	switch (action.type){
+		case RECEIVE_ITEMS:
+			return [
+			...state,payload
+			]
 		default:
 			return state
 	}
 }
 
-export default users
+const reducer = combineReducers({
+	fetchItems,
+	items,
+	routing: routerReducer
+})
+export default reducer

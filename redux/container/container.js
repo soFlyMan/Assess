@@ -1,17 +1,23 @@
-import  React,{ Component,PropTypes } from 'react'
+import  React,{ Component } from 'react'
 import { connect } from 'react-redux'
 
-import AssessShow from '../../component/AssessShow.js'
+import { fetchItems } from '../actions/actions.js'
+import Item from '../../component/admin/itemPool/Item.js'
 
 class Container extends Component{
 	render(){
-		const { dispatch } = this.props
+		const { dispatch, items } = this.props
+		console.log(items)
 		return (
-			<AssessShow onShow={id=>dispatch(showUsers(id))}/>
+			<Item items={items} onShow={payload=>dispatch(fetchItems(payload))}/>
 			)
 	}
 } 
 
-Container.propTypes = {
-	
+const mapStateToProps = state => {
+	return {
+		text: 'hello'
+	}
+
 }
+export default connect(mapStateToProps)(Container)

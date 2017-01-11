@@ -57,7 +57,7 @@ const Admin = React.createClass({
               <Menu.Item key="10">管理员信息</Menu.Item>
           </SubMenu>
           <SubMenu key="sub6" title={<span><Icon type="switcher" /><span>试题库管理</span></span>}>
-              <Menu.Item key="11"><Link to="/admin/item">单选题管理</Link></Menu.Item>
+              <Menu.Item key="11"><Link to="/admin/container">单选题管理</Link></Menu.Item>
               <Menu.Item key="12"><Link to="/admin/item">多选题管理</Link></Menu.Item>
               <Menu.Item key="13"><Link to="/admin/item">是非题管理</Link></Menu.Item>
               <Menu.Item key="14"><Link to="/admin/item">单填空题管理</Link></Menu.Item>

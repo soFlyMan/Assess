@@ -139,11 +139,13 @@ export default class AssessShow extends Component{
 				    	</Col>
 				    	<Col span='8'>
 				    		<a>
+				    		 <Link to="/admin">
 					    		<Card title="NodeJS" bordered={false} className="card" onClick={this.handleMessage}>
 					    		<p>Nodejs is an open-source,cross-platform,
 					    		javascriot runtime environment .
 					    		It is built on the top of the Googles Chrom V8 VM engine .</p>
 					    		</Card>
+				    		 </Link>
 				    		</a>
 				    	</Col>
 				    </Row>
