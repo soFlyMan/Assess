@@ -9,7 +9,7 @@ class Container extends Component{
 		const { dispatch, items } = this.props
 		console.log(items)
 		return (
-			<Item items={items} onShow={payload=>dispatch(fetchItems(payload))}/>
+			<Item items={items} onShow={dispatch(fetchItems())}/>
 			)
 	}
 } 

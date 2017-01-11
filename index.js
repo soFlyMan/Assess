@@ -9,6 +9,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import Container from './redux/container/container.js'
 import thunkMiddleware from 'redux-thunk'
 import reducer from './redux/reducers/reducers.js'
+import logger from 'redux-logger'
 
 import Assess from './component/Assess.js'
 import AssessScore from './component/student/AssessScore.js'
@@ -29,7 +30,8 @@ import Item from './component/admin/itemPool/Item.js'
 
 import ExamParam from './component/admin/examAdmin/ExamParam.js'
 
-const store = createStore(reducer,applyMiddleware(thunkMiddleware))
+const middleware = applyMiddleware(logger(),thunkMiddleware)
+const store = createStore(reducer,middleware)
 const history = syncHistoryWithStore(hashHistory,store)
 
 ReactDOM.render((
