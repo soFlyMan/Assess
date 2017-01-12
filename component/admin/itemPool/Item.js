@@ -1,5 +1,6 @@
 import React,{ Component } from 'react'
 import { Card, Table, Icon } from 'antd'
+import nock from 'nock'
 
 const { Column, ColumnGroup } = Table
 
@@ -23,7 +24,23 @@ const data = [{
   address: 'Sidney No. 1 Lake Park',
 }]
 
+
+
 export default class Item extends Component{
+	constructor(props){
+		super(props)
+		this.state = {
+			text: '123'
+		}
+	}
+	componentWillMount(){
+		this.props.onShow('/item/correct',{
+			method: 'GET'
+		})
+		console.log(this.props.onShow)
+		console.log(this.props.fetchingItems)
+		console.log(this.state.text)
+	}
 	render(){
 		return (
 			<Card title="试卷管理">
@@ -59,6 +76,7 @@ export default class Item extends Component{
 				      )}
 				    />
 			  </Table>
+			  <p>{this.props.fetchingItems.text}</p>
 			</Card>
 			)
 	}

@@ -8,4 +8,8 @@ var Fillblank = require('../models/items/fillblank')
 var Programming = require('../models/items/programming')
 var Correct = require('../models/items/correct')
 
+
+router.get('/correct',function(req,res){
+	res.send({text: 'hhhhhhhh'})
+})
 module.exports = router

@@ -8,21 +8,13 @@ const initialState = {
 	text: 'hello',
 	error: null
 }
-function fetchItems(state=initialState,action){
+const fetchingItems=(state=initialState,action)=>{
 	switch (action.type){
 		case FETCH_ITEMS:
 			return {
 				...state,
 				fetching: true,
 			}
-		default:
-			return state
-
-	}
-}
-
-function items(state=[],action){
-	switch (action.type){
 		case FETCH_ITEMS_ERROR:
 			return {
 				...state,
@@ -38,12 +30,12 @@ function items(state=[],action){
 			}
 		default:
 			return state
+
 	}
 }
 
 const reducer = combineReducers({
-	fetchItems,
-	items,
+	fetchingItems,
 	routing: routerReducer
 })
 export default reducer

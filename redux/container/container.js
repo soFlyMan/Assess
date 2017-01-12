@@ -2,21 +2,23 @@ import  React,{ Component } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchItems } from '../actions/actions.js'
+import { fetchingItems } from '../reducers/reducers.js'
 import Item from '../../component/admin/itemPool/Item.js'
 
 class Container extends Component{
 	render(){
-		const { dispatch, items } = this.props
-		console.log(items)
+		const { dispatch, fetchingItems } = this.props
+		console.log('123')
+		console.log(fetchingItems)
 		return (
-			<Item items={items} onShow={dispatch(fetchItems())}/>
+			<Item fetchingItems={fetchingItems} onShow={(url,params) => dispatch(fetchItems(url,params))}/>
 			)
 	}
 } 
 
 const mapStateToProps = state => {
-	return {
-		text: 'hello'
+	return { 
+		fetchingItems: state.fetchingItems
 	}
 
 }

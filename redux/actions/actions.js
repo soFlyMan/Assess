@@ -6,10 +6,10 @@ export const FETCH_ITEMS_ERROR = 'FETCH_ITEMS_ERROR'
 
 const itemType = 'correct'
 
-export function fetchItems() {
+export function fetchItems(url,params) {
 	return dispatch => {
 		dispatch({type: FETCH_ITEMS})
-		return fetch('item/correct')
+		return fetch(url,params)
 				.then(res=>res.json()
 				.then(data=>{
 					dispatch({ type: 'RECEIVE_ITEMS', payload: data.text})
@@ -20,8 +20,8 @@ export function fetchItems() {
 	}
 }
 
-const couchdb = nock('item')
-                .get('/correct')
-                .reply(200, {
-                  text: 'fetched!!'
-                 })
+// const couchdb = nock('http://myapp.iriscouch.com')
+//                 .post('/items/correct')
+//                 .reply(200, {
+//                   text: 'fetched!!'
+//                  })

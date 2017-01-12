@@ -16,7 +16,6 @@ import AssessScore from './component/student/AssessScore.js'
 import Exam from './component/student/Exam.js'
 import Course from './component/student/Course.js'
 
-
 import Admin from './component/admin/Admin.js'
 import AdminLogin from './component/admin/AdminLogin.js'
 
