@@ -5,7 +5,7 @@ import { fetchItems } from '../actions/actions.js'
 import { fetchingItems } from '../reducers/reducers.js'
 import Item from '../../component/admin/itemPool/Item.js'
 
-class Container extends Component{
+class ItemContainer extends Component{
 	render(){
 		const { dispatch, fetchingItems } = this.props
 		console.log('123')
@@ -22,4 +22,4 @@ const mapStateToProps = state => {
 	}
 
 }
-export default connect(mapStateToProps)(Container)
+export default connect(mapStateToProps)(ItemContainer)

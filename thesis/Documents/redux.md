@@ -58,7 +58,6 @@ import { routerReducer } from 'react-router-redux'
 ...
 const reducer = combineReducers({
     fetchItems,
-    items,
     routing: routerReducer
 })
 ```
