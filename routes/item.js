@@ -28,27 +28,34 @@ var data = [{
   address: 'Sidney No. 1 Lake Park',
 }]
 
+//radio
 router.get('/radio',function(req,res){
 	res.send(data)
 })
 
+//multi
 router.get('/multi',function(req,res){
   res.send(data)
 })
 
+//judge
 router.get('/judge',function(req,res){
   res.send(data)
 })
 
+//fillblank
 router.get('/fillblank',function(req,res){
   res.send(data)
 })
 
+//programming
 router.get('/programming',function(req,res){
   res.send(data)
 })
 
+//correct
 router.get('/correct',function(req,res){
   res.send(data)
 })
+
 module.exports = router
