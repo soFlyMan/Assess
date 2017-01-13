@@ -23,7 +23,7 @@ ss搭建的服务器上,服务器进行路由匹配，mongoose写mongoDB数据�
 ```
 
 ###开发工具
-- 操作系系统: macOS Sierra
+- 操作系统: macOS Sierra
 - 开发工具: Sublime Text3
 - 编译环境: Node.js
 - 包管理器: NPM
@@ -37,6 +37,7 @@ ss搭建的服务器上,服务器进行路由匹配，mongoose写mongoDB数据�
 
 - react
 - redux
+- react-redux
 - react-router
 - react-router-redux
 - Fetch

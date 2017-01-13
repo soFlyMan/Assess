@@ -12,6 +12,11 @@ import logger from 'redux-logger'
 
 import CorrectContainer from './redux/container/CorrectContainer.js'
 import RadioContainer from './redux/container/RadioContainer.js'
+import MultiContainer from './redux/container/MultiContainer.js'
+import JudgeContainer from './redux/container/JudgeContainer.js'
+import FillblankContainer from './redux/container/FillblankContainer.js'
+import ProgrammingContainer from './redux/container/ProgrammingContainer.js'
+
 
 import Assess from './component/Assess.js'
 import AssessScore from './component/student/AssessScore.js'
@@ -50,6 +55,10 @@ ReactDOM.render((
 				<Route path="userlist" component={UserList} />
 				<Route path="radiocontainer" component={RadioContainer}/>
 				<Route path="correctcontainer" component={CorrectContainer} />
+				<Route path="multicontainer" component={MultiContainer} />
+				<Route path="judgecontainer" component={JudgeContainer} />
+				<Route path="fillblankcontainer" component={FillblankContainer} />
+				<Route path="programmingcontainer" component={ProgrammingContainer}/>
 				<Route path="examparam" component={ExamParam} /> 
 			</Route>
 
