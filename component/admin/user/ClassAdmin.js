@@ -11,7 +11,7 @@ export default class ClassAdmin extends Component{
 			record:''
 		}
 	}
-	componentWillMount(){
+	componentDidMount(){
 		this.handleKlasslist()
 	}
 	handleKlasslist=()=>{

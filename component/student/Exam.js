@@ -17,7 +17,7 @@ export default class Exam extends Component{
 			username:'123'
 		}
 	}
-	componentWillMount(){
+	componentDidMount(){
 		var self=this
 		fetch('/exam').then(function(res){
 			if(res.ok){
@@ -30,8 +30,6 @@ export default class Exam extends Component{
 		}).catch(function(err){
 			console.log('fetch err'+err)
 		})
-	}
-	componentDidMount(){
 		console.log('1')
 		setTimeout(()=>{
 			openNotification()

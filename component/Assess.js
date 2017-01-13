@@ -31,7 +31,7 @@ class Assess extends Component{
 			userid: val
 		})
 	}
-	componentWillMount=()=>{
+	componentDidMount=()=>{
 		console.log('123')
 		if(this.state.userid){
 			this.setState({

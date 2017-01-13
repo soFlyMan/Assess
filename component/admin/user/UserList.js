@@ -26,7 +26,7 @@ const UserList = React.createClass({
     console.log('selectedRowKeys changed: ', selectedRowKeys);
     this.setState({ selectedRowKeys });
   },
-  componentWillMount(){
+  componentDidMount(){
     this.handleRender();
 
   },
