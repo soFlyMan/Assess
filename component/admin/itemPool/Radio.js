@@ -1,47 +1,18 @@
 import React,{ Component } from 'react'
 import { Card, Table, Icon } from 'antd'
-import nock from 'nock'
 
 const { Column, ColumnGroup } = Table
 
-const data = [{
-  key: '1',
-  firstName: 'John',
-  lastName: 'Brown',
-  age: 32,
-  address: 'New York No. 1 Lake Park',
-}, {
-  key: '2',
-  firstName: 'Jim',
-  lastName: 'Green',
-  age: 42,
-  address: 'London No. 1 Lake Park',
-}, {
-  key: '3',
-  firstName: 'Joe',
-  lastName: 'Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}]
 
-
-
-export default class Item extends Component{
-	constructor(props){
-		super(props)
-		this.state = {
-			text: '123'
-		}
-	}
-	componentWillMount(){
-		this.props.onShow('/item/correct',{
+export default class Fillblank extends Component{
+	componentDidMount(){
+		this.props.onShow('/item/radio',{
 			method: 'GET'
 		})
 		console.log(this.props.onShow)
-		console.log(this.props.fetchingItems)
-		console.log(this.state.text)
 	}
 	render(){
+		const data = this.props.fetchingItems.data
 		return (
 			<Card title="试卷管理">
 				<Table dataSource={data} bordered>
@@ -65,9 +36,9 @@ export default class Item extends Component{
 				      key="action"
 				      render={(text, record) => (
 				        <span>
-				          <a href="#">Action 一 {record.name}</a>
+				          <a href="#">修改</a>
 				          <span className="ant-divider" />
-				          <a href="#">Delete</a>
+				          <a href="#">删除</a>
 				          <span className="ant-divider" />
 				          <a href="#" className="ant-dropdown-link">
 				            More actions <Icon type="down" />
@@ -76,7 +47,6 @@ export default class Item extends Component{
 				      )}
 				    />
 			  </Table>
-			  <p>{this.props.fetchingItems.text}</p>
 			</Card>
 			)
 	}

@@ -57,12 +57,12 @@ const Admin = React.createClass({
               <Menu.Item key="10">管理员信息</Menu.Item>
           </SubMenu>
           <SubMenu key="sub6" title={<span><Icon type="switcher" /><span>试题库管理</span></span>}>
-              <Menu.Item key="11"><Link to="/admin/itemcontainer">单选题管理</Link></Menu.Item>
-              <Menu.Item key="12"><Link to="/admin/itemcontainer">多选题管理</Link></Menu.Item>
-              <Menu.Item key="13"><Link to="/admin/itemcontainer">是非题管理</Link></Menu.Item>
-              <Menu.Item key="14"><Link to="/admin/itemcontainer">单填空题管理</Link></Menu.Item>
-              <Menu.Item key="15"><Link to="/admin/itemcontainer">编程题管理</Link></Menu.Item>
-              <Menu.Item key="16"><Link to="/admin/itemcontainer">改错题管理</Link></Menu.Item>
+              <Menu.Item key="11"><Link to="/admin/radiocontainer">单选题管理</Link></Menu.Item>
+              <Menu.Item key="12"><Link to="/admin/multicontainer">多选题管理</Link></Menu.Item>
+              <Menu.Item key="13"><Link to="/admin/judgecontainer">是非题管理</Link></Menu.Item>
+              <Menu.Item key="14"><Link to="/admin/fillblankcontainer">单填空题管理</Link></Menu.Item>
+              <Menu.Item key="15"><Link to="/admin/programmingcontainer">编程题管理</Link></Menu.Item>
+              <Menu.Item key="16"><Link to="/admin/correctcontainer">改错题管理</Link></Menu.Item>
           </SubMenu>
           <SubMenu key="sub7" title={<span><Icon type="file" /><span>考试管理</span></span>}>
               <Menu.Item key="17"><Link to="/admin/examparam">考试参数设置</Link></Menu.Item>

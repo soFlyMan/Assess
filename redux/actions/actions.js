@@ -1,22 +1,19 @@
-import nock from 'nock'
+// import nock from 'nock'
 
 export const FETCH_ITEMS = 'FETCH_ITEMS'
 export const RECEIVE_ITEMS = 'RECEIVE_ITEMS'
 export const FETCH_ITEMS_ERROR = 'FETCH_ITEMS_ERROR'
-
-const itemType = 'correct'
 
 export function fetchItems(url,params) {
 	return dispatch => {
 		dispatch({type: FETCH_ITEMS})
 		return fetch(url,params)
 				.then(res=>res.json()
-				.then(data=>{
-					dispatch({ type: 'RECEIVE_ITEMS', payload: data.text})
-				}).catch((err) => {
-					dispatch({type: 'FETCH_ITEMS_ERROR'}, payload: err)
-				})
-					)
+					.then(data=>{
+						dispatch({ type: 'RECEIVE_ITEMS', payload: data})
+					})).catch((err) => {
+						dispatch({type: 'FETCH_ITEMS_ERROR'}, payload: err)
+					})
 	}
 }
 

@@ -85,6 +85,8 @@ export default class AssessShow extends Component{
 					})
 				})
 			}
+		}).catch(function(err){
+			console.log(err.message)
 		})
 	}
 	handleMessage(){

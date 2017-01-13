@@ -10,7 +10,8 @@ import thunkMiddleware from 'redux-thunk'
 import reducer from './redux/reducers/reducers.js'
 import logger from 'redux-logger'
 
-import ItemContainer from './redux/container/ItemContainer.js'
+import CorrectContainer from './redux/container/CorrectContainer.js'
+import RadioContainer from './redux/container/RadioContainer.js'
 
 import Assess from './component/Assess.js'
 import AssessScore from './component/student/AssessScore.js'
@@ -47,7 +48,8 @@ ReactDOM.render((
 				<Route path="download" component={Download} />
 				<Route path="classadmin" component={ClassAdmin} />
 				<Route path="userlist" component={UserList} />
-				<Route path="itemcontainer" component={ItemContainer} />
+				<Route path="radiocontainer" component={RadioContainer}/>
+				<Route path="correctcontainer" component={CorrectContainer} />
 				<Route path="examparam" component={ExamParam} /> 
 			</Route>
 

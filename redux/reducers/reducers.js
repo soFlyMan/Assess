@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import { FETCH_ITEMS, RECEIVE_ITEMS, FETCH_ITEMS_ERROR } from '../actions/actions.js'
+import fetchingScore from './stuReducers.js'
 
 const initialState = {
 	fetching: false,
 	fetched: false,
-	text: 'hello',
+	data: [],
 	error: null
 }
-const fetchingItems=(state=initialState,action)=>{
+const fetchingItems = (state=initialState,action) => {
 	switch (action.type){
 		case FETCH_ITEMS:
 			return {
@@ -26,7 +27,7 @@ const fetchingItems=(state=initialState,action)=>{
 			...state,
 			fetching: false,
 			fetched: true,
-			text: action.payload
+			data: action.payload
 			}
 		default:
 			return state
@@ -36,6 +37,7 @@ const fetchingItems=(state=initialState,action)=>{
 
 const reducer = combineReducers({
 	fetchingItems,
+	fetchingScore,
 	routing: routerReducer
 })
 export default reducer
