@@ -25,6 +25,9 @@ export default class Fillblank extends Component{
     }
 	render(){
 		const data = this.props.fetchingItems.data
+		data.map(val => {
+			return val.options = (<pre>{val.options}</pre>)
+		})
 		return (
 			<Card title="试卷管理">
 				<Table dataSource={data} bordered>
