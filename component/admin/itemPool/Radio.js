@@ -17,19 +17,19 @@ export default class Fillblank extends Component{
 			<Card title="试卷管理">
 				<Table dataSource={data} bordered>
 			        <Column
-				      title="First Name"
-				      dataIndex="firstName"
-				      key="firstName"
+				      title="题目内容"
+				      dataIndex="body"
+				      key="body"
 				    />
 				    <Column
-				      title="Age"
-				      dataIndex="age"
-				      key="age"
+				      title="选项"
+				      dataIndex="options"
+				      key="options"
 				    />
 				    <Column
-				      title="Address"
-				      dataIndex="address"
-				      key="address"
+				      title="答案"
+				      dataIndex="answer"
+				      key="answer"
 				    />
 				    <Column
 				      title="Action"
@@ -38,7 +38,15 @@ export default class Fillblank extends Component{
 				        <span>
 				          <a href="#">修改</a>
 				          <span className="ant-divider" />
-				          <a href="#">删除</a>
+				          <a onClick={
+				          	this.props.onDelete('/item/delRadio',{
+				          		method: 'DELETE',
+				          		headers: {
+				          			"Content-Type": "application/json"
+				          		},
+				          		body: JSON.stringify({ itemId: record.itemId })
+				          	})
+				          }>删除</a>
 				          <span className="ant-divider" />
 				          <a href="#" className="ant-dropdown-link">
 				            More actions <Icon type="down" />
