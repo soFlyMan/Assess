@@ -12,6 +12,7 @@ export default class Fillblank extends Component{
 		console.log(this.props.onShow)
 	}
 	onDelete(record){
+		record.options = record.options.props.children
 	  	this.props.onDelete('/item/delRadio',{
 	  		method: 'DELETE',
 	  		headers: {

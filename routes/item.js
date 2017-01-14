@@ -33,12 +33,6 @@ router.get('/radio',function(req,res){
     if(err){
       console.log(err)
     }else{
-      var k = 0
-      radios.map(function(val){
-        k = k+1
-        return val.key = k
-      })
-      console.log(radios)
       res.send(radios)
     }
   })
