@@ -1,5 +1,5 @@
 import React,{ Component } from 'react'
-import { Card, Table, Icon } from 'antd'
+import { Card, Table, Icon, Popconfirm } from 'antd'
 
 const { Column, ColumnGroup } = Table
 
@@ -11,6 +11,18 @@ export default class Fillblank extends Component{
 		})
 		console.log(this.props.onShow)
 	}
+	onDelete(record){
+	  	this.props.onDelete('/item/delRadio',{
+	  		method: 'DELETE',
+	  		headers: {
+	  			"Content-Type": "application/json"
+	  		},
+	  		body: JSON.stringify(record)
+	  	})
+	  	this.props.onShow('/item/radio',{
+			method: 'GET'
+		})
+    }
 	render(){
 		const data = this.props.fetchingItems.data
 		return (
@@ -38,19 +50,10 @@ export default class Fillblank extends Component{
 				        <span>
 				          <a href="#">修改</a>
 				          <span className="ant-divider" />
-				          <a onClick={
-				          	this.props.onDelete('/item/delRadio',{
-				          		method: 'DELETE',
-				          		headers: {
-				          			"Content-Type": "application/json"
-				          		},
-				          		body: JSON.stringify({ itemId: record.itemId })
-				          	})
-				          }>删除</a>
-				          <span className="ant-divider" />
-				          <a href="#" className="ant-dropdown-link">
-				            More actions <Icon type="down" />
-				          </a>
+				          <Popconfirm title="确定要删除?"  
+          					onConfirm={()=>this.onDelete(record)} okText="确定" cancelText="取消">
+				          <a>删除</a>
+				          </Popconfirm>
 				        </span>
 				      )}
 				    />

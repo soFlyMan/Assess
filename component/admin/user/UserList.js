@@ -93,7 +93,8 @@ const UserList = React.createClass({
             <span>
               <a>修改</a>
               <span className="ant-divider" />
-              <Popconfirm title="确定要删除?"  onConfirm={()=>this.handleDel(record)} okText="确定" cancelText="取消">
+              <Popconfirm title="确定要删除?"  
+              onConfirm={()=>this.handleDel(record)} okText="确定" cancelText="取消">
                 <a>删除</a>
               </Popconfirm>
             </span>
