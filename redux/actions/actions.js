@@ -14,7 +14,7 @@ export const fetchItems = (url,params) => {
 		return fetch(url,params)
 				.then(res => res.json()
 					.then(data => {
-						dispatch({ type: RECEIVE_ITEMS, payload: data})
+						dispatch({ type: RECEIVE_ITEMS, payload: data })
 					})).catch(err => {
 						dispatch({ type: FETCH_ITEMS_ERROR, payload: err })
 					})

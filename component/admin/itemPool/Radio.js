@@ -93,9 +93,14 @@ export default class Fillblank extends Component{
     }
 	render(){
 		const data = this.props.fetchingItems.data
-		data.map(val => {
-			return val.options = (<pre>{val.options}</pre>)
-		})
+		if(data.length!==0){
+			if(typeof(data[0].options)==="string"){
+				data.map(val => {
+					return val.options = (<pre>{val.options}</pre>)
+				})
+			}
+		}
+
 		return (
 			<Card title="单选题管理" extra={
 				<div>
@@ -144,7 +149,7 @@ export default class Fillblank extends Component{
 					          visible={this.state.modal2Visible}
 					          title="修改"
 					          onOk={this.handleModal2Ok}
-					          onCancel={this.handleModal2Cancel}
+					          onCancel={this.handleModal2Ok}
 					          footer={[
 					            <Button key="back" type="ghost" size="large" onClick={this.handleModal2Cancel}>取消</Button>,
 					            <Button key="submit" type="primary" size="large" loading={this.state.loading} onClick={this.handleModal2Ok}>
@@ -152,9 +157,15 @@ export default class Fillblank extends Component{
 					            </Button>,
 					          ]}
 					        >
-					        	<lable>题目内容：</lable><Input type="textarea" rows={3} defaultValue={record.body} onChange={this.handleBody}/>
-					        	<lable>选项:</lable><Input type="textarea" rows={6} defaultValue={record.options.props.children} onChange={this.handleOptions}/>
-					        	<lable>答案:</lable><Input defaultValue={record.answer} onChange={this.handleAnswer}/> 
+					        	<lable>题目内容：</lable>
+					        	<Input type="textarea" rows={3} 
+									defaultValue={record.body} onChange={this.handleBody}/>
+					        	<lable>选项:</lable>
+					        	<Input type="textarea" rows={6} 
+					        		defaultValue={record.options.props.children} onChange={this.handleOptions}/>
+					        	<lable>答案:</lable>
+					        	<Input 
+					        		defaultValue={record.answer} onChange={this.handleAnswer}/> 
 					        </Modal>
 				          <span className="ant-divider" />
 				          <Popconfirm title="确定要删除?"  
