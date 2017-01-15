@@ -48,7 +48,23 @@ router.delete('/delRadio',function(req,res){
       }
     })
 })
-
+router.post('/addRadio',function(req,res){
+  var body = req.body.body
+  var options = req.body.options
+  var answer = req.body.answer
+  var radio = new Radio({
+    body: body,
+    options: options,
+    answer: answer
+  })
+  radio.save(function(err){
+    if(err){
+      console.log(err)
+    }else{
+      res.send({status: 1})
+    }
+  })
+})
 //multi
 router.get('/multi',function(req,res){
   res.send(data)

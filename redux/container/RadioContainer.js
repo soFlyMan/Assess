@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchItems, deleteItems } from '../actions/actions.js'
+import { fetchItems, deleteItems, addItems } from '../actions/actions.js'
 import { fetchingItems } from '../reducers/reducers.js'
 import Radio from '../../component/admin/itemPool/Radio.js'
 
@@ -15,7 +15,10 @@ class RadioContainer extends Component{
 			       }
 			       onDelete={
 			       	(url,params) => dispatch(deleteItems(url,params))
-			       }/>
+			       }
+			       onAdd={
+			       		(url,params) => dispatch(addItems(url,params))
+			       	}/>
 			)
 	}
 }
