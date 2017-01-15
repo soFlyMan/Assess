@@ -38,9 +38,8 @@ router.get('/radio',function(req,res){
   })
 })
 router.delete('/delRadio',function(req,res){
-    var body = req.body.body
-    var options = req.body.options
-    Radio.remove({body: body, options: options},function(err){
+    var id = req.body.id
+    Radio.remove({_id: id},function(err){
       if(err){
         console.log(err)
       }else{

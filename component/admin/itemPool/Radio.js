@@ -22,13 +22,15 @@ export default class Fillblank extends Component{
 		console.log(this.props.onShow)
 	}
 	onDelete(record){
-		record.options = record.options.props.children
+		const radioId = {
+			id: record._id
+		}
 	  	this.props.onDelete('/item/delRadio',{
 	  		method: 'DELETE',
 	  		headers: {
 	  			"Content-Type": "application/json"
 	  		},
-	  		body: JSON.stringify(record)
+	  		body: JSON.stringify(radioId)
 	  	})
 	  	this.props.onShow('/item/radio',{
 			method: 'GET'
@@ -58,7 +60,7 @@ export default class Fillblank extends Component{
 	    this.setState({ loading: true });
 	    setTimeout(() => {
 	      this.setState({ loading: false, visible: false });
-	    }, 3000);
+	    }, 300);
 	    const radio = {
 	    	body: this.state.body,
 	    	options: this.state.options,
@@ -71,6 +73,9 @@ export default class Fillblank extends Component{
 	    	},
 	    	body: JSON.stringify(radio)
 	    })
+	    this.props.onShow('/item/radio',{
+			method: 'GET'
+		})
     }
     handleCancel = () => {
     this.setState({ visible: false });
