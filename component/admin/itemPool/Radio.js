@@ -86,7 +86,7 @@ export default class Fillblank extends Component{
     	console.log(record)
     	this.setState({
     		body: record.body,
-    		options: record.options,
+    		options: record.options.props.children,
     		answer: record.answer,
     		modal2Visible: true
     	})
@@ -102,9 +102,14 @@ export default class Fillblank extends Component{
     }
 	render(){
 		const data = this.props.fetchingItems.data
-
+		if(data.length!==0){
+			if(typeof(data[0].options)==="string"){
+				data.map((val) => {
+					return val.options = (<pre>{val.options}</pre>)
+				})
+			}
+		}
 		
-
 		return (
 			<Card title="单选题管理" extra={
 				<div>
@@ -166,10 +171,10 @@ export default class Fillblank extends Component{
 									 onChange={this.handleBody} value={this.state.body}/>
 					        	<lable>选项:</lable>
 					        	<Input type="textarea" rows={6} 
-					        		 onChange={this.handleOptions} value={this.state.body}/>
+					        		 onChange={this.handleOptions} value={this.state.options}/>
 					        	<lable>答案:</lable>
 					        	<Input 
-					        		 onChange={this.handleAnswer} value={this.state.body}/> 
+					        		 onChange={this.handleAnswer} value={this.state.answer}/> 
 					        </Modal>
 				          <span className="ant-divider" />
 				          <Popconfirm title="确定要删除?"  
