@@ -64,6 +64,30 @@ router.post('/addRadio',function(req,res){
     }
   })
 })
+router.post('/modiRadio',function(req,res){
+    var id = req.body.id
+    var body = req.body.body
+    var options = req.body.options
+    var answer = req.body.answer
+    console.log(req.body)
+    Radio.findOneAndUpdate(
+      {_id: id},{ $set: { body: body,
+                          options: options,
+                          answer: answer 
+                        }
+                      },
+                        function(err,doc){
+      if(err){
+        console.log(err)
+      }else{
+        console.log("update")
+        res.send({status: 1})
+      }
+  })
+
+})
+
+
 //multi
 router.get('/multi',function(req,res){
   res.send(data)

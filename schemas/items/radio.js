@@ -7,5 +7,11 @@ var RadioSchema = new mongoose.Schema({
 })
 
 
-
+RadioSchema.statics = {
+	findById:function(id,cb){
+		return this
+			.findOne({_id: id})
+			.exec(cb)
+	}
+}
 module.exports = RadioSchema

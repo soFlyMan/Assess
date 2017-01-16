@@ -13,7 +13,8 @@ export default class Fillblank extends Component{
 			modal2Visible:false,
 			body: '',
 			options: '',
-			answer: ''
+			answer: '',
+			id: ''
 		}
 	}
 	componentWillMount(){
@@ -82,12 +83,11 @@ export default class Fillblank extends Component{
     	this.setState({ modal1Visible: false });
     }
     setModal2Visible = (record)=> {
-    	console.log("123")
-    	console.log(record)
     	this.setState({
     		body: record.body,
     		options: record.options.props.children,
     		answer: record.answer,
+    		id: record._id,
     		modal2Visible: true
     	})
     } 
@@ -99,6 +99,22 @@ export default class Fillblank extends Component{
 	    setTimeout(() => {
 	      this.setState({ loading: false, modal2Visible: false });
 	    }, 300)
+	    const radio = {
+	    	body: this.state.body,
+	    	options: this.state.options,
+	    	answer: this.state.answer,
+	    	id: this.state.id
+	    }
+	    this.props.onModi('/item/modiRadio',{
+	    	method: 'POST',
+	    	headers: {
+	    		'Content-Type': 'application/json'
+	    	},
+	    	body: JSON.stringify(radio)
+	    })
+	    this.props.onShow('/item/radio',{
+			method: 'GET'
+		})
     }
 	render(){
 		const data = this.props.fetchingItems.data
