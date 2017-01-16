@@ -82,10 +82,14 @@ export default class Fillblank extends Component{
     	this.setState({ modal1Visible: false });
     }
     setModal2Visible = (record)=> {
-	    this.setState({ modal2Visible: true });
-	    this.refs.body.value = record.body
-	    this.refs.options.value = record.options
-	    this.refs.answer.value = record.answer
+    	console.log("123")
+    	console.log(record)
+    	this.setState({
+    		body: record.body,
+    		options: record.options,
+    		answer: record.answer,
+    		modal2Visible: true
+    	})
     } 
     handleModal2Cancel = () => {
     	this.setState({modal2Visible: false})
@@ -159,13 +163,13 @@ export default class Fillblank extends Component{
 					        >
 					        	<lable>题目内容：</lable>
 					        	<Input type="textarea" rows={3} 
-									 onChange={this.handleBody} ref="body"/>
+									 onChange={this.handleBody} value={this.state.body}/>
 					        	<lable>选项:</lable>
 					        	<Input type="textarea" rows={6} 
-					        		 onChange={this.handleOptions} ref="options"/>
+					        		 onChange={this.handleOptions} value={this.state.body}/>
 					        	<lable>答案:</lable>
 					        	<Input 
-					        		 onChange={this.handleAnswer} ref="answer"/> 
+					        		 onChange={this.handleAnswer} value={this.state.body}/> 
 					        </Modal>
 				          <span className="ant-divider" />
 				          <Popconfirm title="确定要删除?"  
