@@ -16,11 +16,10 @@ export default class Fillblank extends Component{
 			answer: ''
 		}
 	}
-	componentDidMount(){
+	componentWillMount(){
 		this.props.onShow('/item/radio',{
 			method: 'GET'
 		})
-		console.log(this.props.onShow)
 	}
 	handleChange = (record) => {
 		this.showModal
@@ -62,7 +61,7 @@ export default class Fillblank extends Component{
 	    this.setState({ loading: true });
 	    setTimeout(() => {
 	      this.setState({ loading: false, modal1Visible: false });
-	    }, 300);
+	    }, 300)
 	    const radio = {
 	    	body: this.state.body,
 	    	options: this.state.options,
@@ -80,26 +79,27 @@ export default class Fillblank extends Component{
 		})
     }
     handleCancel = () => {
-    this.setState({ modal1Visible: false });
+    	this.setState({ modal1Visible: false });
     }
-    setModal2Visible(modal2Visible) {
-	    this.setState({ modal2Visible });
+    setModal2Visible = (record)=> {
+	    this.setState({ modal2Visible: true });
+	    this.refs.body.value = record.body
+	    this.refs.options.value = record.options
+	    this.refs.answer.value = record.answer
     } 
     handleModal2Cancel = () => {
     	this.setState({modal2Visible: false})
     }
     handleModal2Ok = () => {
-    	this.setState({modal2Visible: false})
+    	this.setState({ loading: true });
+	    setTimeout(() => {
+	      this.setState({ loading: false, modal2Visible: false });
+	    }, 300)
     }
 	render(){
 		const data = this.props.fetchingItems.data
-		if(data.length!==0){
-			if(typeof(data[0].options)==="string"){
-				data.map(val => {
-					return val.options = (<pre>{val.options}</pre>)
-				})
-			}
-		}
+
+		
 
 		return (
 			<Card title="单选题管理" extra={
@@ -144,28 +144,28 @@ export default class Fillblank extends Component{
 				      key="action"
 				      render={(text, record) => (
 				        <span>
-				          <a onClick={()=>this.setModal2Visible(true)}>修改</a>
+				          <a onClick={()=>this.setModal2Visible(record)}>修改</a>
 				           <Modal
 					          visible={this.state.modal2Visible}
 					          title="修改"
 					          onOk={this.handleModal2Ok}
 					          onCancel={this.handleModal2Ok}
 					          footer={[
-					            <Button key="back" type="ghost" size="large" onClick={this.handleModal2Cancel}>取消</Button>,
-					            <Button key="submit" type="primary" size="large" loading={this.state.loading} onClick={this.handleModal2Ok}>
+					            <Button key="back2" type="ghost" size="large" onClick={this.handleModal2Cancel}>取消</Button>,
+					            <Button key="submit2" type="primary" size="large" loading={this.state.loading} onClick={this.handleModal2Ok}>
 					              提交
 					            </Button>,
 					          ]}
 					        >
 					        	<lable>题目内容：</lable>
 					        	<Input type="textarea" rows={3} 
-									defaultValue={record.body} onChange={this.handleBody}/>
+									 onChange={this.handleBody} ref="body"/>
 					        	<lable>选项:</lable>
 					        	<Input type="textarea" rows={6} 
-					        		defaultValue={record.options.props.children} onChange={this.handleOptions}/>
+					        		 onChange={this.handleOptions} ref="options"/>
 					        	<lable>答案:</lable>
 					        	<Input 
-					        		defaultValue={record.answer} onChange={this.handleAnswer}/> 
+					        		 onChange={this.handleAnswer} ref="answer"/> 
 					        </Modal>
 				          <span className="ant-divider" />
 				          <Popconfirm title="确定要删除?"  

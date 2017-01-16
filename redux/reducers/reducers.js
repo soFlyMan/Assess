@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import { FETCH_ITEMS, RECEIVE_ITEMS, FETCH_ITEMS_ERROR } from '../actions/actions.js'
-import fetchingScore from './stuReducers.js'
 
 const initialState = {
 	fetching: false,
@@ -37,7 +36,6 @@ const fetchingItems = (state=initialState,action) => {
 
 const reducer = combineReducers({
 	fetchingItems,
-	fetchingScore,
 	routing: routerReducer
 })
 export default reducer
