@@ -60,8 +60,9 @@ router.post('/addRadio',function(req,res){
   radio.save(function(err){
     if(err){
       console.log(err)
+      res.send({ status: 0 })
     }else{
-      res.send({status: 1})
+      res.send({ status: 1 })
     }
   })
 })
@@ -80,9 +81,10 @@ router.post('/modiRadio',function(req,res){
                         function(err,doc){
       if(err){
         console.log(err)
+        res.send({ status: 0 })
       }else{
         console.log("update")
-        res.send({status: 1})
+        res.send({ status: 1 })
       }
   })
 

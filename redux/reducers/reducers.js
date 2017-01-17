@@ -39,31 +39,37 @@ const fetchingItems = (state=initialState,action) => {
 	}
 }
 
-const fetchStatus = ( state = { status: -1 }, action) => {
+const fetchStatus = ( state = { fetched: false,status: -1 }, action) => {
 	switch (action.type){
 		case DELETE_ITEMS:
 			return {
+				fetched: false,
 				status: -1
 			}
 		case DELETED_ITEMS:
 			return {
-				status: data.status
+				fetched: true,
+				status: action.status
 			}
 		case ADD_ITEMS:
 			return {
+				fetched: false,
 				status: -1
 			}
 		case ADDED_ITEMS:
 			return {
-				status: data.status
+				fetched: true,
+				status: action.status
 			}
 		case MODI_ITEMS: 
 			return {
+				fetched: false,
 				status: -1
 			}
 		case MODIED_ITEMS:
 			return {
-				status: data.status
+				fetched: true,
+				status: action.status
 			}
 		default:
 			return state

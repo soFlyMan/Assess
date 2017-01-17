@@ -30,6 +30,7 @@ export const deleteItems = (url,params) => {
 		return fetch(url,params)
 				.then(res => res.json()
 					.then(data => {
+						console.log(data)
 						dispatch({ type: DELETED_ITEMS, status: data.status})
 					})).catch(err => {
 						dispatch({ type: FETCH_ITEMS_ERROR, payload: err })
@@ -43,6 +44,7 @@ export const addItems = (url,params) => {
 		return fetch(url,params)
 				.then(res => res.json()
 					.then(data => {
+						console.log(data)
 						dispatch({ type: ADDED_ITEMS, status: data.status })
 					})).catch(err => {
 					dispatch({ type: FETCH_ITEMS_ERROR, payload: err })
@@ -56,6 +58,7 @@ export const modiItems = (url,params) => {
 		return fetch(url,params)
 				.then(res => res.json()
 					.then(data => {
+						console.log(data)
 						dispatch({ type: MODIED_ITEMS, status: data.status})
 					})).catch(err => {
 					dispatch({ type: FETCH_ITEMS_ERROR, payload: err})

@@ -17,7 +17,7 @@ export default class Radio extends Component{
 			id: ''
 		}
 	}
-	componentWillMount(){
+	componentDidMount(){
 		this.props.onShow('/item/radio',{
 			method: 'GET'
 		})
@@ -36,7 +36,12 @@ export default class Radio extends Component{
 	  		},
 	  		body: JSON.stringify(radioId)
 	  	})
-	  	message.info("删除成功！")
+	  	const status = this.props.fetchStatus.status
+	  	if(status==1){
+	  		message.info("删除成功")
+	  	}else{
+	  		message.info("删除失败！")
+	  	}
 	  	this.props.onShow('/item/radio',{
 			method: 'GET'
 		})
@@ -66,15 +71,32 @@ export default class Radio extends Component{
 	    	options: this.state.options,
 	    	answer: this.state.answer
 	    }
-	    this.props.onAdd('/item/addRadio',{
-	    	method: 'POST',
-	    	headers: {
-	    		"Content-Type": "application/json"
-	    	},
-	    	body: JSON.stringify(radio)
-	    })
-        this.setState({ loading: false, modal1Visible: false })
-        message.info("添加成功！")
+        console.log("ssssssssssssssssss")
+        console.log(status)
+        const self = this
+        const fetched = self.props.fetchStatus.fetched
+        const status = self.props.fetchStatus.status
+        function* gen() {
+		    yield self.props.onAdd('/item/addRadio',{
+		    	method: 'POST',
+		    	headers: {
+		    		"Content-Type": "application/json"
+		    	},
+		    	body: JSON.stringify(radio)
+		    })
+	        self.setState({ loading: false, modal1Visible: false })
+	        yield message.info("添加成功！")
+        }
+        var g = new gen()
+        g.next()
+        if(fetched){
+	        g.next()
+	        if(status==1){
+	        	g.next()
+	        }else{
+	        	message.info("添加失败")
+	        }
+        }
 	    this.props.onShow('/item/radio',{
 			method: 'GET'
 		})
@@ -110,7 +132,12 @@ export default class Radio extends Component{
 	    	body: JSON.stringify(radio)
 	    })
         this.setState({ loading: false, modal2Visible: false })
-        message.info("修改成功！")
+        const status = this.props.fetchStatus.status
+        if(status==1){
+			message.info("修改成功！")
+        }else{
+        	message.info("修改失败！")
+        }
 	    this.props.onShow('/item/radio',{
 			method: 'GET'
 		})
