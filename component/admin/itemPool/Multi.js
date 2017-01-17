@@ -17,7 +17,7 @@ export default class Multi extends Component{
 			id: ''
 		}
 	}
-	componentWillMount(){
+	componentDidMount(){
 		this.props.onShow('/item/multi',{
 			method: 'GET'
 		})
@@ -26,21 +26,37 @@ export default class Multi extends Component{
 		this.showModal
 	}
 	onDelete(record){
-		const radioId = {
+		const multiId = {
 			id: record._id
 		}
-	  	this.props.onDelete('/item/delMulti',{
+	  	const status = this.props.fetchStatus.status
+	  	const fetched = this.props.fetchStatus.fetched
+	  	const self = this
+	  	function* gen(){
+	  		yield self.props.onDelete('/item/delMulti',{
 	  		method: 'DELETE',
 	  		headers: {
 	  			"Content-Type": "application/json"
 	  		},
-	  		body: JSON.stringify(radioId)
+	  		body: JSON.stringify(multiId)
 	  	})
-	  	message.info("删除成功！")
-	  	this.props.onShow('/item/multi',{
+	  		yield message.info("删除成功！")
+	  	}
+	  	var g = new gen()
+	  	g.next()
+	  	if(fetched){
+	  		if(status==1){
+	  			g.next()
+		    }else{
+		    	message.info("删除失败！")
+		    }
+	    }
+	    g.next()
+	  	self.props.onShow('/item/multi',{
 			method: 'GET'
 		})
-    }
+  	}
+	  	
     setModal1Visible(modal1Visible) {
 	    this.setState({ modal1Visible });
 	}
@@ -66,16 +82,31 @@ export default class Multi extends Component{
 	    	options: this.state.options,
 	    	answer: this.state.answer
 	    }
-	    this.props.onAdd('/item/addMulti',{
-	    	method: 'POST',
-	    	headers: {
-	    		"Content-Type": "application/json"
-	    	},
-	    	body: JSON.stringify(multi)
-	    })
-        this.setState({ loading: false, modal1Visible: false })
-        message.info("添加成功！")
-	    this.props.onShow('/item/multi',{
+        const self = this
+        const fetched = self.props.fetchStatus.fetched
+        const status = self.props.fetchStatus.status
+        function* gen() {
+		    yield self.props.onAdd('/item/addMulti',{
+		    	method: 'POST',
+		    	headers: {
+		    		"Content-Type": "application/json"
+		    	},
+		    	body: JSON.stringify(multi)
+		    })
+    	    self.setState({ loading: false, modal1Visible: false })
+	        yield message.info("添加成功！")
+        }
+        var g = new gen()
+        g.next()
+        if(fetched){
+	        if(status==1){
+	        	g.next()
+	        }else{
+	        	message.info("添加失败")
+	        }
+        }
+        g.next()
+	    self.props.onShow('/item/multi',{
 			method: 'GET'
 		})
     }
@@ -102,18 +133,34 @@ export default class Multi extends Component{
 	    	answer: this.state.answer,
 	    	id: this.state.id
 	    }
-	    this.props.onModi('/item/modiMulti',{
-	    	method: 'POST',
-	    	headers: {
-	    		'Content-Type': 'application/json'
-	    	},
-	    	body: JSON.stringify(multi)
-	    })
-        this.setState({ loading: false, modal2Visible: false })
-        message.info("修改成功！")
-	    this.props.onShow('/item/multi',{
-			method: 'GET'
-		})
+        const status = this.props.fetchStatus.status
+        const fetched = this.props.fetchStatus.fetched
+        const self = this
+        function* gen(){
+		    yield self.props.onModi('/item/modiMulti',{
+		    	method: 'POST',
+		    	headers: {
+		    		'Content-Type': 'application/json'
+		    	},
+		    	body: JSON.stringify(multi)
+		    })
+	        yield self.setState({ loading: false, modal2Visible: false })
+	        yield message.info("修改成功！")
+	        }
+        var g = new gen()
+        g.next()
+        if(fetched){
+        	g.next()
+        	if(status==1){
+        		g.next()
+			    self.props.onShow('/item/multi',{
+					method: 'GET'
+				})
+        	}else{
+        		message.info("修改失败！")
+        	}
+        }
+        g.next()
     }
 	render(){
 		const data = this.props.fetchingItems.data
