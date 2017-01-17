@@ -163,7 +163,7 @@ export default class Judge extends Component{
 			}
 		}
 		return (
-			<Card title="多选题管理" extra={
+			<Card title="是非题管理" extra={
 				<div>
 					<Button type="default" onClick={()=>this.setModal1Visible(true)}>添加</Button>
 					<Modal

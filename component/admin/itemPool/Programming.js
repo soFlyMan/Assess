@@ -163,7 +163,7 @@ export default class Programming extends Component{
 			}
 		}
 		return (
-			<Card title="填空管理" extra={
+			<Card title="编程题管理" extra={
 				<div>
 					<Button type="default" onClick={()=>this.setModal1Visible(true)}>添加</Button>
 					<Modal
