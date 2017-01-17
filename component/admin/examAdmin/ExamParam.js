@@ -12,14 +12,14 @@ export default class ExamParam extends Component{
 	constructor(props){
 		super(props)
 		this.state={
-			type: 1,
+			papertype: 1,
 			limit: 3,
 			refer: 6
 		}
 	}
-	changeType=(e)=>{
+	changePaperType=(e)=>{
 		this.setState({
-			type: e.target.value
+			papertype: e.target.value
 		})
 	}
 	changeLimit=(e)=>{
@@ -35,7 +35,15 @@ export default class ExamParam extends Component{
 	render(){
 		return (
 			<Card title="考试参数设置" style={{minHeight: 500}}>
-			<div>
+				<Card title="考试参数" style={{
+					float: "right",
+					width: 240,
+					height: 240,
+					marginRight: 120
+				}}>
+					{this.props.children}
+				</Card>	
+			  <div>
 					<ul className="paramul">
 						<li style={{width: 200}}>
 						考试日期设置：
@@ -75,7 +83,7 @@ export default class ExamParam extends Component{
 					考试组卷方式
 					</li>
 					<li>
-						<RadioGroup value={this.state.type} onChange={this.changeType}>
+						<RadioGroup value={this.state.papertype} onChange={this.changePaperType}>
 							<Radio value={1}>考试随机组卷</Radio>
 		        			<Radio value={2}>随机抽取已组卷</Radio>
 						</RadioGroup>
@@ -94,7 +102,7 @@ export default class ExamParam extends Component{
 						</li>
 					</ul>
 				</div>
-				<Button type="default" style={{marginLeft:260,marginTop:30}}>提交</Button>	
+				<Button type="default" style={{marginLeft:260,marginTop:30}}>提交</Button>
 			</Card>
 			)
 	}

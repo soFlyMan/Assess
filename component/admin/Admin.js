@@ -65,10 +65,10 @@ const Admin = React.createClass({
               <Menu.Item key="16"><Link to="/admin/correctcontainer"><span>改错题管理</span></Link></Menu.Item>
           </SubMenu>
           <SubMenu key="sub7" title={<span><Icon type="file" /><span>考试管理</span></span>}>
-              <Menu.Item key="17"><Link to="/admin/examparam"><span>考试参数设置</span></Link></Menu.Item>
-              <Menu.Item key="18"><Link to="/admin/examparam"><span>组卷参数设置</span></Link></Menu.Item>
-              <Menu.Item key="19"><Link to="/admin/examparam"><span>预组卷管理</span></Link></Menu.Item>
-            <Menu.Item key="12"><Link to="/admin/examparam"><span>在线用户监控</span></Link></Menu.Item>
+              <Menu.Item key="17"><Link to="/admin/examparamcontainer"><span>考试参数设置</span></Link></Menu.Item>
+              <Menu.Item key="18"><Link to="/admin/examparamcontainer"><span>组卷参数设置</span></Link></Menu.Item>
+              <Menu.Item key="19"><Link to="/admin/examparamcontainer"><span>预组卷管理</span></Link></Menu.Item>
+              <Menu.Item key="24"><Link to="/admin/examparamcontainer"><span>在线用户监控</span></Link></Menu.Item>
           </SubMenu>
           <SubMenu key="sub8" title={<span><Icon type="area-chart" /><span>考试分析</span></span>}>
               <Menu.Item key="20"><span>全班成绩</span>分析</Menu.Item>

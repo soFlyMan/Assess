@@ -11,7 +11,6 @@ const initialState = {
 	fetched: false,
 	data: [],
 	error: null,
-	status: -1
 }
 const fetchingItems = (state=initialState,action) => {
 	switch (action.type){

@@ -33,7 +33,7 @@ import Section from './component/admin/course/Section.js'
 import Download from './component/admin/course/Download.js'
 
 
-import ExamParam from './component/admin/examAdmin/ExamParam.js'
+import ExamParamContainer from './redux/container/ExamParamContainer.js'
 
 const middleware = applyMiddleware(logger(),thunkMiddleware)
 const store = createStore(reducer,middleware)
@@ -59,7 +59,7 @@ ReactDOM.render((
 				<Route path="judgecontainer" component={JudgeContainer} />
 				<Route path="fillblankcontainer" component={FillblankContainer} />
 				<Route path="programmingcontainer" component={ProgrammingContainer}/>
-				<Route path="examparam" component={ExamParam} /> 
+				<Route path="examparamcontainer" component={ExamParamContainer} /> 
 			</Route>
 
 			<Route path="adminlogin" component={AdminLogin}/>

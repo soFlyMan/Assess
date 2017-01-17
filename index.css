@@ -9,6 +9,9 @@ html, body, #root {
 .paramul li{
   float: left;
 }
+.params li{
+  margin: 6px;
+}
 /*assessnav*/
 .assessNav{
       position: fixed;
