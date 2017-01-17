@@ -4,7 +4,7 @@ import { Card, Table, Icon, Popconfirm, Button, Modal, Input, message } from 'an
 const { Column, ColumnGroup } = Table
 
 
-export default class judge extends Component{
+export default class Judge extends Component{
 	constructor(props){
 		super(props)
 		this.state={
@@ -108,7 +108,7 @@ export default class judge extends Component{
     }
     setModal2Visible = (record)=> {
     	this.setState({
-    		body: record.body,
+    		body: record.body.props.children,
     		answer: record.answer,
     		id: record._id,
     		modal2Visible: true
@@ -155,6 +155,13 @@ export default class judge extends Component{
     }
 	render(){
 		const data = this.props.fetchingItems.data
+		if(data.length!==0){
+			if(typeof(data[0].body)==="string"){
+				data.map((val) => {
+					return val.body = (<pre>{val.body}</pre>)
+				})
+			}
+		}
 		return (
 			<Card title="多选题管理" extra={
 				<div>

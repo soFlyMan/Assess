@@ -1,25 +1,36 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchItems } from '../actions/actions.js'
-import { fetchingItems } from '../reducers/reducers.js'
+import { fetchItems, deleteItems, addItems, modiItems } from '../actions/actions.js'
+import { fetchingItems, fetchStatus } from '../reducers/reducers.js'
 import Fillblank from '../../component/admin/itemPool/Fillblank.js'
 
 class FillblankContainer extends Component{
 	render(){
-		const { fetchingItems, dispatch } = this.props
+		const { fetchingItems, fetchStatus, dispatch } = this.props
 		return (
-			<Fillblank fetchingItems={ fetchingItems } 
+			<Fillblank fetchingItems={ fetchingItems }
+				   fetchStatus={ fetchStatus } 
 			       onShow={
 			       	(url,params) => dispatch(fetchItems(url,params))
-			       }/>
+			       }
+			       onDelete={
+			       	(url,params) => dispatch(deleteItems(url,params))
+			       }
+			       onAdd={
+		       		(url,params) => dispatch(addItems(url,params))
+	       		   }
+		       	   onModi={
+		       	   	(url,params) => dispatch(modiItems(url,params))
+		       	   }/>
 			)
 	}
 }
 
 const mapStateToProps = state => {
 	return {
-		fetchingItems: state.fetchingItems
+		fetchingItems: state.fetchingItems,
+		fetchStatus: state.fetchStatus
 	}
 }
 
