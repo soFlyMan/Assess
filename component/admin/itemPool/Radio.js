@@ -29,23 +29,34 @@ export default class Radio extends Component{
 		const radioId = {
 			id: record._id
 		}
-	  	this.props.onDelete('/item/delRadio',{
+	  	const status = this.props.fetchStatus.status
+	  	const fetched = this.props.fetchStatus.fetched
+	  	const self = this
+	  	function* gen(){
+	  		yield self.props.onDelete('/item/delRadio',{
 	  		method: 'DELETE',
 	  		headers: {
 	  			"Content-Type": "application/json"
 	  		},
 	  		body: JSON.stringify(radioId)
 	  	})
-	  	const status = this.props.fetchStatus.status
-	  	if(status==1){
-	  		message.info("删除成功")
-	  	}else{
-	  		message.info("删除失败！")
+	  		yield message.info("删除成功！")
 	  	}
-	  	this.props.onShow('/item/radio',{
+	  	var g = new gen()
+	  	g.next()
+	  	if(fetched){
+	  		if(status==1){
+	  			g.next()
+		    }else{
+		    	message.info("删除失败！")
+		    }
+	    }
+	    g.next()
+	  	self.props.onShow('/item/radio',{
 			method: 'GET'
 		})
-    }
+  	}
+	  	
     setModal1Visible(modal1Visible) {
 	    this.setState({ modal1Visible });
 	}
@@ -71,8 +82,6 @@ export default class Radio extends Component{
 	    	options: this.state.options,
 	    	answer: this.state.answer
 	    }
-        console.log("ssssssssssssssssss")
-        console.log(status)
         const self = this
         const fetched = self.props.fetchStatus.fetched
         const status = self.props.fetchStatus.status
@@ -84,20 +93,20 @@ export default class Radio extends Component{
 		    	},
 		    	body: JSON.stringify(radio)
 		    })
-	        self.setState({ loading: false, modal1Visible: false })
+    	    self.setState({ loading: false, modal1Visible: false })
 	        yield message.info("添加成功！")
         }
         var g = new gen()
         g.next()
         if(fetched){
-	        g.next()
 	        if(status==1){
 	        	g.next()
 	        }else{
 	        	message.info("添加失败")
 	        }
         }
-	    this.props.onShow('/item/radio',{
+        g.next()
+	    self.props.onShow('/item/radio',{
 			method: 'GET'
 		})
     }
@@ -124,23 +133,34 @@ export default class Radio extends Component{
 	    	answer: this.state.answer,
 	    	id: this.state.id
 	    }
-	    this.props.onModi('/item/modiRadio',{
-	    	method: 'POST',
-	    	headers: {
-	    		'Content-Type': 'application/json'
-	    	},
-	    	body: JSON.stringify(radio)
-	    })
-        this.setState({ loading: false, modal2Visible: false })
         const status = this.props.fetchStatus.status
-        if(status==1){
-			message.info("修改成功！")
-        }else{
-        	message.info("修改失败！")
+        const fetched = this.props.fetchStatus.fetched
+        const self = this
+        function* gen(){
+		    yield self.props.onModi('/item/modiRadio',{
+		    	method: 'POST',
+		    	headers: {
+		    		'Content-Type': 'application/json'
+		    	},
+		    	body: JSON.stringify(radio)
+		    })
+	        yield self.setState({ loading: false, modal2Visible: false })
+	        yield message.info("修改成功！")
+	        }
+        var g = new gen()
+        g.next()
+        if(fetched){
+        	g.next()
+        	if(status==1){
+        		g.next()
+			    self.props.onShow('/item/radio',{
+					method: 'GET'
+				})
+        	}else{
+        		message.info("修改失败！")
+        	}
         }
-	    this.props.onShow('/item/radio',{
-			method: 'GET'
-		})
+        g.next()
     }
 	render(){
 		const data = this.props.fetchingItems.data
