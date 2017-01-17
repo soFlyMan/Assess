@@ -151,17 +151,17 @@ router.post('/modiMulti',function(req,res){
 })
 //judge
 router.get('/judge',function(req,res){
-  Radio.find({}).exec(function(err,radios){
+  Judge.find({}).exec(function(err,judges){
     if(err){
       console.log(err)
     }else{
-      res.send(radios)
+      res.send(judges)
     }
   })
 })
-router.delete('/delMulti',function(req,res){
+router.delete('/delJudge',function(req,res){
     var id = req.body.id
-    Radio.remove({_id: id},function(err){
+    Judge.remove({_id: id},function(err){
       if(err){
         console.log(err)
         res.send({ status: 0 })
@@ -170,16 +170,16 @@ router.delete('/delMulti',function(req,res){
       }
     })
 })
-router.post('/addRadio',function(req,res){
+router.post('/addJudge',function(req,res){
   var body = req.body.body
   var options = req.body.options
   var answer = req.body.answer
-  var radio = new Radio({
+  var judge = new Judge({
     body: body,
     options: options,
     answer: answer
   })
-  radio.save(function(err){
+  judge.save(function(err){
     if(err){
       console.log(err)
       res.send({ status: 0 })
@@ -188,12 +188,12 @@ router.post('/addRadio',function(req,res){
     }
   })
 })
-router.post('/modiRadio',function(req,res){
+router.post('/modiJudge',function(req,res){
     var id = req.body.id
     var body = req.body.body
     var options = req.body.options
     var answer = req.body.answer
-    Radio.findOneAndUpdate(
+    Judge.findOneAndUpdate(
       {_id: id},{ $set: { body: body,
                           options: options,
                           answer: answer 
@@ -211,17 +211,17 @@ router.post('/modiRadio',function(req,res){
 })
 //fillblank
 router.get('/fillblank',function(req,res){
-  Radio.find({}).exec(function(err,radios){
+  Fillblank.find({}).exec(function(err,fillblanks){
     if(err){
       console.log(err)
     }else{
-      res.send(radios)
+      res.send(fillblanks)
     }
   })
 })
-router.delete('/delRadio',function(req,res){
+router.delete('/delFillblank',function(req,res){
     var id = req.body.id
-    Radio.remove({_id: id},function(err){
+    Fillblank.remove({_id: id},function(err){
       if(err){
         console.log(err)
         res.send({ status: 0 })
@@ -230,16 +230,16 @@ router.delete('/delRadio',function(req,res){
       }
     })
 })
-router.post('/addRadio',function(req,res){
+router.post('/addFillblank',function(req,res){
   var body = req.body.body
   var options = req.body.options
   var answer = req.body.answer
-  var radio = new Radio({
+  var fillblank = new Fillblank({
     body: body,
     options: options,
     answer: answer
   })
-  radio.save(function(err){
+  fillblank.save(function(err){
     if(err){
       console.log(err)
       res.send({ status: 0 })
@@ -248,12 +248,12 @@ router.post('/addRadio',function(req,res){
     }
   })
 })
-router.post('/modiRadio',function(req,res){
+router.post('/modiFillblank',function(req,res){
     var id = req.body.id
     var body = req.body.body
     var options = req.body.options
     var answer = req.body.answer
-    Radio.findOneAndUpdate(
+    Fillblank.findOneAndUpdate(
       {_id: id},{ $set: { body: body,
                           options: options,
                           answer: answer 
@@ -271,17 +271,17 @@ router.post('/modiRadio',function(req,res){
 })
 //programming
 router.get('/programming',function(req,res){
-  Radio.find({}).exec(function(err,radios){
+  Programming.find({}).exec(function(err,programmings){
     if(err){
       console.log(err)
     }else{
-      res.send(radios)
+      res.send(programmings)
     }
   })
 })
-router.delete('/delRadio',function(req,res){
+router.delete('/delProgramming',function(req,res){
     var id = req.body.id
-    Radio.remove({_id: id},function(err){
+    Programming.remove({_id: id},function(err){
       if(err){
         console.log(err)
         res.send({ status: 0 })
@@ -290,16 +290,16 @@ router.delete('/delRadio',function(req,res){
       }
     })
 })
-router.post('/addRadio',function(req,res){
+router.post('/addProgramming',function(req,res){
   var body = req.body.body
   var options = req.body.options
   var answer = req.body.answer
-  var radio = new Radio({
+  var programming = new Programming({
     body: body,
     options: options,
     answer: answer
   })
-  radio.save(function(err){
+  programming.save(function(err){
     if(err){
       console.log(err)
       res.send({ status: 0 })
@@ -308,12 +308,12 @@ router.post('/addRadio',function(req,res){
     }
   })
 })
-router.post('/modiRadio',function(req,res){
+router.post('/modiProgramming',function(req,res){
     var id = req.body.id
     var body = req.body.body
     var options = req.body.options
     var answer = req.body.answer
-    Radio.findOneAndUpdate(
+    Programming.findOneAndUpdate(
       {_id: id},{ $set: { body: body,
                           options: options,
                           answer: answer 
@@ -331,17 +331,17 @@ router.post('/modiRadio',function(req,res){
 })
 //correct
 router.get('/correct',function(req,res){
-  Radio.find({}).exec(function(err,radios){
+  Correct.find({}).exec(function(err,corrects){
     if(err){
       console.log(err)
     }else{
-      res.send(radios)
+      res.send(corrects)
     }
   })
 })
-router.delete('/delRadio',function(req,res){
+router.delete('/delCorrect',function(req,res){
     var id = req.body.id
-    Radio.remove({_id: id},function(err){
+    Correct.remove({_id: id},function(err){
       if(err){
         console.log(err)
         res.send({ status: 0 })
@@ -350,16 +350,16 @@ router.delete('/delRadio',function(req,res){
       }
     })
 })
-router.post('/addRadio',function(req,res){
+router.post('/addCorrect',function(req,res){
   var body = req.body.body
   var options = req.body.options
   var answer = req.body.answer
-  var radio = new Radio({
+  var correct = new Correct({
     body: body,
     options: options,
     answer: answer
   })
-  radio.save(function(err){
+  correct.save(function(err){
     if(err){
       console.log(err)
       res.send({ status: 0 })
@@ -368,12 +368,12 @@ router.post('/addRadio',function(req,res){
     }
   })
 })
-router.post('/modiRadio',function(req,res){
+router.post('/modiCorrect',function(req,res){
     var id = req.body.id
     var body = req.body.body
     var options = req.body.options
     var answer = req.body.answer
-    Radio.findOneAndUpdate(
+    Correct.findOneAndUpdate(
       {_id: id},{ $set: { body: body,
                           options: options,
                           answer: answer 
