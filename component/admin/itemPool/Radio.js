@@ -1,10 +1,10 @@
 import React,{ Component } from 'react'
-import { Card, Table, Icon, Popconfirm, Button, Modal, Input } from 'antd'
+import { Card, Table, Icon, Popconfirm, Button, Modal, Input, message } from 'antd'
 
 const { Column, ColumnGroup } = Table
 
 
-export default class Fillblank extends Component{
+export default class Radio extends Component{
 	constructor(props){
 		super(props)
 		this.state={
@@ -36,6 +36,7 @@ export default class Fillblank extends Component{
 	  		},
 	  		body: JSON.stringify(radioId)
 	  	})
+	  	message.info("删除成功！")
 	  	this.props.onShow('/item/radio',{
 			method: 'GET'
 		})
@@ -59,10 +60,7 @@ export default class Fillblank extends Component{
     	})
     }	
     handleOk = () => {
-	    this.setState({ loading: true });
-	    setTimeout(() => {
-	      this.setState({ loading: false, modal1Visible: false });
-	    }, 300)
+	    this.setState({ loading: true })
 	    const radio = {
 	    	body: this.state.body,
 	    	options: this.state.options,
@@ -75,6 +73,8 @@ export default class Fillblank extends Component{
 	    	},
 	    	body: JSON.stringify(radio)
 	    })
+        this.setState({ loading: false, modal1Visible: false })
+        message.info("添加成功！")
 	    this.props.onShow('/item/radio',{
 			method: 'GET'
 		})
@@ -95,10 +95,7 @@ export default class Fillblank extends Component{
     	this.setState({modal2Visible: false})
     }
     handleModal2Ok = () => {
-    	this.setState({ loading: true });
-	    setTimeout(() => {
-	      this.setState({ loading: false, modal2Visible: false });
-	    }, 300)
+    	this.setState({ loading: true })
 	    const radio = {
 	    	body: this.state.body,
 	    	options: this.state.options,
@@ -112,6 +109,8 @@ export default class Fillblank extends Component{
 	    	},
 	    	body: JSON.stringify(radio)
 	    })
+        this.setState({ loading: false, modal2Visible: false })
+        message.info("修改成功！")
 	    this.props.onShow('/item/radio',{
 			method: 'GET'
 		})

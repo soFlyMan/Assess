@@ -1,18 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchItems } from '../actions/actions.js'
+import { fetchItems, deleteItems, addItems, modiItems } from '../actions/actions.js'
 import { fetchingItems } from '../reducers/reducers.js'
 import Multi from '../../component/admin/itemPool/Multi.js'
 
-class MultiContainer extends Component{
+class RadioContainer extends Component{
 	render(){
 		const { fetchingItems, dispatch } = this.props
 		return (
 			<Multi fetchingItems={ fetchingItems } 
 			       onShow={
 			       	(url,params) => dispatch(fetchItems(url,params))
-			       }/>
+			       }
+			       onDelete={
+			       	(url,params) => dispatch(deleteItems(url,params))
+			       }
+			       onAdd={
+		       		(url,params) => dispatch(addItems(url,params))
+	       		   }
+		       	   onModi={
+		       	   	(url,params) => dispatch(modiItems(url,params))
+		       	   }/>
 			)
 	}
 }
@@ -23,4 +32,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps)(MultiContainer)
+export default connect(mapStateToProps)(RadioContainer)

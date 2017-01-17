@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchItems, deleteItems, addItems, modiItems } from '../actions/actions.js'
-import { fetchingItems } from '../reducers/reducers.js'
+import { fetchingItems, fetchStatus } from '../reducers/reducers.js'
 import Radio from '../../component/admin/itemPool/Radio.js'
 
 class RadioContainer extends Component{
 	render(){
-		const { fetchingItems, dispatch } = this.props
+		const { fetchingItems, fetchStatus, dispatch } = this.props
 		return (
-			<Radio fetchingItems={ fetchingItems } 
+			<Radio fetchingItems={ fetchingItems }
+				   fetchStatus={ fetchStatus } 
 			       onShow={
 			       	(url,params) => dispatch(fetchItems(url,params))
 			       }
@@ -28,7 +29,8 @@ class RadioContainer extends Component{
 
 const mapStateToProps = state => {
 	return {
-		fetchingItems: state.fetchingItems
+		fetchingItems: state.fetchingItems,
+		fetchStatus: state.fetchStatus
 	}
 }
 

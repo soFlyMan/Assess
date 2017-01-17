@@ -3,7 +3,7 @@ export const RECEIVE_ITEMS = 'RECEIVE_ITEMS'
 export const FETCH_ITEMS_ERROR = 'FETCH_ITEMS_ERROR'
 
 export const DELETE_ITEMS ='DELETE_ITEMS'
-export const DELETED_ITEMS ='DELETE_ITEMS'
+export const DELETED_ITEMS ='DELETED_ITEMS'
 
 export const ADD_ITEMS = 'ADD_ITEMS'
 export const ADDED_ITEMS = 'ADDED_ITEMS'

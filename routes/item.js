@@ -42,8 +42,9 @@ router.delete('/delRadio',function(req,res){
     Radio.remove({_id: id},function(err){
       if(err){
         console.log(err)
+        res.send({ status: 0 })
       }else{
-        res.send({status: 1})
+        res.send({ status: 1 })
       }
     })
 })
@@ -93,10 +94,11 @@ router.get('/multi',function(req,res){
   res.send(data)
 })
 router.delete('/delRadio',function(req,res){
-    var radioId = req.body.radioId
-    Radio.remove({radioId: radioId},function(err){
+    var id = req.body.id
+    Radio.remove({_id: id},function(err){
       if(err){
         console.log(err)
+        res.send({ status: 0 })
       }else{
         res.send({status: 1})
       }
@@ -108,10 +110,11 @@ router.get('/judge',function(req,res){
   res.send(data)
 })
 router.delete('/delRadio',function(req,res){
-    var radioId = req.body.radioId
-    Radio.remove({radioId: radioId},function(err){
+    var id = req.body.id
+    Radio.remove({_id: id},function(err){
       if(err){
         console.log(err)
+        res.send({ status: 0 })
       }else{
         res.send({status: 1})
       }
@@ -123,10 +126,11 @@ router.get('/fillblank',function(req,res){
   res.send(data)
 })
 router.delete('/delRadio',function(req,res){
-    var radioId = req.body.radioId
-    Radio.remove({radioId: radioId},function(err){
+    var id = req.body.id
+    Radio.remove({_id: id},function(err){
       if(err){
         console.log(err)
+        res.send({ status: 0 })
       }else{
         res.send({status: 1})
       }
@@ -138,10 +142,11 @@ router.get('/programming',function(req,res){
   res.send(data)
 })
 router.delete('/delRadio',function(req,res){
-    var radioId = req.body.radioId
-    Radio.remove({radioId: radioId},function(err){
+    var id = req.body.id
+    Radio.remove({_id: id},function(err){
       if(err){
         console.log(err)
+        res.send({ status: 0 })
       }else{
         res.send({status: 1})
       }
@@ -153,10 +158,11 @@ router.get('/correct',function(req,res){
   res.send(data)
 })
 router.delete('/delRadio',function(req,res){
-    var radioId = req.body.radioId
-    Radio.remove({radioId: radioId},function(err){
+    var id = req.body.id
+    Radio.remove({_id: id},function(err){
       if(err){
         console.log(err)
+        res.send({ status: 0 })
       }else{
         res.send({status: 1})
       }
