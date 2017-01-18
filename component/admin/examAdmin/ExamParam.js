@@ -20,14 +20,14 @@ export default class ExamParam extends Component{
 			refer: "公布答案",
 		}
 	}
-	changeDate = (e) => {
+	changeDate = (date,dateString) => {
 		this.setState({
-			data: e.target.value
+			date: dateString
 		})
 	}
-	changeTime = (e) => {
+	changeTime = (date,dateString) => {
 		this.setState({
-			time: e.target.value
+			time: dateString
 		})
 	}
 	changeMinute = (e) => {
@@ -61,7 +61,6 @@ export default class ExamParam extends Component{
 			limit: this.state.limit,
 			refer: this.state.refer
 		}
-		 this.props.modiParams(params)
 		 this.props.onModi('/exam/modiParams',{
 		 	method: 'POST',
 		 	headers: {
@@ -69,6 +68,7 @@ export default class ExamParam extends Component{
 		 	},
 		 	body: JSON.stringify(params)
 		 })
+		 this.props.modiParams(params)
 	}
 	render(){
 		return (
