@@ -1,5 +1,5 @@
 import React,{ Component } from 'react'
-import { Card, Radio, Input, Button, DatePicker, TimePicker } from 'antd'
+import { Card, Radio, Input, Button, DatePicker, TimePicker, message } from 'antd'
 import moment from 'moment'
 
 import 'moment/locale/zh-cn'
@@ -13,7 +13,7 @@ export default class ExamParam extends Component{
 		super(props)
 		this.state={
 			_id: "587ed87f67222889d235b97d",
-			date: "2015-01-01",
+			date: "2017-01-01",
 			time: "08:30",
 			minute: "50",
 			papertype: "考试随机组卷",
@@ -69,6 +69,7 @@ export default class ExamParam extends Component{
 		 	},
 		 	body: JSON.stringify(params)
 		 })
+		 message.info("提交成功！")
 	}
 	render(){
 		return (
@@ -87,7 +88,7 @@ export default class ExamParam extends Component{
 						考试日期设置：
 						</li>
 						<li>
-							<DatePicker	defaultValue={moment('2015-01-01', 'YYYY-MM-DD')} onChange={this.changeDate}/>				
+							<DatePicker	defaultValue={moment('2017-01-01', 'YYYY-MM-DD')} onChange={this.changeDate}/>				
 						</li>
 						<li>
 							<TimePicker defaultValue={moment('08:30', format)} format={format} onChange={this.changeTime}/>

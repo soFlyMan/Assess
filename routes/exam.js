@@ -27,7 +27,6 @@ router.get('/params',function(req,res){
 })
 
 router.post('/modiParams',function(req,res){
-	console.log(req.body)
 	var id = req.body._id
 	var date = req.body.date
 	var time = req.body.time
