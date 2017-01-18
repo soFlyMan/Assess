@@ -26,6 +26,29 @@ router.get('/params',function(req,res){
 	})
 })
 
+router.post('/modiParams',function(req,res){
+	var id = req.body._id
+	var data = req.body.data
+	var time = req.body.time
+	var minute = req.body.minute
+	var limit = req.body.limit
+	var papertype = req.body.papertype
+	var refer = req.body.refer
+	Param.findOneAndUpdate({_id: id},{$set:{
+		data: data,
+		time: time,
+		minute: minute,
+		limit: limit,
+		papertype: papertype,
+		refer: refer
+	}},function(err,doc){
+		if(err){
+			console.log(err)
+		}else{
+			res.send({status: 1})
+		}
+	})
+})
 
 
 

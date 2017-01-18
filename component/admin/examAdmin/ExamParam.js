@@ -17,7 +17,7 @@ export default class ExamParam extends Component{
 			minute: "50",
 			papertype: "考试随机组卷",
 			limit: "禁止考试",
-			refer: "公布答案"
+			refer: "公布答案",
 		}
 	}
 	changeDate = (e) => {
@@ -52,6 +52,8 @@ export default class ExamParam extends Component{
 	}
 	submitParams = () => {
 		const params = {
+			_v:0,
+			_id: this.props.id,
 			date: this.state.date,
 			time: this.state.time,
 			minute: this.state.minute,
@@ -59,6 +61,7 @@ export default class ExamParam extends Component{
 			limit: this.state.limit,
 			refer: this.state.refer
 		}
+		 this.props.modiParams(params)
 		 this.props.onModi('/exam/modiParams',{
 		 	method: 'POST',
 		 	headers: {

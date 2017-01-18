@@ -3,7 +3,8 @@ import { routerReducer } from 'react-router-redux'
 import { FETCH_ITEMS, RECEIVE_ITEMS, FETCH_ITEMS_ERROR,
 		ADD_ITEMS, ADDED_ITEMS,
 		DELETE_ITEMS, DELETED_ITEMS,
-		MODI_ITEMS, MODIED_ITEMS
+		MODI_ITEMS, MODIED_ITEMS,
+		MODI_PARAMS
  		} from '../actions/actions.js'
 
 const initialState = {
@@ -31,6 +32,11 @@ const fetchingItems = (state=initialState,action) => {
 				fetching: false,
 				fetched: true,
 				data: action.payload,
+			}
+		case MODI_PARAMS:
+			return {
+				...state,
+				data: action.params
 			}
 		default:
 			return state

@@ -11,6 +11,8 @@ export const ADDED_ITEMS = 'ADDED_ITEMS'
 export const MODI_ITEMS = 'MODI_ITEMS'
 export const MODIED_ITEMS = 'MODIED_ITEMS'
 
+export const MODI_PARAMS = 'MODI_PARAMS'
+
 export const fetchItems = (url,params) => {
 	return dispatch => {
 		dispatch({ type: FETCH_ITEMS })
@@ -63,5 +65,12 @@ export const modiItems = (url,params) => {
 					})).catch(err => {
 					dispatch({ type: FETCH_ITEMS_ERROR, payload: err})
 				})
+	}
+}
+
+export const modiParams = (params) => {
+	return {
+		type: MODI_PARAMS,
+		params
 	}
 }
