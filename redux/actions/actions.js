@@ -11,7 +11,11 @@ export const ADDED_ITEMS = 'ADDED_ITEMS'
 export const MODI_ITEMS = 'MODI_ITEMS'
 export const MODIED_ITEMS = 'MODIED_ITEMS'
 
+export const FETCH_PARAMS = 'FETCH_PARAMS'
+export const FETCHED_PARAMS = 'FETCHED_PARAMS'
+export const FETCH_PARAMS_ERROR ='FETCH_PARAMS_ERROR'
 export const MODI_PARAMS = 'MODI_PARAMS'
+export const MODIED_PARAMS = 'MODIED_PARAMS'
 
 export const fetchItems = (url,params) => {
 	return dispatch => {
@@ -32,7 +36,6 @@ export const deleteItems = (url,params) => {
 		return fetch(url,params)
 				.then(res => res.json()
 					.then(data => {
-						console.log(data)
 						dispatch({ type: DELETED_ITEMS, status: data.status})
 					})).catch(err => {
 						dispatch({ type: FETCH_ITEMS_ERROR, payload: err })
@@ -46,7 +49,6 @@ export const addItems = (url,params) => {
 		return fetch(url,params)
 				.then(res => res.json()
 					.then(data => {
-						console.log(data)
 						dispatch({ type: ADDED_ITEMS, status: data.status })
 					})).catch(err => {
 					dispatch({ type: FETCH_ITEMS_ERROR, payload: err })
@@ -60,7 +62,6 @@ export const modiItems = (url,params) => {
 		return fetch(url,params)
 				.then(res => res.json()
 					.then(data => {
-						console.log(data)
 						dispatch({ type: MODIED_ITEMS, status: data.status})
 					})).catch(err => {
 					dispatch({ type: FETCH_ITEMS_ERROR, payload: err})
@@ -68,9 +69,34 @@ export const modiItems = (url,params) => {
 	}
 }
 
-export const modiParams = (params) => {
-	return {
-		type: MODI_PARAMS,
-		params
+export const fetchParams = (url,params) => {
+	return dispatch => {
+		dispatch({ type: FETCH_PARAMS })
+		return fetch(url,params)
+				.then(res => res.json()
+					.then(data => {
+						dispatch({ type: FETCHED_PARAMS, payload: data})
+					})).catch(err => {
+					dispatch({ type: FETCH_PARAMS_ERROR, payload: err})
+				})
 	}
 }
+
+export const modiParams = (url,params) => {
+	return dispatch => {
+		dispatch({ type: MODI_PARAMS })
+		return fetch(url,params)
+				.then(res => res.json()
+					.then(data => {
+						dispatch({ type: MODIED_PARAMS, payload: data})
+					})).catch(err => {
+					dispatch({ type: FETCH_PARAMS_ERROR, payload: err})
+				})
+	}
+}
+// export const modiParams = (params) => {
+// 	return {
+// 		action: MODI_PARAMS,
+// 		params
+// 	}
+// }

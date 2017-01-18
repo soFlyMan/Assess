@@ -4,7 +4,9 @@ import { FETCH_ITEMS, RECEIVE_ITEMS, FETCH_ITEMS_ERROR,
 		ADD_ITEMS, ADDED_ITEMS,
 		DELETE_ITEMS, DELETED_ITEMS,
 		MODI_ITEMS, MODIED_ITEMS,
-		MODI_PARAMS
+		FETCH_PARAMS, FETCHED_PARAMS,
+		MODI_PARAMS,
+		FETCH_PARAMS_ERROR
  		} from '../actions/actions.js'
 
 const initialState = {
@@ -36,6 +38,8 @@ const fetchingItems = (state=initialState,action) => {
 		case MODI_PARAMS:
 			return {
 				...state,
+				fetching: false,
+				fetched: true,
 				data: action.params
 			}
 		default:
@@ -80,9 +84,41 @@ const fetchStatus = ( state = { fetched: false,status: -1 }, action) => {
 			return state
 	}
 }
+
+const fetchingParams = (state = initialState, action) => {
+	switch(action.type){
+		case FETCH_PARAMS:
+			return {
+				...state,
+				fetching: true
+			}
+		case FETCH_PARAMS_ERROR:
+			return {
+				...state,
+				fetching: false,
+				error: action.payload
+			}
+		case FETCHED_PARAMS:
+			return {
+				...state,
+				fetching: false,
+				fetched: true,
+				data: action.payload
+			}
+		case MODI_PARAMS:
+		case MODIED_ITEMS:
+			return {
+				...state,
+				data: action.payload
+			}
+		default:
+			return state
+	}
+}
 const reducer = combineReducers({
 	fetchingItems,
 	fetchStatus,
+	fetchingParams,
 	routing: routerReducer
 })
 export default reducer

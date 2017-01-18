@@ -45,7 +45,13 @@ router.post('/modiParams',function(req,res){
 		if(err){
 			console.log(err)
 		}else{
-			res.send({status: 1})
+			Param.find({},function(err,params){
+				if(err){
+					console.log(err)
+				}else{
+					res.send(params[0])
+				}
+	})
 		}
 	})
 })

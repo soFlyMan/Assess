@@ -12,6 +12,7 @@ export default class ExamParam extends Component{
 	constructor(props){
 		super(props)
 		this.state={
+			_id: "587ed87f67222889d235b97d",
 			date: "2015-01-01",
 			time: "08:30",
 			minute: "50",
@@ -53,7 +54,7 @@ export default class ExamParam extends Component{
 	submitParams = () => {
 		const params = {
 			_v:0,
-			_id: this.props.id,
+			_id: this.state.id,
 			date: this.state.date,
 			time: this.state.time,
 			minute: this.state.minute,
@@ -68,7 +69,6 @@ export default class ExamParam extends Component{
 		 	},
 		 	body: JSON.stringify(params)
 		 })
-		 this.props.modiParams(params)
 	}
 	render(){
 		return (
