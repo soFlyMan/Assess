@@ -12,25 +12,60 @@ export default class ExamParam extends Component{
 	constructor(props){
 		super(props)
 		this.state={
-			papertype: 1,
-			limit: 3,
-			refer: 6
+			date: "2015-01-01",
+			time: "08:30",
+			minute: "50",
+			papertype: "考试随机组卷",
+			limit: "禁止考试",
+			refer: "公布答案"
 		}
 	}
-	changePaperType=(e)=>{
+	changeDate = (e) => {
+		this.setState({
+			data: e.target.value
+		})
+	}
+	changeTime = (e) => {
+		this.setState({
+			time: e.target.value
+		})
+	}
+	changeMinute = (e) => {
+		this.setState({
+			minute: e.target.value
+		})
+	}
+	changePaperType = (e) => {
 		this.setState({
 			papertype: e.target.value
 		})
 	}
-	changeLimit=(e)=>{
+	changeLimit = (e) => {
 		this.setState({
 			limit: e.target.value
 		})
 	}
-	changeRefer=(e)=>{
+	changeRefer = (e) => {
 		this.setState({
 			refer: e.target.value
 		})
+	}
+	submitParams = () => {
+		const params = {
+			date: this.state.date,
+			time: this.state.time,
+			minute: this.state.minute,
+			papertype: this.state.papertype,
+			limit: this.state.limit,
+			refer: this.state.refer
+		}
+		 this.props.onModi('/exam/modiParams',{
+		 	method: 'POST',
+		 	headers: {
+		 		'Content-Type': 'application/json'
+		 	},
+		 	body: JSON.stringify(params)
+		 })
 	}
 	render(){
 		return (
@@ -49,10 +84,10 @@ export default class ExamParam extends Component{
 						考试日期设置：
 						</li>
 						<li>
-							<DatePicker	defaultValue={moment('2015-01-01 00:00:00', 'YYYY-MM-DD HH:mm:ss')} />				
+							<DatePicker	defaultValue={moment('2015-01-01', 'YYYY-MM-DD')} onChange={this.changeDate}/>				
 						</li>
 						<li>
-							<TimePicker defaultValue={moment('08:30', format)} format={format} />
+							<TimePicker defaultValue={moment('08:30', format)} format={format} onChange={this.changeTime}/>
 						</li>
 					</ul>
 				</div>
@@ -61,7 +96,7 @@ export default class ExamParam extends Component{
 					考试时间设置:
 					</li>
 					<li>
-						<Input defaultValue="50" style={{width:60}} addonAfter="分钟"/>
+						<Input defaultValue="50" style={{width:60}} addonAfter="分钟" onChange={this.changeMinute}/>
 					</li>
 				</ul>
 				<div>
@@ -71,9 +106,9 @@ export default class ExamParam extends Component{
 						</li>
 						<li>
 							<RadioGroup value={this.state.limit} onChange={this.changeLimit}>
-								<Radio value={3}>禁止考试</Radio>
-			        			<Radio value={4}>只允许一次</Radio>
-			        			<Radio value={5}>可以多次进入</Radio>
+								<Radio value={"禁止考试"}>禁止考试</Radio>
+			        			<Radio value={"只允许一次"}>只允许一次</Radio>
+			        			<Radio value={"可以多次进入"}>可以多次进入</Radio>
 							</RadioGroup>	
 						</li>
 					</ul>
@@ -84,8 +119,8 @@ export default class ExamParam extends Component{
 					</li>
 					<li>
 						<RadioGroup value={this.state.papertype} onChange={this.changePaperType}>
-							<Radio value={1}>考试随机组卷</Radio>
-		        			<Radio value={2}>随机抽取已组卷</Radio>
+							<Radio value={"考试随机组卷"}>考试随机组卷</Radio>
+		        			<Radio value={"随机抽取已组卷"}>随机抽取已组卷</Radio>
 						</RadioGroup>
 					</li>
 				</ul>
@@ -96,13 +131,13 @@ export default class ExamParam extends Component{
 						</li>
 						<li>
 							<RadioGroup value={this.state.refer} onChange={this.changeRefer}>
-								<Radio value={6}>公布答案</Radio>
-			        			<Radio value={7}>考卷保密</Radio>
+								<Radio value={"公布答案"}>公布答案</Radio>
+			        			<Radio value={"考卷保密"}>考卷保密</Radio>
 							</RadioGroup>					
 						</li>
 					</ul>
 				</div>
-				<Button type="default" style={{marginLeft:260,marginTop:30}}>提交</Button>
+				<Button type="default" style={{marginLeft:260,marginTop:30}} onClick={this.submitParams}>提交</Button>
 			</Card>
 			)
 	}
