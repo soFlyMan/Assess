@@ -27,6 +27,7 @@ router.get('/params',function(req,res){
 })
 
 router.post('/modiParams',function(req,res){
+	console.log(req.body)
 	var id = req.body._id
 	var date = req.body.date
 	var time = req.body.time
@@ -45,11 +46,11 @@ router.post('/modiParams',function(req,res){
 		if(err){
 			console.log(err)
 		}else{
-			Param.find({},function(err,params){
+			Param.findOne({_id: id},function(err,params){
 				if(err){
 					console.log(err)
 				}else{
-					res.send(params[0])
+					res.send(params)
 				}
 	})
 		}

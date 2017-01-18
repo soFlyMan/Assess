@@ -5,7 +5,7 @@ import { FETCH_ITEMS, RECEIVE_ITEMS, FETCH_ITEMS_ERROR,
 		DELETE_ITEMS, DELETED_ITEMS,
 		MODI_ITEMS, MODIED_ITEMS,
 		FETCH_PARAMS, FETCHED_PARAMS,
-		MODI_PARAMS,
+		MODI_PARAMS, MODIED_PARAMS,
 		FETCH_PARAMS_ERROR
  		} from '../actions/actions.js'
 
@@ -34,13 +34,6 @@ const fetchingItems = (state=initialState,action) => {
 				fetching: false,
 				fetched: true,
 				data: action.payload,
-			}
-		case MODI_PARAMS:
-			return {
-				...state,
-				fetching: false,
-				fetched: true,
-				data: action.params
 			}
 		default:
 			return state
@@ -106,7 +99,10 @@ const fetchingParams = (state = initialState, action) => {
 				data: action.payload
 			}
 		case MODI_PARAMS:
-		case MODIED_ITEMS:
+			return {
+				...state
+			}
+		case MODIED_PARAMS:
 			return {
 				...state,
 				data: action.payload

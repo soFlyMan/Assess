@@ -54,7 +54,7 @@ export default class ExamParam extends Component{
 	submitParams = () => {
 		const params = {
 			_v:0,
-			_id: this.state.id,
+			_id: this.state._id,
 			date: this.state.date,
 			time: this.state.time,
 			minute: this.state.minute,
