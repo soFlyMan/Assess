@@ -71,7 +71,7 @@ class Assess extends Component{
 								<img height="60" width="80" src="./logo"/>
 							</Link>
 						</li>
-						<li style={{float:'right',padding:15}}>
+						<li style={{float:'right'}}>
 							<LoginModal handleUserid={this.handleUserid} 
 										loginstatus={this.state.loginstatus}
 										username={this.state.username}
@@ -82,7 +82,7 @@ class Assess extends Component{
 				<div id="navImg">
 			</div>
 				<div style={{width:"20%",height:100,padding:40,margin:"0 auto"}}>
-					<Button type="primary"><Link to="/exam" >开始考试</Link></Button>
+					<Button type="primary"><Link to="/examcontainer" >开始考试</Link></Button>
 				</div>
 					<AssessShow userid={this.state.userid}/>
 				<div>

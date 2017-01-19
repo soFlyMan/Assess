@@ -20,7 +20,7 @@ import ProgrammingContainer from './redux/container/ProgrammingContainer.js'
 
 import Assess from './component/Assess.js'
 import AssessScore from './component/student/AssessScore.js'
-import Exam from './component/student/Exam.js'
+import ExamContainer from './redux/container/ExamContainer.js'
 import Course from './component/student/Course.js'
 
 import Admin from './component/admin/Admin.js'
@@ -46,7 +46,7 @@ ReactDOM.render((
 					<Route path="showscore" component={AssessScore} />
 			</Route>
 
-			<Route path="exam" component={Exam} />
+			<Route path="examcontainer" component={ExamContainer} />
 
 			<Route path="admin" component={Admin}>
 				<Route path="section" component={Section} />
