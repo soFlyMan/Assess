@@ -17,7 +17,7 @@ export default class Radio extends Component{
 			id: ''
 		}
 	}
-	componentDidMount(){
+	componentWillMount(){
 		this.props.onShow('/item/radio',{
 			method: 'GET'
 		})
@@ -29,32 +29,34 @@ export default class Radio extends Component{
 		const radioId = {
 			id: record._id
 		}
-	  	const status = this.props.fetchStatus.status
-	  	const fetched = this.props.fetchStatus.fetched
-	  	const self = this
-	  	function* gen(){
-	  		yield self.props.onDelete('/item/delRadio',{
-	  		method: 'DELETE',
-	  		headers: {
-	  			"Content-Type": "application/json"
-	  		},
-	  		body: JSON.stringify(radioId)
-	  	})
-	  		yield message.info("删除成功！")
-	  	}
-	  	var g = new gen()
-	  	g.next()
-	  	if(fetched){
-	  		if(status==1){
-	  			g.next()
-		    }else{
-		    	message.info("删除失败！")
-		    }
-	    }
-	    g.next()
-	  	self.props.onShow('/item/radio',{
-			method: 'GET'
-		})
+	  	var status = this.props.fetchStatus.status
+        const self = this
+        function* gen(){
+			yield self.props.onModi('/item/delRadio',{
+			    	method: 'DELETE',
+			    	headers: {
+			    		'Content-Type': 'application/json'
+			    	},
+			    	body: JSON.stringify(radioId)
+			    })
+	        yield console.log(self.props.fetchingItems.fetched)
+	        yield message.info("删除成功！")
+			yield self.props.onShow('/item/radio',{
+						method: 'GET'
+					})
+	        }
+        var g = new gen()
+        g.next()
+        g.next()
+        if(self.props.fetchingItems.fetched){
+			g.next()
+        	if(status==1){
+        		g.next()
+        	}else{
+        		message.info("删除失败！")
+        	}
+        }
+        g.next()
   	}
 	  	
     setModal1Visible(modal1Visible) {
@@ -82,33 +84,36 @@ export default class Radio extends Component{
 	    	options: this.state.options,
 	    	answer: this.state.answer
 	    }
+        var status = this.props.fetchStatus.status
         const self = this
-        const fetched = self.props.fetchStatus.fetched
-        const status = self.props.fetchStatus.status
-        function* gen() {
-		    yield self.props.onAdd('/item/addRadio',{
-		    	method: 'POST',
-		    	headers: {
-		    		"Content-Type": "application/json"
-		    	},
-		    	body: JSON.stringify(radio)
-		    })
-    	    self.setState({ loading: false, modal1Visible: false })
+        function* gen(){
+			yield self.props.onModi('/item/addRadio',{
+			    	method: 'POST',
+			    	headers: {
+			    		'Content-Type': 'application/json'
+			    	},
+			    	body: JSON.stringify(radio)
+			    })
+	        yield self.setState({ loading: false, modal1Visible: false })
+	        yield console.log(self.props.fetchingItems.fetched)
 	        yield message.info("添加成功！")
-        }
+			yield self.props.onShow('/item/radio',{
+						method: 'GET'
+					})
+	        }
         var g = new gen()
         g.next()
-        if(fetched){
-	        if(status==1){
-	        	g.next()
-	        }else{
-	        	message.info("添加失败")
-	        }
+        g.next()
+        g.next()
+        if(self.props.fetchingItems.fetched){
+			g.next()
+        	if(status==1){
+        		g.next()
+        	}else{
+        		message.info("添加失败！")
+        	}
         }
         g.next()
-	    self.props.onShow('/item/radio',{
-			method: 'GET'
-		})
     }
     handleCancel = () => {
     	this.setState({ modal1Visible: false });
@@ -133,29 +138,31 @@ export default class Radio extends Component{
 	    	answer: this.state.answer,
 	    	id: this.state.id
 	    }
-        const status = this.props.fetchStatus.status
-        const fetched = this.props.fetchStatus.fetched
+        var status = this.props.fetchStatus.status
         const self = this
         function* gen(){
-		    yield self.props.onModi('/item/modiRadio',{
-		    	method: 'POST',
-		    	headers: {
-		    		'Content-Type': 'application/json'
-		    	},
-		    	body: JSON.stringify(radio)
-		    })
+			yield self.props.onModi('/item/modiRadio',{
+			    	method: 'POST',
+			    	headers: {
+			    		'Content-Type': 'application/json'
+			    	},
+			    	body: JSON.stringify(radio)
+			    })
 	        yield self.setState({ loading: false, modal2Visible: false })
+	        yield console.log(self.props.fetchingItems.fetched)
 	        yield message.info("修改成功！")
+			yield self.props.onShow('/item/radio',{
+						method: 'GET'
+					})
 	        }
         var g = new gen()
         g.next()
-        if(fetched){
-        	g.next()
+        g.next()
+        g.next()
+        if(self.props.fetchingItems.fetched){
+			g.next()
         	if(status==1){
         		g.next()
-			    self.props.onShow('/item/radio',{
-					method: 'GET'
-				})
         	}else{
         		message.info("修改失败！")
         	}

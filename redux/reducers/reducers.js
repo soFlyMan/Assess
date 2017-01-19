@@ -21,11 +21,13 @@ const fetchingItems = (state=initialState,action) => {
 			return {
 				...state,
 				fetching: true,
+				fetched: false
 			}
 		case FETCH_ITEMS_ERROR:
 			return {
 				...state,
 				fetching: false,
+				fetched: false,
 				error: action.payload,
 			}
 		case RECEIVE_ITEMS:
