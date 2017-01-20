@@ -10,7 +10,7 @@ import { fetchingParams,fetchStatus } from '../reducers/reducers.js'
 
 class ExamParamContainer extends Component{
 	componentDidMount(){
-		const { dispatch, fetchingParams } = this.props
+		const { dispatch } = this.props
 		dispatch(fetchParams('/exam/params',{
 			method: 'GET'
 		}))

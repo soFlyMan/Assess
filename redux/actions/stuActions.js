@@ -27,7 +27,7 @@ export const fetchExampap = (url,params) => {
 					.then(data => {
 						dispatch({type: 'RECIEVE_EXAMPAPER', payload: data})
 					})).catch(err => {
-					dispatch({ type: 'FETCH_EXAMPAPER_ERROR', payload: data})
+					dispatch({ type: 'FETCH_EXAMPAPER_ERROR', payload: err})
 				})
 	}
 }

@@ -3,6 +3,7 @@ var router = express.Router()
 
 var Result = require('../models/results')
 var Param = require('../models/params')
+var Exampap = require('../models/exampapers')
 
 router.post('/result',function(req,res){
 	var userid = req.body.userid
@@ -56,7 +57,15 @@ router.post('/modiParams',function(req,res){
 	})
 })
 
-
+router.get('/exampaper',function(req,res){
+	Exampap.find({},function(err,exampapers){
+		if(err){
+			console.log(err)
+		}else{
+			res.send(exampapers)
+		}
+	})
+})
 
 
 module.exports = router
