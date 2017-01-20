@@ -8,6 +8,7 @@ import { FETCH_ITEMS, RECEIVE_ITEMS, FETCH_ITEMS_ERROR,
 		MODI_PARAMS, MODIED_PARAMS,
 		FETCH_PARAMS_ERROR
  		} from '../actions/actions.js'
+import { fetchingScore, fetchingExampap } from './stuReducers.js'
 
 const initialState = {
 	fetching: false,
@@ -117,6 +118,8 @@ const reducer = combineReducers({
 	fetchingItems,
 	fetchStatus,
 	fetchingParams,
+	fetchingExampap,
+	fetchingScore,
 	routing: routerReducer
 })
 export default reducer
