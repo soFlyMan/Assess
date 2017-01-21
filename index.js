@@ -35,6 +35,7 @@ import Download from './component/admin/course/Download.js'
 
 import ExamParamContainer from './redux/container/ExamParamContainer.js'
 import PaperContainer from './redux/container/PaperContainer.js'
+import SinglePaperContainer from './redux/container/SinglePaperContainer.js'
 
 const middleware = applyMiddleware(logger(),thunkMiddleware)
 const store = createStore(reducer,middleware)
@@ -61,7 +62,8 @@ ReactDOM.render((
 				<Route path="fillblankcontainer" component={FillblankContainer} />
 				<Route path="programmingcontainer" component={ProgrammingContainer}/>
 				<Route path="examparamcontainer" component={ExamParamContainer} />
-				<Route path="papercontainer" component={PaperContainer} /> 
+				<Route path="papercontainer" component={PaperContainer} />
+				<Route path="singlepapercontainer" component={SinglePaperContainer} /> 
 			</Route>
 
 			<Route path="adminlogin" component={AdminLogin}/>

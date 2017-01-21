@@ -78,5 +78,29 @@ router.delete('/delPaper',function(req,res){
 	})
 })
 
+router.post('/:id',function(req,res){
+	var _id = req.params.id
+	Exampap.find({_id: _id},function(err,exampapers){
+		if(err){
+			console.log(err)
+		}else{
+			res.send(exampapers)
+		}
+	})
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router

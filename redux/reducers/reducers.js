@@ -7,7 +7,8 @@ import { FETCH_ITEMS, RECEIVE_ITEMS, FETCH_ITEMS_ERROR,
 		OPERA_ERROR,
 		FETCH_PARAMS, FETCHED_PARAMS,
 		MODI_PARAMS, MODIED_PARAMS,
-		FETCH_PARAMS_ERROR
+		FETCH_PARAMS_ERROR,
+		FETCH_SINGLE,FETCHED_SINGLE,FETCH_SINGLE_ERR
  		} from '../actions/actions.js'
 import { fetchingScore, fetchingExampap } from './stuReducers.js'
 
@@ -128,12 +129,40 @@ const fetchingParams = (state = initialState, action) => {
 			return state
 	}
 }
+
+const fetchSingle = (state = {fetching: false,fetched: false, data: [], error: null},action) => {
+	switch(action.type){
+		case FETCH_SINGLE:
+			return {
+				...state,
+				fetching: true,
+				fetched: false
+			}
+		case FETCHED_SINGLE:
+			return {
+				...state,
+				data: action.payload,
+				fetching: false,
+				fetched: true
+			}
+		case FETCH_SINGLE_ERR:
+			return {
+				...state,
+				fetching: false,
+				fetched: false,
+				error: action.payload
+			}
+		default:
+			return state
+	}
+}
 const reducer = combineReducers({
 	fetchingItems,
 	fetchStatus,
 	fetchingParams,
 	fetchingExampap,
 	fetchingScore,
+	fetchSingle,
 	routing: routerReducer
 })
 export default reducer

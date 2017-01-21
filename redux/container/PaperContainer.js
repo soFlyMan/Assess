@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
-import { Card, Table, Icon, message } from 'antd'
+import { Card, Table, Icon, message, Popconfirm } from 'antd'
 
 import { fetchExampap } from '../actions/stuActions.js'
-import { deleteItems } from '../actions/actions.js'
-
-import { PaperParams } from '../../component/admin/examAdmin/PaperParams.js'
-import { Paper } from '../../component/admin/examAdmin/Paper.js'
+import { deleteItems,fetchSinglePaper } from '../actions/actions.js'
 
 class PaperContainer extends Component{
 	componentDidMount(){
@@ -44,19 +42,31 @@ class PaperContainer extends Component{
 	    }
 
 	}
+	handleSingle = (record) => {
+		const id = record._id
+		const { dispatch } = this.props
+		dispatch(fetchSinglePaper(`/exam/${id}`,{
+			method: 'post'
+		}))
+	}
 	render(){
 		const columns = [{
 				  title: '创建日期',
 				  dataIndex: 'createAt',
 				  key: 'createAt',
-  				  render: text => <a href="#">{text}</a>,
+  				  render: (text,record) => <a onClick={()=>this.handleSingle(record)}><Link to="/admin/singlepapercontainer"><span>{text}</span></Link></a>,
 
 				}, {
 				  title: '操作',
 				  key: 'action',
 				  render: (text, record) => (
 				    <span>
-				      <a onClick={()=>this.onDel(record)}>删除</a>
+					    <Popconfirm title="确定要删除？"
+					    			onConfirm={()=>this.onDel(record)}
+					    			onText="确定"
+					    			cancelText="取消"> 
+					      <a>删除</a>
+				        </Popconfirm>
 				    </span>
 				  ),
 				}]

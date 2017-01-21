@@ -19,6 +19,10 @@ export const FETCH_PARAMS_ERROR ='FETCH_PARAMS_ERROR'
 export const MODI_PARAMS = 'MODI_PARAMS'
 export const MODIED_PARAMS = 'MODIED_PARAMS'
 
+export const FETCH_SINGLE = 'FETCH_SINGLE'
+export const FETCHED_SINGLE = 'FETCHED_SINGLE'
+export const FETCH_SINGLE_ERR = 'FETCH_SINGLE_ERR'
+
 export const fetchItems = (url,params) => {
 	return dispatch => {
 		dispatch({ type: FETCH_ITEMS })
@@ -93,6 +97,19 @@ export const modiParams = (url,params) => {
 						dispatch({ type: MODIED_PARAMS, payload: data})
 					})).catch(err => {
 					dispatch({ type: FETCH_PARAMS_ERROR, payload: err})
+				})
+	}
+}
+
+export const fetchSinglePaper = (url,params) => {
+	return dispatch => {
+		dispatch({ type: FETCH_SINGLE})
+		return fetch(url,params)
+				.then(res => res.json()
+					.then(data => {
+						dispatch({ type: FETCHED_SINGLE, payload: data })
+					})).catch(err => {
+					dispatch({ type: FETCH_SINGLE_ERR, payload: err})
 				})
 	}
 }
