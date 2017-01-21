@@ -26,8 +26,11 @@ var ExampapSchema = new mongoose.Schema({
 	correct: [{
 		body: String,
 		answer: String
-	}]
-
+	}],
+	createAt: {
+		type: Date,
+		default: Date.now()
+	}
 })
 
 module.exports = ExampapSchema

@@ -7,7 +7,7 @@ import ExamPaper from '../../component/admin/examAdmin/ExamPaper.js'
 
 class ExamContainer extends Component{
 	componentDidMount(){
-		const { dispatch,randomExampap,fetchingExampap } = this.props
+		const { dispatch } = this.props
 		dispatch(fetchExampap('/exam/exampaper'),{
 			methond: 'GET'
 		})

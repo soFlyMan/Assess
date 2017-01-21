@@ -29,17 +29,16 @@ export default class Multi extends Component{
 		const multiId = {
 			id: record._id
 		}
-	  	var status = this.props.fetchStatus.status
+	  	var fetched = this.props.fetchStatus.fetched
         const self = this
         function* gen(){
-			yield self.props.onModi('/item/delMulti',{
+			yield self.props.onDelete('/item/delMulti',{
 			    	method: 'DELETE',
 			    	headers: {
 			    		'Content-Type': 'application/json'
 			    	},
 			    	body: JSON.stringify(multiId)
 			    })
-	        yield console.log(self.props.fetchingItems.fetched)
 	        yield message.info("删除成功！")
 			yield self.props.onShow('/item/multi',{
 						method: 'GET'
@@ -47,16 +46,12 @@ export default class Multi extends Component{
 	        }
         var g = new gen()
         g.next()
-        g.next()
-        if(self.props.fetchingItems.fetched){
-			g.next()
-        	if(status==1){
-        		g.next()
-        	}else{
-        		message.info("删除失败！")
-        	}
-        }
-        g.next()
+    	if(fetched){
+    		g.next()
+    		g.next()
+    	}else{
+    		message.info("删除失败！")
+    	}
   	}
 	  	
     setModal1Visible(modal1Visible) {
@@ -84,10 +79,10 @@ export default class Multi extends Component{
 	    	options: this.state.options,
 	    	answer: this.state.answer
 	    }
-        var status = this.props.fetchStatus.status
+        var fetched = this.props.fetchStatus.fetched
         const self = this
         function* gen(){
-			yield self.props.onModi('/item/addMulti',{
+			yield self.props.onAdd('/item/addMulti',{
 			    	method: 'POST',
 			    	headers: {
 			    		'Content-Type': 'application/json'
@@ -95,7 +90,6 @@ export default class Multi extends Component{
 			    	body: JSON.stringify(multi)
 			    })
 	        yield self.setState({ loading: false, modal1Visible: false })
-	        yield console.log(self.props.fetchingItems.fetched)
 	        yield message.info("添加成功！")
 			yield self.props.onShow('/item/multi',{
 						method: 'GET'
@@ -104,16 +98,12 @@ export default class Multi extends Component{
         var g = new gen()
         g.next()
         g.next()
-        g.next()
-        if(self.props.fetchingItems.fetched){
-			g.next()
-        	if(status==1){
-        		g.next()
-        	}else{
-        		message.info("添加失败！")
-        	}
-        }
-        g.next()
+    	if(fetched){
+    		g.next()
+        	g.next()
+    	}else{
+    		message.info("添加失败！")
+    	}
     }
     handleCancel = () => {
     	this.setState({ modal1Visible: false });
@@ -138,7 +128,7 @@ export default class Multi extends Component{
 	    	answer: this.state.answer,
 	    	id: this.state.id
 	    }
-        var status = this.props.fetchStatus.status
+        var fetched = this.props.fetchStatus.fetched
         const self = this
         function* gen(){
 			yield self.props.onModi('/item/modiMulti',{
@@ -149,7 +139,6 @@ export default class Multi extends Component{
 			    	body: JSON.stringify(multi)
 			    })
 	        yield self.setState({ loading: false, modal2Visible: false })
-	        yield console.log(self.props.fetchingItems.fetched)
 	        yield message.info("修改成功！")
 			yield self.props.onShow('/item/multi',{
 						method: 'GET'
@@ -158,16 +147,12 @@ export default class Multi extends Component{
         var g = new gen()
         g.next()
         g.next()
-        g.next()
-        if(self.props.fetchingItems.fetched){
-			g.next()
-        	if(status==1){
-        		g.next()
-        	}else{
-        		message.info("修改失败！")
-        	}
-        }
-        g.next()
+    	if(fetched){
+    		g.next()
+        	g.next()
+    	}else{
+    		message.info("修改失败！")
+    	}
     }
 	render(){
 		const data = this.props.fetchingItems.data

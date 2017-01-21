@@ -4,6 +4,7 @@ import { FETCH_ITEMS, RECEIVE_ITEMS, FETCH_ITEMS_ERROR,
 		ADD_ITEMS, ADDED_ITEMS,
 		DELETE_ITEMS, DELETED_ITEMS,
 		MODI_ITEMS, MODIED_ITEMS,
+		OPERA_ERROR,
 		FETCH_PARAMS, FETCHED_PARAMS,
 		MODI_PARAMS, MODIED_PARAMS,
 		FETCH_PARAMS_ERROR
@@ -44,37 +45,50 @@ const fetchingItems = (state=initialState,action) => {
 	}
 }
 
-const fetchStatus = ( state = { fetched: false,status: -1 }, action) => {
+const fetchStatus = ( state = { fetched: true,status: -1,error: null }, action) => {
 	switch (action.type){
 		case DELETE_ITEMS:
 			return {
+				...state,
 				fetched: false,
 				status: -1
 			}
 		case DELETED_ITEMS:
 			return {
+				...state,
 				fetched: true,
 				status: action.status
 			}
 		case ADD_ITEMS:
 			return {
+				...state,
 				fetched: false,
 				status: -1
 			}
 		case ADDED_ITEMS:
 			return {
+				...state,
 				fetched: true,
 				status: action.status
 			}
 		case MODI_ITEMS: 
 			return {
+				...state,
 				fetched: false,
 				status: -1
 			}
 		case MODIED_ITEMS:
 			return {
+				...state,
 				fetched: true,
 				status: action.status
+			}
+		case OPERA_ERROR:
+			return {
+				fetched: false,
+				status: 0,
+				error: action.payload
+
 			}
 		default:
 			return state

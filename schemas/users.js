@@ -12,6 +12,38 @@ var UserSchema = new mongoose.Schema({
 		type: Number
 	},
 	class: String,
+	img: String,
+	exampaper: 
+		[{
+			date: String,
+			radio: [{
+				body: String,
+				options: String,
+				answer: String
+			}],
+			multi: [{
+				body: String,
+				options: String,
+				answer: String
+			}],
+			fillblank: [{
+				body: String,
+				answer: String
+			}],
+			correct: [{
+				body: String,
+				answer: String
+			}],
+			judge: [{
+				body: String,
+				answer: Boolean
+			}],
+			programming: [{
+				body: String,
+				answer: String
+			}],
+			score: Number
+		}],
 	meta: {
 		createAt: {
 			type: Date,

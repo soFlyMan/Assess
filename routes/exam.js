@@ -61,8 +61,19 @@ router.get('/exampaper',function(req,res){
 	Exampap.find({},function(err,exampapers){
 		if(err){
 			console.log(err)
-		}else{
+		}else{			
 			res.send(exampapers)
+		}
+	})
+})
+
+router.delete('/delPaper',function(req,res){
+	var _id = req.body._id
+	Exampap.remove({_id: _id},function(err){
+		if(err){
+			console.log(err)
+		}else{
+			res.send({status: 1})
 		}
 	})
 })

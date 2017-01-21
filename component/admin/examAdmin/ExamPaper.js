@@ -7,13 +7,15 @@ const ExamPaper = ({fetched,randomExampap}) => {
 			<h3>一、单项选择题</h3>
 			<div>
 			{
-				randomExampap.radio.map(val =>{
-											return (
-												<div>
-													{val.body}
-													{val.options}
-												</div>
-												) 
+				randomExampap
+				.radio
+					.map(val =>{
+						return (
+							<div>
+								{val.body}
+								{val.options}
+							</div>
+								) 
 					}
 				)
 			}

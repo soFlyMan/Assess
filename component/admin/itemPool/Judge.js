@@ -28,17 +28,16 @@ export default class Judge extends Component{
 		const judgeId = {
 			id: record._id
 		}
-	  	var status = this.props.fetchStatus.status
+	  	var fetched = this.props.fetchStatus.fetched
         const self = this
         function* gen(){
-			yield self.props.onModi('/item/delJudge',{
+			yield self.props.onDelete('/item/delJudge',{
 			    	method: 'DELETE',
 			    	headers: {
 			    		'Content-Type': 'application/json'
 			    	},
 			    	body: JSON.stringify(judgeId)
 			    })
-	        yield console.log(self.props.fetchingItems.fetched)
 	        yield message.info("删除成功！")
 			yield self.props.onShow('/item/judge',{
 						method: 'GET'
@@ -46,16 +45,12 @@ export default class Judge extends Component{
 	        }
         var g = new gen()
         g.next()
-        g.next()
-        if(self.props.fetchingItems.fetched){
-			g.next()
-        	if(status==1){
-        		g.next()
-        	}else{
-        		message.info("删除失败！")
-        	}
-        }
-        g.next()
+    	if(fetched==1){
+    		g.next()
+        	g.next()
+    	}else{
+    		message.info("删除失败！")
+    	}
   	}
 	  	
     setModal1Visible(modal1Visible) {
@@ -77,10 +72,10 @@ export default class Judge extends Component{
 	    	body: this.state.body,
 	    	answer: this.state.answer
 	    }
-        var status = this.props.fetchStatus.status
+        var fetched = this.props.fetchStatus.fetched
         const self = this
         function* gen(){
-			yield self.props.onModi('/item/addJudge',{
+			yield self.props.onAdd('/item/addJudge',{
 			    	method: 'POST',
 			    	headers: {
 			    		'Content-Type': 'application/json'
@@ -88,7 +83,6 @@ export default class Judge extends Component{
 			    	body: JSON.stringify(judge)
 			    })
 	        yield self.setState({ loading: false, modal1Visible: false })
-	        yield console.log(self.props.fetchingItems.fetched)
 	        yield message.info("添加成功！")
 			yield self.props.onShow('/item/judge',{
 						method: 'GET'
@@ -97,16 +91,12 @@ export default class Judge extends Component{
         var g = new gen()
         g.next()
         g.next()
-        g.next()
-        if(self.props.fetchingItems.fetched){
-			g.next()
-        	if(status==1){
-        		g.next()
-        	}else{
-        		message.info("添加失败！")
-        	}
-        }
-        g.next()
+    	if(fetched){
+    		g.next()
+        	g.next()
+    	}else{
+    		message.info("添加失败！")
+    	}
     }
     handleCancel = () => {
     	this.setState({ modal1Visible: false });
@@ -129,7 +119,7 @@ export default class Judge extends Component{
 	    	answer: this.state.answer,
 	    	id: this.state.id
 	    }
-        var status = this.props.fetchStatus.status
+        var fetched = this.props.fetchStatus.fetched
         const self = this
         function* gen(){
 			yield self.props.onModi('/item/modiJudge',{
@@ -140,7 +130,6 @@ export default class Judge extends Component{
 			    	body: JSON.stringify(judge)
 			    })
 	        yield self.setState({ loading: false, modal2Visible: false })
-	        yield console.log(self.props.fetchingItems.fetched)
 	        yield message.info("修改成功！")
 			yield self.props.onShow('/item/judge',{
 						method: 'GET'
@@ -149,16 +138,12 @@ export default class Judge extends Component{
         var g = new gen()
         g.next()
         g.next()
-        g.next()
-        if(self.props.fetchingItems.fetched){
-			g.next()
-        	if(status==1){
-        		g.next()
-        	}else{
-        		message.info("修改失败！")
-        	}
-        }
-        g.next()
+    	if(fetched){
+    		g.next()
+    		g.next()
+    	}else{
+    		message.info("修改失败！")
+    	}
     }
 	render(){
 		const data = this.props.fetchingItems.data

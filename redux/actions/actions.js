@@ -11,6 +11,8 @@ export const ADDED_ITEMS = 'ADDED_ITEMS'
 export const MODI_ITEMS = 'MODI_ITEMS'
 export const MODIED_ITEMS = 'MODIED_ITEMS'
 
+export const OPERA_ERROR = 'OPERA_ERROR'
+
 export const FETCH_PARAMS = 'FETCH_PARAMS'
 export const FETCHED_PARAMS = 'FETCHED_PARAMS'
 export const FETCH_PARAMS_ERROR ='FETCH_PARAMS_ERROR'
@@ -38,7 +40,7 @@ export const deleteItems = (url,params) => {
 					.then(data => {
 						dispatch({ type: DELETED_ITEMS, status: data.status})
 					})).catch(err => {
-						dispatch({ type: FETCH_ITEMS_ERROR, payload: err })
+						dispatch({ type: OPERA_ERROR, payload: err })
 				})
 	}
 }
@@ -51,7 +53,7 @@ export const addItems = (url,params) => {
 					.then(data => {
 						dispatch({ type: ADDED_ITEMS, status: data.status })
 					})).catch(err => {
-					dispatch({ type: FETCH_ITEMS_ERROR, payload: err })
+					dispatch({ type: OPERA_ERROR, payload: err })
 				})
 	}
 }
@@ -64,7 +66,7 @@ export const modiItems = (url,params) => {
 					.then(data => {
 						dispatch({ type: MODIED_ITEMS, status: data.status})
 					})).catch(err => {
-					dispatch({ type: FETCH_ITEMS_ERROR, payload: err})
+					dispatch({ type: OPERA_ERROR, payload: err})
 				})
 	}
 }
