@@ -6,7 +6,7 @@ export const FETCH_SINGLE_USER = 'FETCH_SINGLE_USER'
 export const FETCHED_SINGLE_USER = 'FETCHED_SINGLE_USER'
 export const FETCHE_SINGLE_USER_ERR = 'FETCHE_SINGLE_USER_ERR'
 
-export fetchUser = (url,params) => {
+export const fetchUser = (url,params) => {
 	return dispatch => {
 		return dispatch({ type: FETCH_USER })
 				fetch(url,params)
@@ -19,7 +19,7 @@ export fetchUser = (url,params) => {
 	}
 }
 
-export fetchSingleUser = (url,params) => {
+export const fetchSingleUser = (url,params) => {
 	return dispatch => {
 		return dispatch({ type: FETCH_SINGLE_USER })
 				fetch(url,params)
@@ -29,4 +29,5 @@ export fetchSingleUser = (url,params) => {
 						})).catch(err => {
 						dispatch({type: FETCHE_SINGLE_USER_ERR, payload: err})
 					})
+	}
 }

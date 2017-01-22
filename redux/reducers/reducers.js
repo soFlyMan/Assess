@@ -11,6 +11,7 @@ import { FETCH_ITEMS, RECEIVE_ITEMS, FETCH_ITEMS_ERROR,
 		FETCH_SINGLE,FETCHED_SINGLE,FETCH_SINGLE_ERR
  		} from '../actions/actions.js'
 import { fetchingScore, fetchingExampap } from './stuReducers.js'
+import { fetchingUser, fetchingSingleUser } from './userReducers.js'
 
 const initialState = {
 	fetching: false,
@@ -163,6 +164,8 @@ const reducer = combineReducers({
 	fetchingExampap,
 	fetchingScore,
 	fetchSingle,
+	fetchingUser,
+	fetchingSingleUser,
 	routing: routerReducer
 })
 export default reducer
