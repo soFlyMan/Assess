@@ -29,10 +29,9 @@ const LoginModal = Form.create()(React.createClass({
   getInitialState() {
     return {
       username: '',
-      userid: this.props.userid,
+      userid: '',
       password:'' ,
       visible: false,
-      loginstatus: this.props.loginstatus,
       imageUrl:''
        };
   },
@@ -76,9 +75,6 @@ const LoginModal = Form.create()(React.createClass({
                   visible: false,
                   loginstatus: true,
               })
-                var val = data.userid
-                _self.props.handleUserid(val)
-
               }else if(data.status==2){
                 message.info('Password is error !')
               }else{
@@ -108,8 +104,8 @@ const LoginModal = Form.create()(React.createClass({
   },
   logOut(){
     console.log("退出")
-    this.setState({
-      loginstatus: false
+    this.props.onLogOut('/logout',{
+      method: 'GET'
     })
   },
   handleChange(info){
@@ -124,7 +120,7 @@ const LoginModal = Form.create()(React.createClass({
     return (
       <div>
       { 
-        this.state.loginstatus?
+        this.props.loginstatus?
         <ul className="user">
           <li>
             <Upload
@@ -142,7 +138,7 @@ const LoginModal = Form.create()(React.createClass({
               }
             </Upload>
           </li>
-          <li className="username"><Link to="/"><span style={{color: "#777"}} onClick={this.logOut} >{this.state.username}</span></Link></li>
+          <li className="username"><Link to="/"><span style={{color: "#777"}} onClick={this.logOut} >{this.props.username}</span></Link></li>
         </ul>
         :
         <div style={{padding: 15}}>

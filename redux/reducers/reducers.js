@@ -10,7 +10,7 @@ import { FETCH_ITEMS, RECEIVE_ITEMS, FETCH_ITEMS_ERROR,
 		FETCH_PARAMS_ERROR,
 		FETCH_SINGLE,FETCHED_SINGLE,FETCH_SINGLE_ERR
  		} from '../actions/actions.js'
-import { fetchingScore, fetchingExampap } from './stuReducers.js'
+import { fetchingScore, fetchingExampap, fetchingLoginStatus } from './stuReducers.js'
 import { fetchingUser, fetchingSingleUser } from './userReducers.js'
 
 const initialState = {
@@ -160,6 +160,7 @@ const fetchSingle = (state = {fetching: false,fetched: false, data: [], error: n
 const reducer = combineReducers({
 	fetchingItems,
 	fetchStatus,
+	fetchingLoginStatus,
 	fetchingParams,
 	fetchingExampap,
 	fetchingScore,

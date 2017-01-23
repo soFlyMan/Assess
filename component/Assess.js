@@ -1,7 +1,10 @@
 import React,{ Component } from 'react';
-import { Button } from 'antd';
+import { connect } from 'react-redux'
 import { Link } from 'react-router';
+import { Button } from 'antd';
 
+import { fetchParams } from '../redux/actions/actions.js'
+import { fetchLoginStatus, logOut } from '../redux/actions/stuActions.js'
 import LoginModal from './LoginModal.js';
 import AssessShow from './AssessShow.js';
 
@@ -13,8 +16,6 @@ class Assess extends Component{
 		super(props);
 		this.state={
 			nav:'assessNav',
-			userid: '',
-			username: '',
 			loginstatus: false
 		};
 	}
@@ -26,41 +27,29 @@ class Assess extends Component{
 
 		}
 	}
-	handleUserid=(val)=>{
-		this.setState({
-			userid: val
+	componentDidMount=()=>{
+		const { dispatch, fetchingLoginStatus } = this.props
+
+		dispatch(fetchLoginStatus('/logStatus'),{
+			method: 'GET'
+		})
+		dispatch(fetchParams('/exam/params'),{
+			method: 'GET'
 		})
 	}
-	componentDidMount=()=>{
-		console.log('123')
-		if(this.state.userid){
-			this.setState({
-				loginstatue: true
-			})
-		}
-		// var _self = this
-		// var req = new Request('/logStatus',{
-		// 	method: 'GET'
-		// })
-		// fetch(req).then(function(res){
-		// 	if(res.ok){
-		// 		res.json().then(function(data){
-		// 			if(data.userid){
-		// 				console.log('已是登录状态')
-		// 				console.log(data)
-		// 				_self.setState({
-		// 					userid: data.userid,
-		// 					username: data.username,
-		// 					loginstatus: true
-		// 				})
-		// 			}else{
-		// 				console.log('用户未登录')
-		// 			}
-		// 		})
-		// 	}
-		// })
-	}
 	render(){
+		const { fetchingParams, fetchingLoginStatus, dispatch }  = this.props
+		const exam = (fetchingParams) => {
+			if(fetchingParams.data.limit=="禁止考试"){
+				return (
+					<Button disabled>暂无考试</Button>
+					)
+			}else{
+				return (
+					<Button type="primary"><Link to="/examcontainer">开始考试</Link></Button>
+				)
+			}
+		}
 		return (
 			<div style={{marginBottom:180}} onWheel={this.handleScorll.bind(this)}>
 			<div>
@@ -72,19 +61,19 @@ class Assess extends Component{
 							</Link>
 						</li>
 						<li style={{float:'right'}}>
-							<LoginModal handleUserid={this.handleUserid} 
-										loginstatus={this.state.loginstatus}
-										username={this.state.username}
-										userid={this.state.userid}/>
+							<LoginModal loginstatus={fetchingLoginStatus.fetched}
+										username={fetchingLoginStatus.data.username}
+										userid={fetchingLoginStatus.data.userid}
+										onLogOut={(url,params) =>dispatch(logOut(url,params))}/>
 						</li>
 					</ul>
 				</nav>
 				<div id="navImg">
 			</div>
 				<div style={{width:"20%",height:100,padding:40,margin:"0 auto"}}>
-					<Button type="primary"><Link to="/examcontainer" >开始考试</Link></Button>
+					{exam(fetchingParams)}
 				</div>
-					<AssessShow userid={this.state.userid}/>
+					<AssessShow userid={fetchingLoginStatus.data.userid}/>
 				<div>
 					{this.props.children}
 				</div>
@@ -94,4 +83,12 @@ class Assess extends Component{
 			)
 	}
 }
-export default Assess
+
+const mapStateToProps = state => {
+	return {
+		fetchingParams: state.fetchingParams,
+		fetchingLoginStatus: state.fetchingLoginStatus
+	}
+}
+
+export default connect(mapStateToProps)(Assess)

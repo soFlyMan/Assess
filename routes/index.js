@@ -24,7 +24,7 @@ router.get('/exam',function(req,res){
 			console.log(err)
 		}
 		console.log("test session")
-		console.log(req.session.userid)
+		console.log(reqSession.userid)
 		res.send(users[0])
 	})
 })
@@ -80,12 +80,13 @@ router.post('/signin',function(req,res){
 					req.session.user = user
 					req.session.userid = user.userid
 					req.session.username = user.username
-					req.session.save()
+					// req.session.save()
 					// console.log('sesesese')
 					console.log(req.session)
+					reqSession = req.session
 					// console.log(req.session.userid)
 					console.log('Is matched!')
-					res.send({status: 1,userid: req.session.userid,username: req.session.username})
+					res.send({status: 1,userid: reqSession.userid,username: reqSession.username})
 				}else{
 					console.log('password is not matched')
 					res.send({status: 2})
@@ -124,11 +125,22 @@ router.post('/adminsignin',function(req,res){
 })
 
 router.get('/logStatus',function(req,res){
-	console.log(req.session)
-	if(req.session){
-		res.send({userid: req.session.userid,username: req.session.username})
+	if(reqSession){
+		res.send({userid: reqSession.userid, username: reqSession.username})
 	}else{
 		res.send({status: 0})
+	}
+})
+
+router.get('/logout',function(req,res){
+		if(req.session){
+		req.session.destory(function(err){
+			if(err){
+				console.log(err)
+			}else{
+				res.send({status: 1})
+			}
+		})
 	}
 })
 // 	//优先级
