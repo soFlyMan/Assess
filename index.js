@@ -27,7 +27,7 @@ import Admin from './component/admin/Admin.js'
 import AdminLogin from './component/admin/AdminLogin.js'
 
 import ClassAdmin from './component/admin/user/ClassAdmin.js'
-import UserContainer from './component/admin/user/UserList.js'
+import UserContainer from './redux/container/UserContainer.js'
 import SingleUserContainer from './redux/container/SingleUserContainer.js'
 
 

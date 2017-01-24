@@ -22,6 +22,7 @@ var admin = require('./routes/admin')
 var exam = require('./routes/exam')
 var course = require('./routes/course')
 var item = require('./routes/item')
+var user = require('./routes/user')
 
 //设置模版引擎
 
@@ -71,6 +72,7 @@ app.use('/admin',admin)
 app.use('/exam',exam)
 app.use('/course',course)
 app.use('/item',item)
+app.use('/user',user)
 //引用静态文件
 app.use(express.static(path.join(__dirname, 'dist')));
 

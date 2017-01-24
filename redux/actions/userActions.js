@@ -8,8 +8,8 @@ export const FETCH_SINGLE_USER_ERR = 'FETCHE_SINGLE_USER_ERR'
 
 export const fetchUser = (url,params) => {
 	return dispatch => {
-		return dispatch({ type: FETCH_USER })
-				fetch(url,params)
+		  dispatch({ type: FETCH_USER })
+		  return fetch(url,params)
 					.then(res => res.json()
 						.then(data => {
 							dispatch({ type: FETCHED_USER, payload: data })
@@ -19,15 +19,28 @@ export const fetchUser = (url,params) => {
 	}
 }
 
+// export const fetchSingleUser = (url,params) => {
+// 	return dispatch => {
+// 		 dispatch({ type: FETCH_SINGLE_USER })
+// 		 return	fetch(url,params)
+// 					.then(res => res.json()
+// 						.then(data => {
+// 							dispatch({ type: FETCHED_SINGLE_USER, payload: data})
+// 						})).catch(err => {
+// 						dispatch({type: FETCH_SINGLE_USER_ERR, payload: err})
+// 					})
+// 	}
+// }
+
 export const fetchSingleUser = (url,params) => {
 	return dispatch => {
-		return dispatch({ type: FETCH_SINGLE_USER })
-				fetch(url,params)
-					.then(res => res.json()
-						.then(data => {
-							dispatch({ type: FETCHED_SINGLE_USER, payload: data})
-						})).catch(err => {
-						dispatch({type: FETCH_SINGLE_USER_ERR, payload: err})
-					})
+		dispatch({ type: FETCH_SINGLE_USER })
+		return fetch(url,params)
+				.then(res => res.json()
+					.then(data => {
+						dispatch({ type: FETCHED_SINGLE_USER, payload: data})
+					})).catch(err => {
+					dispatch({ type: FETCH_SINGLE_USER_ERR, payload: err})
+				})
 	}
 }

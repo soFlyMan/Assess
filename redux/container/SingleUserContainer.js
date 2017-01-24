@@ -7,12 +7,19 @@ import SingleUser from '../../component/admin/user/SingleUser.js'
 
 class SingleUserContainer extends Component{
 	render(){
+		const { fetchingSingleUser, fetched } = this.props
 		return (
 			<Card title="个人信息" extra={<Link to="/admin/usercontainer"><span>返回</span></Link>}>
-				<SingleUser />
+				<SingleUser singleUser={fetchingSingleUser.data[0]} fetched={fetched}/>
 			</Card>
 			)
 	}
 }
 
-export default connect()(SingleUserContainer)
+const mapStateToProps = state => {
+	return {
+		fetchingSingleUser: state.fetchingSingleUser,
+		fetched: state.fetchingSingleUser.fetched
+	}
+}
+export default connect(mapStateToProps)(SingleUserContainer)

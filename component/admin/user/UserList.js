@@ -28,6 +28,7 @@ const UserList = React.createClass({
     this.setState({ selectedRowKeys });
   },
   componentDidMount(){
+    console.log(this.props.test)
     this.handleRender();
 
   },
@@ -75,6 +76,21 @@ const UserList = React.createClass({
       console.log(err.message)
     })
   },
+  handleSingele(record){
+      const userId = {
+        id: record._id
+      }
+      console.log('12312312312')
+      console.log(this.props.test)
+      console.log(this.props.fetchingSingleUser)
+      this.props.onFetchSingle(`/${record._id}`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userId)
+      })
+  },
   render() {
     const columns = [{
           title: '姓名',
@@ -92,7 +108,7 @@ const UserList = React.createClass({
           render: (text,record)=>{
             return (
             <span>
-              <a><Link to="/admin/singleusercontainer">查看</Link></a>
+              <a onClick={()=>this.handleSingele(record)}><Link to="/admin/singleusercontainer">查看</Link></a>
               <span className="ant-divider" />
               <Popconfirm title="确定要删除?"  
               onConfirm={()=>this.handleDel(record)} okText="确定" cancelText="取消">
