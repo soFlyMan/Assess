@@ -1,6 +1,8 @@
 import { FETCH_SCORE,FETCH_SCORE_ERROR,RECEIVE_SCORE,
 		 FETCH_EXAMPAPER, RECIEVE_EXAMPAPER, FETCH_EXAMPAPER_ERROR,
-		 FETCH_LOGIN_STATUS,FETCHED_LOGIN_STATUS, FETCH_LOGIN_STATUS_ERR, LOG_OUT } from '../actions/stuActions.js'
+		 FETCH_LOGIN_STATUS,FETCHED_LOGIN_STATUS, FETCH_LOGIN_STATUS_ERR, LOG_OUT,
+		 FETCH_USER_INFO, FETCHED_USER_INFO, FETCH_USER_INFO_ERR,
+		 ADD_RANDOM_PAPER, ADDED_RANDOM_PAPER, ADD_RANDOM_PAPER_ERR } from '../actions/stuActions.js'
 
 const initialState = {
 	fetching: false,
@@ -66,6 +68,7 @@ export const fetchingLoginStatus = (state={fetching:false,fetched:false,data:{ }
 		case FETCHED_LOGIN_STATUS:
 			return {
 				...state,
+				fetching: false,
 				fetched: true,
 				data: action.payload
 			}
@@ -76,6 +79,33 @@ export const fetchingLoginStatus = (state={fetching:false,fetched:false,data:{ }
 				fetching: false
 			}
 		default: 
+			return state
+	}
+}
+
+export const fetchingUserInfo = (state={fetching: false,fetched: false, data: [], error: null},action) => {
+	switch(action.type){
+		case FETCH_USER_INFO:
+			return {
+				...state,
+				fetching: false,
+				fetched: false
+			}
+		case FETCH_USER_INFO_ERR:
+			return {
+				...state,
+				fetching: false,
+				fetched: false,
+				error: action.payload
+			}
+		case FETCHED_USER_INFO:
+			return {
+				...state,
+				fetching: false,
+				fetched: true,
+				data: action.payload
+			}
+		default:
 			return state
 	}
 }

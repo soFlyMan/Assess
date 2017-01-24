@@ -27,10 +27,12 @@ import Admin from './component/admin/Admin.js'
 import AdminLogin from './component/admin/AdminLogin.js'
 
 import ClassAdmin from './component/admin/user/ClassAdmin.js'
-import UserList from './component/admin/user/UserList.js'
+import UserContainer from './component/admin/user/UserList.js'
+import SingleUserContainer from './redux/container/SingleUserContainer.js'
+
 
 import Section from './component/admin/course/Section.js'
-import Download from './component/admin/course/Download.js'
+import Download from './redux/container/UserContainer.js'
 
 
 import ExamParamContainer from './redux/container/ExamParamContainer.js'
@@ -54,7 +56,7 @@ ReactDOM.render((
 				<Route path="section" component={Section} />
 				<Route path="download" component={Download} />
 				<Route path="classadmin" component={ClassAdmin} />
-				<Route path="userlist" component={UserList} />
+				<Route path="usercontainer" component={UserContainer} />
 				<Route path="radiocontainer" component={RadioContainer}/>
 				<Route path="correctcontainer" component={CorrectContainer} />
 				<Route path="multicontainer" component={MultiContainer} />
@@ -63,7 +65,8 @@ ReactDOM.render((
 				<Route path="programmingcontainer" component={ProgrammingContainer}/>
 				<Route path="examparamcontainer" component={ExamParamContainer} />
 				<Route path="papercontainer" component={PaperContainer} />
-				<Route path="singlepapercontainer" component={SinglePaperContainer} /> 
+				<Route path="singlepapercontainer" component={SinglePaperContainer} />
+				<Route path="singleusercontainer" component={SingleUserContainer} /> 
 			</Route>
 
 			<Route path="adminlogin" component={AdminLogin}/>

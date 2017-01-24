@@ -12,6 +12,14 @@ export const FETCH_LOGIN_STATUS_ERR = 'FETCH_LOGIN_STATUS_ERR'
 
 export const LOG_OUT = 'LOG_OUT'
 
+export const FETCH_USER_INFO = 'FETCH_USER_INFO'
+export const FETCHED_USER_INFO = 'FETCHED_USER_INFO'
+export const FETCH_USER_INFO_ERR = 'FETCH_USER_INFO_ERR'
+
+export const ADD_RANDOM_PAPER = 'ADD_RANDOM_PAPER'
+export const ADDED_RANDOM_PAPER = 'ADDED_RANDOM_PAPER'
+export const ADD_RANDOM_PAPER_ERR = 'ADD_RANDOM_PAPER_ERR'
+
 export const fetchScore = (url,params) => {
 	return dispatch => {
 		dispatch({type: FETCH_SCORE})
@@ -59,6 +67,32 @@ export const logOut = (url,params) => {
 						dispatch({type: 'LOG_OUT'})
 					})).catch(err => {
 					dispatch({type: 'FETCH_LOGIN_STATUS_ERR', payload: err})
+				})
+	}
+}
+
+export const fetchUserInfo = (url,params) => {
+	return dispatch => {
+		dispatch({ type: FETCH_USER_INFO })
+		return fetch(url,params)
+				.then(res => res.json()
+					.then(data => {
+						dispatch({type: FETCHED_USER_INFO, payload: data})
+					})).catch(err => {
+					dispatch({type: FETCH_USER_INFO_ERR, payload: err})
+				})
+	}
+}
+
+export const addRandomPaper = (url,params) => {
+	return dispatch => {
+		dispatch({type: ADD_RANDOM_PAPER})
+		return fetch(url,params)
+				.then(res => res.json()
+					.then(data => {
+						dispatch({type: ADDED_RANDOM_PAPER, payload: data.status})
+					})).catch(err => {
+					dispatch({ type: ADD_RANDOM_PAPER_ERR, payload: err})
 				})
 	}
 }

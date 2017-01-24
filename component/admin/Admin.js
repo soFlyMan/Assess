@@ -52,7 +52,7 @@ const Admin = React.createClass({
           </SubMenu>
           <SubMenu key="sub5" title={<span><Icon type="team" /><span>用户管理</span></span>}>
               <Menu.Item key="7"><Link to="/admin/classadmin"><span>班级管理</span></Link></Menu.Item>
-              <Menu.Item key="8"><Link to="/admin/userlist"><span>学生管理</span></Link></Menu.Item>
+              <Menu.Item key="8"><Link to="/admin/usercontainer"><span>学生管理</span></Link></Menu.Item>
               <Menu.Item key="9"><Link to="/"><span>批量创建</span>用户</Link></Menu.Item>
               <Menu.Item key="10"><span>管理员信息</span></Menu.Item>
           </SubMenu>

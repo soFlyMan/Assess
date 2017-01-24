@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, Button, Card, message, Popconfirm } from 'antd';
+import { Link } from 'react-router'
 import AddUser from './AddUser'
 
 const UserList = React.createClass({
@@ -91,7 +92,7 @@ const UserList = React.createClass({
           render: (text,record)=>{
             return (
             <span>
-              <a>修改</a>
+              <a><Link to="/admin/singleusercontainer">查看</Link></a>
               <span className="ant-divider" />
               <Popconfirm title="确定要删除?"  
               onConfirm={()=>this.handleDel(record)} okText="确定" cancelText="取消">
