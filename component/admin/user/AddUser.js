@@ -11,7 +11,7 @@ const AddUser = Form.create()(React.createClass({
       passwordDirty: false,
       username: '',
       password: '',
-      userid:'',
+      userid: '',
       class:'',
       klass:[],
     };
@@ -80,6 +80,12 @@ const AddUser = Form.create()(React.createClass({
          confirmLoading: false
       })
       return false
+    }else if(parseInt(user.userid)!=user.userid){
+      message.info('学号必须为数字')
+      this.setState({
+         confirmLoading: false
+      })
+      return false
     }else if(user.username==''){
               message.info('请输入姓名！')
               this.setState({
@@ -100,7 +106,7 @@ const AddUser = Form.create()(React.createClass({
       return false
     }
     console.log(user)
-    var req = new Request('/signup',{
+    var req = new Request('/user/signup',{
           method: 'POST',
           headers: {
             "Content-Type": "application/json"

@@ -38,24 +38,7 @@ router.get('/logo',function(req,res){
 // router.get('/favicon1',function(req,res){
 // 	res.sendfile('./favicon.png')
 // })
-//user sign up
-router.post('/signup',function(req,res){
-	var _user = req.body
-	User.findOne({userid: _user.userid},function(err,user){
-		if(err){
-			console.log(err)
-		}else if(user){
-			return res.send({status:0})
-		}else{
-		var user = new User(_user)
-		user.save(function(err,user){
-			if(err) console.log(err)
-				res.send({status:1})
-			})
-		}
-	})
-	
-})
+
 //user sign in
 router.post('/signin',function(req,res){
 	var _user = req.body
