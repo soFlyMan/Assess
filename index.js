@@ -36,6 +36,8 @@ import Download from './redux/container/UserContainer.js'
 
 
 import ExamParamContainer from './redux/container/ExamParamContainer.js'
+import MakePaperContainer from './redux/container/MakePaperContainer.js'
+
 import PaperContainer from './redux/container/PaperContainer.js'
 import SinglePaperContainer from './redux/container/SinglePaperContainer.js'
 
@@ -64,6 +66,7 @@ ReactDOM.render((
 				<Route path="fillblankcontainer" component={FillblankContainer} />
 				<Route path="programmingcontainer" component={ProgrammingContainer}/>
 				<Route path="examparamcontainer" component={ExamParamContainer} />
+				<Route path="makepapercontainer" component={MakePaperContainer} />
 				<Route path="papercontainer" component={PaperContainer} />
 				<Route path="singlepapercontainer" component={SinglePaperContainer} />
 				<Route path="singleusercontainer" component={SingleUserContainer} /> 

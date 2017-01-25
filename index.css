@@ -138,12 +138,30 @@ html, body, #root {
 .user{
   margin-right: 50px;
 }
-.user li{
+.user li {
   float: left;
   margin-top: 10px;
 }
-.user .username{
+.user .username {
   font-size: 14px;
   margin-top:18px;
   margin-left: 10px;
+}
+
+/*makepaper inputNumber*/
+.makepaper{
+  margin-top: 30px;
+  margin-left: 60px;
+}
+.makepaper p{
+  font-size: 16px;
+  color: #777;
+  margin-left: 80px;
+  margin-bottom: 8px;
+}
+.makepaper p span{
+  margin-right: 60px;
+}
+.makepaper div{
+  margin-bottom: 4px
 }
