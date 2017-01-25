@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { InputNumber } from 'antd'
+import { InputNumber, Button, message } from 'antd'
 
 class MakePaper extends Component{
 	constructor(props){
@@ -73,6 +73,34 @@ class MakePaper extends Component{
 			programmingScore: value
 		})
 	}
+	addRandomPaper = () => {
+		const { radioNumber,multiNumber,judgeNumber,fillblankNumber,correctNumber,programmingNumber } = this.state
+		const number = {
+			radioNum: radioNumber,
+			multiNum: multiNumber,
+			judgeNum: judgeNumber,
+			fillblankNum: fillblankNumber,
+			correctNum: correctNumber,
+			programmingNum: programmingNumber
+		}
+		fetch('/item/randomPaper',{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(number)
+		}).then(function(res){
+			if(res.ok){
+				res.json().then(function(data){
+					if(data.status==1){
+						message.info('提交成功！')
+					}
+				})
+			}
+		}).catch(function(err){
+			console.log(err.message)
+		})
+	}
 	render(){
 		const { 
 				radioNumber, radioScore,
@@ -93,12 +121,12 @@ class MakePaper extends Component{
 				<div>
 					<p><span>个数</span> <span>分数</span> <span>合计分数</span></p>
 					<span style={{marginRight: 10}}>单项选择题</span>
-					<InputNumber min={0} max={10} 
+					<InputNumber min={0} max={20} 
 								defaultValue={radioNumber} 
 								onChange={this.changeRadioNumber}
 								style={{marginRight: 10}}
 								/>
-					<InputNumber min={0} max={10} 
+					<InputNumber min={0} max={20} 
 								defaultValue={radioScore} 
 								onChange={this.changeRadioScore}
 								style={{marginRight: 50}}
@@ -107,12 +135,12 @@ class MakePaper extends Component{
 				</div>
 				<div>
 					<span style={{marginRight: 10}}>多项选择题</span>
-					<InputNumber min={0} max={10} 
+					<InputNumber min={0} max={20} 
 								defaultValue={multiNumber} 
 								onChange={this.changeMultiNumber}
 								style={{marginRight: 10}}
 								/>
-					<InputNumber min={0} max={10} 
+					<InputNumber min={0} max={20} 
 								defaultValue={multiScore} 
 								onChange={this.changeMultiScore}
 								style={{marginRight: 50}}
@@ -121,12 +149,12 @@ class MakePaper extends Component{
 				</div>
 				<div>
 					<span style={{marginRight: 34}}>判断题</span>
-					<InputNumber min={0} max={10} 
+					<InputNumber min={0} max={20} 
 								defaultValue={judgeNumber} 
 								onChange={this.changeJudgeNumber}
 								style={{marginRight: 10}}
 								/>
-					<InputNumber min={0} max={10} 
+					<InputNumber min={0} max={20} 
 								defaultValue={judgeScore} 
 								onChange={this.changeJudgeScore}
 								style={{marginRight: 50}}
@@ -135,12 +163,12 @@ class MakePaper extends Component{
 				</div>
 				<div>
 					<span style={{marginRight: 34}}>填空题</span>
-					<InputNumber min={0} max={10} 
+					<InputNumber min={0} max={20} 
 								defaultValue={fillblankNumber} 
 								onChange={this.changeFillblankNumber}
 								style={{marginRight: 10}}
 								/>
-					<InputNumber min={0} max={10} 
+					<InputNumber min={0} max={20} 
 								defaultValue={fillblankScore} 
 								onChange={this.changeFillblankScore}
 								style={{marginRight: 50}}
@@ -149,12 +177,12 @@ class MakePaper extends Component{
 				</div>
 				<div>
 					<span style={{marginRight: 34}}>改错题</span>
-					<InputNumber min={0} max={10} 
+					<InputNumber min={0} max={20} 
 								defaultValue={correctNumber} 
 								onChange={this.changeCorrectNumber}
 								style={{marginRight: 10}}
 								/>
-					<InputNumber min={0} max={10} 
+					<InputNumber min={0} max={20} 
 								defaultValue={correctScore} 
 								onChange={this.changeCorrectScore}
 								style={{marginRight: 50}}
@@ -163,19 +191,20 @@ class MakePaper extends Component{
 				</div>
 				<div>
 					<span style={{marginRight: 34}}>编程题</span>
-					<InputNumber min={0} max={10} 
+					<InputNumber min={0} max={20} 
 								defaultValue={programmingNumber} 
 								onChange={this.changeProgrammingNumber}
 								style={{marginRight: 10}}
 								/>
-					<InputNumber min={0} max={10} 
+					<InputNumber min={0} max={20} 
 								defaultValue={programmingScore} 
 								onChange={this.changeProgrammingScore}
 								style={{marginRight: 50}}
 								/>
 					<span>{programmingNumber*programmingScore}</span>
 				</div>
-				<p>{total}</p>
+				<p><span>总分数:</span><span>{total}</span></p>
+				<Button type="default" style={{marginLeft: 260}} onClick={this.addRandomPaper}>随机组卷</Button>
 			</div>
 		)
 	}

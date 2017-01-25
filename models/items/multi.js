@@ -1,6 +1,10 @@
 var mongoose = require('mongoose')
+var random = require('mongoose-simple-random')
+
 
 var MultiSchema = require('../../schemas/items/Multi')
+MultiSchema.plugin(random)
+
 var Multi = mongoose.model('Multi',MultiSchema)
 
 // var multi1 = new Multi({

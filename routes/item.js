@@ -7,6 +7,7 @@ var Judge = require('../models/items/judge')
 var Fillblank = require('../models/items/fillblank')
 var Programming = require('../models/items/programming')
 var Correct = require('../models/items/correct')
+var Exampap = require('../models/exampapers')
 
 router.get('/radio',function(req,res){
   Radio.find({}).exec(function(err,radios){
@@ -369,4 +370,130 @@ router.post('/modiCorrect',function(req,res){
   })
 
 })
+
+router.post('/randomPaper',function(req,res){
+  var radioNum = req.body.radioNum
+  var multiNum = req.body.multiNum
+  var judgeNum = req.body.judgeNum
+  var fillblankNum = req.body.fillblankNum
+  var correctNum = req.body.correctNum
+  var programmingNum = req.body.programmingNum
+  var randomPaper = {radio: [],multi: [], judge: [],
+                    fillblank: [],correct: [],programming: []}
+  // if(radioNum>0){
+  //   Radio.findRandom({}, {}, {limit: radioNum}, function(err, results) {
+  //     if(err){
+  //       console.log(err)
+  //     }else{
+  //       randomPaper.radio=results
+  //     }
+  //   })
+  // }
+  // if(multiNum>0){
+  //   Multi.findRandom({}, {}, {limit: multiNum}, function(err, results) {
+  //     if(err){
+  //       console.log(err)
+  //     }else{
+  //       randomPaper.multi=results
+  //     }
+  //   })
+  // }
+  // if(judgeNum>0){
+  //   Judge.findRandom({}, {}, {limit: judgeNum}, function(err, results) {
+  //     if(err){
+  //       console.log(err)
+  //     }else{
+  //       randomPaper.judge=results
+  //     }
+  //   })
+  // }
+  // if(fillblankNum>0){
+  //   Fillblank.findRandom({}, {}, {limit: fillblankNum}, function(err, results) {
+  //     if(err){
+  //       console.log(err)
+  //     }else{
+  //       randomPaper.fillblank=results
+  //     }
+  //   })
+  // }
+  // if(correctNum>0){
+  //   Correct.findRandom({}, {}, {limit: correctNum}, function(err, results) {
+  //     if(err){
+  //       console.log(err)
+  //     }else{
+  //       randomPaper.correct=results
+  //     }
+  //   })
+  // }
+  // if(programmingNum>0){
+  //   Programming.findRandom({}, {}, {limit: programmingNum}, function(err, results) {
+  //     if(err){
+  //       console.log(err)
+  //     }else{
+  //       randomPaper.programming=results
+  //       console.log(randomPaper)
+  //     }
+  //   })
+  // }
+  // console.log(randomPaper)
+  // var randomPap = new Exampap(randomPaper)
+  // randomPap.save(function(err){
+  //   if(err){
+  //     console.log(err)
+  //   }else{
+  //     res.send({status: 1})
+  //   }
+  // })
+    Radio.findRandom({}, {}, {limit: radioNum}, function(err, results) {
+      if(err){
+        console.log(err)
+      }else{
+        randomPaper.radio=results
+        Multi.findRandom({}, {}, {limit: multiNum}, function(err, results) {
+          if(err){
+            console.log(err)
+          }else{
+            randomPaper.multi=results
+            Judge.findRandom({}, {}, {limit: judgeNum}, function(err, results) {
+              if(err){
+                console.log(err)
+              }else{
+                randomPaper.judge=results
+                Fillblank.findRandom({}, {}, {limit: fillblankNum}, function(err, results) {
+                  if(err){
+                    console.log(err)
+                  }else{
+                    randomPaper.fillblank=results
+                    Correct.findRandom({}, {}, {limit: correctNum}, function(err, results) {
+                      if(err){
+                        console.log(err)
+                      }else{
+                        randomPaper.correct=results
+                        Programming.findRandom({}, {}, {limit: programmingNum}, function(err, results) {
+                          if(err){
+                            console.log(err)
+                          }else{
+                            randomPaper.programming=results
+                            var randomPap = new Exampap(randomPaper)
+                            randomPap.save(function(err){
+                              if(err){
+                                console.log(err)
+                              }else{
+                                res.send({status: 1})
+                              }
+                            })
+                          }
+                        })
+                      }
+                    })
+                  }
+                })
+              }
+            })
+          }
+        })
+      }
+    })
+})
+
 module.exports = router

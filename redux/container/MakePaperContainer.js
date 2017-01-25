@@ -10,7 +10,7 @@ class MakePaperContainer extends Component{
 	}
 	render(){
 		return (
-			<Card title="组卷参数">
+			<Card title="组卷参数" style={{minHeight: 500}}>
 				<MakePaper />
 			</Card>
 			)

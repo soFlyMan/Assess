@@ -1,6 +1,8 @@
 var mongoose = require('mongoose')
+var random = require('mongoose-simple-random')
 
 var RadioSchema = require('../../schemas/items/radio')
+RadioSchema.plugin(random)
 var Radio = mongoose.model('Radio',RadioSchema)
 
 // var radio1 = new Radio({
@@ -32,4 +34,23 @@ var Radio = mongoose.model('Radio',RadioSchema)
 // radio2.save(function(err){
 // 	if(err) console.log(err)
 // })
+
+// Radio.count().exec(function (err, count) {
+
+//   // Get a random entry
+//   var random = Math.floor(Math.random() * count)
+
+//   // Again query all users but only fetch one offset by our random #
+//   Radio.findOne().skip(random).exec(
+//     function (err, result) {
+//       // Tada! random user
+//       console.log(result) 
+//     })
+// })
+
+// Radio.findRandom({}, {}, {limit: 2}, function(err, results) {
+//   if (!err) {
+//     console.log(results); 
+//   }
+// });
 module.exports = Radio
