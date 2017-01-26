@@ -5,10 +5,9 @@ import { Button } from 'antd';
 
 import { fetchParams } from '../redux/actions/actions.js'
 import { fetchLoginStatus, logOut } from '../redux/actions/stuActions.js'
-import LoginModal from './LoginModal.js';
-import AssessShow from './AssessShow.js';
+import AssessShow from './AssessShow.js'
+import Nav from './Nav.js'
 
-var logo = require('../assets/images/Assesslogo.png')
 
 
 class Assess extends Component{
@@ -53,21 +52,9 @@ class Assess extends Component{
 		return (
 			<div style={{marginBottom:180}} onWheel={this.handleScorll.bind(this)}>
 			<div>
-				<nav className={this.state.nav}>
-					<ul style={{padding: '0 5%'}}>
-						<li style={{fontSize:40,float:'left',marginLeft:8}}>
-							<Link to="/" style={{color:"#777"}}>
-								<img height="60" width="80" src="./logo"/>
-							</Link>
-						</li>
-						<li style={{float:'right'}}>
-							<LoginModal loginstatus={fetchingLoginStatus.fetched}
-										username={fetchingLoginStatus.data.username}
-										userid={fetchingLoginStatus.data.userid}
-										onLogOut={(url,params) =>dispatch(logOut(url,params))}/>
-						</li>
-					</ul>
-				</nav>
+				<Nav nav={this.state.nav}
+					 fetchingLoginStatus={fetchingLoginStatus}
+					 onLogOut={(url,params) =>dispatch(logOut(url,params))}/>
 				<div id="navImg">
 			</div>
 				<div style={{width:"20%",height:100,padding:40,margin:"0 auto"}}>

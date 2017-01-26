@@ -121,12 +121,12 @@ class MakePaper extends Component{
 				<div>
 					<p><span>个数</span> <span>分数</span> <span>合计分数</span></p>
 					<span style={{marginRight: 10}}>单项选择题</span>
-					<InputNumber min={0} max={20} 
+					<InputNumber min={1} max={20} 
 								defaultValue={radioNumber} 
 								onChange={this.changeRadioNumber}
 								style={{marginRight: 10}}
 								/>
-					<InputNumber min={0} max={20} 
+					<InputNumber min={1} max={20} 
 								defaultValue={radioScore} 
 								onChange={this.changeRadioScore}
 								style={{marginRight: 50}}
@@ -135,12 +135,12 @@ class MakePaper extends Component{
 				</div>
 				<div>
 					<span style={{marginRight: 10}}>多项选择题</span>
-					<InputNumber min={0} max={20} 
+					<InputNumber min={1} max={20} 
 								defaultValue={multiNumber} 
 								onChange={this.changeMultiNumber}
 								style={{marginRight: 10}}
 								/>
-					<InputNumber min={0} max={20} 
+					<InputNumber min={1} max={20} 
 								defaultValue={multiScore} 
 								onChange={this.changeMultiScore}
 								style={{marginRight: 50}}
@@ -149,12 +149,12 @@ class MakePaper extends Component{
 				</div>
 				<div>
 					<span style={{marginRight: 34}}>判断题</span>
-					<InputNumber min={0} max={20} 
+					<InputNumber min={1} max={20} 
 								defaultValue={judgeNumber} 
 								onChange={this.changeJudgeNumber}
 								style={{marginRight: 10}}
 								/>
-					<InputNumber min={0} max={20} 
+					<InputNumber min={1} max={20} 
 								defaultValue={judgeScore} 
 								onChange={this.changeJudgeScore}
 								style={{marginRight: 50}}
@@ -163,12 +163,12 @@ class MakePaper extends Component{
 				</div>
 				<div>
 					<span style={{marginRight: 34}}>填空题</span>
-					<InputNumber min={0} max={20} 
+					<InputNumber min={1} max={20} 
 								defaultValue={fillblankNumber} 
 								onChange={this.changeFillblankNumber}
 								style={{marginRight: 10}}
 								/>
-					<InputNumber min={0} max={20} 
+					<InputNumber min={1} max={20} 
 								defaultValue={fillblankScore} 
 								onChange={this.changeFillblankScore}
 								style={{marginRight: 50}}
@@ -177,12 +177,12 @@ class MakePaper extends Component{
 				</div>
 				<div>
 					<span style={{marginRight: 34}}>改错题</span>
-					<InputNumber min={0} max={20} 
+					<InputNumber min={1} max={20} 
 								defaultValue={correctNumber} 
 								onChange={this.changeCorrectNumber}
 								style={{marginRight: 10}}
 								/>
-					<InputNumber min={0} max={20} 
+					<InputNumber min={1} max={20} 
 								defaultValue={correctScore} 
 								onChange={this.changeCorrectScore}
 								style={{marginRight: 50}}
@@ -191,12 +191,12 @@ class MakePaper extends Component{
 				</div>
 				<div>
 					<span style={{marginRight: 34}}>编程题</span>
-					<InputNumber min={0} max={20} 
+					<InputNumber min={1} max={20} 
 								defaultValue={programmingNumber} 
 								onChange={this.changeProgrammingNumber}
 								style={{marginRight: 10}}
 								/>
-					<InputNumber min={0} max={20} 
+					<InputNumber min={1} max={20} 
 								defaultValue={programmingScore} 
 								onChange={this.changeProgrammingScore}
 								style={{marginRight: 50}}
