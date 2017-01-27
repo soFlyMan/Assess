@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { message, Form, Icon, Input, Checkbox, Modal, Button, Menu, Upload } from 'antd';
+import { message, Form, Icon, Input, Checkbox, Modal, Button, Menu, Upload, Dropdown } from 'antd';
 import { Link } from 'react-router';
 
 const FormItem = Form.Item;
@@ -107,6 +107,9 @@ const LoginModal = Form.create()(React.createClass({
     this.props.onLogOut('/logout',{
       method: 'GET'
     })
+    this.props.onFetchLoginStatus('/logStatus',{
+      method: 'GET'
+    })
   },
   handleChange(info){
     if (info.file.status === 'done') {
@@ -117,6 +120,14 @@ const LoginModal = Form.create()(React.createClass({
   render() {
     const { getFieldDecorator } = this.props.form;
     const imageUrl = this.state.imageUrl;
+    const menu = (
+      <Menu>
+        <Menu.Item key="1"><span><Icon type="file-text" style={{marginRight:8}}/>个人信息</span></Menu.Item>
+        <Menu.Item key="2"><span><Icon type="mail" style={{marginRight:8}}/>历史消息</span></Menu.Item>
+        <Menu.Divider />
+        <Menu.Item key="3"><Link to="/"><span onClick={this.logOut}><Icon type="logout" style={{marginRight:8}}/>退出</span></Link></Menu.Item>
+      </Menu>
+      );
     return (
       <div>
       { 
@@ -138,7 +149,7 @@ const LoginModal = Form.create()(React.createClass({
               }
             </Upload>
           </li>
-          <li className="username"><Link to="/"><span style={{color: "#777"}} onClick={this.logOut} >{this.props.username}</span></Link></li>
+          <li className="username"><Dropdown overlay={menu}><span style={{color: "#777"}}>{this.props.username}<Icon type="down" /></span></Dropdown></li>
         </ul>
         :
         <div style={{padding: 15}}>

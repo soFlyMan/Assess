@@ -54,7 +54,8 @@ class Assess extends Component{
 			<div>
 				<Nav nav={this.state.nav}
 					 fetchingLoginStatus={fetchingLoginStatus}
-					 onLogOut={(url,params) =>dispatch(logOut(url,params))}/>
+					 onLogOut={(url,params) =>dispatch(logOut(url,params))}
+					 onFetchLoginStatus={(url,params)=>dispatch(fetchLoginStatus)}/>
 				<div id="navImg">
 			</div>
 				<div style={{width:"20%",height:100,padding:40,margin:"0 auto"}}>
