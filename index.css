@@ -165,3 +165,16 @@ html, body, #root {
 .makepaper div{
   margin-bottom: 4px
 }
+
+/*couse*/
+.course{
+  background-color: #F0F0F0;
+}
+.course .course-desc{
+  height: 400px;
+  background-color: #e2e9ec;
+}
+.course .course-content{
+  width: 50%;
+  margin: 40px 120px;
+}

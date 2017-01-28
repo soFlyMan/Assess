@@ -21,7 +21,7 @@ import ProgrammingContainer from './redux/container/ProgrammingContainer.js'
 import Assess from './component/Assess.js'
 import AssessScore from './component/student/AssessScore.js'
 import ExamContainer from './redux/container/ExamContainer.js'
-import Course from './component/student/Course.js'
+import Course from './component/course/Course.js'
 
 import Admin from './component/admin/Admin.js'
 import AdminLogin from './component/admin/AdminLogin.js'

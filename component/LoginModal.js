@@ -107,9 +107,6 @@ const LoginModal = Form.create()(React.createClass({
     this.props.onLogOut('/logout',{
       method: 'GET'
     })
-    this.props.onFetchLoginStatus('/logStatus',{
-      method: 'GET'
-    })
   },
   handleChange(info){
     if (info.file.status === 'done') {

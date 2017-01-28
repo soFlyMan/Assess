@@ -13,11 +13,15 @@ export default class Course extends Component{
 	}
 	render(){
 		return (
-			<Card title="java程序设计">
-				<Collapse>
-					<Section />
-				</Collapse>
-			</Card>
+			<div className="course">
+				<div className="course-desc">
+				</div>
+				<div className="course-content" bordered={false}>
+					<Collapse>
+						<Section />
+					</Collapse>
+				</div>
+			</div>
 			)
 	}
 }
