@@ -1,5 +1,5 @@
 import React,{ Component } from 'react'
-import { Card, Button, Collapse } from 'antd'
+import { Collapse } from 'antd'
 
 const Panel = Collapse.Panel
 export default class Section extends Component{
@@ -50,11 +50,8 @@ export default class Section extends Component{
 					</Panel>
 		)
 		return (
-			<Card title="章节管理" style={{minHeight: 500}} 
-			extra={<Button type="default">添加章节</Button>}>
 				<Collapse>
 			    	{content}
 			    </Collapse>
-			</Card>
 	)}
 }

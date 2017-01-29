@@ -38,15 +38,15 @@ const Admin = React.createClass({
         >
           <SubMenu key="sub1" title={<span><Icon type="book" /><span>教学内容管理</span></span>}>
               <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>java程序设计</span></span>}>
-                <Menu.Item key="1"><Link to="/admin/section"><span>章节管理</span></Link></Menu.Item>
+                <Menu.Item key="1"><Link to="/admin/sectioncontainer"><span>章节管理</span></Link></Menu.Item>
                 <Menu.Item key="2"><Link to="/admin/download"><span>下载区管</span>理</Link></Menu.Item>
               </SubMenu>
               <SubMenu key="sub3" title={<span><Icon type="appstore" /><span>react教学</span></span>}>
-                <Menu.Item key="3"><Link to="/admin/section"><span>章节管理</span></Link></Menu.Item>
+                <Menu.Item key="3"><Link to="/admin/sectioncontainer"><span>章节管理</span></Link></Menu.Item>
                 <Menu.Item key="4"><Link to="/admin/download"><span>下载区管</span>理</Link></Menu.Item>
               </SubMenu>
               <SubMenu key="sub4" title={<span><Icon type="appstore" /><span>nodeJS</span></span>}>
-                <Menu.Item key="5"><Link to="/admin/section"><span>章节管理</span></Link></Menu.Item>
+                <Menu.Item key="5"><Link to="/admin/sectioncontainer"><span>章节管理</span></Link></Menu.Item>
                 <Menu.Item key="6"><Link to="/admin/download"><span>下载区管</span>理</Link></Menu.Item>
               </SubMenu>
           </SubMenu>

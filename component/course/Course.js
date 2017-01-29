@@ -1,9 +1,8 @@
 import React,{ Component } from 'react'
-import { Card, Collapse } from 'antd' 
+import { Card } from 'antd' 
 
 import Section from '../admin/course/Section.js'
 
-const Panel = Collapse.Panel
 export default class Course extends Component{
 	constructor(props){
 		super(props)
@@ -16,11 +15,9 @@ export default class Course extends Component{
 			<div className="course">
 				<div className="course-desc">
 				</div>
-				<div className="course-content" bordered={false}>
-					<Collapse>
+				<Card className="course-content" bordered={false} style={{minHeight: 500}}>
 						<Section />
-					</Collapse>
-				</div>
+				</Card>
 			</div>
 			)
 	}

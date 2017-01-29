@@ -31,7 +31,7 @@ import UserContainer from './redux/container/UserContainer.js'
 import SingleUserContainer from './redux/container/SingleUserContainer.js'
 
 
-import Section from './component/admin/course/Section.js'
+import SectionContainer from './redux/container/SectionContainer.js'
 import Download from './redux/container/UserContainer.js'
 
 
@@ -55,7 +55,7 @@ ReactDOM.render((
 			<Route path="examcontainer" component={ExamContainer} />
 
 			<Route path="admin" component={Admin}>
-				<Route path="section" component={Section} />
+				<Route path="sectioncontainer" component={SectionContainer} />
 				<Route path="download" component={Download} />
 				<Route path="classadmin" component={ClassAdmin} />
 				<Route path="usercontainer" component={UserContainer} />
