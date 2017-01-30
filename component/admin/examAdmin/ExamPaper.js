@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+var a = 1
 const ExamPaper = ({fetched,randomExampap}) => {
 	if(fetched){
 	return (
@@ -12,8 +13,9 @@ const ExamPaper = ({fetched,randomExampap}) => {
 					.map(val =>{
 						return (
 							<div>
+								<span>{a++}.</span>
 								{val.body}
-								{val.options}
+								<div>{val.options}</div>
 							</div>
 								) 
 					}

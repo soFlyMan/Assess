@@ -91,6 +91,15 @@ export default class AssessShow extends Component{
 	}
 	handleMessage(){
 		message.info("尚未开启！")
+		fetch('/logout',{
+			method: 'GET'
+		}).then(function(res){
+			if(res.ok){
+				console.log("退出")
+			}
+		}).catch(function(err){
+			console.log(err.message)
+		})
 	}
 	render(){
 		const columns = [{

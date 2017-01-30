@@ -28,7 +28,7 @@ export default class Fillblank extends Component{
 		const fillblankId = {
 			id: record._id
 		}
-	  	var status = this.props.fetchStatus.status
+	  	var fetched = this.props.fetchStatus.fetched
         const self = this
         function* gen(){
 			yield self.props.onDelete('/item/delFillblank',{

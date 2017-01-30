@@ -23,8 +23,6 @@ router.get('/exam',function(req,res){
 		if(err){
 			console.log(err)
 		}
-		console.log("test session")
-		console.log(reqSession.userid)
 		res.send(users[0])
 	})
 })
@@ -116,15 +114,16 @@ router.get('/logStatus',function(req,res){
 })
 
 router.get('/logout',function(req,res){
-		if(req.session){
-		req.session.destory(function(err){
-			if(err){
-				console.log(err)
-			}else{
-				res.send({status: 1})
-			}
-		})
-	}
+		// if(req.session){
+		// req.session.destory(function(err){
+		// 	if(err){
+		// 		console.log(err)
+		// 	}else{
+		delete reqSession
+		res.send({status: 1})
+	// 		}
+	// 	})
+	// }
 })
 // 	//优先级
 // 	// var _users = req.params.users

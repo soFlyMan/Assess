@@ -37,6 +37,7 @@ app.use(favicon(__dirname+'/favicon.ico'))
 //解析application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(cookieParser())
 app.use(session({
 
   secret: 'imooc',
@@ -54,7 +55,6 @@ app.use(session({
   saveUninitialized: true
 
 }))
-app.use(cookieParser())
 // app.use(session({
 // 	// store: new RedisStore(options),
 // 	store: new mongoStore({
