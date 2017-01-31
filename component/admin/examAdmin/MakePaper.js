@@ -74,14 +74,21 @@ class MakePaper extends Component{
 		})
 	}
 	addRandomPaper = () => {
-		const { radioNumber,multiNumber,judgeNumber,fillblankNumber,correctNumber,programmingNumber } = this.state
+		const { radioNumber,multiNumber,judgeNumber,fillblankNumber,correctNumber,programmingNumber,
+				radioScore,multiScore,judgeScore,fillblankScore,correctScore,programmingScore } = this.state
 		const number = {
 			radioNum: radioNumber,
 			multiNum: multiNumber,
 			judgeNum: judgeNumber,
 			fillblankNum: fillblankNumber,
 			correctNum: correctNumber,
-			programmingNum: programmingNumber
+			programmingNum: programmingNumber,
+			radioScore: radioScore,
+			multiScore: multiScore,
+			judgeScore: judgeScore,
+			fillblankScore: fillblankScore,
+			correctScore: correctScore,
+			programmingScore: programmingScore
 		}
 		fetch('/item/randomPaper',{
 			method: 'POST',

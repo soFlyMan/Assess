@@ -10,7 +10,7 @@ const SinglePaper = ({ fetched, singlePaper }) =>{
 	if(fetched){
 	return (
 		<div>
-			<h3>一、单项选择题</h3>
+			<h3>一、单项选择题(每题{singlePaper.radioScore}分)</h3>
 			<div>
 			{
 				singlePaper
@@ -33,7 +33,7 @@ const SinglePaper = ({ fetched, singlePaper }) =>{
 				)
 			}
 			</div>
-			<h3>二、多项选择题</h3>
+			<h3>二、多项选择题(每题{singlePaper.multiScore}分)</h3>
 			<div>
 				{
 					singlePaper
@@ -52,7 +52,7 @@ const SinglePaper = ({ fetched, singlePaper }) =>{
 						})
 				}
 			</div>
-			<h3>三、填空题</h3>
+			<h3>三、填空题(每题{singlePaper.fillblankScore}分)</h3>
 			{
 					singlePaper
 					.fillblank
@@ -68,7 +68,7 @@ const SinglePaper = ({ fetched, singlePaper }) =>{
 								   </div>
 						})
 				}
-			<h3>四、改错题</h3>
+			<h3>四、改错题(每题{singlePaper.correctScore}分)</h3>
 			{
 					singlePaper
 					.correct
@@ -84,7 +84,7 @@ const SinglePaper = ({ fetched, singlePaper }) =>{
 								   </div>
 						})
 				}
-			<h3>五、判断题</h3>
+			<h3>五、判断题(每题{singlePaper.judgeScore}分)</h3>
 			{
 					singlePaper
 					.judge
@@ -100,7 +100,7 @@ const SinglePaper = ({ fetched, singlePaper }) =>{
 								   </div>
 						})
 				}
-			<h3>六、编程题</h3>
+			<h3>六、编程题(每题{singlePaper.programmingScore}分)</h3>
 			{
 					singlePaper
 					.programming

@@ -378,72 +378,18 @@ router.post('/randomPaper',function(req,res){
   var fillblankNum = req.body.fillblankNum
   var correctNum = req.body.correctNum
   var programmingNum = req.body.programmingNum
+
+  var radioScore = req.body.radioScore
+  var multiScore = req.body.multiScore
+  var judgeScore = req.body.judgeScore
+  var fillblankScore = req.body.fillblankScore
+  var correctScore = req.body.correctScore
+  var programmingScore = req.body.programmingScore
+
   var randomPaper = {radio: [],multi: [], judge: [],
-                    fillblank: [],correct: [],programming: []}
-  // if(radioNum>0){
-  //   Radio.findRandom({}, {}, {limit: radioNum}, function(err, results) {
-  //     if(err){
-  //       console.log(err)
-  //     }else{
-  //       randomPaper.radio=results
-  //     }
-  //   })
-  // }
-  // if(multiNum>0){
-  //   Multi.findRandom({}, {}, {limit: multiNum}, function(err, results) {
-  //     if(err){
-  //       console.log(err)
-  //     }else{
-  //       randomPaper.multi=results
-  //     }
-  //   })
-  // }
-  // if(judgeNum>0){
-  //   Judge.findRandom({}, {}, {limit: judgeNum}, function(err, results) {
-  //     if(err){
-  //       console.log(err)
-  //     }else{
-  //       randomPaper.judge=results
-  //     }
-  //   })
-  // }
-  // if(fillblankNum>0){
-  //   Fillblank.findRandom({}, {}, {limit: fillblankNum}, function(err, results) {
-  //     if(err){
-  //       console.log(err)
-  //     }else{
-  //       randomPaper.fillblank=results
-  //     }
-  //   })
-  // }
-  // if(correctNum>0){
-  //   Correct.findRandom({}, {}, {limit: correctNum}, function(err, results) {
-  //     if(err){
-  //       console.log(err)
-  //     }else{
-  //       randomPaper.correct=results
-  //     }
-  //   })
-  // }
-  // if(programmingNum>0){
-  //   Programming.findRandom({}, {}, {limit: programmingNum}, function(err, results) {
-  //     if(err){
-  //       console.log(err)
-  //     }else{
-  //       randomPaper.programming=results
-  //       console.log(randomPaper)
-  //     }
-  //   })
-  // }
-  // console.log(randomPaper)
-  // var randomPap = new Exampap(randomPaper)
-  // randomPap.save(function(err){
-  //   if(err){
-  //     console.log(err)
-  //   }else{
-  //     res.send({status: 1})
-  //   }
-  // })
+                    fillblank: [],correct: [],programming: [],
+                    radioScore: radioScore,multiScore: multiScore, judgeScore: judgeScore, fillblankScore: fillblankScore, correctScore: correctScore, programmingScore: programmingScore}
+  
     Radio.findRandom({}, {}, {limit: radioNum}, function(err, results) {
       if(err){
         console.log(err)
