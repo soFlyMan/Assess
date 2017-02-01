@@ -5,7 +5,11 @@ var User = require('../models/users')
 var Admin = require('../models/admin')
 
 //页面
+
 router.get('/',function(req,res){
+	console.log("123123123")
+	console.log(req.session.user)
+	console.log(req.sessionID)
 	res.sendfile('./index.html')
 })
 // router.get('/index.css',function(req,res){
@@ -38,39 +42,39 @@ router.get('/logo',function(req,res){
 // })
 
 //user sign in
-router.post('/signin',function(req,res){
-	var _user = req.body
+router.post('/signin',function(request,response){
+	var _user = request.body
 	var userid = _user.userid
 	var password = _user.password
 
 	User.findOne({userid: userid},function(err,user){
 			if(err){
 				console.log(err)
-			}
-			if(!user){
+			}else if(!user){
 				console.log('user is not exist !')
-				res.send({status: 0})
-			}
-			else{
+				response.send({status: 0})
+			}else{
 			user.comparePassword(password,function(err,isMatch){
 				if(err){
 					console.log(err)
-				}
-				if(isMatch){
+				}else if(isMatch){
 					console.log(user)
-					req.session.user = user
-					req.session.userid = user.userid
-					req.session.username = user.username
-					// req.session.save()
+					request.session.user = {
+						userid: 123,
+						username: 'asd'
+					}
+					// request.session.userid = user.userid
+					// request.session.username = user.username
+					// request.session.save()
 					// console.log('sesesese')
-					console.log(req.session)
-					reqSession = req.session
-					// console.log(req.session.userid)
+					console.log(request.session.user)
+					// request.session.user = request.session
+					// console.log(request.session.userid)
 					console.log('Is matched!')
-					res.send({status: 1,userid: reqSession.userid,username: reqSession.username})
+					return response.send({status: 1,userid: request.session.user.userid,username: request.session.user.username})
 				}else{
 					console.log('password is not matched')
-					res.send({status: 2})
+					return response.send({status: 2})
 				}
 			})
 		}
@@ -106,8 +110,8 @@ router.post('/adminsignin',function(req,res){
 })
 
 router.get('/logStatus',function(req,res){
-	if(reqSession){
-		res.send({userid: reqSession.userid, username: reqSession.username})
+	if(req.session.user){
+		res.send({userid: req.session.user.userid, username: req.session.user.username})
 	}else{
 		res.send({status: 0})
 	}
@@ -119,7 +123,7 @@ router.get('/logout',function(req,res){
 		// 	if(err){
 		// 		console.log(err)
 		// 	}else{
-		delete reqSession
+		delete req.session.user
 		res.send({status: 1})
 	// 		}
 	// 	})

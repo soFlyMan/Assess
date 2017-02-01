@@ -1,10 +1,10 @@
 var express = require('express')
+var mongoose = require('mongoose')
 var path = require('path')
 var bodyParser = require('body-parser')
-var cookieParser = require('cookie-parser')
+// var cookieParser = require('cookie-parser')
 var session = require('express-session')
-var mongoose = require('mongoose')
-var mongoStore = require('connect-mongo')(session)
+var MongoStore = require('connect-mongo')(session)
 // var RedisStore = require('connect-redis')(session)
 var favicon = require('serve-favicon')
 
@@ -29,7 +29,8 @@ var user = require('./routes/user')
 app.set('views', './views')
 app.set('view engine','jade')
 
-
+//引用静态文件
+app.use(express.static(path.join(__dirname, 'dist')))
 app.use(favicon(__dirname+'/favicon.ico'))
 
 //对请求内容进行解析
@@ -37,23 +38,33 @@ app.use(favicon(__dirname+'/favicon.ico'))
 //解析application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(cookieParser())
+// app.use(cookieParser())
+// app.use(session({
+
+//   secret: 'imooc',
+
+//   store: new mongoStore({
+
+//     url: 'mongodb://localhost/Assess',
+
+//     collection: 'sessions',
+
+//   }),
+
+//   resave: false,
+
+//   saveUninitialized: true
+
+// }))
 app.use(session({
-
-  secret: 'imooc',
-
-  store: new mongoStore({
-
+  secret: 'heiheihei',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { secure: false, },
+  store: new MongoStore({
     url: 'mongodb://localhost/Assess',
-
-    collection: 'sessions',
-
-  }),
-
-  resave: false,
-
-  saveUninitialized: true
-
+    collection: 'mysession'
+  })
 }))
 // app.use(session({
 // 	// store: new RedisStore(options),
@@ -73,8 +84,6 @@ app.use('/exam',exam)
 app.use('/course',course)
 app.use('/item',item)
 app.use('/user',user)
-//引用静态文件
-app.use(express.static(path.join(__dirname, 'dist')));
 
 
 // app.get('/logStatus',function(req,res){

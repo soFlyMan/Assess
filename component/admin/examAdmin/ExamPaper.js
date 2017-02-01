@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Radio } from 'antd'
 
 const RadioGroup = Radio.Group
-var a = 1
 class ExamPaper extends Component{
 	constructor(props){
 		super(props)
@@ -16,11 +15,12 @@ class ExamPaper extends Component{
 		})
 	}
 	render(){
+	var a = 1
 	const { fetched, randomExampap } = this.props
 	if(fetched){
 		return (
 			<div>
-				<h3>一、单项选择题</h3>
+				<h3>一、单项选择题(每题{randomExampap.radioScore}分)</h3>
 				<div>
 				{
 					randomExampap
@@ -33,7 +33,7 @@ class ExamPaper extends Component{
 										{val.body}
 									</pre>
 									<pre>{val.options}</pre>
-									<RadioGroup onChange={this.onChange} value={this.state.values}>
+									<RadioGroup onChange={this.onChange} value={this.state.value}>
 										<Radio value={'A'}>A</Radio>
 										<Radio value={'B'}>B</Radio>
 										<Radio value={'c'}>c</Radio>
