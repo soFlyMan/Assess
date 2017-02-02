@@ -1,6 +1,7 @@
 var mongoose = require('mongoose')
 
 var ExampapSchema = new mongoose.Schema({
+	date: String,
 	radio: [{
 		_id: String,
 		body: String,

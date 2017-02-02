@@ -1,5 +1,7 @@
 var express = require('express')
 var router = express.Router()
+var Q = require('q')
+var defer = Q.defer()
 
 var Radio = require('../models/items/radio')
 var Multi = require('../models/items/multi')
@@ -8,7 +10,57 @@ var Fillblank = require('../models/items/fillblank')
 var Programming = require('../models/items/programming')
 var Correct = require('../models/items/correct')
 var Exampap = require('../models/exampapers')
+var User = require('../models/users')
 
+function getInputPromise(){
+  return defer.promise
+}
+
+router.post('/useExampap',function(req,res){
+  var date = req.body.date
+  Exampap.find({},function(err,results){
+    if(err){
+      console.log(err)
+    }else{
+      getInputPromise().then(function(results){
+        var n = Math.floor(Math.random()*results.length)
+        // console.log(date)
+        return results[n]
+      }).then(function(result){
+        result.date = date
+        // console.log(result)
+        return result
+      }).then(function(result){
+        console.log(result)
+          User.update({},{$addToSet: {exampaper: result}},{multi: true},function(err,docs){
+              if(err){
+                console.log(err)
+              }else{
+                res.send({status: 1}) 
+              }
+            })
+      })
+      defer.resolve(results)
+      // console.log(results.length)
+      // function result(results,date,callback){
+      //   var n = Math.floor(Math.random()*results.length)
+      //   results[n].date = date
+      //   callback(results[n])
+      // }
+      // result(results,date,function(result){
+      //       User.update({},{$addToSet: {exampaper: result}},{multi: true},function(err,docs){
+      //         if(err){
+      //           console.log(err)
+      //         }else{
+      //           res.send({status: 1})
+      //         }
+      //       })
+      // })
+    }
+  })
+})
+
+//radio
 router.get('/radio',function(req,res){
   Radio.find({}).exec(function(err,radios){
     if(err){
@@ -441,5 +493,6 @@ router.post('/randomPaper',function(req,res){
       }
     })
 })
+
 
 module.exports = router

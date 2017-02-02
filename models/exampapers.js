@@ -1,6 +1,9 @@
 var mongoose = require('mongoose')
+var random = require('mongoose-simple-random')
 
 var ExampapSchema = require('../schemas/exampapers')
+ExampapSchema.plugin(random)
+
 var Exampap = mongoose.model('Exampap',ExampapSchema)
 
 // var exampap1 = new Exampap({ radio: 

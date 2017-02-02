@@ -22,6 +22,22 @@ class ExamParamContainer extends Component{
 			console.log('随机组卷，添加至学生信息')
 		}else{
 			console.log('随机抽卷，添加至学生信息')
+			fetch('/item/useExampap',{
+				method: 'POST',
+				credentials: 'same-origin',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({date: fetchingParams.data.date})
+			}).then(function(res){
+				if(res.ok){
+					res.json().then(function(data){
+						console.log(data)
+					})
+				}
+			}).catch(function(err){
+				console.log(err.message)
+			})
 		}
 	}
 	render(){

@@ -130,13 +130,13 @@ var test = {
 // 	console.log(users)
 
 // })
-User.update({},{ $addToSet:{exampaper: test}},{multi:true},function(err,docs){
-	if(err){
-		console.log(err)
-	}else{
-		console.log(docs)
-	}
-})
+// User.update({},{ $addToSet:{exampaper: test}},{multi:true},function(err,docs){
+// 	if(err){
+// 		console.log(err)
+// 	}else{
+// 		console.log(docs)
+// 	}
+// })
 
 
 
