@@ -1,21 +1,18 @@
 var express = require('express')
+var jade = require('jade')
 var mongoose = require('mongoose')
-var path = require('path')
-var bodyParser = require('body-parser')
 // var cookieParser = require('cookie-parser')
 var session = require('express-session')
 var MongoStore = require('connect-mongo')(session)
-// var RedisStore = require('connect-redis')(session)
 var favicon = require('serve-favicon')
 
-var port = process.env.PORT || 3000
-var app = express()
+//静态资源请求路径
+var path = require('path')
+var bodyParser = require('body-parser')
 
-// var options = {
-//      "host": "127.0.0.1",
-//      "port": "3000",
-//      "ttl": 60 * 60 * 24 * 30,   //Session的有效期为30天
-// };
+var app = express()
+var port = process.env.PORT || 3000
+
 var db = require('./server/db')
 var index = require('./routes/index')
 var admin = require('./routes/admin')
@@ -36,47 +33,20 @@ app.use(favicon(__dirname+'/favicon.ico'))
 //对请求内容进行解析
 //解析application/json
 //解析application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 // app.use(cookieParser())
-// app.use(session({
 
-//   secret: 'imooc',
-
-//   store: new mongoStore({
-
-//     url: 'mongodb://localhost/Assess',
-
-//     collection: 'sessions',
-
-//   }),
-
-//   resave: false,
-
-//   saveUninitialized: true
-
-// }))
 app.use(session({
   secret: 'heiheihei',
   resave: true,
   saveUninitialized: true,
-  cookie: { secure: false, },
+  cookie: { secure: false, maxAge : (4 * 60 * 60 * 1000) },
   store: new MongoStore({
     url: 'mongodb://localhost/Assess',
     collection: 'mysession'
   })
 }))
-// app.use(session({
-// 	// store: new RedisStore(options),
-// 	store: new mongoStore({
-// 		url: 'mongodb://localhost/Assess',
-// 		collection: 'sessions'
-// 	}),
-// 	secret: 'crackalackin',
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie : { secure : false, maxAge : (4 * 60 * 60 * 1000) }, // 4 hours
-// }))
 
 app.use('/',index)
 app.use('/admin',admin)
@@ -85,15 +55,6 @@ app.use('/course',course)
 app.use('/item',item)
 app.use('/user',user)
 
-
-// app.get('/logStatus',function(req,res){
-// 			console.log(req.session.userid)
-// 			console.log(req.session.username)
-// 			if(req.session){
-// 				res.send({userid: req.session.userid,username: req.session.username})
-// 			}else{
-// 			res.send({status: 0})
-// 	}});
 
 
 //监听端口

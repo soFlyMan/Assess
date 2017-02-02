@@ -34,7 +34,8 @@ const UserList = React.createClass({
   },
   handleRender(val){
     var req = new Request('/userlist',{
-      method: 'GET',
+      method: 'GET',,
+      credentials: 'same-origin',
     });
     var _self = this;
     fetch(req).then(function(res){
@@ -56,6 +57,7 @@ const UserList = React.createClass({
     }
     const req = new Request('/admin/userDel',{
       method: 'DELETE',
+      credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -85,6 +87,7 @@ const UserList = React.createClass({
       console.log(this.props.fetchingSingleUser)
       this.props.onFetchSingle(`/${record._id}`,{
         method: 'POST',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json'
         },

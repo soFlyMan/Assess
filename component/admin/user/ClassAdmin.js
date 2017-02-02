@@ -17,7 +17,8 @@ export default class ClassAdmin extends Component{
 	handleKlasslist=()=>{
 		var _self = this
 		var req = new Request('/admin/klass',{
-			methods: 'GET'
+			method: 'GET',
+			credentials: 'same-origin',
 		})
 		fetch(req).then(function(res){
 			if(res.ok){

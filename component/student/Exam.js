@@ -19,7 +19,10 @@ export default class Exam extends Component{
 	}
 	componentDidMount(){
 		var self=this
-		fetch('/exam').then(function(res){
+		fetch('/exam',{
+			method: 'GET',
+			credentials: 'same-origin',
+		}).then(function(res){
 			if(res.ok){
 				res.json().then(function(data){
 					self.setState({

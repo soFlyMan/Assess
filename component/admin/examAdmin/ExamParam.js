@@ -64,6 +64,7 @@ export default class ExamParam extends Component{
 		}
 		 this.props.onModi('/exam/modiParams',{
 		 	method: 'POST',
+			credentials: 'same-origin',
 		 	headers: {
 		 		'Content-Type': 'application/json'
 		 	},
@@ -72,6 +73,7 @@ export default class ExamParam extends Component{
 		 message.info("提交成功！")
 	}
 	render(){
+		const { handleExam } = this.props
 		return (
 			<Card title="考试参数设置" style={{minHeight: 500}}>
 				<Card title="考试参数" style={{
@@ -81,6 +83,7 @@ export default class ExamParam extends Component{
 					marginRight: 120
 				}}>
 					{this.props.children}
+					<Button type="default" style={{marginLeft: 120}} onClick={handleExam}>发布考试</Button>
 				</Card>	
 			  <div>
 					<ul className="paramul">

@@ -7,9 +7,11 @@ import ExamPaper from '../../component/admin/examAdmin/ExamPaper.js'
 
 class ExamContainer extends Component{
 	componentDidMount(){
+		console.log('根据考试参数，从学生信息取出试卷')
 		const { dispatch } = this.props
 		dispatch(fetchExampap('/exam/exampaper'),{
-			methond: 'GET'
+			method: 'GET',
+			credentials: 'same-origin',
 		})
 	}
 	render(){

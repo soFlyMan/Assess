@@ -30,10 +30,12 @@ class Assess extends Component{
 		const { dispatch, fetchingLoginStatus } = this.props
 
 		dispatch(fetchLoginStatus('/logStatus'),{
-			method: 'GET'
+			method: 'GET',
+			credentials: 'same-origin'
 		})
 		dispatch(fetchParams('/exam/params'),{
-			method: 'GET'
+			method: 'GET',
+			credentials: 'same-origin'
 		})
 	}
 	render(){

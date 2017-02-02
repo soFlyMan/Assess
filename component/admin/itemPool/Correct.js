@@ -18,7 +18,8 @@ export default class Correct extends Component{
 	}
 	componentWillMount(){
 		this.props.onShow('/item/correct',{
-			method: 'GET'
+			method: 'GET',
+			credentials: 'same-origin',
 		})
 	}
 	handleChange = (record) => {
@@ -33,6 +34,7 @@ export default class Correct extends Component{
         function* gen(){
 			yield self.props.onDelete('/item/delCorrect',{
 			    	method: 'DELETE',
+					credentials: 'same-origin',
 			    	headers: {
 			    		'Content-Type': 'application/json'
 			    	},
@@ -40,7 +42,8 @@ export default class Correct extends Component{
 			    })
 	        yield message.info("删除成功！")
 			yield self.props.onShow('/item/correct',{
-						method: 'GET'
+						method: 'GET',
+					credentials: 'same-origin',
 					})
 	        }
         var g = new gen()
@@ -77,6 +80,7 @@ export default class Correct extends Component{
         function* gen(){
 			yield self.props.onAdd('/item/addCorrect',{
 			    	method: 'POST',
+					credentials: 'same-origin',
 			    	headers: {
 			    		'Content-Type': 'application/json'
 			    	},
@@ -85,7 +89,8 @@ export default class Correct extends Component{
 	        yield self.setState({ loading: false, modal1Visible: false })
 	        yield message.info("添加成功！")
 			yield self.props.onShow('/item/correct',{
-						method: 'GET'
+						method: 'GET',
+					credentials: 'same-origin',
 					})
 	        }
         var g = new gen()
@@ -124,6 +129,7 @@ export default class Correct extends Component{
         function* gen(){
 			yield self.props.onModi('/item/modiCorrect',{
 			    	method: 'POST',
+					credentials: 'same-origin',
 			    	headers: {
 			    		'Content-Type': 'application/json'
 			    	},
@@ -132,7 +138,8 @@ export default class Correct extends Component{
 	        yield self.setState({ loading: false, modal2Visible: false })
 	        yield message.info("修改成功！")
 			yield self.props.onShow('/item/correct',{
-						method: 'GET'
+						method: 'GET',
+					credentials: 'same-origin',
 					})
 	        }
         var g = new gen()

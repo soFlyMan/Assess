@@ -19,7 +19,8 @@ export default class Multi extends Component{
 	}
 	componentWillMount(){
 		this.props.onShow('/item/multi',{
-			method: 'GET'
+			method: 'GET',
+			credentials: 'same-origin',
 		})
 	}
 	handleChange = (record) => {
@@ -34,6 +35,7 @@ export default class Multi extends Component{
         function* gen(){
 			yield self.props.onDelete('/item/delMulti',{
 			    	method: 'DELETE',
+					credentials: 'same-origin',
 			    	headers: {
 			    		'Content-Type': 'application/json'
 			    	},
@@ -41,7 +43,8 @@ export default class Multi extends Component{
 			    })
 	        yield message.info("删除成功！")
 			yield self.props.onShow('/item/multi',{
-						method: 'GET'
+						method: 'GET',
+					credentials: 'same-origin',
 					})
 	        }
         var g = new gen()
@@ -84,6 +87,7 @@ export default class Multi extends Component{
         function* gen(){
 			yield self.props.onAdd('/item/addMulti',{
 			    	method: 'POST',
+					credentials: 'same-origin',
 			    	headers: {
 			    		'Content-Type': 'application/json'
 			    	},
@@ -92,7 +96,8 @@ export default class Multi extends Component{
 	        yield self.setState({ loading: false, modal1Visible: false })
 	        yield message.info("添加成功！")
 			yield self.props.onShow('/item/multi',{
-						method: 'GET'
+						method: 'GET',
+					credentials: 'same-origin',
 					})
 	        }
         var g = new gen()
@@ -133,6 +138,7 @@ export default class Multi extends Component{
         function* gen(){
 			yield self.props.onModi('/item/modiMulti',{
 			    	method: 'POST',
+					credentials: 'same-origin',
 			    	headers: {
 			    		'Content-Type': 'application/json'
 			    	},
@@ -141,7 +147,8 @@ export default class Multi extends Component{
 	        yield self.setState({ loading: false, modal2Visible: false })
 	        yield message.info("修改成功！")
 			yield self.props.onShow('/item/multi',{
-						method: 'GET'
+						method: 'GET',
+					credentials: 'same-origin',
 					})
 	        }
         var g = new gen()

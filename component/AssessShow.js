@@ -71,6 +71,7 @@ export default class AssessShow extends Component{
 		var _self = this
 		var req = new Request('/exam/result',{
 			method: 'POST',
+			credentials: 'same-origin',
 			headers: {
 				'Content-Type': 'application/json'
 			},
@@ -92,7 +93,8 @@ export default class AssessShow extends Component{
 	handleMessage(){
 		message.info("尚未开启！")
 		fetch('/logout',{
-			method: 'GET'
+			method: 'GET',
+			credentials: 'same-origin'
 		}).then(function(res){
 			if(res.ok){
 				console.log("退出")

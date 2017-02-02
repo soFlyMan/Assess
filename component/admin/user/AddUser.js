@@ -19,7 +19,8 @@ const AddUser = Form.create()(React.createClass({
   componentWillMount(){
     const _self = this
     const req = new Request('/admin/klass',{
-      method: 'GET'
+      method: 'GET',
+      credentials: 'same-origin',
     })
     fetch(req).then(function(res){
       if(res.ok){
@@ -108,6 +109,7 @@ const AddUser = Form.create()(React.createClass({
     console.log(user)
     var req = new Request('/user/signup',{
           method: 'POST',
+          credentials: 'same-origin',
           headers: {
             "Content-Type": "application/json"
           },

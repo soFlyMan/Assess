@@ -35,6 +35,7 @@ const AdminLogin = Form.create()(React.createClass({
     var _self = this
     var req = new Request('/adminsignin',{
           method: 'POST',
+          credentials: 'same-origin',
           headers: {
                     'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
                     'Content-Type': 'application/json'

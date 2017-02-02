@@ -55,6 +55,7 @@ const LoginModal = Form.create()(React.createClass({
     var _self = this
     var req = new Request('/signin',{
           method: 'POST',
+          credentials: 'same-origin',
           headers: {
                     'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
                     'Content-Type': 'application/json'
@@ -105,7 +106,8 @@ const LoginModal = Form.create()(React.createClass({
   logOut(){
     console.log("退出")
     this.props.onLogOut('/logout',{
-      method: 'GET'
+      method: 'GET',
+      credentials: 'same-origin'
     })
   },
   handleChange(info){

@@ -11,13 +11,14 @@ export default class Section extends Component{
 			characters: []
 		}
 	}
-	componentWillMount(){
+	componentDidMount(){
 		const course = {
 			coursename:this.state.coursename
 		}
 		const _self = this
 		const req = new Request('/course/characters',{
 			method: 'POST',
+			credentials: 'same-origin',
 			headers: {
             "Content-Type": "application/json"
           },

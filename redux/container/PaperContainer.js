@@ -11,7 +11,8 @@ class PaperContainer extends Component{
 	componentDidMount(){
 		const { dispatch } = this.props
 		dispatch(fetchExampap('/exam/exampaper',{
-			methond: 'GET'
+			method: 'GET',
+			credentials: 'same-origin',
 		}))
 	}
 	onDel = (record) => {
@@ -22,6 +23,7 @@ class PaperContainer extends Component{
 		function* gen(){
 			yield dispatch(deleteItems('/exam/delPaper',{
 					    	method: 'DELETE',
+							credentials: 'same-origin',
 					    	headers: {
 					    		'Content-Type': 'application/json'
 					    	},
@@ -29,7 +31,8 @@ class PaperContainer extends Component{
 					    }))
 	    	yield message.info('删除成功！')
 			yield dispatch(fetchExampap('/exam/exampaper',{
-					methond: 'GET'
+					methond: 'GET',
+					credentials: 'same-origin',
 				}))
 		}
 		var g = new gen()
@@ -46,7 +49,8 @@ class PaperContainer extends Component{
 		const id = record._id
 		const { dispatch } = this.props
 		dispatch(fetchSinglePaper(`/exam/${id}`,{
-			method: 'post'
+			method: 'POST',
+			credentials: 'same-origin',
 		}))
 	}
 	render(){

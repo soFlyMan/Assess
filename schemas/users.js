@@ -22,32 +22,38 @@ var UserSchema = new mongoose.Schema({
 				answer: String,
 				stuAnswer: String
 			}],
+			radioScore: Number,
 			multi: [{
 				body: String,
 				options: String,
 				answer: String,
 				stuAnswer: String
 			}],
+			multiScore: Number,
 			fillblank: [{
 				body: String,
 				answer: String,
 				stuAnswer: String
 			}],
+			fillblankScore: Number,
 			correct: [{
 				body: String,
 				answer: String,
 				stuAnswer: String
 			}],
+			correctScore: Number,
 			judge: [{
 				body: String,
 				answer: Boolean,
 				stuAnswer: Boolean
 			}],
+			judgeScore: Number,
 			programming: [{
 				body: String,
 				answer: String,
 				stuAnswer: String
 			}],
+			programmingScore: Number,
 			score: Number
 		}],
 	meta: {

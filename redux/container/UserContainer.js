@@ -39,7 +39,8 @@ class UserContainer extends Component{
 	  }
 	  handleRender = (val) => {
 	    var req = new Request('/userlist',{
-	      method: 'GET',
+		      method: 'GET',
+			  credentials: 'same-origin',
 	    })
 	    var _self = this
 	    fetch(req).then(function(res){
@@ -60,7 +61,8 @@ class UserContainer extends Component{
 	      userid: record.userid
 	    }
 	    const req = new Request('/admin/userDel',{
-	      method: 'DELETE',
+	      	method: 'DELETE',
+			credentials: 'same-origin',
 	      headers: {
 	        'Content-Type': 'application/json',
 	      },
@@ -85,7 +87,8 @@ class UserContainer extends Component{
 	      const id = record._id
 	      const { dispatch } = this.props
 	      dispatch(fetchSingleUser(`/user/${id}`,{
-	        method: 'POST'
+	        method: 'POST',
+			credentials: 'same-origin',
 	      }))
 	  }
 	  render(){

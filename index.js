@@ -32,7 +32,7 @@ import SingleUserContainer from './redux/container/SingleUserContainer.js'
 
 
 import SectionContainer from './redux/container/SectionContainer.js'
-import Download from './redux/container/UserContainer.js'
+import Download from './component/admin/course/Download.js'
 
 
 import ExamParamContainer from './redux/container/ExamParamContainer.js'
