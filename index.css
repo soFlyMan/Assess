@@ -182,3 +182,8 @@ html, body, #root {
 .answer{
   color: #89c7f5;
 }
+
+/*paperparams*/
+.paperparams .items{
+  color: red;
+}

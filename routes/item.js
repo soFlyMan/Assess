@@ -11,6 +11,7 @@ var Programming = require('../models/items/programming')
 var Correct = require('../models/items/correct')
 var Exampap = require('../models/exampapers')
 var User = require('../models/users')
+var PaperParams = require('../models/paperparams')
 
 function getInputPromise(){
   return defer.promise
@@ -60,6 +61,20 @@ router.post('/useExampap',function(req,res){
   })
 })
 
+// router.post('/randomMakePaper',function(req,res){
+
+// })
+
+router.get('/paperparams',function(req,res){
+  PaperParams.find({}).exec(function(err,paperparams){
+    if(err){
+      console.log(err)
+    }else{
+      console.log(paperparams[0])
+      res.send(paperparams[0])
+    }
+  })
+})
 //radio
 router.get('/radio',function(req,res){
   Radio.find({}).exec(function(err,radios){
@@ -424,12 +439,12 @@ router.post('/modiCorrect',function(req,res){
 })
 
 router.post('/randomPaper',function(req,res){
-  var radioNum = req.body.radioNum
-  var multiNum = req.body.multiNum
-  var judgeNum = req.body.judgeNum
-  var fillblankNum = req.body.fillblankNum
-  var correctNum = req.body.correctNum
-  var programmingNum = req.body.programmingNum
+  var radioNumber = req.body.radioNumber
+  var multiNumber = req.body.multiNumber
+  var judgeNumber = req.body.judgeNumber
+  var fillblankNumber = req.body.fillblankNumber
+  var correctNumber = req.body.correctNumber
+  var programmingNumber = req.body.programmingNumber
 
   var radioScore = req.body.radioScore
   var multiScore = req.body.multiScore
@@ -442,32 +457,32 @@ router.post('/randomPaper',function(req,res){
                     fillblank: [],correct: [],programming: [],
                     radioScore: radioScore,multiScore: multiScore, judgeScore: judgeScore, fillblankScore: fillblankScore, correctScore: correctScore, programmingScore: programmingScore}
   
-    Radio.findRandom({}, {}, {limit: radioNum}, function(err, results) {
+    Radio.findRandom({}, {}, {limit: radioNumber}, function(err, results) {
       if(err){
         console.log(err)
       }else{
         randomPaper.radio=results
-        Multi.findRandom({}, {}, {limit: multiNum}, function(err, results) {
+        Multi.findRandom({}, {}, {limit: multiNumber}, function(err, results) {
           if(err){
             console.log(err)
           }else{
             randomPaper.multi=results
-            Judge.findRandom({}, {}, {limit: judgeNum}, function(err, results) {
+            Judge.findRandom({}, {}, {limit: judgeNumber}, function(err, results) {
               if(err){
                 console.log(err)
               }else{
                 randomPaper.judge=results
-                Fillblank.findRandom({}, {}, {limit: fillblankNum}, function(err, results) {
+                Fillblank.findRandom({}, {}, {limit: fillblankNumber}, function(err, results) {
                   if(err){
                     console.log(err)
                   }else{
                     randomPaper.fillblank=results
-                    Correct.findRandom({}, {}, {limit: correctNum}, function(err, results) {
+                    Correct.findRandom({}, {}, {limit: correctNumber}, function(err, results) {
                       if(err){
                         console.log(err)
                       }else{
                         randomPaper.correct=results
-                        Programming.findRandom({}, {}, {limit: programmingNum}, function(err, results) {
+                        Programming.findRandom({}, {}, {limit: programmingNumber}, function(err, results) {
                           if(err){
                             console.log(err)
                           }else{

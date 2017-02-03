@@ -8,7 +8,8 @@ import { FETCH_ITEMS, RECEIVE_ITEMS, FETCH_ITEMS_ERROR,
 		FETCH_PARAMS, FETCHED_PARAMS,
 		MODI_PARAMS, MODIED_PARAMS,
 		FETCH_PARAMS_ERROR,
-		FETCH_SINGLE,FETCHED_SINGLE,FETCH_SINGLE_ERR
+		FETCH_SINGLE,FETCHED_SINGLE,FETCH_SINGLE_ERR,
+		FETCH_PAPER_PARAMS, FETCHED_PAPER_PARAMS, FETCH_PAPER_PARAMS_ERR
  		} from '../actions/actions.js'
 import { fetchingScore, fetchingExampap, fetchingLoginStatus } from './stuReducers.js'
 import { fetchingUser, fetchingSingleUser } from './userReducers.js'
@@ -157,6 +158,33 @@ const fetchSingle = (state = {fetching: false,fetched: false, data: [], error: n
 			return state
 	}
 }
+
+const fetchingPaperParams = (state={fetching: false,fetched: false, data: {}, error: null},action) => {
+	switch(action.type){
+		case FETCH_PAPER_PARAMS:
+			return {
+				...state,
+				fetching: true,
+				fetched: false
+			}
+		case FETCH_PAPER_PARAMS_ERR:
+			return {
+				...state,
+				fetching: false,
+				fetched: false,
+				error: action.payload
+			}
+		case FETCHED_PAPER_PARAMS:
+			return {
+				...state,
+				fetching: false,
+				fetched: true,
+				data: action.payload
+			}
+		default:
+			return state
+	}
+}
 const reducer = combineReducers({
 	fetchingItems,
 	fetchStatus,
@@ -167,6 +195,7 @@ const reducer = combineReducers({
 	fetchSingle,
 	fetchingUser,
 	fetchingSingleUser,
+	fetchingPaperParams,
 	routing: routerReducer
 })
 export default reducer

@@ -84,7 +84,7 @@ export default class ExamParam extends Component{
 				}}>
 					{this.props.children}
 					<Button type="default" style={{marginLeft: 120}} onClick={handleExam}>发布考试</Button>
-				</Card>	
+			</Card>	
 			  <div>
 					<ul className="paramul">
 						<li style={{width: 200}}>

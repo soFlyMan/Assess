@@ -77,12 +77,12 @@ class MakePaper extends Component{
 		const { radioNumber,multiNumber,judgeNumber,fillblankNumber,correctNumber,programmingNumber,
 				radioScore,multiScore,judgeScore,fillblankScore,correctScore,programmingScore } = this.state
 		const number = {
-			radioNum: radioNumber,
-			multiNum: multiNumber,
-			judgeNum: judgeNumber,
-			fillblankNum: fillblankNumber,
-			correctNum: correctNumber,
-			programmingNum: programmingNumber,
+			radioNumber: radioNumber,
+			multiNumber: multiNumber,
+			judgeNumber: judgeNumber,
+			fillblankNumber: fillblankNumber,
+			correctNumber: correctNumber,
+			programmingNumber: programmingNumber,
 			radioScore: radioScore,
 			multiScore: multiScore,
 			judgeScore: judgeScore,

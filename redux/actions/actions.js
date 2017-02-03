@@ -23,6 +23,10 @@ export const FETCH_SINGLE = 'FETCH_SINGLE'
 export const FETCHED_SINGLE = 'FETCHED_SINGLE'
 export const FETCH_SINGLE_ERR = 'FETCH_SINGLE_ERR'
 
+export const FETCH_PAPER_PARAMS = 'FETCH_PAPER_PARAMS'
+export const FETCHED_PAPER_PARAMS = 'FETCHED_PAPER_PARAMS'
+export const FETCH_PAPER_PARAMS_ERR = 'FETCH_PAPER_PARAMS_ERR'
+
 export const fetchItems = (url,params) => {
 	return dispatch => {
 		dispatch({ type: FETCH_ITEMS })
@@ -110,6 +114,19 @@ export const fetchSinglePaper = (url,params) => {
 						dispatch({ type: FETCHED_SINGLE, payload: data })
 					})).catch(err => {
 					dispatch({ type: FETCH_SINGLE_ERR, payload: err})
+				})
+	}
+}
+
+export const fetchPaperParams = (url,params) => {
+	return dispatch => {
+		dispatch({type: FETCH_PAPER_PARAMS})
+		return fetch(url,params)
+				.then(res => res.json()
+					.then(data => {
+						dispatch({ type: FETCHED_PAPER_PARAMS, payload: data })
+					})).catch(err => {
+					dispatch({ type: FETCH_PAPER_PARAMS_ERR, payload: err })
 				})
 	}
 }
