@@ -65,15 +65,52 @@ router.post('/useExampap',function(req,res){
 
 // })
 
+
+// paperparams
 router.get('/paperparams',function(req,res){
   PaperParams.find({}).exec(function(err,paperparams){
     if(err){
       console.log(err)
     }else{
-      console.log(paperparams[0])
+      // console.log(paperparams[0])
       res.send(paperparams[0])
     }
   })
+})
+
+router.post('/modiPaperParams',function(req,res){
+  var radioNumber = req.body.radioNumber
+  var multiNumber = req.body.multiNumber
+  var judgeNumber = req.body.judgeNumber
+  var fillblankNumber = req.body.fillblankNumber
+  var correctNumber = req.body.correctNumber
+  var programmingNumber = req.body.programmingNumber
+
+  var radioScore = req.body.radioScore
+  var multiScore = req.body.multiScore
+  var judgeScore = req.body.judgeScore
+  var fillblankScore = req.body.fillblankScore
+  var correctScore = req.body.correctScore
+  var programmingScore = req.body.programmingScore
+
+  PaperParams.findOneAndUpdate({},{$set: {
+    radioNumber: radioNumber,multiNumber: multiNumber,fillblankNumber: fillblankNumber,
+    judgeNumber: judgeNumber, correctNumber: correctNumber,programmingNumber: programmingNumber,
+    radioScore: radioScore,multiScore: multiScore, fillblankScore: fillblankScore,
+    judgeScore: judgeScore, correctScore: correctScore, programmingScore: programmingScore
+    }},function(err,docs){
+      if(err){
+        console.log(err)
+      }else{
+        PaperParams.findOne({},function(err,paperparams){
+          if(err){
+            console.log(err)
+          }else{
+            res.send(paperparams)
+          }
+        })
+      }
+    })
 })
 //radio
 router.get('/radio',function(req,res){

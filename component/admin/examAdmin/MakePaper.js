@@ -73,9 +73,10 @@ class MakePaper extends Component{
 			programmingScore: value
 		})
 	}
-	addRandomPaper = () => {
+	modiPaperParams = () => {
 		const { radioNumber,multiNumber,judgeNumber,fillblankNumber,correctNumber,programmingNumber,
 				radioScore,multiScore,judgeScore,fillblankScore,correctScore,programmingScore } = this.state
+		const { onModi } = this.props
 		const number = {
 			radioNumber: radioNumber,
 			multiNumber: multiNumber,
@@ -90,24 +91,15 @@ class MakePaper extends Component{
 			correctScore: correctScore,
 			programmingScore: programmingScore
 		}
-		fetch('/item/randomPaper',{
+		onModi('/item/modiPaperParams',{
 			method: 'POST',
 			credentials: 'same-origin',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(number)
-		}).then(function(res){
-			if(res.ok){
-				res.json().then(function(data){
-					if(data.status==1){
-						message.info('提交成功！')
-					}
-				})
-			}
-		}).catch(function(err){
-			console.log(err.message)
 		})
+		message.info('修改成功！')
 	}
 	render(){
 		const { 
@@ -212,7 +204,7 @@ class MakePaper extends Component{
 					<span>{programmingNumber*programmingScore}</span>
 				</div>
 				<p><span>总分数:</span><span>{total}</span></p>
-				<Button type="default" style={{marginLeft: 260}} onClick={this.addRandomPaper}>随机组卷</Button>
+				<Button type="default" style={{marginLeft: 260}} onClick={this.modiPaperParams}>修改参数</Button>
 			</div>
 		)
 	}
