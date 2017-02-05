@@ -115,8 +115,44 @@ router.post('/modiPaperParams',function(req,res){
       }
     })
 })
-
 router.post('/makeRandomPaper',function(req,res){
+  var radioNumber = req.body.radioNumber
+  var multiNumber = req.body.multiNumber
+  var judgeNumber = req.body.judgeNumber
+  var fillblankNumber = req.body.fillblankNumber
+  var correctNumber = req.body.correctNumber
+  var programmingNumber = req.body.programmingNumber
+
+  var radioScore = req.body.radioScore
+  var multiScore = req.body.multiScore
+  var judgeScore = req.body.judgeScore
+  var fillblankScore = req.body.fillblankScore
+  var correctScore = req.body.correctScore
+  var programmingScore = req.body.programmingScore
+
+
+    function getRandomPaper(){
+      var randomPap = {radio: [],multi: [], judge: [],
+                    fillblank: [],correct: [],programming: []}
+                  return Q(Radio.aggregate({$sample: {size: 2}}).exec())
+                  .then(function(radios){
+                    randomPap.radio = radios
+                    return Q(Multi.aggregate({$sample: {size: 2}}).exec())
+                  })
+                  .then(function(multis){
+                    randomPap.multi = multis
+                    return randomPap
+                  })
+                }
+    getRandomPaper().then(function(randomPap){
+      console.log(randomPap)
+      res.send({status: 1})
+    }).catch(function(err){
+      console.log(err)
+    })  
+
+})
+router.post('/makeRandomPaperaaa',function(req,res){
   var radioNumber = req.body.radioNumber
   var multiNumber = req.body.multiNumber
   var judgeNumber = req.body.judgeNumber
@@ -135,91 +171,97 @@ router.post('/makeRandomPaper',function(req,res){
     if(err){
       console.log(err)
     }else{
-      console.log(users)
-      ep.after('add_exam_paper',users.length,function(list){
-
-      })
-      for(var i=0;i<users.length;i++){
+      // ep.after('add_exam_paper',users.length,function(list){
+      //   res.send({status: 1})
+      // })
+      // for(var i=0;i<users.length;i++){
                 var randomPap = {radio: [],multi: [], judge: [],
                     fillblank: [],correct: [],programming: [],
-                    radioScore: radioScore,multiScore: multiScore, judgeScore: judgeScore, fillblankScore: fillblankScore, correctScore: correctScore, programmingScore: programmingScore}
-                getInputPromise().then(function(randomPap){
-                  Radio.findRandom({},{},{limit: radioNumber},function(err,radios){
-                    if(err){
-                      console.log(err)
-                    }else{
-                      randomPap.radio = radios
-                      return randomPap
-                    }
-                  })
-                }).then(function(randomPap){
-                  Multi.findRandom({},{},{limit: multiNumber},function(err,multis){
-                    if(err){
-                      console.log(err)
-                    }else{
-                      randomPap.multi = multis
-                      return randomPap
-                    }
-                  })
-                }).then(function(randomPap){
-                  Judge.findRandom({},{},{limit: judgeNumber},function(err,judges){
-                    if(err){
-                      console.log(err)
-                    }else{
-                      randomPap.judge = judges
-                      return randomPap
-                    }
-                  })
-                }).then(function(randomPap){
-                  if(err){
-                    console.log(err)
-                  }else{
-                    Fillblank.findRandom({},{},{limiet: fillblankNumber},function(err,fillblanks){
-                      if(err){
-                        console.log(err)
-                      }else{
-                        randomPap.fillblank = fillblanks
-                        return randomPap
-                      }
-                    })
-                  }
-                }).then(function(randomPap){
-                  Correct.findRandom({},{},{limit: correctNumber},function(err,corrects){
-                    if(err){
-                      console.log(err)
-                    }else{
-                      randomPap.correct = corrects
-                      return randomPap
-                    }
-                  })
-                }).then(function(randomPap){
-                  Programming.findRandom({},{},{limit: programmingNumber},function(err,programmings){
-                    if(err){
-                      console.log(err)
-                    }else{
-                      randomPap.programming = programmings
-                    }
-                  })
-                }).then(function(randomPap){
-                  // User.update({},{$addToSet: {exampaper: randomPap}},function(err,docs){
-                  //   if(err){
-                  //     console.log(err)
-                  //   }else{
-                  //     ep.emit('add_exam_paper',docs)
-                  //   }
-                  // })
-                  users[i],exampaper = randomPap
-                  return users[i]
-                }).then(function(user){
-                  var user = new User(user)
-                  user.save(function(err){
-                    if(err){
-                      console.log(err)
-                    }
-                  })
-                })
-                defer.resolve(randomPap)
-      }
+                    radioScore: radioScore,multiScore: multiScore,
+                     judgeScore: judgeScore, fillblankScore: fillblankScore,
+                      correctScore: correctScore, programmingScore: programmingScore}
+                // getInputPromise().then(function(randomPap){
+                //   Radio.findRandom({},{},{limit: radioNumber},function(err,results){
+                //     if(err){
+                //       console.log(err)
+                //     }else{
+                //       randomPap.radio = results
+                //       return randomPap
+                //     }
+                //   })
+                // }).then(function(randomPap){
+                //       console.log(randomPap)
+                //   Multi.findRandom({},{},{limit: multiNumber},function(err,multis){
+                //     if(err){
+                //       console.log(err)
+                //     }else{
+                //       randomPap.multi = multis
+                //       return randomPap
+                //     }
+                //   })
+                // }).then(function(randomPap){
+                //   Judge.findRandom({},{},{limit: judgeNumber},function(err,judges){
+                //     if(err){
+                //       console.log(err)
+                //     }else{
+                //       randomPap.judge = judges
+                //       return randomPap
+                //     }
+                //   })
+                // }).then(function(randomPap){
+                //     Fillblank.findRandom({},{},{limit: fillblankNumber},function(err,fillblanks){
+                //       if(err){
+                //         console.log(err)
+                //       }else{
+                //         randomPap.fillblank = fillblanks
+                //         return randomPap
+                //       }
+                //     })
+                // }).then(function(randomPap){
+                //   Correct.findRandom({},{},{limit: correctNumber},function(err,corrects){
+                //     if(err){
+                //       console.log(err)
+                //     }else{
+                //       randomPap.correct = corrects
+                //       return randomPap
+                //     }
+                //   })
+                // }).then(function(randomPap){
+                //   Programming.findRandom({},{},{limit: programmingNumber},function(err,programmings){
+                //     if(err){
+                //       console.log(err)
+                //     }else{
+                //       randomPap.programming = programmings
+                //       return randomPap
+                //     }
+                //   })
+                // }).then(function(randomPap){
+                //   // User.update({},{$addToSet: {exampaper: randomPap}},function(err,docs){
+                //   //   if(err){
+                //   //     console.log(err)
+                //   //   }else{
+                //   //     ep.emit('add_exam_paper',docs)
+                //   //   }
+                //   // })
+                //   // users[i].exampaper.push(randomPap)
+                //   // return users[i]
+                //   console.log(randomPap)
+                //   return randomPap
+                // }).then(function(user){
+                //   console.log("123")
+                //   console.log(user)
+                //   // ep.emit('add_exam_paper',user)
+                //   // user.save(function(err){
+                //   //   if(err){
+                //   //     console.log(err)
+                //   //   }
+                //   // })
+                //   res.send({status: 1})
+                // })
+                // defer.resolve(randomPap)
+                
+
+      // }
     }
   })
 })
