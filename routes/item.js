@@ -134,10 +134,10 @@ router.post('/makeRandomPaper',function(req,res){
     function getRandomPaper(){
       var randomPap = {radio: [],multi: [], judge: [],
                     fillblank: [],correct: [],programming: []}
-                  return Q(Radio.aggregate({$sample: {size: 2}}).exec())
+                  return Q(Radio.aggregate({$sample: {size: 1}}).exec())
                   .then(function(radios){
                     randomPap.radio = radios
-                    return Q(Multi.aggregate({$sample: {size: 2}}).exec())
+                    return Q(Multi.aggregate({$sample: {size: 1}}).exec())
                   })
                   .then(function(multis){
                     randomPap.multi = multis
