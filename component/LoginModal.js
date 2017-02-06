@@ -51,7 +51,7 @@ const LoginModal = Form.create()(React.createClass({
     });
   },
   handleOk() {
-    console.log('Clicked OK');
+    const { onFetchLoginStatus } = this.props
     var _self = this
     var req = new Request('/signin',{
           method: 'POST',
@@ -70,12 +70,14 @@ const LoginModal = Form.create()(React.createClass({
             res.json().then(function(data){
               console.log(JSON.stringify(data))
               if(data.status==1){
-                console.log(data.username)
                 _self.setState({
                   username: data.username,
                   visible: false,
-                  loginstatus: true,
               })
+                onFetchLoginStatus('/logStatus',{
+                  method: 'GET',
+                  credentials: 'same-origin'
+                })
               }else if(data.status==2){
                 message.info('Password is error !')
               }else{
@@ -130,7 +132,7 @@ const LoginModal = Form.create()(React.createClass({
     return (
       <div>
       { 
-        this.props.loginstatus?
+        this.props.status?
         <ul className="user">
           <li>
             <Upload

@@ -14,8 +14,7 @@ class Assess extends Component{
 	constructor(props){
 		super(props);
 		this.state={
-			nav:'assessNav',
-			loginstatus: false
+			nav:'assessNav'
 		};
 	}
 	handleScorll(e){
@@ -27,16 +26,16 @@ class Assess extends Component{
 		}
 	}
 	componentDidMount=()=>{
-		const { dispatch, fetchingLoginStatus } = this.props
+		const { dispatch } = this.props
 
-		dispatch(fetchLoginStatus('/logStatus'),{
+		dispatch(fetchLoginStatus('/logStatus',{
 			method: 'GET',
 			credentials: 'same-origin'
-		})
-		dispatch(fetchParams('/exam/params'),{
+		}))
+		dispatch(fetchParams('/exam/params',{
 			method: 'GET',
 			credentials: 'same-origin'
-		})
+		}))
 	}
 	render(){
 		const { fetchingParams, fetchingLoginStatus, dispatch }  = this.props
@@ -55,9 +54,10 @@ class Assess extends Component{
 			<div style={{marginBottom:180}} onWheel={this.handleScorll.bind(this)}>
 			<div>
 				<Nav nav={this.state.nav}
+					 status={fetchingLoginStatus.status}
 					 fetchingLoginStatus={fetchingLoginStatus}
 					 onLogOut={(url,params) =>dispatch(logOut(url,params))}
-					 onFetchLoginStatus={(url,params)=>dispatch(fetchLoginStatus)}/>
+					 onFetchLoginStatus={(url,params)=>dispatch(fetchLoginStatus(url,params))}/>
 				<div id="navImg">
 			</div>
 				<div style={{width:"20%",height:100,padding:40,margin:"0 auto"}}>

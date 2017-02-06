@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
   secret: 'heiheihei',
   resave: true,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: { secure: false, maxAge : (4 * 60 * 60 * 1000) },
   store: new MongoStore({
     url: 'mongodb://localhost/Assess',

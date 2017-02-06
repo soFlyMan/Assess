@@ -35,7 +35,7 @@ html, body, #root {
 #navImg{
   height: 500px;
   width: 100%;
-  background: #ccc url("/nav.jpg") no-repeat left;
+  background: #ccc url("./dist/fd501e6aa355a35843a6ae8b3585eec1.jpg") no-repeat left;
   z-index: -2;
 }
 /*Assess Card
@@ -50,7 +50,7 @@ html, body, #root {
   width: 100%;
   height: 100%;
   padding-top:100px; 
-  background:  #80edb6 url("/nav.jpg") no-repeat fixed left;
+  background:  #80edb6 url("./dist/f3919c9c277024f91197317ae56e87d2.png") no-repeat fixed left;
 
 }
 #adminlogin{

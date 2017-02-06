@@ -50,19 +50,21 @@ export const fetchingExampap = (state={fetching:false,fetched:false,data:[],erro
 	}
 }
 
-export const fetchingLoginStatus = (state={fetching:false,fetched:false,data:{ },error:null}, action) => {
+export const fetchingLoginStatus = (state={fetching:false,fetched:false,data:{ },error:null,status: false}, action) => {
 	switch(action.type){
 		case FETCH_LOGIN_STATUS:
 			return {
 				...state,
 				fetching: true,
-				fetched: false
+				fetched: false,
+				status: false,
 			}
 		case FETCH_LOGIN_STATUS_ERR:
 			return {
 				...state,
 				feching: false,
 				fetched: false,
+				status: false,
 				error: action.payload
 			}
 		case FETCHED_LOGIN_STATUS:
@@ -70,13 +72,15 @@ export const fetchingLoginStatus = (state={fetching:false,fetched:false,data:{ }
 				...state,
 				fetching: false,
 				fetched: true,
-				data: action.payload
+				data: action.payload,
+				status: action.payload.status
 			}
 		case LOG_OUT:
 			return {
 				...state,
 				fetched: false,
-				fetching: false
+				fetching: false,
+				status: action.payload.status
 			}
 		default: 
 			return state
