@@ -91,7 +91,7 @@ class MakePaper extends Component{
 			correctScore: correctScore,
 			programmingScore: programmingScore
 		}
-		onModi('/item/makeRandomPaper',{
+		onModi('/item/modiPaperParams',{
 			method: 'POST',
 			credentials: 'same-origin',
 			headers: {

@@ -30,7 +30,6 @@ class MakePaperContainer extends Component{
 			correctScore: fetchingPaperParams.data.correctScore,
 			programmingScore: fetchingPaperParams.data.programmingScore
 		}
-		console.log(number)
 		fetch('/item/randomPaper',{
 			method: 'POST',
 			credentials: 'same-origin',

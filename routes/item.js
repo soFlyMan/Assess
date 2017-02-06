@@ -199,9 +199,9 @@ router.post('/makeRandomPaper',function(req,res){
       if(err){
         console.log(err)
       }else{
-        console.log('123')
+        // console.log('123')
         ep.after('add_exam_paper',users.length,function(list){
-          console.log(list)
+          // console.log(list)
           res.send({status: 1})
         })
             for(var i=0;i<users.length;i++){
