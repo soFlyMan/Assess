@@ -116,35 +116,73 @@ router.post('/modiPaperParams',function(req,res){
     })
 })
 router.post('/makeRandomPaper',function(req,res){
-  var radioNumber = req.body.radioNumber
-  var multiNumber = req.body.multiNumber
-  var judgeNumber = req.body.judgeNumber
-  var fillblankNumber = req.body.fillblankNumber
-  var correctNumber = req.body.correctNumber
-  var programmingNumber = req.body.programmingNumber
+  // var radioNumber = req.body.radioNumber
+  // var multiNumber = req.body.multiNumber
+  // var judgeNumber = req.body.judgeNumber
+  // var fillblankNumber = req.body.fillblankNumber
+  // var correctNumber = req.body.correctNumber
+  // var programmingNumber = req.body.programmingNumber
+  var number = {
+    radioNumber: req.body.radioNumber,
+    multiNumber: req.body.multiNumber,
+    judgeNumber: req.body.judgeNumber,
+    fillblankNumber: req.body.fillblankNumber,
+    correctNumber: req.body.correctNumber,
+    programmingNumber: req.body.programmingNumber
+  }
+  var score = {
+    radioScore: req.body.radioScore,
+    multiScore: req.body.multiScore,
+    judgeScore: req.body.judgeScore,
+    fillblankScore: req.body.fillblankScore,
+    correctScore: req.body.correctScore,
+    programmingScore: req.body.programmingScore
+  }
+  // var radioScore = req.body.radioScore
+  // var multiScore = req.body.multiScore
+  // var judgeScore = req.body.judgeScore
+  // var fillblankScore = req.body.fillblankScore
+  // var correctScore = req.body.correctScore
+  // var programmingScore = req.body.programmingScore
 
-  var radioScore = req.body.radioScore
-  var multiScore = req.body.multiScore
-  var judgeScore = req.body.judgeScore
-  var fillblankScore = req.body.fillblankScore
-  var correctScore = req.body.correctScore
-  var programmingScore = req.body.programmingScore
 
-
-    function getRandomPaper(){
+    function getRandomPaper(number,socre){
       var randomPap = {radio: [],multi: [], judge: [],
-                    fillblank: [],correct: [],programming: []}
-                  return Q(Radio.aggregate({$sample: {size: 1}}).exec())
+                    fillblank: [],correct: [],programming: [],
+                    radioScore: score.radioScore,
+                    multiScore: score.multiScore,
+                    judgeScore: score.judgeScore,
+                    fillblankScore: score.fillblankScore,
+                    correctScore: score.correctScore,
+                    programmingScore: score.programmingScore}
+                  return Q(Radio.aggregate({$sample: {size: number.radioNumber}}).exec())
                   .then(function(radios){
                     randomPap.radio = radios
-                    return Q(Multi.aggregate({$sample: {size: 1}}).exec())
+                    return Q(Multi.aggregate({$sample: {size: number.multiNumber}}).exec())
                   })
                   .then(function(multis){
                     randomPap.multi = multis
+                    return Q(Fillblank.aggregate({$sample: {size: number.fillblankNumber}}).exec())
+                  })
+                  .then(function(fillblanks){
+                    randomPap.fillblank = fillblanks
+                    return Q(Judge.aggregate({$sample: {size: number.judgeNumber}}).exec())
+                  })
+                  .then(function(judges){
+                    randomPap.judge = judges
+                    return Q(Correct.aggregate({$sample: {size: number.correctNumber}}).exec())
+                  })
+                  .then(function(corrects){
+                    randomPap.correct = corrects
+                    return Q(Programming.aggregate({$sample: {size: number.programmingNumber}}).exec())
+                  })
+                  .then(function(programmings){
+                    randomPap.programming = programmings
                     return randomPap
                   })
+
                 }
-    getRandomPaper().then(function(randomPap){
+    getRandomPaper(number,score).then(function(randomPap){
       console.log(randomPap)
       res.send({status: 1})
     }).catch(function(err){
