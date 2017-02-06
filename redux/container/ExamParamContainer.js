@@ -37,8 +37,10 @@ class ExamParamContainer extends Component{
 				fillblankScore: fetchingPaperParams.data.fillblankScore,
 				judgeScore: fetchingPaperParams.data.judgeScore,
 				correctScore: fetchingPaperParams.data.correctScore,
-				programmingScore: fetchingPaperParams.data.programmingScore
+				programmingScore: fetchingPaperParams.data.programmingScore,
+				date: fetchingParams.data.date+' '+fetchingParams.data.time,
 			}
+			console.log(number.date)
 			fetch('/item/makeRandomPaper',{
 				method: 'POST',
 				credentials: 'same-origin',
@@ -58,6 +60,9 @@ class ExamParamContainer extends Component{
 				console.log(err.message)
 			})
 		}else{
+			const date = {
+				date: fetchingParams.data.date + ' ' + fetchingParams.data.time
+			}
 			console.log('随机抽卷，添加至学生信息')
 			fetch('/item/useExampap',{
 				method: 'POST',
@@ -65,7 +70,7 @@ class ExamParamContainer extends Component{
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({date: fetchingParams.data.date})
+				body: JSON.stringify(date)
 			}).then(function(res){
 				if(res.ok){
 					res.json().then(function(data){
