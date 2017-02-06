@@ -185,9 +185,13 @@ router.post('/makeRandomPaper',function(req,res){
                     return randomPap
                   })
                   .then(function(randomPap){
-                    console.log(i)
                     users[i].exampaper.push(randomPap)
                     return users[i]
+                  })
+                  .then(function(user){
+                    return Q(user.save())
+                  }).then(function(user){
+                    return user
                   })
                 }
 

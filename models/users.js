@@ -137,7 +137,18 @@ var test = {
 // 		console.log(docs)
 // 	}
 // })
-
+// User.find({_id: '58981727a01565e073f6576f'},function(err,user){
+//   if(!err){
+//     console.log(user)
+//     user[0].save(function(err){
+//       if(err){
+//         console.log(err)
+//       }
+//     })
+//   }else{
+//     console.log(err)
+//   }
+// })
 
 
 module.exports = User
