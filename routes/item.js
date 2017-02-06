@@ -145,8 +145,8 @@ router.post('/makeRandomPaper',function(req,res){
   // var correctScore = req.body.correctScore
   // var programmingScore = req.body.programmingScore
 
-
-    function getRandomPaper(number,socre){
+  var date = req.body.date
+    function getRandomPaper(number,socre,date,users,i){
       var randomPap = {radio: [],multi: [], judge: [],
                     fillblank: [],correct: [],programming: [],
                     radioScore: score.radioScore,
@@ -180,14 +180,40 @@ router.post('/makeRandomPaper',function(req,res){
                     randomPap.programming = programmings
                     return randomPap
                   })
-
+                  .then(function(randomPap){
+                    randomPap.date = date
+                    return randomPap
+                  })
+                  .then(function(randomPap){
+                    console.log(i)
+                    users[i].exampaper.push(randomPap)
+                    return users[i]
+                  })
                 }
-    getRandomPaper(number,score).then(function(randomPap){
-      console.log(randomPap)
-      res.send({status: 1})
-    }).catch(function(err){
-      console.log(err)
-    })  
+
+  User.find({},function(err,users){
+      if(err){
+        console.log(err)
+      }else{
+        console.log('123')
+        ep.after('add_exam_paper',users.length,function(list){
+          console.log(list)
+          res.send({status: 1})
+        })
+            for(var i=0;i<users.length;i++){
+                getRandomPaper(number,score,date,users,i).then(function(user){
+                      // users[i].exampaper.push(randomPap)
+                        // console.log(user)
+                        ep.emit('add_exam_paper',user)
+                })
+                .catch(function(err){
+                  console.log(err)
+                })  
+              }
+
+      }
+    })
+
 
 })
 router.post('/makeRandomPaperaaa',function(req,res){
@@ -288,7 +314,7 @@ router.post('/makeRandomPaperaaa',function(req,res){
                 // }).then(function(user){
                 //   console.log("123")
                 //   console.log(user)
-                //   // ep.emit('add_exam_paper',user)
+                  // ep.emit('add_exam_paper',user)
                 //   // user.save(function(err){
                 //   //   if(err){
                 //   //     console.log(err)
