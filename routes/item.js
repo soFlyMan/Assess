@@ -189,7 +189,7 @@ router.post('/makeRandomPaper',function(req,res){
                     return users[i]
                   })
                   .then(function(user){
-                    return Q(user.save())
+                    return Q(User.findOneAndUpdate({userid: user.userid}, {exampaper: user.exampaper}))
                   }).then(function(user){
                     return user
                   })

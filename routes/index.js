@@ -108,7 +108,7 @@ router.post('/adminsignin',function(req,res){
 router.get('/logStatus',function(req,res){
 	console.log(req.session.user)
 	if(req.session.user){
-		res.send({status: true,userid: req.session.user.userid, username: req.session.user.username})
+		res.send({status: true,userid: req.session.user.userid, username: req.session.user.username, id: req.session.user._id})
 	}else{
 		res.send({status: false})
 	}

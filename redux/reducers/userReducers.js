@@ -30,7 +30,7 @@ export const fetchingUser = (state={fetching:false,fetched: false, data: [], err
 	}
 }
 
-export const fetchingSingleUser = (state={fetching: false, fetched: false, data: [], error: null},action) => {
+export const fetchingSingleUser = (state={fetching: false, fetched: false, data: [], exampaper: [], error: null},action) => {
 	switch(action.type){
 		case FETCH_SINGLE_USER: 
 			return {
@@ -50,7 +50,8 @@ export const fetchingSingleUser = (state={fetching: false, fetched: false, data:
 				...state,
 				fetching: false,
 				fetched: true,
-				data: action.payload
+				data: action.payload,
+				exampaper: action.payload[0].exampaper
 			}
 		default: 
 			return state
