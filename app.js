@@ -41,6 +41,8 @@ app.use(session({
   secret: 'heiheihei',
   resave: true,
   saveUninitialized: false,
+  //change saveUninitialized to false, and fetchAPI's crdentials: 'sample-origin' 
+  //solved my issue of session which confused me a month 😶😅
   cookie: { secure: false, maxAge : (4 * 60 * 60 * 1000) },
   store: new MongoStore({
     url: 'mongodb://localhost/Assess',

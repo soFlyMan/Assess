@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { Button } from 'antd';
 
 import { fetchParams } from '../redux/actions/actions.js'
-import { fetchLoginStatus, logOut } from '../redux/actions/stuActions.js'
+import { fetchLoginStatus } from '../redux/actions/stuActions.js'
 import AssessShow from './AssessShow.js'
 import Nav from './Nav.js'
 
@@ -28,10 +28,6 @@ class Assess extends Component{
 	componentDidMount=()=>{
 		const { dispatch } = this.props
 
-		dispatch(fetchLoginStatus('/logStatus',{
-			method: 'GET',
-			credentials: 'same-origin'
-		}))
 		dispatch(fetchParams('/exam/params',{
 			method: 'GET',
 			credentials: 'same-origin'
@@ -54,10 +50,7 @@ class Assess extends Component{
 			<div style={{marginBottom:180}} onWheel={this.handleScorll.bind(this)}>
 			<div>
 				<Nav nav={this.state.nav}
-					 status={fetchingLoginStatus.status}
-					 fetchingLoginStatus={fetchingLoginStatus}
-					 onLogOut={(url,params) =>dispatch(logOut(url,params))}
-					 onFetchLoginStatus={(url,params)=>dispatch(fetchLoginStatus(url,params))}/>
+					 />
 				<div id="navImg">
 			</div>
 				<div style={{width:"20%",height:100,padding:40,margin:"0 auto"}}>
