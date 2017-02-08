@@ -1,28 +1,24 @@
 import React, { Component } from 'react'
-import { Radio } from 'antd'
+import { Radio, Form } from 'antd'
 
 const RadioGroup = Radio.Group
+const FormItem = Form.Item
 class ExamPaper extends Component{
 	constructor(props){
 		super(props)
 		this.state={
-			value: ''
 		}
-	}
-	onChange(e){
-		this.setState({
-			value: e.target.value
-		})
 	}
 	render(){
 	var a = 1
 	const { fetched, exampaper } = this.props
-	console.log(exampaper)
+	const { onFieldsChange } = this.props.form
+	console.log(onFieldsChange)
 	if(fetched){
 		if(exampaper!=0){
 			const paper = exampaper[exampaper.length-1]
 			return (
-				<div>
+				<Form onSubmit={this.handleSubmit}>
 					<h3>一、单项选择题(每题{paper.radioScore}分)</h3>
 					<div>
 					{
@@ -36,12 +32,14 @@ class ExamPaper extends Component{
 											{val.body}
 										</pre>
 										<pre>{val.options}</pre>
-										<RadioGroup onChange={this.onChange} value={this.state.value}>
-											<Radio value={'A'}>A</Radio>
-											<Radio value={'B'}>B</Radio>
-											<Radio value={'c'}>c</Radio>
-											<Radio value={'D'}>D</Radio>
-										</RadioGroup>
+										<FormItem>
+											<RadioGroup>
+												<Radio value={'A'}>A</Radio>
+												<Radio value={'B'}>B</Radio>
+												<Radio value={'c'}>c</Radio>
+												<Radio value={'D'}>D</Radio>
+											</RadioGroup>
+										</FormItem>
 										<br/>
 									</div>
 										) 
@@ -54,7 +52,7 @@ class ExamPaper extends Component{
 					<h3>四、改错题</h3>
 					<h3>五、判断题</h3>
 					<h3>六、编程题</h3>
-				</div>
+				</Form>
 				)
 		}
 		}else{
@@ -63,4 +61,4 @@ class ExamPaper extends Component{
 	}
 }
 
-export default ExamPaper
+export default  Form.create({})(ExamPaper)
