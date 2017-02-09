@@ -61,4 +61,13 @@ class ExamPaper extends Component{
 	}
 }
 
-export default  Form.create({})(ExamPaper)
+export default  Form.create({
+	mapPropsToField(props){
+		return {
+
+		}
+	},
+	onFieldsChange(props,fields){
+		console.log('onFieldsChange',fields)
+	}
+})(ExamPaper)
