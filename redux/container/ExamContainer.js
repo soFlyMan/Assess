@@ -29,7 +29,7 @@ class ExamContainer extends Component{
 		const { dispatch, exampaper, fetched } = this.props
 		return (
 			<Exam>
-				<ExamPaper exampaper={exampaper} fetched={fetched}/>
+				<ExamPaper exampaper={exampaper} fetched={fetched} />
 			</Exam>
 			)
 	}

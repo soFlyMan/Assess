@@ -41,7 +41,7 @@ export default class Exam extends Component{
 	render(){
 		return (
 			<div>
-				<Card title={this.state.username} style={{ width: "80%" ,height:800,margin:"0 auto"}}>
+				<Card title={this.state.username} style={{ width: "80%" ,margin:"0 auto"}}>
 					{this.props.children}
 				</Card>
 				<p></p>

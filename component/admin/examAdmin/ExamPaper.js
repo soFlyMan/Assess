@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Radio, Form } from 'antd'
+import { Radio, Form, Button } from 'antd'
 
 const RadioGroup = Radio.Group
 const FormItem = Form.Item
@@ -9,19 +9,27 @@ class ExamPaper extends Component{
 		this.state={
 		}
 	}
+	handleSubmit = (e) => {
+		e.preventDefault()
+		console.log(this.props.form)
+		this.props.form.validateFields((err, values) => {
+	      if (!err) {
+	        console.log('Received values of form: ', values);
+	      }
+	    })
+	}
 	render(){
 	var a = 1
 	const { fetched, exampaper } = this.props
 	const { onFieldsChange } = this.props.form
-	console.log(onFieldsChange)
-	if(fetched){
-		if(exampaper!=0){
+	if(fetched&&exampaper!=0){
 			const paper = exampaper[exampaper.length-1]
+			const { getFieldDecorator } = this.props.form
 			return (
 				<Form onSubmit={this.handleSubmit}>
 					<h3>一、单项选择题(每题{paper.radioScore}分)</h3>
 					<div>
-					{
+										{
 						paper
 						.radio
 							.map(val =>{
@@ -33,14 +41,19 @@ class ExamPaper extends Component{
 										</pre>
 										<pre>{val.options}</pre>
 										<FormItem>
-											<RadioGroup>
-												<Radio value={'A'}>A</Radio>
-												<Radio value={'B'}>B</Radio>
-												<Radio value={'c'}>c</Radio>
-												<Radio value={'D'}>D</Radio>
-											</RadioGroup>
+											{getFieldDecorator(`radio-${a-1}`)(
+													<RadioGroup>
+														<Radio value="A">A</Radio>
+														<Radio value="B">B</Radio>
+														<Radio value="C">C</Radio>
+														<Radio value="D">D</Radio>
+													</RadioGroup>
+											)
+											}
 										</FormItem>
+
 										<br/>
+										
 									</div>
 										) 
 							}
@@ -52,19 +65,25 @@ class ExamPaper extends Component{
 					<h3>四、改错题</h3>
 					<h3>五、判断题</h3>
 					<h3>六、编程题</h3>
+					<FormItem wrapperCol={{ span: 8, offset: 4 }}>
+			          <Button type="primary" htmlType="submit">
+			            Submit
+			          </Button>
+			        </FormItem>
 				</Form>
 				)
-		}
 		}else{
 			return <div>正在加载中……</div>
 		}
 	}
 }
 
-export default  Form.create({
+export default Form.create({
 	mapPropsToField(props){
+		console.log('mapPropsToFields')
+		console.log(props)
 		return {
-
+		exampaper: props.exampaper
 		}
 	},
 	onFieldsChange(props,fields){
