@@ -3,6 +3,7 @@ import { Radio, Form, Button } from 'antd'
 
 const RadioGroup = Radio.Group
 const FormItem = Form.Item
+var answers = []
 class ExamPaper extends Component{
 	constructor(props){
 		super(props)
@@ -14,14 +15,14 @@ class ExamPaper extends Component{
 		console.log(this.props.form)
 		this.props.form.validateFields((err, values) => {
 	      if (!err) {
-	        console.log('Received values of form: ', values);
+	        console.log('Received values of form: ', values)
 	      }
 	    })
+	    
 	}
 	render(){
 	var a = 1
 	const { fetched, exampaper } = this.props
-	const { onFieldsChange } = this.props.form
 	if(fetched&&exampaper!=0){
 			const paper = exampaper[exampaper.length-1]
 			const { getFieldDecorator } = this.props.form
@@ -41,7 +42,7 @@ class ExamPaper extends Component{
 										</pre>
 										<pre>{val.options}</pre>
 										<FormItem>
-											{getFieldDecorator(`radio-${a-1}`)(
+											{getFieldDecorator(`radio${a-1}`)(
 													<RadioGroup>
 														<Radio value="A">A</Radio>
 														<Radio value="B">B</Radio>
@@ -79,14 +80,15 @@ class ExamPaper extends Component{
 }
 
 export default Form.create({
-	mapPropsToField(props){
+	mapPropsToFields(props){
 		console.log('mapPropsToFields')
 		console.log(props)
 		return {
-		exampaper: props.exampaper
+			radio: { value: props.radio }
 		}
 	},
 	onFieldsChange(props,fields){
 		console.log('onFieldsChange',fields)
+		props.onChangeAnswers(fields)
 	}
 })(ExamPaper)

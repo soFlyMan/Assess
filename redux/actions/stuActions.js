@@ -20,6 +20,8 @@ export const ADD_RANDOM_PAPER = 'ADD_RANDOM_PAPER'
 export const ADDED_RANDOM_PAPER = 'ADDED_RANDOM_PAPER'
 export const ADD_RANDOM_PAPER_ERR = 'ADD_RANDOM_PAPER_ERR'
 
+export const STU_ANSWERS = 'STU_ANSWERS'
+
 export const fetchScore = (url,params) => {
 	return dispatch => {
 		dispatch({type: FETCH_SCORE})
@@ -94,5 +96,12 @@ export const addRandomPaper = (url,params) => {
 					})).catch(err => {
 					dispatch({ type: ADD_RANDOM_PAPER_ERR, payload: err})
 				})
+	}
+}
+
+export const stuAnswer = (fields) => {
+	return {
+		type: 'STU_ANSWERS',
+		fields
 	}
 }

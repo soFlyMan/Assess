@@ -29,7 +29,6 @@ export const FETCH_PAPER_PARAMS_ERR = 'FETCH_PAPER_PARAMS_ERR'
 export const MODI_PAPER_PARAMS = 'MODI_PAPER_PARAMS'
 export const MODIED_PAPER_PARAMS = 'MODIED_PAPER_PARAMS'
 
-export const STU_ANSWER = 'STU_ANSWER'
 
 export const fetchItems = (url,params) => {
 	return dispatch => {
@@ -147,12 +146,7 @@ export const modiPaperParams = (url,params) => {
 	}
 }
 
-export const stuAnswer = (fileds) => {
-	return {
-		type: STU_ANSWER,
-		fileds
-	}
-}
+
 // export const modiParams = (params) => {
 // 	return {
 // 		action: MODI_PARAMS,

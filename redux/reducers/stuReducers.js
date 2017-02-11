@@ -2,7 +2,8 @@ import { FETCH_SCORE,FETCH_SCORE_ERROR,RECEIVE_SCORE,
 		 FETCH_EXAMPAPER, RECIEVE_EXAMPAPER, FETCH_EXAMPAPER_ERROR,
 		 FETCH_LOGIN_STATUS,FETCHED_LOGIN_STATUS, FETCH_LOGIN_STATUS_ERR, LOG_OUT,
 		 FETCH_USER_INFO, FETCHED_USER_INFO, FETCH_USER_INFO_ERR,
-		 ADD_RANDOM_PAPER, ADDED_RANDOM_PAPER, ADD_RANDOM_PAPER_ERR } from '../actions/stuActions.js'
+		 ADD_RANDOM_PAPER, ADDED_RANDOM_PAPER, ADD_RANDOM_PAPER_ERR,
+		 STU_ANSWERS } from '../actions/stuActions.js'
 
 const initialState = {
 	fetching: false,
@@ -109,6 +110,22 @@ export const fetchingUserInfo = (state={fetching: false,fetched: false, data: []
 				fetched: true,
 				data: action.payload
 			}
+		default:
+			return state
+	}
+}
+
+export const answers = (state=[ ],action) =>{
+	const  fields  = action.fields
+	switch(action.type){
+		case STU_ANSWERS:
+			return [
+				...state,
+				{
+					name: fields[Object.keys(fields)[0]].name,
+					value: fields[Object.keys(fields)[0]].value
+				}
+			]
 		default:
 			return state
 	}
