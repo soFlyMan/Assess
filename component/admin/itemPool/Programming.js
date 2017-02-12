@@ -181,6 +181,25 @@ export default class Programming extends Component{
 			        	<lable>题目内容：</lable><Input type="textarea" rows={3} onChange={this.handleBody}/>
 			        	<lable>答案:</lable><Input onChange={this.handleAnswer}/> 
 			        </Modal>
+			        <Modal
+					          visible={this.state.modal2Visible}
+					          title="修改"
+					          onOk={this.handleModal2Ok}
+					          onCancel={this.handleModal2Ok}
+					          footer={[
+					            <Button key="back2" type="ghost" size="large" onClick={this.handleModal2Cancel}>取消</Button>,
+					            <Button key="submit2" type="primary" size="large" loading={this.state.loading} onClick={this.handleModal2Ok}>
+					              提交
+					            </Button>,
+					          ]}
+					        >
+					        	<lable>题目内容：</lable>
+					        	<Input type="textarea" rows={3} 
+									 onChange={this.handleBody} value={this.state.body}/>
+					        	<lable>答案:</lable>
+					        	<Input 
+					        		 onChange={this.handleAnswer} value={this.state.answer}/> 
+					        </Modal>
 				</div>
 			}>
 				<Table dataSource={data} bordered>
@@ -200,25 +219,7 @@ export default class Programming extends Component{
 				      render={(text, record) => (
 				        <span>
 				          <a onClick={()=>this.setModal2Visible(record)}>修改</a>
-				           <Modal
-					          visible={this.state.modal2Visible}
-					          title="修改"
-					          onOk={this.handleModal2Ok}
-					          onCancel={this.handleModal2Ok}
-					          footer={[
-					            <Button key="back2" type="ghost" size="large" onClick={this.handleModal2Cancel}>取消</Button>,
-					            <Button key="submit2" type="primary" size="large" loading={this.state.loading} onClick={this.handleModal2Ok}>
-					              提交
-					            </Button>,
-					          ]}
-					        >
-					        	<lable>题目内容：</lable>
-					        	<Input type="textarea" rows={3} 
-									 onChange={this.handleBody} value={this.state.body}/>
-					        	<lable>答案:</lable>
-					        	<Input 
-					        		 onChange={this.handleAnswer} value={this.state.answer}/> 
-					        </Modal>
+				           
 				          <span className="ant-divider" />
 				          <Popconfirm title="确定要删除?"  
           					onConfirm={()=>this.onDelete(record)} okText="确定" cancelText="取消">

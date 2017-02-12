@@ -115,7 +115,12 @@ export const fetchingUserInfo = (state={fetching: false,fetched: false, data: []
 	}
 }
 
-export const answers = (state=[ ],action) =>{
+const answerState = {
+	answers: [ ],
+	totalScore: 0,
+
+}
+export const answers = (state=answerState,action) =>{
 	const  fields  = action.fields
 	switch(action.type){
 		case STU_ANSWERS:
