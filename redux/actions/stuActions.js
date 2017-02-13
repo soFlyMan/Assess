@@ -21,6 +21,9 @@ export const ADDED_RANDOM_PAPER = 'ADDED_RANDOM_PAPER'
 export const ADD_RANDOM_PAPER_ERR = 'ADD_RANDOM_PAPER_ERR'
 
 export const STU_ANSWERS = 'STU_ANSWERS'
+export const ADD_SCORE = 'ADD_SCORE'
+export const DEC_SCORE = 'DEC_SCORE'
+
 
 export const fetchScore = (url,params) => {
 	return dispatch => {
@@ -101,7 +104,21 @@ export const addRandomPaper = (url,params) => {
 
 export const stuAnswer = (fields) => {
 	return {
-		type: 'STU_ANSWERS',
+		type: STU_ANSWERS,
 		fields
+	}
+}
+
+export const addScore = (score) => {
+	return {
+		type: ADD_SCORE,
+		score
+	}
+}
+
+export const decScore = (score) => {
+	return {
+		type: DEC_SCORE,
+		score
 	}
 }

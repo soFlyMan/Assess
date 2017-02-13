@@ -3,7 +3,6 @@ import { Radio, Form, Button } from 'antd'
 
 const RadioGroup = Radio.Group
 const FormItem = Form.Item
-var answers = []
 class ExamPaper extends Component{
 	constructor(props){
 		super(props)
@@ -34,6 +33,7 @@ class ExamPaper extends Component{
 						paper
 						.radio
 							.map(val =>{
+								val.name = `radio${a}`
 								return (
 									<div>
 										<pre>
@@ -79,6 +79,22 @@ class ExamPaper extends Component{
 	}
 }
 
+var answers = []
+
+Array.prototype.indexOf = function(val) {
+	for (var i = 0; i < this.length; i++) {
+		if (this[i] == val) return i;
+	}
+	return -1;
+}
+
+Array.prototype.remove = function(val) {
+	var index = this.indexOf(val);
+	if (index > -1) {
+		this.splice(index, 1);
+	}
+}
+
 export default Form.create({
 	mapPropsToFields(props){
 		console.log('mapPropsToFields')
@@ -89,6 +105,26 @@ export default Form.create({
 	},
 	onFieldsChange(props,fields){
 		console.log('onFieldsChange',fields)
+		const name = fields[Object.keys(fields)[0]].name
+		const answer = fields[Object.keys(fields)[0]].value
+		const { exampaper, onAddScore, onDecScore } = props
+		const paper = exampaper[exampaper.length-1]
+		console.log(paper)
 		props.onChangeAnswers(fields)
+		if(name.indexOf('radio')>-1){
+			const radio = paper.radio.find(val => val.name === name)
+			if(answers.indexOf(name)<0){
+				if(radio.answer===answer){
+					onAddScore(paper.radioScore)
+					answers.push(name)
+				}
+			}else{
+				if(radio.answer!==answer){
+					onDecScore(paper.radioScore)
+					answers.remove(name)
+				}
+			}
+		}
+		console.log(answers)		
 	}
 })(ExamPaper)

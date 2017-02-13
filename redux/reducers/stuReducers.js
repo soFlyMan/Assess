@@ -3,7 +3,7 @@ import { FETCH_SCORE,FETCH_SCORE_ERROR,RECEIVE_SCORE,
 		 FETCH_LOGIN_STATUS,FETCHED_LOGIN_STATUS, FETCH_LOGIN_STATUS_ERR, LOG_OUT,
 		 FETCH_USER_INFO, FETCHED_USER_INFO, FETCH_USER_INFO_ERR,
 		 ADD_RANDOM_PAPER, ADDED_RANDOM_PAPER, ADD_RANDOM_PAPER_ERR,
-		 STU_ANSWERS } from '../actions/stuActions.js'
+		 STU_ANSWERS, ADD_SCORE, DEC_SCORE } from '../actions/stuActions.js'
 
 const initialState = {
 	fetching: false,
@@ -114,23 +114,27 @@ export const fetchingUserInfo = (state={fetching: false,fetched: false, data: []
 			return state
 	}
 }
-
-const answerState = {
-	answers: [ ],
-	totalScore: 0,
-
-}
+// name: fields[Object.keys(fields)[0]].name,
+// value: fields[Object.keys(fields)[0]].value
+const answerState = {score: 0}
 export const answers = (state=answerState,action) =>{
 	const  fields  = action.fields
 	switch(action.type){
 		case STU_ANSWERS:
-			return [
+			return {
 				...state,
-				{
-					name: fields[Object.keys(fields)[0]].name,
-					value: fields[Object.keys(fields)[0]].value
-				}
-			]
+				[fields[Object.keys(fields)[0]].name]: fields[Object.keys(fields)[0]].value
+			}
+		case ADD_SCORE:
+			return {
+				...state,
+				score: state.score+action.score
+			}
+		case DEC_SCORE:
+			return {
+				...state,
+				score: state.score-action.score
+			}
 		default:
 			return state
 	}

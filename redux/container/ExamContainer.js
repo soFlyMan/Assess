@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchSingleUser } from '../actions/userActions.js'
-import { fetchLoginStatus, stuAnswer } from '../actions/stuActions.js' 
+import { fetchLoginStatus, stuAnswer, addScore, decScore } from '../actions/stuActions.js' 
 import Exam from '../../component/student/Exam.js'
 import ExamPaper from '../../component/admin/examAdmin/ExamPaper.js'
 
@@ -32,6 +32,8 @@ class ExamContainer extends Component{
 				<ExamPaper exampaper={exampaper} 
 						   fetched={fetched} 
 						   onChangeAnswers={(fields) => dispatch(stuAnswer(fields))}
+						   onAddScore={(score) => dispatch(addScore(score))}
+						   onDecScore={(score) => dispatch(decScore(score))}
 							/>
 			</Exam>
 			)
