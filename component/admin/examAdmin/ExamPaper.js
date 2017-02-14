@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
-import { Radio, Form, Button } from 'antd'
+import { Radio, Form, Button, Checkbox } from 'antd'
 
 const RadioGroup = Radio.Group
+const CheckboxGroup = Checkbox.Group
 const FormItem = Form.Item
+const options = [
+	{ label: 'A', value: 'A' },
+	{ label: 'B', value: 'B' },
+	{ label: 'C', value: 'C' },
+	{ label: 'D', value: 'D' }
+]
 class ExamPaper extends Component{
 	constructor(props){
 		super(props)
@@ -21,15 +28,20 @@ class ExamPaper extends Component{
 	}
 	render(){
 	var a = 1
+	var b = 1
+	var c = 1
+	var d = 1
+	var e = 1
+	var f = 1
 	const { fetched, exampaper } = this.props
 	if(fetched&&exampaper!=0){
 			const paper = exampaper[exampaper.length-1]
 			const { getFieldDecorator } = this.props.form
 			return (
 				<Form onSubmit={this.handleSubmit}>
-					<h3>一、单项选择题(每题{paper.radioScore}分)</h3>
+					<h3>一、单项选择题(每题{paper.radioScore}分，共{paper.radio.length*paper.radioScore}分)</h3>
 					<div>
-										{
+						{
 						paper
 						.radio
 							.map(val =>{
@@ -61,11 +73,29 @@ class ExamPaper extends Component{
 						)
 					}
 					</div>
-					<h3>二、多项选择题</h3>
-					<h3>三、填空题</h3>
-					<h3>四、改错题</h3>
-					<h3>五、判断题</h3>
-					<h3>六、编程题</h3>
+					<h3>二、多项选择题(每题{paper.multiScore}分，共{paper.multi.length*paper.multiScore}分)</h3>
+					{
+						paper.multi.map(val => {
+							val.name = `multi${b}`
+							return (
+								<div>
+									<pre>{b++}.<span>{val.body}</span></pre>
+									<pre>{val.options}</pre>
+									<FormItem>
+										{
+											getFieldDecorator(`multi${b-1}`)(
+											<CheckboxGroup options={options} />
+											)
+										}
+									</FormItem>
+								</div>
+							)
+						})
+					}
+					<h3>三、填空题(每题{paper.fillblankScore}分，共{paper.fillblank.length*paper.fillblankScore}分)</h3>
+					<h3>四、改错题(每题{paper.correctScore}分，共{paper.correct.length*paper.correctScore}分)</h3>
+					<h3>五、判断题(每题{paper.judgeScore}分，共{paper.judge.length*paper.judgeScore}分)</h3>
+					<h3>六、编程题(每题{paper.programmingScore}分，共{paper.programming.length*paper.programmingScore}分)</h3>
 					<FormItem wrapperCol={{ span: 8, offset: 4 }}>
 			          <Button type="primary" htmlType="submit">
 			            Submit
