@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Radio, Form, Button, Checkbox } from 'antd'
+import { Radio, Form, Button, Checkbox, Input } from 'antd'
 
 const RadioGroup = Radio.Group
 const CheckboxGroup = Checkbox.Group
@@ -93,7 +93,47 @@ class ExamPaper extends Component{
 						})
 					}
 					<h3>三、填空题(每题{paper.fillblankScore}分，共{paper.fillblank.length*paper.fillblankScore}分)</h3>
+					{
+						paper.fillblank.map(val => {
+							val.name = `fillblank${c}`
+							return (
+								<div>
+									<pre>{c++}.<span>{val.body}</span></pre>
+									<FormItem>
+									{
+										getFieldDecorator(`fillblank${c-1}`)(
+										<ul>
+										 	<li style={{float: "left"}}><span style={{color: "#89c7f5"}}>答案：</span></li>
+											<li><Input type="textarea" autosize={{minRows: 3, maxRows: 6}} style={{width: 400}}/></li>
+										</ul>
+										)
+									}
+									</FormItem>
+								</div>	
+								)
+						})
+					}
 					<h3>四、改错题(每题{paper.correctScore}分，共{paper.correct.length*paper.correctScore}分)</h3>
+					{
+						paper.correct.map(val => {
+							val.name = `correct${d}`
+							return (
+								<div>
+									<pre>{d++}.<span>{val.body}</span></pre>
+									<FormItem>
+									{
+										getFieldDecorator(`correct${d-1}`)(
+										<ul>
+										 	<li style={{float: "left"}}><span style={{color: "#89c7f5"}}>答案：</span></li>
+											<li><Input type="textarea" style={{width: 400}} autosize={{minRows: 3, maxRows: 6}}/></li>	
+										</ul>
+										)
+									}
+									</FormItem>
+								</div>
+							)
+						})
+					}
 					<h3>五、判断题(每题{paper.judgeScore}分，共{paper.judge.length*paper.judgeScore}分)</h3>
 					<h3>六、编程题(每题{paper.programmingScore}分，共{paper.programming.length*paper.programmingScore}分)</h3>
 					<FormItem wrapperCol={{ span: 8, offset: 4 }}>
@@ -104,7 +144,7 @@ class ExamPaper extends Component{
 				</Form>
 				)
 		}else{
-			return <div>正在加载中……</div>
+			return <div>未登录！！</div>
 		}
 	}
 }
@@ -154,6 +194,21 @@ export default Form.create({
 					answers.remove(name)
 				}
 			}
+		}else if(name.indexOf('multi')>-1){
+			const multi = paper.multi.find(val => val.name === name)
+			if(answers.indexOf(name)<0){
+				if(multi.answer===answer.sort().toString().replace(/,/g,'')){
+					onAddScore(paper.multiScore)
+					answers.push(name)
+				}
+			}else{
+				if(multi.answer!==answer.sort().toString().replace(/,/g,'')){
+					onDecScore(paper.multiScore)
+					answers.remove(name)
+				}
+			}
+		}else if(name.indexOf('fillblank'>-1)){
+			console.log('123')
 		}
 		console.log(answers)		
 	}
