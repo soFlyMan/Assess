@@ -135,7 +135,27 @@ class ExamPaper extends Component{
 						})
 					}
 					<h3>五、判断题(每题{paper.judgeScore}分，共{paper.judge.length*paper.judgeScore}分)</h3>
+					{
+						paper.judge.map(val => {
+							val.name = `judge${e}`
+							return (
+								<div>
+									<pre>{e++}.<span>{val.body}</span></pre>
+								</div>
+								)
+						})
+					}
 					<h3>六、编程题(每题{paper.programmingScore}分，共{paper.programming.length*paper.programmingScore}分)</h3>
+					{
+						paper.programming.map(val => {
+							val.name = `programming${f}`
+							return (
+								<div>
+									<pre>{f++}.<span>{val.body}</span></pre>
+								</div>
+							)
+						})
+					}
 					<FormItem wrapperCol={{ span: 8, offset: 4 }}>
 			          <Button type="primary" htmlType="submit">
 			            Submit
