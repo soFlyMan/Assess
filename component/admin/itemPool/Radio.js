@@ -204,10 +204,10 @@ export default class Radio extends Component{
 					          ]}
 					        >
 					        	<lable>题目内容：</lable>
-					        	<Input type="textarea" rows={3} 
+					        	<Input type="textarea" autosize={{minRows: 3, maxRows:6}} 
 									 onChange={this.handleBody} value={this.state.body}/>
 					        	<lable>选项:</lable>
-					        	<Input type="textarea" rows={6} 
+					        	<Input type="textarea" autosize={{minRows: 6, maxRows:12}} 
 					        		 onChange={this.handleOptions} value={this.state.options}/>
 					        	<lable>答案:</lable>
 					        	<Input 

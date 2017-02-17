@@ -141,6 +141,16 @@ class ExamPaper extends Component{
 							return (
 								<div>
 									<pre>{e++}.<span>{val.body}</span></pre>
+									<FormItem>
+									{
+										getFieldDecorator(`judge${e-1}`)(
+											<RadioGroup>
+												<Radio value="是">是</Radio>
+												<Radio value="否">否</Radio>
+											</RadioGroup>
+											)
+									}
+									</FormItem>
 								</div>
 								)
 						})
@@ -227,8 +237,25 @@ export default Form.create({
 					answers.remove(name)
 				}
 			}
-		}else if(name.indexOf('fillblank'>-1)){
-			console.log('123')
+		}else if(name.indexOf('fillblank')>-1){
+			console.log('fillblank')
+		}else if(name.indexOf('correct')>-1){
+			console.log('correct')
+		}else if(name.indexOf('judge')>-1){
+			const judge = paper.judge.find(val => val.name === name)
+			if(answers.indexOf(name)<0){
+				if(judge.answer===answer){
+					onAddScore(paper.judgeScore)
+					answers.push(name)
+				}
+			}else{
+				if(judge.answer!==answer){
+					onDecScore(paper.judgeScore)
+					answers.remove(name)
+				}
+			}
+		}else if(name.indexOf('programming')>-1){
+			console.log('programming')
 		}
 		console.log(answers)		
 	}
