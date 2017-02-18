@@ -1,7 +1,8 @@
 import React,{ Component } from 'react'
-import { Card, Table, Icon, Popconfirm, Button, Modal, Input, message } from 'antd'
+import { Card, Table, Icon, Popconfirm, Button, Modal, Input, message, Select } from 'antd'
 
 const { Column, ColumnGroup } = Table
+const Option = Select.Option
 
 
 export default class Judge extends Component{
@@ -64,9 +65,9 @@ export default class Judge extends Component{
     		body: e.target.value
     	})
     }
-    handleAnswer = (e) => {
+    handleAnswer = (value) => {
     	this.setState({
-    		answer: e.target.value
+    		answer: value
     	})
     }	
     handleOk = () => {
@@ -177,8 +178,12 @@ export default class Judge extends Component{
 			            </Button>,
 			          ]}
 			        >
-			        	<lable>题目内容：</lable><Input type="textarea" rows={3} onChange={this.handleBody}/>
-			        	<lable>答案:</lable><Input onChange={this.handleAnswer}/> 
+			        	<lable>题目内容：</lable><Input type="textarea" autosize={{minRows: 3, maxRows: 24}} onChange={this.handleBody} style={{marginBottom: 12}}/>
+			        	<lable>答案:</lable>
+			        	<Select style={{width: 60}} onChange={this.handleAnswer}>
+							<Option value="是">是</Option>
+							<Option value="否">否</Option>
+			        	</Select> 
 			        </Modal>
 			        <Modal
 					          visible={this.state.modal2Visible}
@@ -193,11 +198,13 @@ export default class Judge extends Component{
 					          ]}
 					        >
 					        	<lable>题目内容：</lable>
-					        	<Input type="textarea" rows={3} 
-									 onChange={this.handleBody} value={this.state.body}/>
+					        	<Input type="textarea" autosize={{minRows: 3, maxRows: 24}} 
+									 onChange={this.handleBody} value={this.state.body} style={{marginBottom: 12}}/>
 					        	<lable>答案:</lable>
-					        	<Input 
-					        		 onChange={this.handleAnswer} value={this.state.answer}/> 
+					        	<Select style={{width: 60}} onChange={this.handleAnswer} value={this.state.answer}>
+					        		<Option value="是">是</Option>
+					        		<Option value="否">否</Option>
+				        		</Select> 
 					        </Modal>
 				</div>
 			}>
