@@ -1,7 +1,8 @@
 import React,{ Component } from 'react'
-import { Card, Table, Icon, Popconfirm, Button, Modal, Input, message } from 'antd'
+import { Card, Table, Icon, Popconfirm, Button, Modal, Input, message, Select } from 'antd'
 
 const { Column, ColumnGroup } = Table
+const Option = Select.Option
 
 
 export default class Radio extends Component{
@@ -70,9 +71,9 @@ export default class Radio extends Component{
     		options: e.target.value
     	})
     }
-    handleAnswer = (e) => {
+    handleAnswer = (value) => {
     	this.setState({
-    		answer: e.target.value
+    		answer: value
     	})
     }	
     handleOk = () => {
@@ -187,9 +188,15 @@ export default class Radio extends Component{
 			            </Button>,
 			          ]}
 			        >
-			        	<lable>题目内容：</lable><Input type="textarea" rows={3} onChange={this.handleBody}/>
-			        	<lable>选项:</lable><Input type="textarea" rows={6} onChange={this.handleOptions}/>
-			        	<lable>答案:</lable><Input onChange={this.handleAnswer}/> 
+			        	<lable>题目内容：</lable><Input type="textarea" autosize={{minRows: 3, maxRows: 12}} onChange={this.handleBody}/>
+			        	<lable>选项:</lable><Input style={{marginBottom: 12}} type="textarea" autosize={{minRows: 6, maxRows: 12}} onChange={this.handleOptions}/>
+			        	<lable>答案:</lable>
+			        	<Select style={{width: 60}} onChange={this.handleAnswer}>
+			        		<Option value="A">A</Option>
+			        		<Option value="B">B</Option>
+			        		<Option value="C">C</Option>
+			        		<Option value="C">C</Option>
+			        	</Select> 
 			        </Modal>
 			        <Modal
 					          visible={this.state.modal2Visible}
@@ -204,14 +211,19 @@ export default class Radio extends Component{
 					          ]}
 					        >
 					        	<lable>题目内容：</lable>
-					        	<Input type="textarea" autosize={{minRows: 3, maxRows:6}} 
+					        	<Input type="textarea" autosize={{minRows: 3, maxRows:12}} 
 									 onChange={this.handleBody} value={this.state.body}/>
 					        	<lable>选项:</lable>
-					        	<Input type="textarea" autosize={{minRows: 6, maxRows:12}} 
+					        	<Input style={{marginBottom: 12}} type="textarea" autosize={{minRows: 6, maxRows:12}} 
 					        		 onChange={this.handleOptions} value={this.state.options}/>
 					        	<lable>答案:</lable>
-					        	<Input 
-					        		 onChange={this.handleAnswer} value={this.state.answer}/> 
+					        	<Select style={{width: 60}} 
+					        		 onChange={this.handleAnswer} value={this.state.answer}>
+					        		<Option value="A">A</Option>
+					        		<Option value="B">B</Option>
+					        		<Option value="C">C</Option>
+					        		<Option value="D">D</Option> 
+				        		 </Select> 
 					        </Modal>
 				</div>
 			}>

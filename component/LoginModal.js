@@ -28,12 +28,19 @@ function beforeUpload(file) {
 const LoginModal = Form.create()(React.createClass({
   getInitialState() {
     return {
+      current: '',
       username: '',
       userid: '',
       password:'' ,
       visible: false,
       imageUrl:''
        };
+  },
+  handleClick(e){
+    console.log(e)
+    this.setState({
+      current: e.key
+    })
   },
   handleUsername(e){
     this.setState({
@@ -121,14 +128,6 @@ const LoginModal = Form.create()(React.createClass({
   render() {
     const { getFieldDecorator } = this.props.form;
     const imageUrl = this.state.imageUrl;
-    const menu = (
-      <Menu>
-        <Menu.Item key="1"><span><Icon type="file-text" style={{marginRight:8}}/>个人信息</span></Menu.Item>
-        <Menu.Item key="2"><span><Icon type="mail" style={{marginRight:8}}/>历史消息</span></Menu.Item>
-        <Menu.Divider />
-        <Menu.Item key="3"><Link to="/"><span onClick={this.logOut}><Icon type="logout" style={{marginRight:8}}/>退出</span></Link></Menu.Item>
-      </Menu>
-      );
     return (
       <div>
       { 
@@ -150,7 +149,17 @@ const LoginModal = Form.create()(React.createClass({
               }
             </Upload>
           </li>
-          <li className="username"><Dropdown overlay={menu}><span style={{color: "#777"}}>{this.props.username}<Icon type="down" /></span></Dropdown></li>
+          <li>
+            <Menu mode="horizontal" 
+                  onClick={this.handleClick}
+                  style={{backgroundColor: "rgba(0, 0, 0, 0)"}}>
+             <SubMenu title={<span style={{color: "#777"}}>{this.props.username}<Icon type="down" /></span>}>
+                <Menu.Item key="1"><span><Icon type="file-text"/>个人信息</span></Menu.Item>
+                <Menu.Item key="2"><span><Icon type="mail"/>历史消息</span></Menu.Item>
+                <Menu.Item key="3"><span onClick={this.logOut.bind(this)}><Icon type="logout"/>退出</span></Menu.Item>
+             </SubMenu>
+            </Menu>
+          </li>
         </ul>
         :
         <div style={{padding: 15}}>
