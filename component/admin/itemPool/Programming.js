@@ -178,7 +178,7 @@ export default class Programming extends Component{
 			            </Button>,
 			          ]}
 			        >
-			        	<lable>题目内容：</lable><Input type="textarea" rows={3} onChange={this.handleBody}/>
+			        	<lable>题目内容：</lable><Input type="textarea" autosize={{minRows: 3, maxRows: 12}} onChange={this.handleBody}/>
 			        	<lable>答案:</lable><Input onChange={this.handleAnswer}/> 
 			        </Modal>
 			        <Modal
@@ -194,7 +194,7 @@ export default class Programming extends Component{
 					          ]}
 					        >
 					        	<lable>题目内容：</lable>
-					        	<Input type="textarea" rows={3} 
+					        	<Input type="textarea" autosize={{minRows: 3, maxRows: 12}} 
 									 onChange={this.handleBody} value={this.state.body}/>
 					        	<lable>答案:</lable>
 					        	<Input 
