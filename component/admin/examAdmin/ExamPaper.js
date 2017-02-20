@@ -239,6 +239,18 @@ export default Form.create({
 			}
 		}else if(name.indexOf('fillblank')>-1){
 			console.log('fillblank')
+			const fillblank = paper.fillblank.find(val => val.name === name)
+			if(answers.indexOf(name)<0){
+				if(fillblank.answer===answer){
+					onAddScore(paper.fillblankScore)
+					answers.push(name)
+				}
+			}else{
+				if(fillblank.answer!==answer){
+					onDecScore(paper.fillblankScore)
+					answers.remove(name)
+				}
+			}
 		}else if(name.indexOf('correct')>-1){
 			console.log('correct')
 		}else if(name.indexOf('judge')>-1){
