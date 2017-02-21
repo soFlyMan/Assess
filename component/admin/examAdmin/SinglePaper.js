@@ -40,15 +40,15 @@ const SinglePaper = ({ fetched, singlePaper }) =>{
 					singlePaper
 					.multi
 						.map(val => {
-							return <div><pre>
-								       <span>{b++}.</span>{val.body}</pre>
-								       <pre>{val.options}</pre>
-									   <pre>
-									      <span className="answer">答案：
-									      	{val.answer}
-									      </span>
-									   </pre>
-									   <br/>
+							return <div>
+									<pre>
+						       		  <span>{b++}.</span>{val.body}
+							       	</pre>
+							        <pre>{val.options}</pre>
+							        <span className="answer">答案：
+							      	{val.answer}
+							        </span>
+								    <br/>
 								   </div>
 						})
 				}
@@ -90,14 +90,15 @@ const SinglePaper = ({ fetched, singlePaper }) =>{
 					singlePaper
 					.judge
 						.map(val => {
-							return <div><pre>
-								       <span>{e++}.</span>{val.body}</pre>
-									   <pre>
-									      <span className="answer">答案：
-									      	{val.answer}
-									      </span>
-									   </pre>
-									   <br/>
+							return <div>
+									  <pre>
+								       <span>{e++}.</span>
+								       {val.body}
+							          </pre>
+								      <span className="answer">答案：
+								      	{val.answer}
+								      </span>
+								      <br/>
 								   </div>
 						})
 				}

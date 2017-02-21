@@ -185,6 +185,7 @@ export default class Correct extends Component{
 					          title="修改"
 					          onOk={this.handleModal2Ok}
 					          onCancel={this.handleModal2Ok}
+					          maskClosable={false}
 					          footer={[
 					            <Button key="back2" type="ghost" size="large" onClick={this.handleModal2Cancel}>取消</Button>,
 					            <Button key="submit2" type="primary" size="large" loading={this.state.loading} onClick={this.handleModal2Ok}>

@@ -14,14 +14,14 @@ var ExampapSchema = new mongoose.Schema({
 		_id: String,
 		body: String,
 		options: String,
-		answers: String,
+		answer: String,
 		_v: Number
 			}],
 	multiScore: Number,
 	judge:[{
 		_id: String,
 		body: String,
-		answer: Boolean,
+		answer: String,
 		_v: Number
 			}],
 	judgeScore: Number,

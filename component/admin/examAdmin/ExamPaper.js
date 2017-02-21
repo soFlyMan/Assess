@@ -104,7 +104,7 @@ class ExamPaper extends Component{
 										getFieldDecorator(`fillblank${c-1}`)(
 										<ul>
 										 	<li style={{float: "left"}}><span style={{color: "#89c7f5"}}>答案：</span></li>
-											<li><Input type="textarea" autosize={{minRows: 3, maxRows: 6}} style={{width: 400}}/></li>
+											<li><Input type="textarea" autosize={{minRows: 1, maxRows: 6}} style={{width: 400}} placeholder="提示：多个填空请用空格分隔。"/></li>
 										</ul>
 										)
 									}
@@ -125,7 +125,7 @@ class ExamPaper extends Component{
 										getFieldDecorator(`correct${d-1}`)(
 										<ul>
 										 	<li style={{float: "left"}}><span style={{color: "#89c7f5"}}>答案：</span></li>
-											<li><Input type="textarea" style={{width: 400}} autosize={{minRows: 3, maxRows: 6}}/></li>	
+											<li><Input type="textarea" style={{width: 400}} autosize={{minRows: 1, maxRows: 6}}/></li>	
 										</ul>
 										)
 									}
@@ -241,18 +241,19 @@ export default Form.create({
 			console.log('fillblank')
 			const fillblank = paper.fillblank.find(val => val.name === name)
 			if(answers.indexOf(name)<0){
-				if(fillblank.answer===answer){
+				if(fillblank.answer.trim()===answer.trim()){
 					onAddScore(paper.fillblankScore)
 					answers.push(name)
 				}
 			}else{
-				if(fillblank.answer!==answer){
+				if(fillblank.answer.trim()!==answer.trim()){
 					onDecScore(paper.fillblankScore)
 					answers.remove(name)
 				}
 			}
 		}else if(name.indexOf('correct')>-1){
 			console.log('correct')
+			const correct = paper.correct.find(val => val.name === name)
 		}else if(name.indexOf('judge')>-1){
 			const judge = paper.judge.find(val => val.name === name)
 			if(answers.indexOf(name)<0){
