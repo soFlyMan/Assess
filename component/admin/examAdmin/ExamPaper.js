@@ -252,8 +252,19 @@ export default Form.create({
 				}
 			}
 		}else if(name.indexOf('correct')>-1){
-			console.log('correct')
 			const correct = paper.correct.find(val => val.name === name)
+			console.log(correct)
+			if(answers.indexOf(name)<0){
+				if(correct.answer.trim()===answer.trim()){
+					onAddScore(paper.correctScore)
+					answers.push(name)
+				}
+			}else{
+				if(correct.answer.trim()!==answer.trim()){
+					onDecScore(paper.correctScore)
+					answers.remove(name)
+				}
+			}
 		}else if(name.indexOf('judge')>-1){
 			const judge = paper.judge.find(val => val.name === name)
 			if(answers.indexOf(name)<0){
