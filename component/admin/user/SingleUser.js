@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tabs } from 'antd'
 
-import SingleUserPaper from './SingleUserPaper.js'
+import SingleUserInfo from './SingleUserInfo.js'
 const TabPane = Tabs.TabPane
 
 const SingleUser = ({fetched,singleUser}) => {
@@ -18,7 +18,7 @@ const SingleUser = ({fetched,singleUser}) => {
 						{
 							singleUser.exampaper.map(val => {
 								return (
-									<TabPane tab={val.date} key={a++}><SingleUserPaper paper={val}/></TabPane>
+									<TabPane tab={val.date} key={a++}><SingleUserInfo paper={val} fetched={true}/></TabPane>
 								)
 							})
 						}

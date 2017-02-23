@@ -88,12 +88,12 @@ export const fetchingLoginStatus = (state={fetching:false,fetched:false,data:{ }
 	}
 }
 
-export const fetchingUserInfo = (state={fetching: false,fetched: false, data: [], error: null},action) => {
+export const fetchingUserInfo = (state={fetching:false,fetched:false,data:{ },error:null}, action) => {
 	switch(action.type){
 		case FETCH_USER_INFO:
 			return {
 				...state,
-				fetching: false,
+				fetching: true,
 				fetched: false
 			}
 		case FETCH_USER_INFO_ERR:

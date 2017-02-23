@@ -1,7 +1,8 @@
 import React from 'react'
 
-const SingleUserPaper = ({paper}) => {
-	var a = 1
+const SingleUserInfo = ({fetched,paper}) => {
+	if(fetched){
+		var a = 1
 	var b = 1
 	var c = 1
 	var d = 1
@@ -119,6 +120,11 @@ const SingleUserPaper = ({paper}) => {
 				}
 		</div>
 		)	
+	}else{
+		return (
+			<div>正在加载中……</div>
+			)
+	}
 }
 
-export default SingleUserPaper
+export default SingleUserInfo

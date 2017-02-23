@@ -28,6 +28,7 @@ function beforeUpload(file) {
 const LoginModal = Form.create()(React.createClass({
   getInitialState() {
     return {
+      id: '',
       current: '',
       username: '',
       userid: '',
@@ -79,6 +80,7 @@ const LoginModal = Form.create()(React.createClass({
               if(data.status==1){
                 _self.setState({
                   username: data.username,
+                  id: data._id,
                   visible: false,
               })
                 onFetchLoginStatus('/logStatus',{
@@ -154,9 +156,9 @@ const LoginModal = Form.create()(React.createClass({
                   onClick={this.handleClick}
                   style={{backgroundColor: "rgba(0, 0, 0, 0)"}}>
              <SubMenu title={<span style={{color: "#777"}}>{this.props.username}<Icon type="down" /></span>}>
-                <Menu.Item key="1"><span><Icon type="file-text"/>个人信息</span></Menu.Item>
+                <Menu.Item key="1"><span><Link to="/userinfocontainer"><Icon type="file-text"/>个人信息</Link></span></Menu.Item>
                 <Menu.Item key="2"><span><Icon type="mail"/>历史消息</span></Menu.Item>
-                <Menu.Item key="3"><span onClick={this.logOut.bind(this)}><Icon type="logout"/>退出</span></Menu.Item>
+                <Menu.Item key="3"><span onClick={this.logOut.bind(this)}><Link to="/"><Icon type="logout"/>退出</Link></span></Menu.Item>
              </SubMenu>
             </Menu>
           </li>

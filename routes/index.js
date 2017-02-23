@@ -67,7 +67,7 @@ router.post('/signin',function(req,res){
 					// req.session.user = req.session
 					// console.log(req.session.userid)
 					console.log('Is matched!')
-					return res.send({status: 1,userid: req.session.user.userid,username: req.session.user.username})
+					return res.send({status: 1,userid: req.session.user.userid,username: req.session.user.username, id: req.session.user._id})
 				}else{
 					console.log('password is not matched')
 					return res.send({status: 2})

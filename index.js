@@ -10,6 +10,8 @@ import thunkMiddleware from 'redux-thunk'
 import reducer from './redux/reducers/reducers.js'
 import logger from 'redux-logger'
 
+import UserInfoContainer from './redux/container/UserInfoContainer.js'
+
 import CorrectContainer from './redux/container/CorrectContainer.js'
 import RadioContainer from './redux/container/RadioContainer.js'
 import MultiContainer from './redux/container/MultiContainer.js'
@@ -22,6 +24,7 @@ import Assess from './component/Assess.js'
 import AssessScore from './component/student/AssessScore.js'
 import ExamContainer from './redux/container/ExamContainer.js'
 import Course from './component/course/Course.js'
+
 
 import Admin from './component/admin/Admin.js'
 import AdminLogin from './component/admin/AdminLogin.js'
@@ -74,6 +77,7 @@ ReactDOM.render((
 
 			<Route path="adminlogin" component={AdminLogin}/>
 			<Route path="course" component={Course}/>
+			<Route path="userinfocontainer" component={UserInfoContainer}/>
 			
 		</Router>
 	</Provider>

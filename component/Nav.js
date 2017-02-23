@@ -9,13 +9,12 @@ import LoginModal from './LoginModal.js'
 var logo = require('../dist/f3919c9c277024f91197317ae56e87d2.png')
 
 class Nav extends Component{
-	componentWillMount(){
+	componentDidMount(){
 		const { dispatch } = this.props
-		
 		dispatch(fetchLoginStatus('/logStatus',{
-			method: 'GET',
-			credentials: 'same-origin'
-		}))
+					method: 'GET',
+					credentials: 'same-origin'
+				}))
 	}
 	render(){
 		const { fetchingLoginStatus, status, dispatch } = this.props
@@ -31,8 +30,10 @@ class Nav extends Component{
 						<LoginModal status={status}
 									username={fetchingLoginStatus.data.username}
 									userid={fetchingLoginStatus.data.userid}
-									onLogOut={(url,params)=>dispatch(logOut(url,params))}
-									onFetchLoginStatus={(url,params)=>dispatch(fetchLoginStatus(url,params))}/>
+									onLogOut={(url,params) => dispatch(logOut(url,params))}
+									onFetchLoginStatus={(url,params) => dispatch(fetchLoginStatus(url,params))}
+									onFetchUserInfo={(url,params) => dispatch(fetchUserInfo(url,params))}
+									/>
 					</li>
 				</ul>
 			</nav>
@@ -43,7 +44,8 @@ class Nav extends Component{
 const mapStateToProps = state => {
 	return {
 	fetchingLoginStatus: state.fetchingLoginStatus,
-	status: state.fetchingLoginStatus.status
+	status: state.fetchingLoginStatus.status,
+	id: state.fetchingLoginStatus.data.id
 	}
 }
 export default connect(mapStateToProps)(Nav)
