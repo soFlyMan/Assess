@@ -10,7 +10,9 @@ class SingleUserContainer extends Component{
 		const { fetchingSingleUser, fetched } = this.props
 		return (
 			<Card title="个人信息" extra={<Link to="/admin/usercontainer"><span>返回</span></Link>}>
-				<SingleUser singleUser={fetchingSingleUser.data[0]} fetched={fetched}/>
+				<SingleUser singleUser={fetchingSingleUser.data[0]}
+						    fetched={fetched}
+						    tabPosition="left"/>
 			</Card>
 			)
 	}

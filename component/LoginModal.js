@@ -7,6 +7,22 @@ const FormItem = Form.Item;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
+          // <li>
+          //   <Upload
+          //     className="avatar-uploader"
+          //     name="avatar"
+          //     showUploadList={false}
+          //     action="/upload.do"
+          //     beforeUpload={beforeUpload}
+          //     onChange={this.handleChange}
+          //   >
+          //     {
+          //       imageUrl ?
+          //         <img src={imageUrl} alt="" className="avatar" /> :
+          //         <Icon type="plus" className="avatar-uploader-trigger" />
+          //     }
+          //   </Upload>
+          // </li>
 function getBase64(img, callback) {
   const reader = new FileReader();
   reader.addEventListener('load', () => callback(reader.result));
@@ -135,22 +151,7 @@ const LoginModal = Form.create()(React.createClass({
       { 
         this.props.status?
         <ul className="user">
-          <li>
-            <Upload
-              className="avatar-uploader"
-              name="avatar"
-              showUploadList={false}
-              action="/upload.do"
-              beforeUpload={beforeUpload}
-              onChange={this.handleChange}
-            >
-              {
-                imageUrl ?
-                  <img src={imageUrl} alt="" className="avatar" /> :
-                  <Icon type="plus" className="avatar-uploader-trigger" />
-              }
-            </Upload>
-          </li>
+         
           <li>
             <Menu mode="horizontal" 
                   onClick={this.handleClick}

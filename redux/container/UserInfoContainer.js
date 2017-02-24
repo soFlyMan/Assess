@@ -21,7 +21,9 @@ class UserInfoContainer extends Component{
 			<div>
 				<Nav nav={'assessNavChange'}/>
 				<Card style={{marginTop: 100, marginRight: 280, marginLeft: 280}}>
-					<SingleUser fetched={fetched} singleUser={singleUser.data[0]}/>
+					<SingleUser fetched={fetched} 
+								singleUser={singleUser.data[0]}
+								tabPosition="left"/>
 				</Card>
 			</div>
 			)

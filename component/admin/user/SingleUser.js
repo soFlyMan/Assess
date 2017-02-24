@@ -1,24 +1,27 @@
 import React from 'react'
-import { Tabs } from 'antd'
+import { Tabs, Icon } from 'antd'
 
 import SingleUserInfo from './SingleUserInfo.js'
 const TabPane = Tabs.TabPane
 
-const SingleUser = ({fetched,singleUser}) => {
+const SingleUser = ({fetched,singleUser,tabPosition}) => {
 	if(fetched){
 		var a = 1
 		return (
 			<div>
 				<ul>
-					<li>姓名：{singleUser.username}</li>
-					<li>学号：{singleUser.userid}</li>
-					<li>查看试卷：</li>
+					<li className="userinfo">姓名：<span>{singleUser.username}</span></li>
+					<li className="userinfo">学号：<span>{singleUser.userid}</span></li>
+					<li className="userinfo">查阅试卷：</li>
 					<li>
-						<Tabs type="card">
+						<Tabs tabPosition={tabPosition}>
 						{
 							singleUser.exampaper.map(val => {
 								return (
-									<TabPane tab={val.date} key={a++}><SingleUserInfo paper={val} fetched={true}/></TabPane>
+									<TabPane tab={(<span><span><Icon type="file-text"/></span>{val.date}</span>)} 
+											 key={a++}>
+								    	<SingleUserInfo paper={val} fetched={true}/>
+							    	</TabPane>
 								)
 							})
 						}

@@ -10,7 +10,7 @@ const SingleUserInfo = ({fetched,paper}) => {
 	var f = 1
 	return (
 		<div>
-			<h3>一、单项选择题(每题{paper.radioScore}分)</h3>
+			<h3>一、单项选择题(每题{paper.radioScore}分，共{paper.radio.length*paper.radioScore}分)</h3>
 			<div>
 			{
 				paper
@@ -33,7 +33,7 @@ const SingleUserInfo = ({fetched,paper}) => {
 				)
 			}
 			</div>
-			<h3>二、多项选择题(每题{paper.multiScore}分)</h3>
+			<h3>二、多项选择题(每题{paper.multiScore}分，共{paper.multi.length*paper.multiScore}分)</h3>
 			<div>
 				{
 					paper
@@ -52,7 +52,7 @@ const SingleUserInfo = ({fetched,paper}) => {
 						})
 				}
 			</div>
-			<h3>三、填空题(每题{paper.fillblankScore}分)</h3>
+			<h3>三、填空题(每题{paper.fillblankScore}分，共{paper.fillblank.length*paper.fillblankScore}分)</h3>
 			{
 					paper
 					.fillblank
@@ -68,7 +68,7 @@ const SingleUserInfo = ({fetched,paper}) => {
 								   </div>
 						})
 				}
-			<h3>四、改错题(每题{paper.correctScore}分)</h3>
+			<h3>四、改错题(每题{paper.correctScore}分，共{paper.correct.length*paper.correctScore}分)</h3>
 			{
 					paper
 					.correct
@@ -84,7 +84,7 @@ const SingleUserInfo = ({fetched,paper}) => {
 								   </div>
 						})
 				}
-			<h3>五、判断题(每题{paper.judgeScore}分)</h3>
+			<h3>五、判断题(每题{paper.judgeScore}分，共{paper.judge.length*paper.judgeScore}分)</h3>
 			{
 					paper
 					.judge
@@ -101,7 +101,7 @@ const SingleUserInfo = ({fetched,paper}) => {
 								   </div>
 						})
 				}
-			<h3>六、编程题(每题{paper.programmingScore}分)</h3>
+			<h3>六、编程题(每题{paper.programmingScore}分，共{paper.programming.length*paper.programmingScore}分)</h3>
 			{
 					paper
 					.programming
