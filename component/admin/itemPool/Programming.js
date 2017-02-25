@@ -40,7 +40,7 @@ export default class Programming extends Component{
 			    	},
 			    	body: JSON.stringify(programmingId)
 			    })
-	        yield message.info("删除成功！")
+	        yield message.success("删除成功！")
 			yield self.props.onShow('/item/programming',{
 						method: 'GET',
 					credentials: 'same-origin',
@@ -53,7 +53,7 @@ export default class Programming extends Component{
     		g.next()
         	g.next()
     	}else{
-    		message.info("删除失败！")
+    		message.error("删除失败！")
     	}
   	}
 	  	
@@ -88,7 +88,7 @@ export default class Programming extends Component{
 			    	body: JSON.stringify(programming)
 			    })
 	        yield self.setState({ loading: false, modal1Visible: false })
-	        yield message.info("添加成功！")
+	        yield message.success("添加成功！")
 			yield self.props.onShow('/item/programming',{
 						method: 'GET',
 					credentials: 'same-origin',
@@ -101,7 +101,7 @@ export default class Programming extends Component{
     		g.next()
         	g.next()
     	}else{
-    		message.info("添加失败！")
+    		message.error("添加失败！")
     	}
     }
     handleCancel = () => {
@@ -137,7 +137,7 @@ export default class Programming extends Component{
 			    	body: JSON.stringify(programming)
 			    })
 	        yield self.setState({ loading: false, modal2Visible: false })
-	        yield message.info("修改成功！")
+	        yield message.success("修改成功！")
 			yield self.props.onShow('/item/programming',{
 						method: 'GET',
 					credentials: 'same-origin',
@@ -150,7 +150,7 @@ export default class Programming extends Component{
     		g.next()
         	g.next()
     	}else{
-    		message.info("修改失败！")
+    		message.error("修改失败！")
     	}
     }
 	render(){

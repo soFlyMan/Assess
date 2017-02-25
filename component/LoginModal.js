@@ -104,9 +104,9 @@ const LoginModal = Form.create()(React.createClass({
                   credentials: 'same-origin'
                 })
               }else if(data.status==2){
-                message.info('Password is error !')
+                message.warning('Password is error !')
               }else{
-                message.info('Userid is error!')
+                message.warning('Userid is error!')
               }
               
             })

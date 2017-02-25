@@ -40,7 +40,7 @@ export default class Correct extends Component{
 			    	},
 			    	body: JSON.stringify(correctId)
 			    })
-	        yield message.info("删除成功！")
+	        yield message.success("删除成功！")
 			yield self.props.onShow('/item/correct',{
 						method: 'GET',
 					credentials: 'same-origin',
@@ -52,7 +52,7 @@ export default class Correct extends Component{
     		g.next()
         	g.next()
     	}else{
-    		message.info("删除失败！")
+    		message.error("删除失败！")
     	}
   	}
 	  	
@@ -87,7 +87,7 @@ export default class Correct extends Component{
 			    	body: JSON.stringify(correct)
 			    })
 	        yield self.setState({ loading: false, modal1Visible: false })
-	        yield message.info("添加成功！")
+	        yield message.success("添加成功！")
 			yield self.props.onShow('/item/correct',{
 						method: 'GET',
 					credentials: 'same-origin',
@@ -100,7 +100,7 @@ export default class Correct extends Component{
 			g.next()
         	g.next()
     	}else{
-    		message.info("添加失败！")
+    		message.error("添加失败！")
     	}
     }
     handleCancel = () => {
@@ -136,7 +136,7 @@ export default class Correct extends Component{
 			    	body: JSON.stringify(correct)
 			    })
 	        yield self.setState({ loading: false, modal2Visible: false })
-	        yield message.info("修改成功！")
+	        yield message.success("修改成功！")
 			yield self.props.onShow('/item/correct',{
 						method: 'GET',
 					credentials: 'same-origin',
@@ -149,7 +149,7 @@ export default class Correct extends Component{
     		g.next()
         	g.next()
     	}else{
-    		message.info("修改失败！")
+    		message.error("修改失败！")
     	}
     }
 	render(){

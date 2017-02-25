@@ -127,11 +127,11 @@ const AddUser = Form.create()(React.createClass({
               })
                 var val = _self.state.username
                 _self.props.handleRender(val);
-                message.info("添加成功！")
+                message.success("添加成功！")
               }else if(data.status==0){
-                message.info("用户已存在！")
+                message.warning("用户已存在！")
               }else{
-              message.info("添加失败！")
+              message.error("添加失败！")
             }
             })
           }

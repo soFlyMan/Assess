@@ -67,10 +67,10 @@ const UserList = React.createClass({
       if(res.ok){
         res.json().then(function(data){
           if(data.status==1){
-            message.info('删除成功！')
+            message.success('删除成功！')
             _self.handleRender()
           }else{
-            message.info('删除失败')
+            message.error('删除失败')
           }
         })
       }

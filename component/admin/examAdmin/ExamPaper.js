@@ -23,7 +23,7 @@ class ExamPaper extends Component{
 		console.log(this.props.form)
 		this.props.form.validateFields((err, values) => {
 	      if (!err) {
-	        console.log('Received values of form: ', values)
+	      	console.log('values:',values)
 	      }
 	    })
 	    
@@ -199,20 +199,21 @@ Array.prototype.remove = function(val) {
 
 export default Form.create({
 	mapPropsToFields(props){
-		console.log('mapPropsToFields')
-		console.log(props)
+		console.log('mapPropsToFields',props)
 		return {
-			radio: { value: props.radio }
+
 		}
 	},
 	onFieldsChange(props,fields){
 		console.log('onFieldsChange',fields)
-		const name = fields[Object.keys(fields)[0]].name
-		const answer = fields[Object.keys(fields)[0]].value
+		var field = Object.assign({},fields)
+		const name = field[Object.keys(field)[0]].name
+		const answer = field[Object.keys(field)[0]].value
 		const { exampaper, onAddScore, onDecScore } = props
-		const paper = exampaper[exampaper.length-1]
+		const exampap = exampaper[exampaper.length-1]
+		var paper = Object.assign({},exampap) 
 		console.log(paper)
-		props.onChangeAnswers(fields)
+		props.onChangeAnswers(field)
 		if(name.indexOf('radio')>-1){
 			const radio = paper.radio.find(val => val.name === name)
 			if(answers.indexOf(name)<0){

@@ -70,7 +70,7 @@ export default class ExamParam extends Component{
 		 	},
 		 	body: JSON.stringify(params)
 		 })
-		 message.info("提交成功！")
+		 message.success("提交成功！")
 	}
 	render(){
 		const { handleExam } = this.props

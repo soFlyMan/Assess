@@ -71,15 +71,15 @@ export default class ClassAdmin extends Component{
 					})
 					console.log(data)
 					if(data.status==1){
-						message.info('添加成功')
+						message.success('添加成功')
 						_self.setState({
 							visible: false
 						})
 						_self.handleKlasslist()
 					}else if(data.status==2){
-						message.info('添加失败，班级已存在！')
+						message.warning('添加失败，班级已存在！')
 					}else{
-						message.info('添加失败')
+						message.error('添加失败')
 					}
 				})
 			}
@@ -109,10 +109,10 @@ export default class ClassAdmin extends Component{
 			if(res.ok){
 				res.json().then(function(data){
 					if(data.status==1){
-						message.info('删除成功！')
+						message.success('删除成功！')
 						_self.handleKlasslist()
 					}else{
-						message.info('删除失败！')
+						message.error('删除失败！')
 					}
 				})
 			}

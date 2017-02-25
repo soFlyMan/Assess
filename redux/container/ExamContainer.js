@@ -26,7 +26,7 @@ class ExamContainer extends Component{
 		}
 	}
 	render(){
-		const { dispatch, exampaper, fetched } = this.props
+		const { dispatch, exampaper, fetched,   } = this.props
 		return (
 			<Exam>
 				<ExamPaper exampaper={exampaper} 

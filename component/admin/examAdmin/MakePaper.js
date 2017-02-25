@@ -99,7 +99,7 @@ class MakePaper extends Component{
 			},
 			body: JSON.stringify(number)
 		})
-		message.info('修改成功！')
+		message.success('修改成功！')
 	}
 	render(){
 		const { 
