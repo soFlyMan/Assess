@@ -181,25 +181,25 @@ export default class Correct extends Component{
 			        	<lable>答案:</lable><Input onChange={this.handleAnswer}/> 
 			        </Modal>
 			        <Modal
-					          visible={this.state.modal2Visible}
-					          title="修改"
-					          onOk={this.handleModal2Ok}
-					          onCancel={this.handleModal2Ok}
-					          maskClosable={false}
-					          footer={[
-					            <Button key="back2" type="ghost" size="large" onClick={this.handleModal2Cancel}>取消</Button>,
-					            <Button key="submit2" type="primary" size="large" loading={this.state.loading} onClick={this.handleModal2Ok}>
-					              提交
-					            </Button>,
-					          ]}
-					        >
-					        	<lable>题目内容：</lable>
-					        	<Input type="textarea" rows={3} 
-									 onChange={this.handleBody} value={this.state.body}/>
-					        	<lable>答案:</lable>
-					        	<Input 
-					        		 onChange={this.handleAnswer} value={this.state.answer}/> 
-					        </Modal>
+			          visible={this.state.modal2Visible}
+			          title="修改"
+			          onOk={this.handleModal2Ok}
+			          onCancel={this.handleModal2Ok}
+			          maskClosable={false}
+			          footer={[
+			            <Button key="back2" type="ghost" size="large" onClick={this.handleModal2Cancel}>取消</Button>,
+			            <Button key="submit2" type="primary" size="large" loading={this.state.loading} onClick={this.handleModal2Ok}>
+			              提交
+			            </Button>,
+			          ]}
+			        >
+			        	<lable>题目内容：</lable>
+			        	<Input type="textarea" rows={3} 
+							 onChange={this.handleBody} value={this.state.body}/>
+			        	<lable>答案:</lable>
+			        	<Input 
+			        		 onChange={this.handleAnswer} value={this.state.answer}/> 
+			        </Modal>
 				</div>
 			}>
 				<Table dataSource={data} bordered>
