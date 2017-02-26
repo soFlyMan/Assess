@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { Radio, Form, Button, Checkbox, Input } from 'antd'
+import { Radio, Form, Button, Checkbox, Input, Modal, Card } from 'antd'
+import { Link, browserHistory } from 'react-router'
 
 const RadioGroup = Radio.Group
 const CheckboxGroup = Checkbox.Group
 const FormItem = Form.Item
+const confirm = Modal.confirm
+
 const options = [
 	{ label: 'A', value: 'A' },
 	{ label: 'B', value: 'B' },
@@ -12,11 +15,37 @@ const options = [
 	{ label: 'E', value: 'E' },
 	{ label: 'F', value: 'F' }
 ]
+
+function success() {
+  Modal.success({
+    title: '提交成功！！',
+    content: (
+      <div>
+      </div>
+    ),
+    onOk() {},
+  })
+}
+
+
+
 class ExamPaper extends Component{
 	constructor(props){
 		super(props)
 		this.state={
 		}
+	}
+	showConfirm = (values) => {
+	  confirm({
+	    title: 'Want to delete these items?',
+	    content: 'some descriptions',
+	    onOk() {
+	      console.log(values)
+	      // window.location.href='/#/course'
+	      browserHistory.push('/course')
+	    },
+	    onCancel() {},
+	  });
 	}
 	handleSubmit = (e) => {
 		e.preventDefault()
@@ -24,6 +53,7 @@ class ExamPaper extends Component{
 		this.props.form.validateFields((err, values) => {
 	      if (!err) {
 	      	console.log('values:',values)
+			this.showConfirm(values)
 	      }
 	    })
 	    
@@ -169,14 +199,17 @@ class ExamPaper extends Component{
 						})
 					}
 					<FormItem wrapperCol={{ span: 8, offset: 4 }}>
-			          <Button type="primary" htmlType="submit">
-			            Submit
-			          </Button>
+				          <Button type="primary" htmlType="submit">
+				            Submit
+				          </Button>
 			        </FormItem>
 				</Form>
 				)
 		}else{
-			return <div>未登录！！</div>
+			return (
+				<Card loading title="正在加载中……" style={{ width: "80%" , margin:"0 auto"}}>
+			  	</Card>
+			)
 		}
 	}
 }
@@ -213,17 +246,17 @@ export default Form.create({
 		const exampap = exampaper[exampaper.length-1]
 		var paper = Object.assign({},exampap) 
 		console.log(paper)
-		props.onChangeAnswers(field)
+		// props.onChangeAnswers(field)
 		if(name.indexOf('radio')>-1){
 			const radio = paper.radio.find(val => val.name === name)
 			if(answers.indexOf(name)<0){
 				if(radio.answer===answer){
-					onAddScore(paper.radioScore)
+					// onAddScore(paper.radioScore)
 					answers.push(name)
 				}
 			}else{
 				if(radio.answer!==answer){
-					onDecScore(paper.radioScore)
+					// onDecScore(paper.radioScore)
 					answers.remove(name)
 				}
 			}

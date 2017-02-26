@@ -16,6 +16,10 @@ hashHistory - debug
 
 browserHistory - product
 
+- **react-router redirect**
+
+[router documention](https://react-guide.github.io/react-router-cn/index.html)
+
 - **webpack**
 
 [webpack](https://hulufei.gitbooks.io/react-tutorial/content/webpack.html)

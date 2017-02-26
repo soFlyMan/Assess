@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tabs, Icon } from 'antd'
+import { Tabs, Icon, Card } from 'antd'
 
 import SingleUserInfo from './SingleUserInfo.js'
 const TabPane = Tabs.TabPane
@@ -32,9 +32,9 @@ const SingleUser = ({fetched,singleUser,tabPosition}) => {
 			)
 	}else{
 		return (
-		<div>
+		<Card loading title="个人信息">
 			正在加载中……
-		</div>
+		</Card>
 		)
 	}
 }
