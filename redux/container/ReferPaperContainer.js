@@ -30,7 +30,7 @@ class ReferPaperContainer extends Component{
 				})
 			}
 		}).then(function(err){
-			console.log(err.message)
+			console.log(err)
 		})
 	}
 	render(){

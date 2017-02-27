@@ -26,7 +26,18 @@ router.post('/result',function(req,res){
 	var id = req.body.id
 	var result = req.body.result
 	console.log(id,result)
-	res.send({status: 1})
+	User.findOneAndUpdate({_id: id},{
+		$set: {
+			status: false
+		}
+	},function(err,user){
+		if(err){
+			console.log(err)
+		}else{
+			console.log(user)
+			res.send({status: 1})
+		}
+	})
 })
 
 router.post('/:id',function(req,res){

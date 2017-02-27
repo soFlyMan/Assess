@@ -189,8 +189,7 @@ export default class Judge extends Component{
 					          visible={this.state.modal2Visible}
 					          title="修改"
 					          onOk={this.handleModal2Ok}
-					          onCancel={this.handleModal2Ok}
-					          maskClosable={false}
+					          onCancel={this.handleModal2Cancel}
 					          footer={[
 					            <Button key="back2" type="ghost" size="large" onClick={this.handleModal2Cancel}>取消</Button>,
 					            <Button key="submit2" type="primary" size="large" loading={this.state.loading} onClick={this.handleModal2Ok}>
