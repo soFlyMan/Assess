@@ -3,7 +3,7 @@ import { Card } from 'antd'
 
 const SingleUserInfo = ({fetched,paper}) => {
 	if(fetched){
-		var a = 1
+	var a = 1
 	var b = 1
 	var c = 1
 	var d = 1
@@ -28,7 +28,7 @@ const SingleUserInfo = ({fetched,paper}) => {
 									<span className="answer">答案：{val.answer}</span>
 								</pre>
 								<pre>
-									<span className="answer">学生答案：{val.answer}</span>
+									<span style={val.answer==val.stuAnswer?{color: "#ccc"} : {color: "#F00"}}>学生答案：{val.stuAnswer||'未答'}</span>
 								</pre>
 								<br/>
 							</div>

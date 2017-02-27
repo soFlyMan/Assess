@@ -13,6 +13,10 @@ var UserSchema = new mongoose.Schema({
 	},
 	class: String,
 	img: String,
+	status: {
+		type: Boolean,
+		default: false
+	},//判断学生是否在考试状态
 	exampaper: 
 		[{
 			date: String,

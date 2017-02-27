@@ -22,6 +22,13 @@ router.post('/signup',function(req,res){
 	
 })
 
+router.post('/result',function(req,res){
+	var id = req.body.id
+	var result = req.body.result
+	console.log(id,result)
+	res.send({status: 1})
+})
+
 router.post('/:id',function(req,res){
 	var _id = req.params.id
 	User.find({_id: _id},function(err,user){
@@ -32,5 +39,9 @@ router.post('/:id',function(req,res){
 		}
 	})
 })
+
+
+
+
 
 module.exports = router
