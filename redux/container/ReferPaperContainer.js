@@ -8,12 +8,14 @@ import { fetchUserInfo } from '../actions/stuActions.js'
 class ReferPaperContainer extends Component{
 	componentDidMount(){
 		const { id, dispatch, result, fetchingSingleUser } = this.props
-		const stuExampaper = fetchingSingleUser.data[0].exampaper
+		var stuExampaper = fetchingSingleUser.data[0].exampaper
+		stuExampaper[stuExampaper.length-1].score = result.score
 		const _result = {
 			result: result,
 			id: id,
 			stuExampaper: stuExampaper
 		}
+		console.log(_result)
 		fetch('/user/result',{
 			method: 'POST',
 			headers: {

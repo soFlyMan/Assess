@@ -11,6 +11,7 @@ const SingleUserInfo = ({fetched,paper}) => {
 	var f = 1
 	return (
 		<div>
+			<h2>总分：<span  style={paper.score<=60?{color: "#F00"}:{color: "#CCC"}}>{paper.score}</span></h2>
 			<h3>一、单项选择题(每题{paper.radioScore}分，共{paper.radio.length*paper.radioScore}分)</h3>
 			<div>
 			{
@@ -136,7 +137,7 @@ const SingleUserInfo = ({fetched,paper}) => {
 									   <br/>
 								   </div>
 						})
-				}
+			}
 		</div>
 		)	
 	}else{

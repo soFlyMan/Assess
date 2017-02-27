@@ -289,7 +289,7 @@ export default Form.create({
 		}else if(name.indexOf('fillblank')>-1){
 			console.log('fillblank')
 			const fillblank = paper.fillblank.find(val => val.name === name)
-			paper.radio.fillblank(val => {
+			paper.fillblank.map(val => {
 				if(val.name === name){
 					return val.stuAnswer = answer
 				}else{
