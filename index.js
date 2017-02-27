@@ -23,6 +23,7 @@ import ProgrammingContainer from './redux/container/ProgrammingContainer.js'
 import Assess from './component/Assess.js'
 import AssessScore from './component/student/AssessScore.js'
 import ExamContainer from './redux/container/ExamContainer.js'
+import ReferPaperContainer from './redux/container/ReferPaperContainer.js'
 import Course from './component/course/Course.js'
 
 
@@ -56,6 +57,7 @@ ReactDOM.render((
 			</Route>
 
 			<Route path="examcontainer" component={ExamContainer} />
+			<Route path="referpapercontainer" component={ReferPaperContainer}/>
 
 			<Route path="admin" component={Admin}>
 				<Route path="sectioncontainer" component={SectionContainer} />

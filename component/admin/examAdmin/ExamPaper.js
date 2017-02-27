@@ -16,18 +16,6 @@ const options = [
 	{ label: 'F', value: 'F' }
 ]
 
-function success() {
-  Modal.success({
-    title: '提交成功！！',
-    content: (
-      <div>
-      </div>
-    ),
-    onOk() {},
-  })
-}
-
-
 
 class ExamPaper extends Component{
 	constructor(props){
@@ -35,14 +23,27 @@ class ExamPaper extends Component{
 		this.state={
 		}
 	}
+	success() {
+	  Modal.success({
+	    title: '提交成功！！',
+	    content: (
+	      <div>
+	      </div>
+	    ),
+	    onOk() {
+	     	browserHistory.push('/referpapercontainer')
+	    },
+	  })
+	}
 	showConfirm = (values) => {
+	  const self = this
 	  confirm({
-	    title: 'Want to delete these items?',
+	    title: '确定要提交吗？',
 	    content: 'some descriptions',
 	    onOk() {
 	      console.log(values)
+	      self.success(values)
 	      // window.location.href='/#/course'
-	      browserHistory.push('/course')
 	    },
 	    onCancel() {},
 	  });
@@ -200,7 +201,7 @@ class ExamPaper extends Component{
 					}
 					<FormItem wrapperCol={{ span: 8, offset: 4 }}>
 				          <Button type="primary" htmlType="submit">
-				            Submit
+				            提交试卷
 				          </Button>
 			        </FormItem>
 				</Form>
@@ -246,17 +247,17 @@ export default Form.create({
 		const exampap = exampaper[exampaper.length-1]
 		var paper = Object.assign({},exampap) 
 		console.log(paper)
-		// props.onChangeAnswers(field)
+		props.onChangeAnswers(field)
 		if(name.indexOf('radio')>-1){
 			const radio = paper.radio.find(val => val.name === name)
 			if(answers.indexOf(name)<0){
 				if(radio.answer===answer){
-					// onAddScore(paper.radioScore)
+					onAddScore(paper.radioScore)
 					answers.push(name)
 				}
 			}else{
 				if(radio.answer!==answer){
-					// onDecScore(paper.radioScore)
+					onDecScore(paper.radioScore)
 					answers.remove(name)
 				}
 			}

@@ -50,7 +50,6 @@ const mapStateToProps = state => {
 		fetchingLoginStatus: state.fetchingLoginStatus,
 		exampaper: state.fetchingSingleUser.exampaper,
 		fetched: state.fetchingSingleUser.fetched,
-		result: state.result
 	}
 }
 export default connect(mapStateToProps)(ExamContainer)

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Card } from 'antd'
 
 const SingleUserInfo = ({fetched,paper}) => {
 	if(fetched){
@@ -26,6 +27,9 @@ const SingleUserInfo = ({fetched,paper}) => {
 								<pre>
 									<span className="answer">答案：{val.answer}</span>
 								</pre>
+								<pre>
+									<span className="answer">学生答案：{val.answer}</span>
+								</pre>
 								<br/>
 							</div>
 								) 
@@ -47,6 +51,9 @@ const SingleUserInfo = ({fetched,paper}) => {
 							        <span className="answer">答案：
 							      	{val.answer}
 							        </span>
+							        <pre>
+										<span className="answer">学生答案：{val.answer}</span>
+									</pre>
 								    <br/>
 								   </div>
 						})
@@ -64,6 +71,9 @@ const SingleUserInfo = ({fetched,paper}) => {
 									      	{val.answer}
 									      </span>
 									   </pre>
+									   <pre>
+										  <span className="answer">学生答案：{val.answer}</span>
+									   </pre>
 									   <br/>
 								   </div>
 						})
@@ -79,6 +89,9 @@ const SingleUserInfo = ({fetched,paper}) => {
 									      <span className="answer">答案：
 									      	{val.answer}
 									      </span>
+									   </pre>
+									   <pre>
+										  <span className="answer">学生答案：{val.answer}</span>
 									   </pre>
 									   <br/>
 								   </div>
@@ -97,6 +110,9 @@ const SingleUserInfo = ({fetched,paper}) => {
 								      <span className="answer">答案：
 								      	{val.answer}
 								      </span>
+								      <pre>
+										  <span className="answer">学生答案：{val.answer}</span>
+								      </pre>
 								      <br/>
 								   </div>
 						})
@@ -114,6 +130,9 @@ const SingleUserInfo = ({fetched,paper}) => {
 									      	{val.answer}
 									      </span>
 									   </pre>
+									   <pre>
+										  <span className="answer">学生答案：{val.answer}</span>
+									   </pre>
 									   <br/>
 								   </div>
 						})
@@ -122,7 +141,7 @@ const SingleUserInfo = ({fetched,paper}) => {
 		)	
 	}else{
 		return (
-			<div>正在加载中……</div>
+			<Card loading>正在加载中……</Card>
 			)
 	}
 }
