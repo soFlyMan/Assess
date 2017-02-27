@@ -25,10 +25,12 @@ router.post('/signup',function(req,res){
 router.post('/result',function(req,res){
 	var id = req.body.id
 	var result = req.body.result
+	var stuExampaper = req.body.stuExampaper
+	console.log(stuExampaper)
 	console.log(id,result)
 	User.findOneAndUpdate({_id: id},{
 		$set: {
-			status: false
+			exampaper: stuExampaper
 		}
 	},function(err,user){
 		if(err){

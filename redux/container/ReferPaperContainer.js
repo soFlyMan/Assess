@@ -7,10 +7,12 @@ import { fetchUserInfo } from '../actions/stuActions.js'
 
 class ReferPaperContainer extends Component{
 	componentDidMount(){
-		const { id, dispatch, result } = this.props
+		const { id, dispatch, result, fetchingSingleUser } = this.props
+		const stuExampaper = fetchingSingleUser.data[0].exampaper
 		const _result = {
 			result: result,
-			id: id
+			id: id,
+			stuExampaper: stuExampaper
 		}
 		fetch('/user/result',{
 			method: 'POST',
@@ -54,6 +56,7 @@ const mapStateToProps = state => {
 	return {
 		result: state.result,
 		fetched: state.fetchingUserInfo.fetched,
+		fetchingSingleUser: state.fetchingSingleUser,
 		fetchingUserInfo: state.fetchingUserInfo,
 		id: state.fetchingLoginStatus.data.id
 	}

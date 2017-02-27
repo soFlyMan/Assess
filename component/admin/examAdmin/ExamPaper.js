@@ -26,12 +26,11 @@ class ExamPaper extends Component{
 	success() {
 	  Modal.success({
 	    title: '提交成功！！',
-	    content: (
-	      <div>
-	      </div>
-	    ),
+	    content: '',
 	    onOk() {
-	     	browserHistory.push('/referpapercontainer')
+	     	// browserHistory.push('/referpapercontainer')
+	     	window.location.href='/#/referpapercontainer'
+
 	    },
 	  })
 	}
@@ -39,11 +38,10 @@ class ExamPaper extends Component{
 	  const self = this
 	  confirm({
 	    title: '确定要提交吗？',
-	    content: 'some descriptions',
+	    content: '',
 	    onOk() {
 	      console.log(values)
 	      self.success(values)
-	      // window.location.href='/#/course'
 	    },
 	    onCancel() {},
 	  });
@@ -250,6 +248,13 @@ export default Form.create({
 		props.onChangeAnswers(field)
 		if(name.indexOf('radio')>-1){
 			const radio = paper.radio.find(val => val.name === name)
+			paper.radio.map(val => {
+				if(val.name === name){
+					return val.stuAnswer = answer
+				}else{
+					return val
+				}
+			})
 			if(answers.indexOf(name)<0){
 				if(radio.answer===answer){
 					onAddScore(paper.radioScore)
@@ -263,6 +268,13 @@ export default Form.create({
 			}
 		}else if(name.indexOf('multi')>-1){
 			const multi = paper.multi.find(val => val.name === name)
+			paper.multi.map(val => {
+				if(val.name === name){
+					return val.stuAnswer = answer
+				}else{
+					return val
+				}
+			})
 			if(answers.indexOf(name)<0){
 				if(multi.answer===answer.sort().toString().replace(/,/g,'')){
 					onAddScore(paper.multiScore)
@@ -277,6 +289,13 @@ export default Form.create({
 		}else if(name.indexOf('fillblank')>-1){
 			console.log('fillblank')
 			const fillblank = paper.fillblank.find(val => val.name === name)
+			paper.radio.fillblank(val => {
+				if(val.name === name){
+					return val.stuAnswer = answer
+				}else{
+					return val
+				}
+			})
 			if(answers.indexOf(name)<0){
 				if(fillblank.answer.trim()===answer.trim()){
 					onAddScore(paper.fillblankScore)
@@ -290,6 +309,13 @@ export default Form.create({
 			}
 		}else if(name.indexOf('correct')>-1){
 			const correct = paper.correct.find(val => val.name === name)
+			paper.correct.map(val => {
+				if(val.name === name){
+					return val.stuAnswer = answer
+				}else{
+					return val
+				}
+			})
 			console.log(correct)
 			if(answers.indexOf(name)<0){
 				if(correct.answer.trim()===answer.trim()){
@@ -304,6 +330,13 @@ export default Form.create({
 			}
 		}else if(name.indexOf('judge')>-1){
 			const judge = paper.judge.find(val => val.name === name)
+			paper.judge.map(val => {
+				if(val.name === name){
+					return val.stuAnswer = answer
+				}else{
+					return val
+				}
+			})
 			if(answers.indexOf(name)<0){
 				if(judge.answer===answer){
 					onAddScore(paper.judgeScore)

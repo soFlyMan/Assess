@@ -4,7 +4,7 @@ import './index.css'
 
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { Router,Route,browserHistory,IndexRoute } from 'react-router'
+import { Router,Route,hashHistory,IndexRoute } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import thunkMiddleware from 'redux-thunk'
 import reducer from './redux/reducers/reducers.js'
@@ -47,11 +47,11 @@ import SinglePaperContainer from './redux/container/SinglePaperContainer.js'
 
 const middleware = applyMiddleware(logger(),thunkMiddleware)
 const store = createStore(reducer,middleware)
-const history = syncHistoryWithStore(browserHistory,store)
+const history = syncHistoryWithStore(hashHistory,store)
 
 ReactDOM.render((
 	<Provider store={store}>
-		<Router history={browserHistory}>
+		<Router history={hashHistory}>
 			<Route path="/" component={Assess}>
 				<Route path="showscore" component={AssessScore} />
 			</Route>
