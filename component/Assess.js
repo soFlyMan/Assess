@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 import { Button } from 'antd';
 
 import { fetchParams } from '../redux/actions/actions.js'
+import { fetchExamStatus } from '../redux/actions/stuActions.js'
+
 import AssessShow from './AssessShow.js'
 import Nav from './Nav.js'
 
@@ -26,11 +28,18 @@ class Assess extends Component{
 	}
 	componentDidMount=()=>{
 		const { dispatch } = this.props
-
+		const self = this
 		dispatch(fetchParams('/exam/params',{
 			method: 'GET',
 			credentials: 'same-origin'
-		}))
+		})).then(function(data){
+			const id = self.props.id
+			console.log('123123123',id)
+			dispatch(fetchExamStatus(`/status/${id}`,{
+				method: 'POST',
+				credentials: 'same-origin'
+			}))
+		})
 	}
 	render(){
 		const { fetchingParams, fetchingLoginStatus, dispatch, examStatus }  = this.props

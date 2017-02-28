@@ -20,6 +20,7 @@ var exam = require('./routes/exam')
 var course = require('./routes/course')
 var item = require('./routes/item')
 var user = require('./routes/user')
+var status = require('./routes/status')
 
 //设置模版引擎
 
@@ -56,6 +57,7 @@ app.use('/exam',exam)
 app.use('/course',course)
 app.use('/item',item)
 app.use('/user',user)
+app.use('/status',status)
 
 
 

@@ -129,14 +129,14 @@ export const examStatus = (state={fetching: false, fetched: false, examstatus: f
 				...state,
 				fetching: false,
 				fetched: true,
-				examstatus: action.payload
+				error: action.payload
 			}
 		case FETCHED_EXAM_STATUS:
 			return {
 				...state,
 				fetching: false,
 				fetched: false,
-				error: action.payload
+				examstatus: action.payload.status
 			}
 		default:
 			return state
