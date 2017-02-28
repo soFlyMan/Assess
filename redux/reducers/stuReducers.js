@@ -3,6 +3,7 @@ import { FETCH_SCORE,FETCH_SCORE_ERROR,RECEIVE_SCORE,
 		 FETCH_LOGIN_STATUS,FETCHED_LOGIN_STATUS, FETCH_LOGIN_STATUS_ERR, LOG_OUT,
 		 FETCH_USER_INFO, FETCHED_USER_INFO, FETCH_USER_INFO_ERR,
 		 ADD_RANDOM_PAPER, ADDED_RANDOM_PAPER, ADD_RANDOM_PAPER_ERR,
+		 FETCH_EXAM_STATUS, FETCHED_EXAM_STATUS, FETCH_EXAM_STATUS_ERR,
 		 STU_ANSWERS, ADD_SCORE, DEC_SCORE } from '../actions/stuActions.js'
 
 const initialState = {
@@ -114,10 +115,37 @@ export const fetchingUserInfo = (state={fetching:false,fetched:false,data:{ },er
 			return state
 	}
 }
+
+export const examStatus = (state={fetching: false, fetched: false, examstatus: false, error: null},action) => {
+	switch(action.type){
+		case FETCH_EXAM_STATUS:
+			return {
+				...state,
+				fetching: true,
+				fetched: false
+			}
+		case FETCH_EXAM_STATUS_ERR:
+			return {
+				...state,
+				fetching: false,
+				fetched: true,
+				examstatus: action.payload
+			}
+		case FETCHED_EXAM_STATUS:
+			return {
+				...state,
+				fetching: false,
+				fetched: false,
+				error: action.payload
+			}
+		default:
+			return state
+	}
+}
 // name: fields[Object.keys(fields)[0]].name,
 // value: fields[Object.keys(fields)[0]].value
 const answerState = {score: 0}
-export const result = (state=answerState,action) =>{
+export const result = (state=answerState,action) => {
 	const  fields  = action.fields
 	switch(action.type){
 		case STU_ANSWERS:

@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 import { Button } from 'antd';
 
 import { fetchParams } from '../redux/actions/actions.js'
-import { fetchLoginStatus } from '../redux/actions/stuActions.js'
 import AssessShow from './AssessShow.js'
 import Nav from './Nav.js'
 
@@ -34,9 +33,9 @@ class Assess extends Component{
 		}))
 	}
 	render(){
-		const { fetchingParams, fetchingLoginStatus, dispatch }  = this.props
+		const { fetchingParams, fetchingLoginStatus, dispatch, examStatus }  = this.props
 		const exam = (fetchingParams) => {
-			if(fetchingParams.data.limit=="禁止考试"){
+			if(fetchingParams.data.limit=="禁止考试"||examStatus==false){
 				return (
 					<Button disabled>暂无考试</Button>
 					)
@@ -70,7 +69,9 @@ class Assess extends Component{
 const mapStateToProps = state => {
 	return {
 		fetchingParams: state.fetchingParams,
-		fetchingLoginStatus: state.fetchingLoginStatus
+		fetchingLoginStatus: state.fetchingLoginStatus,
+		id: state.fetchingLoginStatus.data.id,
+		examStatus: state.examStatus.examstatus
 	}
 }
 

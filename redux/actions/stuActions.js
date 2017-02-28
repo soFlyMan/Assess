@@ -20,6 +20,10 @@ export const ADD_RANDOM_PAPER = 'ADD_RANDOM_PAPER'
 export const ADDED_RANDOM_PAPER = 'ADDED_RANDOM_PAPER'
 export const ADD_RANDOM_PAPER_ERR = 'ADD_RANDOM_PAPER_ERR'
 
+export const FETECH_EXAM_STATUS = 'FETECH_EXAM_STATUS'
+export const FETHCED_EXAM_STATUS = 'FETHCED_EXAM_STATUS'
+export const FETCH_EXAM_STATUS_ERR = 'FETCH_EXAM_STATUS_ERR'
+
 export const STU_ANSWERS = 'STU_ANSWERS'
 export const ADD_SCORE = 'ADD_SCORE'
 export const DEC_SCORE = 'DEC_SCORE'
@@ -98,6 +102,19 @@ export const addRandomPaper = (url,params) => {
 						dispatch({type: ADDED_RANDOM_PAPER, payload: data.status})
 					})).catch(err => {
 					dispatch({ type: ADD_RANDOM_PAPER_ERR, payload: err})
+				})
+	}
+}
+
+export const fetchExamStatus = (url,params) => {
+	return dispatch => {
+		dispatch({type: FETCH_EXAM_STATUS})
+		return fetch(url,params)
+				.then(res => res.json()
+					.then(data => {
+						dispatch({type: FETCHED_EXAM_STATUS, payload: data})
+					})).catch(err => {
+					dispatch({type: FETCH_EXAM_STATUS_ERR, payload: err})
 				})
 	}
 }
