@@ -34,7 +34,6 @@ class Assess extends Component{
 			credentials: 'same-origin'
 		})).then(function(data){
 			const id = self.props.id
-			console.log('123123123',id)
 			dispatch(fetchExamStatus(`/status/${id}`,{
 				method: 'POST',
 				credentials: 'same-origin'

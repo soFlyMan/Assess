@@ -10,8 +10,8 @@ router.post('/:id',function(req,res){
 		if(err){
 			console.log(err)
 		}else{
-			console.log('123',user)
-			res.send({status: true})
+			console.log(user)
+			res.send({status: user[0].status})
 		}
 	})
 })

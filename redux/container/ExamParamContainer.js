@@ -52,7 +52,7 @@ class ExamParamContainer extends Component{
 				if(res.ok){
 					res.json().then(function(data){
 						if(data.status==1){
-							message.info('发布成功！')
+							message.success('发布成功！')
 						}
 					})
 				}

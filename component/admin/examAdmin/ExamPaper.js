@@ -64,7 +64,14 @@ class ExamPaper extends Component{
 	var d = 1
 	var e = 1
 	var f = 1
-	const { fetched, exampaper } = this.props
+	const { fetched, exampaper, examstatus } = this.props
+	if(!examstatus){
+		return(
+			<Card loading title="考试已结束" style={{ width: "80%" , margin:"0 auto"}}>
+		  	</Card>
+			)
+	}else{
+		
 	if(fetched&&exampaper!=0){
 			const paper = exampaper[exampaper.length-1]
 			const { getFieldDecorator } = this.props.form
@@ -210,6 +217,7 @@ class ExamPaper extends Component{
 			  	</Card>
 			)
 		}
+	}
 	}
 }
 

@@ -195,25 +195,28 @@ router.post('/makeRandomPaper',function(req,res){
                   })
                 }
 
-  User.find({},function(err,users){
+  User.update({},{ $set: {status: true} }, {multi: true}, function(err,doc){
       if(err){
         console.log(err)
       }else{
-        // console.log('123')
-        ep.after('add_exam_paper',users.length,function(list){
-          // console.log(list)
-          res.send({status: 1})
+        // console.log('123',doc)
+        User.find({},function(err,users){
+          ep.after('add_exam_paper',users.length,function(list){
+            // console.log(list)
+            res.send({status: 1})
+          })
+              for(var i=0;i<users.length;i++){
+                  getRandomPaper(number,score,date,users,i).then(function(user){
+                        // users[i].exampaper.push(randomPap)
+                          // console.log(user)
+                          ep.emit('add_exam_paper',user)
+                  })
+                  .catch(function(err){
+                    console.log(err)
+                  })  
+                }
+          
         })
-            for(var i=0;i<users.length;i++){
-                getRandomPaper(number,score,date,users,i).then(function(user){
-                      // users[i].exampaper.push(randomPap)
-                        // console.log(user)
-                        ep.emit('add_exam_paper',user)
-                })
-                .catch(function(err){
-                  console.log(err)
-                })  
-              }
 
       }
     })

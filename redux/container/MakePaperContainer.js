@@ -40,7 +40,7 @@ class MakePaperContainer extends Component{
 		}).then(function(res){
 			if(res.ok){
 				res.json().then(function(data){
-					message.info('提交成功！')
+					message.success('提交成功！')
 				})
 			}
 		}).catch(function(err){

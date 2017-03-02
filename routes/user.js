@@ -30,7 +30,8 @@ router.post('/result',function(req,res){
 	console.log(id,result)
 	User.findOneAndUpdate({_id: id},{
 		$set: {
-			exampaper: stuExampaper
+			exampaper: stuExampaper,
+			status: false
 		}
 	},function(err,user){
 		if(err){

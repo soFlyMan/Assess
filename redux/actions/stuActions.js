@@ -23,6 +23,7 @@ export const ADD_RANDOM_PAPER_ERR = 'ADD_RANDOM_PAPER_ERR'
 export const FETCH_EXAM_STATUS = 'FETCH_EXAM_STATUS'
 export const FETCHED_EXAM_STATUS = 'FETCHED_EXAM_STATUS'
 export const FETCH_EXAM_STATUS_ERR = 'FETCH_EXAM_STATUS_ERR'
+export const EXAM_END = 'EXAM_END'
 
 export const STU_ANSWERS = 'STU_ANSWERS'
 export const ADD_SCORE = 'ADD_SCORE'
@@ -116,6 +117,12 @@ export const fetchExamStatus = (url,params) => {
 					})).catch(err => {
 					dispatch({type: FETCH_EXAM_STATUS_ERR, payload: err})
 				})
+	}
+}
+
+export const examEnd = () => {
+	return {
+		type: EXAM_END
 	}
 }
 

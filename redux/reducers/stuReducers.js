@@ -3,7 +3,7 @@ import { FETCH_SCORE,FETCH_SCORE_ERROR,RECEIVE_SCORE,
 		 FETCH_LOGIN_STATUS,FETCHED_LOGIN_STATUS, FETCH_LOGIN_STATUS_ERR, LOG_OUT,
 		 FETCH_USER_INFO, FETCHED_USER_INFO, FETCH_USER_INFO_ERR,
 		 ADD_RANDOM_PAPER, ADDED_RANDOM_PAPER, ADD_RANDOM_PAPER_ERR,
-		 FETCH_EXAM_STATUS, FETCHED_EXAM_STATUS, FETCH_EXAM_STATUS_ERR,
+		 FETCH_EXAM_STATUS, FETCHED_EXAM_STATUS, FETCH_EXAM_STATUS_ERR, EXAM_END,
 		 STU_ANSWERS, ADD_SCORE, DEC_SCORE } from '../actions/stuActions.js'
 
 const initialState = {
@@ -137,6 +137,13 @@ export const examStatus = (state={fetching: false, fetched: false, examstatus: f
 				fetching: false,
 				fetched: false,
 				examstatus: action.payload.status
+			}
+		case EXAM_END:
+			return {
+				...state,
+				fetching: false,
+				fetched: false,
+				examstatus: false
 			}
 		default:
 			return state

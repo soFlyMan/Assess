@@ -29,7 +29,7 @@ class PaperContainer extends Component{
 					    	},
 					    	body: JSON.stringify(paperId)
 					    }))
-	    	yield message.info('删除成功！')
+	    	yield message.success('删除成功！')
 			yield dispatch(fetchExampap('/exam/exampaper',{
 					methond: 'GET',
 					credentials: 'same-origin',
@@ -41,7 +41,7 @@ class PaperContainer extends Component{
 	    	g.next()
 	    	g.next()
 	    }else{
-	    	message.info('删除失败！')
+	    	message.error('删除失败！')
 	    }
 
 	}

@@ -103,6 +103,7 @@ const LoginModal = Form.create()(React.createClass({
                   method: 'GET',
                   credentials: 'same-origin'
                 })
+                window.location.href='/'
               }else if(data.status==2){
                 message.warning('Password is error !')
               }else{
@@ -136,6 +137,8 @@ const LoginModal = Form.create()(React.createClass({
       method: 'GET',
       credentials: 'same-origin'
     })
+    window.location.href='/'
+
   },
   handleChange(info){
     if (info.file.status === 'done') {

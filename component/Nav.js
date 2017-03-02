@@ -14,7 +14,7 @@ class Nav extends Component{
 		dispatch(fetchLoginStatus('/logStatus',{
 					method: 'GET',
 					credentials: 'same-origin'
-				}))
+		}))
 	}
 	render(){
 		const { fetchingLoginStatus, status, dispatch } = this.props

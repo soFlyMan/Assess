@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import Exam from '../../component/student/Exam.js'
 import SingleUserInfo from '../../component/admin/user/SingleUserInfo'
-import { fetchUserInfo } from '../actions/stuActions.js'
+import { fetchUserInfo, examEnd } from '../actions/stuActions.js'
 
 class ReferPaperContainer extends Component{
 	componentDidMount(){
@@ -31,6 +31,7 @@ class ReferPaperContainer extends Component{
 						method: 'POST',
 						credentials: 'same-origin'
 					}))
+					dispatch(examEnd())
 				})
 			}
 		}).then(function(err){
