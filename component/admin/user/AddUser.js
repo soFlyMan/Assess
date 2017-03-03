@@ -13,30 +13,7 @@ const AddUser = Form.create()(React.createClass({
       password: '',
       userid: '',
       class:'',
-      klass:[],
     };
-  },
-  componentWillMount(){
-    const _self = this
-    const req = new Request('/admin/klass',{
-      method: 'GET',
-      credentials: 'same-origin',
-    })
-    fetch(req).then(function(res){
-      if(res.ok){
-        res.json().then(function(data){
-            var klassDate=data.map(function(a){
-              return a.klassname
-            })
-            console.log(klassDate)
-            _self.setState({
-              klass: klassDate
-            })
-        })
-      }
-    }).catch(function(err){
-      console,log(err.message)
-    })
   },
   showModal() {
     this.setState({
@@ -253,7 +230,7 @@ const AddUser = Form.create()(React.createClass({
               hasFeedback
             >
               <Select labelInValue placeholder="Please select a class" onChange={this.handleClass}>
-                {this.state.klass.map((a,index)=><Option value={a} key={index}>{a}</Option>)}
+                {this.props.klass.map((a,index)=><Option value={a} key={index}>{a}</Option>)}
               </Select>
             </FormItem>
           </Form>

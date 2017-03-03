@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Table, Button, Card, message, Popconfirm } from 'antd'
+import { Table, Button, Card, message, Popconfirm, Modal, Form, Select, Input } from 'antd'
 import { Link } from 'react-router'
 import AddUser from '../../component/admin/user/AddUser.js'
 
 import { fetchSingleUser } from '../actions/userActions.js'
 
+const FormItem = Form.Item
+const Option = Select.Option
 
 class UserContainer extends Component{
 	  constructor(props){
@@ -15,9 +17,59 @@ class UserContainer extends Component{
 			      loading: false,
 			      userlist:[],
 			      reRender: false,
-			      username:''
+			      userid: '',
+			      id: '',
+			      password: '',
+			      username:'',
+			      kklass: '',
+			      visible: false,
+			      klass: []
 			}
-		}
+	  }
+	  componentWillMount = () => {
+	  	const _self = this
+	    const req = new Request('/admin/klass',{
+	      method: 'GET',
+	      credentials: 'same-origin',
+	    })
+	    fetch(req).then(function(res){
+	      if(res.ok){
+	        res.json().then(function(data){
+	            var klassDate=data.map(function(a){
+	              return a.klassname
+	            })
+	            console.log(klassDate)
+	            _self.setState({
+	              klass: klassDate
+	            })
+	        })
+	      }
+	    }).catch(function(err){
+	      console,log(err.message)
+	    })
+	  }
+	  showModal = (record) => {
+	  	console.log(record)
+	  	console.log(record.class)
+	  	this.setState({
+	  		visible: true,
+	  		id: record._id,
+	  		userid: record.userid,
+	  		kklass: record.class,
+	  		password: record.password,
+	  		username: record.username,
+	  	})
+	  }
+	  handleOk = () => {
+	  	this.setState({
+	  		visible: false
+	  	})
+	  }
+	  handleCancel = () => {
+	  	this.setState({
+	  		visible: false
+	  	})
+	  }
 	  start = () => {
 	    this.setState({ loading: true })
 	    // ajax request after empty completing
@@ -110,6 +162,8 @@ class UserContainer extends Component{
             <span>
               <a onClick={()=>this.handleSingele(record)}><Link to="/admin/singleusercontainer">查看</Link></a>
               <span className="ant-divider" />
+              <a onClick={()=>this.showModal(record)}>修改</a>
+              <span className="ant-divider" />
               <Popconfirm title="确定要删除?"  
               onConfirm={()=>this.handleDel(record)} okText="确定" cancelText="取消">
                 <a>删除</a>
@@ -124,22 +178,81 @@ class UserContainer extends Component{
 	      onChange: this.onSelectChange,
 	    }
 	    const hasSelected = selectedRowKeys.length > 0
+	    const { getFieldDecorator } = this.props.form
+	    const formItemLayout = {
+	      labelCol: { span: 6 },
+	      wrapperCol: { span: 14 },
+	    }
 		return (
-			<Card title="学生列表" style={{minHeight:500}} extra={<AddUser handleRender={this.handleRender}/>}>
-	        <div style={{ marginBottom: 16 }}>
-	          <Button type="primary" onClick={this.start}
-	            disabled={!hasSelected} loading={loading}
-	          >Reload</Button>
-	          <span style={{ marginLeft: 8 }}>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}</span>
-	        </div>
-	        <Table rowSelection={rowSelection} columns={columns} dataSource={userlist} />
-	      </Card>
+			<div>
+			<Modal title="修改信息"
+	          visible={this.state.visible}
+	          onOk={this.handleOk}
+	          onCancel={this.handleCancel}
+	        >
+		        <Form horizontal onChange={this.handleSubmit}>
+		        	<FormItem
+		        	{...formItemLayout}
+	                label="学号"
+	                hasFeedback>
+		        	{
+						getFieldDecorator('userid',{ initialValue: this.state.userid},{
+							rules: [{ required: true, message: 'Please input userid!' }]
+						})(
+							<Input />
+						)
+		        	}
+		        	</FormItem>
+		        	<FormItem
+		        	{...formItemLayout}
+	                label="姓名"
+	                hasFeedback>
+		        	{
+						getFieldDecorator('username',{ initialValue: this.state.username},{
+							rules: [{ required: true, message: 'Please input username!' }]
+						})(
+							<Input />
+						)
+		        	}
+		        	</FormItem>
+		        	<FormItem
+		        	{...formItemLayout}
+	                label="密码"
+	                hasFeedback>
+		        	{
+						getFieldDecorator('password',{ initialValue: this.state.password},{
+							rules: [{ required: true, message: 'Please input password!' }]
+						})(
+							<Input />
+						)
+		        	}
+		        	</FormItem>
+		        	<FormItem
+		        	{...formItemLayout}
+	                label="班级"
+	                >
+		        	{
+						getFieldDecorator('klass',{ initialValue: this.state.kklass },)(
+						<Select>
+		                	{this.state.klass.map((a,index)=><Option value={a} key={index}>{a}</Option>)}
+		              	</Select>
+						)
+		        	}
+		        	</FormItem>
+		        </Form>
+	        </Modal>
+				<Card title="学生列表" style={{minHeight:500}} extra={<AddUser handleRender={this.handleRender} klass={this.state.klass}/>}>
+			        <div style={{ marginBottom: 16 }}>
+			          <Button type="primary" onClick={this.start}
+			            disabled={!hasSelected} loading={loading}
+			          >Reload</Button>
+			          <span style={{ marginLeft: 8 }}>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}</span>
+			        </div>
+			        <Table rowSelection={rowSelection} columns={columns} dataSource={userlist} />
+	      	    </Card>
+      	    </div>
 			)
 	}
 }
 
-const mapStateToProps = state => {
-	return {
-	}
-}
-export default connect(mapStateToProps)(UserContainer)
+export default connect()(Form.create({})(UserContainer))

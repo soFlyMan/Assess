@@ -53,7 +53,6 @@ const Admin = React.createClass({
           <SubMenu key="sub5" title={<span><Icon type="team" /><span>用户管理</span></span>}>
               <Menu.Item key="7"><Link to="/admin/classadmin"><span>班级管理</span></Link></Menu.Item>
               <Menu.Item key="8"><Link to="/admin/usercontainer"><span>学生管理</span></Link></Menu.Item>
-              <Menu.Item key="9"><Link to="/"><span>批量创建</span>用户</Link></Menu.Item>
               <Menu.Item key="10"><span>管理员信息</span></Menu.Item>
           </SubMenu>
           <SubMenu key="sub6" title={<span><Icon type="switcher" /><span>试题库管理</span></span>}>
@@ -68,14 +67,8 @@ const Admin = React.createClass({
               <Menu.Item key="17"><Link to="/admin/examparamcontainer"><span>考试参数设置</span></Link></Menu.Item>
               <Menu.Item key="19"><Link to="/admin/makepapercontainer"><span>组卷参数</span></Link></Menu.Item>
               <Menu.Item key="18"><Link to="/admin/papercontainer"><span>试卷管理</span></Link></Menu.Item>
-              <Menu.Item key="24"><Link to="/admin"><span>在线用户监控</span></Link></Menu.Item>
           </SubMenu>
-          <SubMenu key="sub8" title={<span><Icon type="area-chart" /><span>考试分析</span></span>}>
-              <Menu.Item key="20"><span>全班成绩</span>分析</Menu.Item>
-              <Menu.Item key="21"><span>解答统计</span>分析</Menu.Item>
-              <Menu.Item key="22"><span>查阅答卷</span></Menu.Item>
-              <Menu.Item key="23"><span>某班历史</span>成绩</Menu.Item>
-          </SubMenu>
+          
         </Menu>
         </div>
         <div id="rightWrap">
@@ -94,5 +87,17 @@ const Admin = React.createClass({
     );
   },
 });
+
+//               <Menu.Item key="9"><Link to="/"><span>批量创建</span>用户</Link></Menu.Item>
+
+//               <Menu.Item key="24"><Link to="/admin"><span>在线用户监控</span></Link></Menu.Item>
+
+// <SubMenu key="sub8" title={<span><Icon type="area-chart" /><span>考试分析</span></span>}>
+//               <Menu.Item key="20"><span>全班成绩</span>分析</Menu.Item>
+//               <Menu.Item key="21"><span>解答统计</span>分析</Menu.Item>
+//               <Menu.Item key="22"><span>查阅答卷</span></Menu.Item>
+//               <Menu.Item key="23"><span>某班历史</span>成绩</Menu.Item>
+//           </SubMenu>
+
 
 export default Admin
