@@ -39,7 +39,13 @@ router.post('/useExampap',function(req,res){
               if(err){
                 console.log(err)
               }else{
-                res.send({status: 1}) 
+                User.update({},{$set: {status: true}},{multi: true},function(err,doc){
+                  if(err){
+                    console.log(err)
+                  }else{
+                    res.send({status: 1})  
+                  }
+                })
               }
             })
       })

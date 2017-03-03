@@ -32,7 +32,7 @@ const Admin = React.createClass({
         <Menu theme={this.state.theme}
           onClick={this.handleClick}
           style={{ width: 240 ,height:'100%'}}
-          defaultOpenKeys={['sub1']}
+          defaultOpenKeys={['sub5']}
           selectedKeys={[this.state.current]}
           mode="inline"
         >

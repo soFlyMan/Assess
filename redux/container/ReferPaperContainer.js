@@ -39,7 +39,7 @@ class ReferPaperContainer extends Component{
 		})
 	}
 	render(){
-		const { result, fetchingUserInfo, fetched } = this.props
+		const { result, fetchingUserInfo, fetched, username } = this.props
 		if(fetched){
 			var exampaper = fetchingUserInfo.data[0].exampaper
 			var paper = exampaper[exampaper.length-1]
@@ -47,7 +47,7 @@ class ReferPaperContainer extends Component{
 			var paper = {}
 		}
 		return (
-			<Exam>
+			<Exam username={username}>
 				<SingleUserInfo fetched={fetched} result={result} paper={paper}/>
 			</Exam>
 			)
@@ -61,6 +61,7 @@ const mapStateToProps = state => {
 		fetched: state.fetchingUserInfo.fetched,
 		fetchingSingleUser: state.fetchingSingleUser,
 		fetchingUserInfo: state.fetchingUserInfo,
+		username: state.fetchingLoginStatus.data.username,
 		id: state.fetchingLoginStatus.data.id
 	}
 }

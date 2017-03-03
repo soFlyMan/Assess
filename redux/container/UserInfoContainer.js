@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Card } from 'antd'
 
-import { fetchUserInfo } from '../actions/stuActions.js'
+import { fetchUserInfo, fetchExamStatus } from '../actions/stuActions.js'
 
 import Nav from '../../component/Nav.js'
 import SingleUser from '../../component/admin/user/SingleUser.js'
@@ -16,7 +16,14 @@ class UserInfoContainer extends Component{
 		}))
 	}
 	render(){
-		const { fetched,singleUser } = this.props
+		var { fetched, singleUser, examstatus } = this.props
+		// var test = false
+		if(examstatus){
+			if(fetched){
+				var paper = Object.assign({},singleUser.data[0])
+				paper.exampaper.pop()
+			}
+		}
 		return (
 			<div>
 				<Nav nav={'assessNavChange'}/>
@@ -34,7 +41,8 @@ const mapStateToProps = state => {
 	return {
 		id: state.fetchingLoginStatus.data.id,
 		singleUser: state.fetchingUserInfo,
-		fetched: state.fetchingUserInfo.fetched
+		fetched: state.fetchingUserInfo.fetched,
+		examstatus: state.examStatus.examstatus
 	}
 }
 export default connect(mapStateToProps)(UserInfoContainer)

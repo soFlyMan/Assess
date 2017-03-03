@@ -26,9 +26,9 @@ class ExamContainer extends Component{
 		}
 	}
 	render(){
-		const { dispatch, exampaper, fetched, examstatus  } = this.props
+		const { dispatch, exampaper, fetched, examstatus, minute, fetchingLoginStatus  } = this.props
 		return (
-			<Exam>
+			<Exam minute={minute} username={fetchingLoginStatus.data.username}>
 				<ExamPaper exampaper={exampaper} 
 						   fetched={fetched}
 						   examstatus={examstatus} 
@@ -51,7 +51,8 @@ const mapStateToProps = state => {
 		fetchingLoginStatus: state.fetchingLoginStatus,
 		exampaper: state.fetchingSingleUser.exampaper,
 		fetched: state.fetchingSingleUser.fetched,
-		examstatus: state.examStatus.examstatus
+		examstatus: state.examStatus.examstatus,
+		minute: state.fetchingParams.data.minute
 	}
 }
 export default connect(mapStateToProps)(ExamContainer)

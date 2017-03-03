@@ -200,6 +200,16 @@ class ExamPaper extends Component{
 							return (
 								<div>
 									<pre>{f++}.<span>{val.body}</span></pre>
+									<FormItem>
+									{
+										getFieldDecorator(`programming${f-1}`)(
+										<ul>
+										 	<li style={{float: "left"}}><span style={{color: "#89c7f5"}}>答案：</span></li>
+											<li><Input type="textarea" autosize={{minRows: 3, maxRows: 6}} style={{width: 400}} placeholder="提示：多个填空请用空格分隔。"/></li>
+										</ul>
+										)
+									}
+									</FormItem>
 								</div>
 							)
 						})
@@ -284,12 +294,14 @@ export default Form.create({
 				}
 			})
 			if(answers.indexOf(name)<0){
-				if(multi.answer===answer.sort().toString().replace(/,/g,'')){
+				// if(multi.answer===answer.sort().toString().replace(/,/g,'')){
+				if(multi.answer===answer.sort().toString()){
+
 					onAddScore(paper.multiScore)
 					answers.push(name)
 				}
 			}else{
-				if(multi.answer!==answer.sort().toString().replace(/,/g,'')){
+				if(multi.answer!==answer.sort().toString()){
 					onDecScore(paper.multiScore)
 					answers.remove(name)
 				}
@@ -358,6 +370,25 @@ export default Form.create({
 			}
 		}else if(name.indexOf('programming')>-1){
 			console.log('programming')
+			const programming = paper.programming.find(val => val.name === name)
+			paper.programming.map(val => {
+				if(val.name === name){
+					return val.stuAnswer = answer
+				}else{
+					return val
+				}
+			})
+			if(answers.indexOf(name)<0){
+				if(programming.answer.trim()===answer.trim()){
+					onAddScore(paper.programmingScore)
+					answers.push(name)
+				}
+			}else{
+				if(programming.answer.trim()!==answer.trim()){
+					onDecScore(paper.programmingScore)
+					answers.remove(name)
+				}
+			}
 		}
 		console.log(answers)		
 	}
