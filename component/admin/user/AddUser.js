@@ -150,6 +150,18 @@ const AddUser = Form.create()(React.createClass({
     }
     callback();
   },
+  handleSelectChange(e){
+    //使用 setFieldsValue 来动态设置其他控件的值。
+    this.setState({
+      userid: e.target.value,
+      password: e.target.value
+    })
+    console.log(e.target.value)
+    this.props.form.setFieldsValue({
+      password: `${e.target.value}`,
+      confirm: `${e.target.value}`
+    })
+  },
   render() {
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
@@ -177,8 +189,9 @@ const AddUser = Form.create()(React.createClass({
             >
               {getFieldDecorator('userid', {
                 rules: [{ required: true, message: 'Please input userid!' }],
+                onChange: this.handleSelectChange
               })(
-                <Input onChange={this.handleUserid}/>
+                <Input />
               )}
             </FormItem>
             <FormItem
@@ -206,7 +219,7 @@ const AddUser = Form.create()(React.createClass({
                   validator: this.checkConfirm,
                 }],
               })(
-                <Input type="password" onBlur={this.handlePasswordBlur} onChange={this.handlePassword}/>
+                <Input type="password" onBlur={this.handlePasswordBlur} onChange={this.handlePassword} />
               )}
             </FormItem>
             <FormItem
