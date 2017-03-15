@@ -43,6 +43,27 @@ router.post('/result',function(req,res){
 	})
 })
 
+router.post('/modi',function(req,res){
+	var id = req.body.id
+	var userid = req.body.userid
+	var username = req.body.username
+	var klass = req.body.klass
+	User.findOneAndUpdate({_id: id},{
+		$set: {
+			userid: userid,
+			username: username,
+			class: klass
+		}
+	},function(err,user){
+		if(err){
+			console.log(err)
+		}else{
+			console.log(user)
+			res.send({status: 1})
+		}
+	})
+})
+
 router.post('/:id',function(req,res){
 	var _id = req.params.id
 	User.find({_id: _id},function(err,user){

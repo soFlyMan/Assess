@@ -61,9 +61,46 @@ class UserContainer extends Component{
 	  	})
 	  }
 	  handleOk = () => {
-	  	this.setState({
-	  		visible: false
-	  	})
+	  	const self = this
+	  	this.props.form.validateFields((err, values) => {
+	      if (!err) {
+	        console.log('Received values of form: ', values);
+		  	const info = {
+		  		id: self.state.id,
+		  		userid: values.userid,
+		  		klass: values.klass,
+		  		username: values.username
+		  	}
+		  	console.log(info)
+		  	fetch('/user/modi',{
+		  		method: 'POST',
+		  		credentials: 'same-origin',
+		  		headers: {
+		  			'Content-Type': 'application/json'
+		  		},
+		  		body: JSON.stringify(info)
+		  	}).then(function(res){
+		  		if(res.ok){
+		  			res.json().then(function(data){
+		  				if(data.status==1){
+		  					message.success('修改成功！')
+		  					self.setState({
+						  		visible: false
+						  	})
+						  	self.handleRender()
+		  				}else{
+		  					message.error('修改失败！')
+		  					self.setState({
+						  		visible: false
+						  	})
+		  				}
+		  			})
+		  		}
+		  	}).catch(function(err){
+		  		console.log(err.message)
+		  	})
+	      }
+	    })
 	  }
 	  handleCancel = () => {
 	  	this.setState({
@@ -89,7 +126,7 @@ class UserContainer extends Component{
 	    this.handleRender()
 
 	  }
-	  handleRender = (val) => {
+	  handleRender = () => {
 	    var req = new Request('/userlist',{
 		      method: 'GET',
 			  credentials: 'same-origin',
