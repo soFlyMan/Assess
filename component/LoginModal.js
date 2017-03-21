@@ -134,6 +134,8 @@ const LoginModal = Form.create()(React.createClass({
           }
         })
       }
+    }).catch(function(err){
+      console.log(err.message)
     })
   },
   handleOk() {

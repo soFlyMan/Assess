@@ -181,7 +181,17 @@ class UserContainer extends Component{
 			credentials: 'same-origin',
 	      }))
 	  }
+	  handleChange(pagination, filters, sorter){
+	  	console.log('params', pagination, filters, sorter)
+	  }
 	  render(){
+	  	const { klass } = this.state
+	  	var filter = []
+	  	for(var i=0;i<klass.length;i++){
+	  		filter[i] = {}
+	  		filter[i].text = klass[i]
+	  		filter[i].value = klass[i]
+	  	}
 		const columns = [{
           title: '姓名',
           dataIndex: 'username',
@@ -192,6 +202,8 @@ class UserContainer extends Component{
         {
           title: '班级',
           dataIndex: 'class',
+          filters: filter,
+          onFilter: (value, record) => record.class.indexOf(value) === 0
         },{
           title: '操作',
           dataIndex: 'handle',
@@ -286,7 +298,7 @@ class UserContainer extends Component{
 			          >Reload</Button>
 			          <span style={{ marginLeft: 8 }}>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}</span>
 			        </div>
-			        <Table rowSelection={rowSelection} columns={columns} dataSource={userlist} />
+			        <Table rowSelection={rowSelection} columns={columns} dataSource={userlist} onChange={this.handleChange}/>
 	      	    </Card>
       	    </div>
 			)

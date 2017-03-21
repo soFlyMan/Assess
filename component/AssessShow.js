@@ -2,27 +2,27 @@ import React,{ Component } from 'react';
 import { Card, Row, Col, Table, Input, Button, message } from 'antd';
 import { Link } from 'react-router'; 
 
-// const data = [{
-//   key: '1',
-//   coursename: 'ReactJS',
-//   date: 32,
-//   result: 98,
-// }, {
-//   key: '2',
-//   coursename: 'NodeJS',
-//   date: 42,
-//   result: 98,
-// }, {
-//   key: '3',
-//   coursename: 'java程序设计',
-//   date: 32,
-//   result: 98,
-// }, {
-//   key: '4',
-//   coursename: 'ReactJS',
-//   date: 32,
-//   result: 98,
-// }]
+const data = [{
+  key: '1',
+  coursename: 'ReactJS',
+  date: 32,
+  result: 98,
+}, {
+  key: '2',
+  coursename: 'NodeJS',
+  date: 42,
+  result: 98,
+}, {
+  key: '3',
+  coursename: 'java程序设计',
+  date: 32,
+  result: 98,
+}, {
+  key: '4',
+  coursename: 'ReactJS',
+  date: 32,
+  result: 98,
+}]
 
 export default class AssessShow extends Component{
 	constructor(props){
@@ -169,7 +169,7 @@ export default class AssessShow extends Component{
 				<Card title="成绩查询" style={{width:"100%"}} 
 				extra={<span><Link to="showscore">考试安排</Link></span>}>
 					<p>&nbsp;你的成绩单</p>
-					<Table columns={columns} dataSource={this.state.data} />
+					<Table columns={columns} dataSource={this.data} />
 				</Card>
 			</div>
 		</div>
