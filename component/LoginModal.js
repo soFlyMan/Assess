@@ -50,7 +50,8 @@ const LoginModal = Form.create()(React.createClass({
       userid: '',
       password:'' ,
       visible: false,
-      imageUrl:''
+      imageUrl:'',
+      changePassVisible: false,
        };
   },
   handleClick(e){
@@ -73,6 +74,16 @@ const LoginModal = Form.create()(React.createClass({
     this.setState({
       visible: true,
     });
+  },
+  showChangePassModal() {
+    this.setState({
+      changePassVisible: true
+    });
+  },
+  handleChangePassOk() {
+    this.setState({
+      confirmLoading: true
+    })
   },
   handleOk() {
     const { onFetchLoginStatus } = this.props
@@ -116,6 +127,11 @@ const LoginModal = Form.create()(React.createClass({
           console.log("err"+err.message)
         })
   },
+  handleChangePassCancel(){
+    this.setState({
+      changePassVisible: false
+    })
+  },
   handleCancel(e) {
     console.log(e);
     this.setState({
@@ -146,9 +162,32 @@ const LoginModal = Form.create()(React.createClass({
       getBase64(info.file.originFileObj, imageUrl => this.setState({ imageUrl }));
     }
   },
+  handlePasswordBlur(e) {
+    const value = e.target.value;
+    this.setState({ passwordDirty: this.state.passwordDirty || !!value });
+  },
+  checkPassowrd(rule, value, callback) {
+    const form = this.props.form;
+    if (value && value !== form.getFieldValue('changePassword')) {
+      callback('两次输入的密码不匹配！');
+    } else {
+      callback();
+    }
+  },
+  checkConfirm(rule, value, callback) {
+    const form = this.props.form;
+    if (value && this.state.passwordDirty) {
+      form.validateFields(['confirmPassword'], { force: true });
+    }
+    callback();
+  },
   render() {
     const { getFieldDecorator } = this.props.form;
     const imageUrl = this.state.imageUrl;
+    const formItemLayout = {
+      labelCol: { span: 6 },
+      wrapperCol: { span: 14 },
+    };
     return (
       <div>
       { 
@@ -161,8 +200,9 @@ const LoginModal = Form.create()(React.createClass({
                   style={{backgroundColor: "rgba(0, 0, 0, 0)"}}>
              <SubMenu title={<span style={{color: "#777"}}>{this.props.username}<Icon type="down" /></span>}>
                 <Menu.Item key="1"><span><Link to="/userinfocontainer"><Icon type="file-text"/>个人信息</Link></span></Menu.Item>
-                <Menu.Item key="2"><span><Icon type="mail"/>历史消息</span></Menu.Item>
-                <Menu.Item key="3"><span onClick={this.logOut.bind(this)}><Link to="/"><Icon type="logout"/>退出</Link></span></Menu.Item>
+                <Menu.Item key="2"><span onClick={this.showChangePassModal}><Icon type="lock"/>修改密码</span></Menu.Item>
+                <Menu.Item key="3"><span><Icon type="mail"/>历史消息</span></Menu.Item>
+                <Menu.Item key="4"><span onClick={this.logOut.bind(this)}><Link to="/"><Icon type="logout"/>退出</Link></span></Menu.Item>
              </SubMenu>
             </Menu>
           </li>
@@ -202,6 +242,58 @@ const LoginModal = Form.create()(React.createClass({
               <br/>
               <p><Link to="/adminlogin">管理员登陆</Link></p>
               <p style={{color:'#ccc'}}>提示：初始密码为学号，登陆后请修改密码。</p>
+            </FormItem>
+          </Form>
+        </Modal>
+        <Modal title="修改密码"
+          visible={this.state.changePassVisible}
+          onOk={this.handleChangePassOk}
+          confirmLoading={this.state.confirmLoading}
+          onCancel={this.handleChangePassCancel}
+        >
+          <Form>
+            <FormItem
+              {...formItemLayout}
+              label="初始密码"
+              hasFeedback
+            >
+              {getFieldDecorator('oriPassword', {
+                rules: [{
+                  required: true, message: '请输入初始密码!',
+                }],
+              })(
+                <Input type="password"/>
+              )}
+            </FormItem>
+            <FormItem
+              {...formItemLayout}
+              label="新的密码"
+              hasFeedback
+            >
+              {getFieldDecorator('changePassword', {
+                rules: [{
+                  required: true, message: '请输入新的密码!',
+                }, {
+                  validator: this.checkConfirm,
+                }],
+              })(
+                <Input type="password" onBlur={this.handlePasswordBlur} />
+              )}
+            </FormItem>
+            <FormItem
+              {...formItemLayout}
+              label="确认密码"
+              hasFeedback
+            >
+              {getFieldDecorator('confirmPassword', {
+                rules: [{
+                  required: true, message: '请确认你的密码!',
+                }, {
+                  validator: this.checkPassowrd,
+                }],
+              })(
+                <Input type="password" />
+              )}
             </FormItem>
           </Form>
         </Modal>

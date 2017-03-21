@@ -173,6 +173,7 @@ class UserContainer extends Component{
 	    })
 	  }
 	  handleSingele = (record) => {
+	  	  const self = this
 	      const id = record._id
 	      const { dispatch } = this.props
 	      dispatch(fetchSingleUser(`/user/${id}`,{
@@ -292,4 +293,8 @@ class UserContainer extends Component{
 	}
 }
 
-export default connect()(Form.create({})(UserContainer))
+const mapStateToProps = state => {
+	return {
+	}
+}
+export default connect(mapStateToProps)(Form.create({})(UserContainer))
