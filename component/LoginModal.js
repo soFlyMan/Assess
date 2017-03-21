@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux'
 import { message, Form, Icon, Input, Checkbox, Modal, Button, Menu, Upload, Dropdown } from 'antd';
 import { Link } from 'react-router';
 
@@ -52,6 +53,9 @@ const LoginModal = Form.create()(React.createClass({
       visible: false,
       imageUrl:'',
       changePassVisible: false,
+      cpassword: '',
+      oripassword: '',
+      confirmpassword:''
        };
   },
   handleClick(e){
@@ -81,8 +85,55 @@ const LoginModal = Form.create()(React.createClass({
     });
   },
   handleChangePassOk() {
+    if(this.state.oripassword==''){
+      message.info('请输入初始密码！')
+      return false
+    }else if(this.state.cpassword==''){
+      message.info('请输入新的密码！')
+      return false
+    }else if(this.state.confirmpassword==''){
+      message.info('请确认新的密码！')
+      return false
+    }
+    const { id } = this.props
+    const self = this
+    const info = {
+      id: id,
+      oripassword: this.state.oripassword,
+      cpassword: this.state.cpassword
+    }
     this.setState({
       confirmLoading: true
+    })
+    fetch('/user/changePassword',{
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(info)
+    }).then(function(res){
+      if(res.ok){
+        res.json().then(function(data){
+          if(data.status==1){
+            self.setState({
+              confirmLoading: false,
+              changePassVisible: false
+            })
+            message.success('修改成功！')
+          }else if(data.status==0){
+            self.setState({
+              confirmLoading: false,
+            })
+            message.warning('初始密码错误！')
+          }else{
+            self.setState({
+              confirmLoading: false,
+            })
+            message.error('修改失败！')
+          }
+        })
+      }
     })
   },
   handleOk() {
@@ -130,6 +181,21 @@ const LoginModal = Form.create()(React.createClass({
   handleChangePassCancel(){
     this.setState({
       changePassVisible: false
+    })
+  },
+  oriPassword(e){
+    this.setState({
+      oripassword: e.target.value
+    })
+  },
+  cPassword(e){
+    this.setState({
+      cpassword: e.target.value
+    })
+  },
+  conPassword(e){
+    this.setState({
+      confirmpassword: e.target.value
     })
   },
   handleCancel(e) {
@@ -238,7 +304,6 @@ const LoginModal = Form.create()(React.createClass({
               })(
                 <Checkbox>记住我</Checkbox>
               )}
-              <a className="login-form-forgot">重置密码</a>
               <br/>
               <p><Link to="/adminlogin">管理员登陆</Link></p>
               <p style={{color:'#ccc'}}>提示：初始密码为学号，登陆后请修改密码。</p>
@@ -262,7 +327,7 @@ const LoginModal = Form.create()(React.createClass({
                   required: true, message: '请输入初始密码!',
                 }],
               })(
-                <Input type="password"/>
+                <Input type="password" onChange={this.oriPassword}/>
               )}
             </FormItem>
             <FormItem
@@ -277,7 +342,7 @@ const LoginModal = Form.create()(React.createClass({
                   validator: this.checkConfirm,
                 }],
               })(
-                <Input type="password" onBlur={this.handlePasswordBlur} />
+                <Input type="password" onBlur={this.handlePasswordBlur} onChange={this.cPassword}/>
               )}
             </FormItem>
             <FormItem
@@ -292,7 +357,7 @@ const LoginModal = Form.create()(React.createClass({
                   validator: this.checkPassowrd,
                 }],
               })(
-                <Input type="password" />
+                <Input type="password" onChange={this.conPassword}/>
               )}
             </FormItem>
           </Form>
@@ -303,4 +368,9 @@ const LoginModal = Form.create()(React.createClass({
   },
 }));
 
-export default LoginModal
+const mapStateToProps = state => {
+  return {
+    id: state.fetchingLoginStatus.data.id
+  }
+};
+export default connect(mapStateToProps)(LoginModal)
