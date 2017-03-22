@@ -1,6 +1,6 @@
 import React,{ Component } from 'react'
 import { Link } from 'react-router'
-import { Card, Icon, notification } from 'antd' 
+import { Card, Icon, notification, } from 'antd' 
 
 
 const openNotification = () => {
@@ -15,25 +15,35 @@ export default class Exam extends Component{
 		super(props)
 		this.state={
 			username: '123',
-			time: this.props.minute*60||0
+			minute: this.props.minute||0,
+			second: 0
 		}
 	}
 	changeTime = () => {
-		if(this.state.time!=0){
+		if(this.state.second==0){
 				this.setState({
-				time: this.state.time-1
+				second: 59,
+				minute: this.state.minute-1
+			})
+		}else if(this.state.minute==0){
+			window.clearInterval(val)
+			//考试时间到！
+		}else if(this.state.minute==14){
+			//考试提醒，你还剩余15分钟
+			openNotification()
+		}else{
+			this.setState({
+				second: this.state.second-1
 			})
 		}
 	}
 	interval = () => {
 		var self = this
 		var val = window.setInterval(self.changeTime,1000)
-		if(this.state.time==0){
-			window.clearInterval(val)
-		}
 	}
 	componentDidMount(){
-		// var self=this
+		var self=this
+		self.interval()
 		// fetch('/exam',{
 		// 	method: 'GET',
 		// 	credentials: 'same-origin',
@@ -58,7 +68,7 @@ export default class Exam extends Component{
 		return (
 			<div>
 				<Card title={this.props.username||'123'} style={{ marginLeft: 280, marginRight: 280}}
-				extra={(<span>考试时间：{this.state.time}s</span>)}>
+				extra={(<span>剩余时间：{this.state.minute}分{this.state.second}秒</span>)}>
 					{this.props.children}
 				</Card>
 				<p></p>
