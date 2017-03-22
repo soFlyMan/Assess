@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchSingleUser } from '../actions/userActions.js'
-import { fetchLoginStatus, stuAnswer, addScore, decScore } from '../actions/stuActions.js' 
+import { fetchLoginStatus, stuAnswer, addScore, decScore } from '../actions/stuActions.js'
 import Exam from '../../component/student/Exam.js'
 import ExamPaper from '../../component/admin/examAdmin/ExamPaper.js'
 
@@ -28,10 +28,10 @@ class ExamContainer extends Component{
 	render(){
 		const { dispatch, exampaper, fetched, examstatus, minute, fetchingLoginStatus  } = this.props
 		return (
-			<Exam minute={minute} username={fetchingLoginStatus.data.username}>
-				<ExamPaper exampaper={exampaper} 
+			<Exam minute={examstatus?minute:0} username={fetchingLoginStatus.data.username} examOver={examstatus?false:true}> 
+				<ExamPaper exampaper={exampaper}
 						   fetched={fetched}
-						   examstatus={examstatus} 
+						   examstatus={examstatus}
 						   onChangeAnswers={(fields) => dispatch(stuAnswer(fields))}
 						   onAddScore={(score) => dispatch(addScore(score))}
 						   onDecScore={(score) => dispatch(decScore(score))}

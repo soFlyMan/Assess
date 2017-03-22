@@ -29,6 +29,8 @@ export const STU_ANSWERS = 'STU_ANSWERS'
 export const ADD_SCORE = 'ADD_SCORE'
 export const DEC_SCORE = 'DEC_SCORE'
 
+export const TIME_OVER = 'TIME_OVER'
+
 
 export const fetchScore = (url,params) => {
 	return dispatch => {
@@ -144,5 +146,11 @@ export const decScore = (score) => {
 	return {
 		type: DEC_SCORE,
 		score
+	}
+}
+
+export const timeOver = () => {
+	return {
+		type: TIME_OVER
 	}
 }

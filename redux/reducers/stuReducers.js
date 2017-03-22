@@ -4,7 +4,8 @@ import { FETCH_SCORE,FETCH_SCORE_ERROR,RECEIVE_SCORE,
 		 FETCH_USER_INFO, FETCHED_USER_INFO, FETCH_USER_INFO_ERR,
 		 ADD_RANDOM_PAPER, ADDED_RANDOM_PAPER, ADD_RANDOM_PAPER_ERR,
 		 FETCH_EXAM_STATUS, FETCHED_EXAM_STATUS, FETCH_EXAM_STATUS_ERR, EXAM_END,
-		 STU_ANSWERS, ADD_SCORE, DEC_SCORE } from '../actions/stuActions.js'
+		 STU_ANSWERS, ADD_SCORE, DEC_SCORE,
+		 TIME_OVER } from '../actions/stuActions.js'
 
 const initialState = {
 	fetching: false,
@@ -20,7 +21,7 @@ export const fetchingScore = (state = initialState, action) => {
 				...state,
 				fetching: true
 			}
-		default: 
+		default:
 			return state
 	}
 }
@@ -84,7 +85,7 @@ export const fetchingLoginStatus = (state={fetching:false,fetched:false,data:{ }
 				fetching: false,
 				status: action.payload.status
 			}
-		default: 
+		default:
 			return state
 	}
 }
@@ -169,6 +170,18 @@ export const result = (state=answerState,action) => {
 			return {
 				...state,
 				score: state.score-action.score
+			}
+		default:
+			return state
+	}
+}
+
+export const examOver = (state={examing: true},action) => {
+	switch(action.type){
+		case TIME_OVER:
+			return {
+				...state,
+				examing: false
 			}
 		default:
 			return state

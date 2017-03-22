@@ -68,7 +68,7 @@ class Assess extends Component{
 					{this.props.children}
 				</div>
 			</div>
-			
+
 			</div>
 			)
 	}

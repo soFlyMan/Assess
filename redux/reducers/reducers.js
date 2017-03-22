@@ -11,7 +11,7 @@ import { FETCH_ITEMS, RECEIVE_ITEMS, FETCH_ITEMS_ERROR,
 		FETCH_SINGLE,FETCHED_SINGLE,FETCH_SINGLE_ERR,
 		FETCH_PAPER_PARAMS, FETCHED_PAPER_PARAMS, FETCH_PAPER_PARAMS_ERR, MODI_PAPER_PARAMS, MODIED_PAPER_PARAMS
  		} from '../actions/actions.js'
-import { fetchingScore, fetchingExampap, fetchingLoginStatus, examStatus, result, fetchingUserInfo } from './stuReducers.js'
+import { fetchingScore, fetchingExampap, fetchingLoginStatus, examStatus, result, fetchingUserInfo, examOver } from './stuReducers.js'
 import { fetchingUser, fetchingSingleUser } from './userReducers.js'
 
 const initialState = {
@@ -74,7 +74,7 @@ const fetchStatus = ( state = { fetched: true,status: -1,error: null }, action) 
 				fetched: true,
 				status: action.status
 			}
-		case MODI_ITEMS: 
+		case MODI_ITEMS:
 			return {
 				...state,
 				fetched: false,
@@ -208,6 +208,7 @@ const reducer = combineReducers({
 	fetchingPaperParams,
 	examStatus,
 	result,
+	examOver,
 	routing: routerReducer
 })
 export default reducer

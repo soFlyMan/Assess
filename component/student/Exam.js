@@ -1,6 +1,6 @@
 import React,{ Component } from 'react'
 import { Link } from 'react-router'
-import { Card, Icon, notification, } from 'antd' 
+import { Card, Icon, notification, message} from 'antd'
 
 
 const openNotification = () => {
@@ -19,31 +19,38 @@ export default class Exam extends Component{
 			second: 0
 		}
 	}
-	changeTime = () => {
-		if(this.state.second==0){
-				this.setState({
-				second: 59,
-				minute: this.state.minute-1
-			})
-		}else if(this.state.minute==0){
-			window.clearInterval(val)
-			//考试时间到！
-		}else if(this.state.minute==14){
-			//考试提醒，你还剩余15分钟
-			openNotification()
-		}else{
-			this.setState({
-				second: this.state.second-1
-			})
-		}
-	}
 	interval = () => {
 		var self = this
-		var val = window.setInterval(self.changeTime,1000)
+		var val = setInterval(function(){
+			if(self.state.second==0){
+				self.setState({
+				second: 59,
+				minute: self.state.minute-1
+				})
+			}else if(self.state.minute==0&&self.state.second==0){
+				clearInterval(val)
+        message.warning('考试时间到，自动提交试卷！')
+        window.location.href='/#/referpapercontainer'
+				//考试时间到！
+			}else if(self.state.minute==14&&self.state.second==59){
+				//考试提醒，你还剩余15分钟
+				self.setState({
+					second: self.state.second-1
+				})
+				openNotification()
+			}else{
+				self.setState({
+					second: self.state.second-1
+				})
+			}
+		},1000)
 	}
 	componentDidMount(){
 		var self=this
-		self.interval()
+    const { examOver } = this.props
+    if(!examOver){
+      self.interval()
+    }
 		// fetch('/exam',{
 		// 	method: 'GET',
 		// 	credentials: 'same-origin',

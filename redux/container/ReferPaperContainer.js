@@ -47,7 +47,7 @@ class ReferPaperContainer extends Component{
 			var paper = {}
 		}
 		return (
-			<Exam username={username}>
+			<Exam username={username} examOver={true}>
 				<SingleUserInfo fetched={fetched} result={result} paper={paper}/>
 			</Exam>
 			)
