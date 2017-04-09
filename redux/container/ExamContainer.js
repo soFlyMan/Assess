@@ -28,7 +28,7 @@ class ExamContainer extends Component{
 	render(){
 		const { dispatch, exampaper, fetched, examstatus, minute, fetchingLoginStatus  } = this.props
 		return (
-			<Exam minute={examstatus?minute:0} username={fetchingLoginStatus.data.username} examOver={examstatus?false:true}> 
+			<Exam minute={examstatus?minute:0} username={fetchingLoginStatus.data.username} examOver={examstatus?false:true}>
 				<ExamPaper exampaper={exampaper}
 						   fetched={fetched}
 						   examstatus={examstatus}

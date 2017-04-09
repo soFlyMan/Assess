@@ -5,7 +5,7 @@ import { FETCH_SCORE,FETCH_SCORE_ERROR,RECEIVE_SCORE,
 		 ADD_RANDOM_PAPER, ADDED_RANDOM_PAPER, ADD_RANDOM_PAPER_ERR,
 		 FETCH_EXAM_STATUS, FETCHED_EXAM_STATUS, FETCH_EXAM_STATUS_ERR, EXAM_END,
 		 STU_ANSWERS, ADD_SCORE, DEC_SCORE,
-		 TIME_OVER } from '../actions/stuActions.js'
+		 TIME_OVER, PLAY_VIDEO } from '../actions/stuActions.js'
 
 const initialState = {
 	fetching: false,
@@ -176,12 +176,24 @@ export const result = (state=answerState,action) => {
 	}
 }
 
-export const examOver = (state={examing: true},action) => {
+export const examParams = (state={examing: true},action) => {
 	switch(action.type){
 		case TIME_OVER:
 			return {
 				...state,
 				examing: false
+			}
+		default:
+			return state
+	}
+}
+
+export const videos = (state={url: ''},action) => {
+	switch(action.type){
+		case PLAY_VIDEO:
+			return {
+				...state,
+				url: action.url
 			}
 		default:
 			return state

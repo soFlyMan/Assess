@@ -11,7 +11,11 @@ var CourseSchema = new mongoose.Schema({
 		sections: [
 			{
 			sectionname: String,
-			content: String
+			content: String,
+			video: {
+				type: String,
+				default: ''
+			}
 			},
 		]
 	},

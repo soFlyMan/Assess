@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { Card, Row, Col, Table, Input, Button, message } from 'antd';
-import { Link } from 'react-router'; 
+import { Link } from 'react-router';
 
 const data = [{
   key: '1',
@@ -36,7 +36,7 @@ export default class AssessShow extends Component{
 	}
 	onInputChange(e) {
     this.setState({ searchText: e.target.value })
-    } 
+    }
     onSearch() {
 	    const { searchText } = this.state
 	    const reg = new RegExp(searchText, 'gi')
@@ -165,15 +165,16 @@ export default class AssessShow extends Component{
 			      </div>
 			    </Card>
   			</div>
-			<div style={{margin:"30px 80px"}}>
-				<Card title="成绩查询" style={{width:"100%"}} 
-				extra={<span><Link to="showscore">考试安排</Link></span>}>
-					<p>&nbsp;你的成绩单</p>
-					<Table columns={columns} dataSource={this.data} />
-				</Card>
-			</div>
+
 		</div>
 			)
 	}
-} 
+}
 
+// <div style={{margin:"30px 80px"}}>
+//   <Card title="成绩查询" style={{width:"100%"}}
+//   extra={<span><Link to="showscore">考试安排</Link></span>}>
+//     <p>&nbsp;你的成绩单</p>
+//     <Table columns={columns} dataSource={this.data} />
+//   </Card>
+// </div>

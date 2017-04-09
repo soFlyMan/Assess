@@ -49,14 +49,14 @@ html, body, #root {
 #admincontainer{
   width: 100%;
   height: 100%;
-  padding-top:100px; 
+  padding-top:100px;
   background:  #80edb6 url("./dist/fd501e6aa355a35843a6ae8b3585eec1.jpg") no-repeat fixed left;
 
 }
 #adminlogin{
   width: 30%;
   margin:0 auto;
-  padding:100px 40px 40px; 
+  padding:100px 40px 40px;
   background-color: rgba(255, 255, 255, 0.2);
 }
 #components-form-demo-normal-login .login-form {
@@ -80,7 +80,7 @@ html, body, #root {
 #rightWrap {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box;    
+    box-sizing: border-box;
     padding: 20px 20px 0 20px;
     position: absolute;
     top: 0;
@@ -100,7 +100,7 @@ html, body, #root {
 .right-box {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box;  
+    box-sizing: border-box;
     padding: 20px 20px 0;
     position: absolute;
     top: 73px;
@@ -171,7 +171,7 @@ html, body, #root {
   background-color: #F0F0F0;
 }
 .course .course-desc{
-  height: 400px;
+  min-height: 400px;
   background-color: #e2e9ec;
 }
 .course .course-content{

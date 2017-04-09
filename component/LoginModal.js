@@ -173,7 +173,7 @@ const LoginModal = Form.create()(React.createClass({
               }else{
                 message.warning('Userid is error!')
               }
-              
+
             })
             }
         }).catch(function(err){
@@ -205,7 +205,7 @@ const LoginModal = Form.create()(React.createClass({
     this.setState({
       visible: false,
     });
-  }, 
+  },
   handleSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -258,18 +258,17 @@ const LoginModal = Form.create()(React.createClass({
     };
     return (
       <div>
-      { 
+      {
         this.props.status?
         <ul className="user">
-         
+
           <li>
-            <Menu mode="horizontal" 
+            <Menu mode="horizontal"
                   onClick={this.handleClick}
                   style={{backgroundColor: "rgba(0, 0, 0, 0)"}}>
              <SubMenu title={<span style={{color: "#777"}}>{this.props.username}<Icon type="down" /></span>}>
                 <Menu.Item key="1"><span><Link to="/userinfocontainer"><Icon type="file-text"/>个人信息</Link></span></Menu.Item>
                 <Menu.Item key="2"><span onClick={this.showChangePassModal}><Icon type="lock"/>修改密码</span></Menu.Item>
-                <Menu.Item key="3"><span><Icon type="mail"/>历史消息</span></Menu.Item>
                 <Menu.Item key="4"><span onClick={this.logOut.bind(this)}><Link to="/"><Icon type="logout"/>退出</Link></span></Menu.Item>
              </SubMenu>
             </Menu>
@@ -283,7 +282,7 @@ const LoginModal = Form.create()(React.createClass({
         <Modal title="请登陆!" okText="登陆" visible={this.state.visible}
           onOk={this.handleOk} onCancel={this.handleCancel}
         >
-          
+
           <Form onSubmit={this.handleSubmit} className="login-form">
             <FormItem>
               {getFieldDecorator('userName', {
@@ -364,7 +363,7 @@ const LoginModal = Form.create()(React.createClass({
             </FormItem>
           </Form>
         </Modal>
-      
+
       </div>
     );
   },

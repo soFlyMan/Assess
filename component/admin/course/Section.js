@@ -1,5 +1,5 @@
 import React,{ Component } from 'react'
-import { Collapse } from 'antd'
+import { Collapse, Icon } from 'antd'
 
 const Panel = Collapse.Panel
 export default class Section extends Component{
@@ -36,7 +36,13 @@ export default class Section extends Component{
 			console.log(err.message)
 		})
 	}
+	handlePlay = url => {
+		const { playVideo } = this.props
+		playVideo(url)
+		console.log(url)
+	}
 	render(){
+		const { playVideo } = this.props
 		var key= 1
 		var sectionKey= 1
 		var content = this.state.characters.map((character)=>
@@ -44,6 +50,7 @@ export default class Section extends Component{
 						<Collapse header={false} defaultActiveKey='1'>
 							{character.sections.map((section)=>
 								<Panel header={section.sectionname} key={sectionKey++}>
+									<div><a onClick={()=>this.handlePlay(section.video)}><Icon type="play-circle" />观看视频</a></div>
 									<p>{section.content}</p>
 								</Panel>
 								)}

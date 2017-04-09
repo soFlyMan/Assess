@@ -74,13 +74,13 @@ ReactDOM.render((
 				<Route path="makepapercontainer" component={MakePaperContainer} />
 				<Route path="papercontainer" component={PaperContainer} />
 				<Route path="singlepapercontainer" component={SinglePaperContainer} />
-				<Route path="singleusercontainer" component={SingleUserContainer} /> 
+				<Route path="singleusercontainer" component={SingleUserContainer} />
 			</Route>
 
 			<Route path="adminlogin" component={AdminLogin}/>
 			<Route path="course" component={Course}/>
 			<Route path="userinfocontainer" component={UserInfoContainer}/>
-			
+
 		</Router>
 	</Provider>
 	), document.getElementById('root'))

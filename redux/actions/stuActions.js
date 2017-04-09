@@ -31,6 +31,8 @@ export const DEC_SCORE = 'DEC_SCORE'
 
 export const TIME_OVER = 'TIME_OVER'
 
+export const PLAY_VIDEO = 'PLAY_VIDEO'
+
 
 export const fetchScore = (url,params) => {
 	return dispatch => {
@@ -152,5 +154,12 @@ export const decScore = (score) => {
 export const timeOver = () => {
 	return {
 		type: TIME_OVER
+	}
+}
+
+export const playVideo = (url) => {
+	return {
+		type: PLAY_VIDEO,
+		url
 	}
 }
