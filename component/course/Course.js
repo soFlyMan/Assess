@@ -16,7 +16,7 @@ class Course extends Component{
 	constructor(props){
 		super(props)
 		this.state={
-			url: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4'
+			url: 'http://www.imooc.com/video/6688'
 		}
 	}
 	componentWillReceiveProps(nextProps){
@@ -30,6 +30,11 @@ class Course extends Component{
 				<div>
 					<Nav nav={'assessNavChange'}/>
 					<div className="course" style={{marginTop:60}}>
+						<div className="course-desc">
+							<Player>
+		      			<source src={this.state.url} />
+		    			</Player>
+						</div>
 						<Card className="course-content" bordered={false} style={{minHeight: 800}}>
 								<Section playVideo={(url) => dispatch(playVideo(url))} />
 						</Card>

@@ -6,12 +6,16 @@ var Admin = require('../models/admin')
 
 //页面
 
+// router.get('/',function(req,res){
+// 	console.log("123123123")
+// 	console.log(req.session.user)
+// 	console.log(req.sessionID)
+// 	res.sendfile('./index.html')
+// })
 router.get('/',function(req,res){
-	console.log("123123123")
-	console.log(req.session.user)
-	console.log(req.sessionID)
-	res.sendfile('./index.html')
+	res.render('index')
 })
+
 // router.get('/index.css',function(req,res){
 // 	res.sendfile('./dist/index.css')
 // })

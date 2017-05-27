@@ -1,6 +1,3 @@
-export const FETCH_ITEMS = 'FETCH_ITEMS'
-export const RECEIVE_ITEMS = 'RECEIVE_ITEMS'
-export const FETCH_ITEMS_ERROR = 'FETCH_ITEMS_ERROR'
 
 export const DELETE_ITEMS ='DELETE_ITEMS'
 export const DELETED_ITEMS ='DELETED_ITEMS'
@@ -29,6 +26,9 @@ export const FETCH_PAPER_PARAMS_ERR = 'FETCH_PAPER_PARAMS_ERR'
 export const MODI_PAPER_PARAMS = 'MODI_PAPER_PARAMS'
 export const MODIED_PAPER_PARAMS = 'MODIED_PAPER_PARAMS'
 
+export const FETCH_ITEMS = 'FETCH_ITEMS'
+export const RECEIVE_ITEMS = 'RECEIVE_ITEMS'
+export const FETCH_ITEMS_ERROR = 'FETCH_ITEMS_ERROR'
 
 export const fetchItems = (url,params) => {
 	return dispatch => {

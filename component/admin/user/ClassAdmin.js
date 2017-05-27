@@ -43,7 +43,6 @@ export default class ClassAdmin extends Component{
 		})
 	}
 	showModal=()=>{
-		console.log('asd')
 		this.setState({
 			visible: true
 		})
@@ -140,8 +139,6 @@ export default class ClassAdmin extends Component{
 				render: (text,record,index)=>{
 					return (
 				<span>
-				<a>修改</a>
-				<span className="ant-divider" />
 				<Popconfirm title="确定要删除？" onConfirm={()=>this.handleDelete(record)}
 				okText="确定" cancelText="取消">
 				<a>删除</a>
@@ -149,7 +146,7 @@ export default class ClassAdmin extends Component{
 				</span>
 				)}
 			}]
-			
+
 		return(
 			<Card title="班级列表" style={{minHeight:500}} extra={
 				<div><Button type="default" onClick={this.showModal}>添加班级</Button>
@@ -165,7 +162,7 @@ export default class ClassAdmin extends Component{
 		}>
 				<Table dataSource={this.state.dataSource} columns={columns} rowKey='klassname'>
 				</Table>
-				
+
 			</Card>
 			)
 	}

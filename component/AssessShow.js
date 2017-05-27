@@ -138,8 +138,10 @@ export default class AssessShow extends Component{
 				    <Row>
 				    	<Col span='8'>
 					    	<Link to="/course">
-					    		<Card title="java程序设计" bordered={false} className="card">
-					    		<p>You can learn java at here !</p>
+					    		<Card title="NodeJS" bordered={false} className="card">
+					    		<p>Nodejs is an open-source,cross-platform,
+					    		javascriot runtime environment .
+					    		It is built on the top of the Googles Chrom V8 VM engine .</p>
 					    		</Card>
 				    		</Link>
 				    	</Col>
@@ -152,13 +154,9 @@ export default class AssessShow extends Component{
 				    	</Col>
 				    	<Col span='8'>
 				    		<a>
-				    		 <Link to="/admin">
-					    		<Card title="NodeJS" bordered={false} className="card" onClick={this.handleMessage}>
-					    		<p>Nodejs is an open-source,cross-platform,
-					    		javascriot runtime environment .
-					    		It is built on the top of the Googles Chrom V8 VM engine .</p>
+					    		<Card title="java程序设计" bordered={false} className="card" onClick={this.handleMessage}>
+					    		<p>You can learn java at here !</p>
 					    		</Card>
-				    		 </Link>
 				    		</a>
 				    	</Col>
 				    </Row>

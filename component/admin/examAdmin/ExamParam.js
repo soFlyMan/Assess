@@ -84,14 +84,14 @@ export default class ExamParam extends Component{
 				}}>
 					{this.props.children}
 					<Button type="default" style={{marginLeft: 120}} onClick={handleExam}>发布考试</Button>
-			</Card>	
+			</Card>
 			  <div>
 					<ul className="paramul">
 						<li style={{width: 200}}>
 						考试日期设置：
 						</li>
 						<li>
-							<DatePicker	defaultValue={moment('2017-01-01', 'YYYY-MM-DD')} onChange={this.changeDate}/>				
+							<DatePicker	defaultValue={moment('2017-01-01', 'YYYY-MM-DD')} onChange={this.changeDate}/>
 						</li>
 						<li>
 							<TimePicker defaultValue={moment('08:30', format)} format={format} onChange={this.changeTime}/>
@@ -116,7 +116,7 @@ export default class ExamParam extends Component{
 								<Radio value={"禁止考试"}>禁止考试</Radio>
 			        			<Radio value={"只允许一次"}>只允许一次</Radio>
 			        			<Radio value={"可以多次进入"}>可以多次进入</Radio>
-							</RadioGroup>	
+							</RadioGroup>
 						</li>
 					</ul>
 				</div>
@@ -140,7 +140,7 @@ export default class ExamParam extends Component{
 							<RadioGroup value={this.state.refer} onChange={this.changeRefer}>
 								<Radio value={"公布答案"}>公布答案</Radio>
 			        			<Radio value={"考卷保密"}>考卷保密</Radio>
-							</RadioGroup>					
+							</RadioGroup>
 						</li>
 					</ul>
 				</div>

@@ -10,7 +10,7 @@ class ProgrammingContainer extends Component{
 		const { fetchingItems, fetchStatus, dispatch } = this.props
 		return (
 			<Programming fetchingItems={ fetchingItems }
-				   fetchStatus={ fetchStatus } 
+				   fetchStatus={ fetchStatus }
 			       onShow={
 			       	(url,params) => dispatch(fetchItems(url,params))
 			       }

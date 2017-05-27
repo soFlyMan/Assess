@@ -1,5 +1,5 @@
 import React,{ Component } from 'react'
-import { Collapse, Icon } from 'antd'
+import { Collapse, Icon,  } from 'antd'
 
 const Panel = Collapse.Panel
 export default class Section extends Component{
@@ -8,7 +8,7 @@ export default class Section extends Component{
 		this.state={
 			text: 'asd',
 			coursename: 'Java语言程序设计',
-			characters: []
+			characters: [],
 		}
 	}
 	componentDidMount(){
@@ -61,5 +61,6 @@ export default class Section extends Component{
 				<Collapse>
 			    	{content}
 			    </Collapse>
+
 	)}
 }
